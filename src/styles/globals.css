@@ -1,0 +1,72 @@
+/* Blenny y Neue Haas Grotesk Display vienen del kit de Adobe Fonts (Typekit) cargado en index.html */
+@font-face {
+  font-family: 'Popfine';
+  src: url('../assets/fonts/popfine-regular.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Popfine';
+  src: url('../assets/fonts/popfine-italic.ttf') format('truetype');
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Revelstoke';
+  src: url('../assets/fonts/revelstoke-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --color-black: #0a0a0a;
+  --color-green: #3ba548;
+  --color-green-dark: #3ba548;
+  --color-orange: #f09b18;
+  --color-white: #ffffff;
+  --color-gray: #888888;
+
+  --font-display: 'blenny', sans-serif;
+  --font-script: 'Popfine', cursive;
+  --font-title: 'Revelstoke', sans-serif;
+  --font-body: 'neue-haas-grotesk-display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 8%;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}

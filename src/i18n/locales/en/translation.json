@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "delivery": "Delivery",
+    "reserva": "Book a table",
+    "origen": "Origin",
+    "esencia": "Essence",
+    "team": "Team",
+    "redes": "Social media",
+    "carta": "Menu",
+    "donde": "Find us"
+  },
+  "home": {
+    "hero": {
+      "slide1_title": "Lucía Freitas",
+      "slide1_subtitle": "New Author Burger",
+      "slide2_title": "Rubia Gallega",
+      "slide2_subtitle": "Our origin",
+      "slide3_title": "Your spot is here",
+      "slide3_subtitle": "Before or after the film"
+    },
+    "origen": {
+      "label": "Our origin:",
+      "title": "Rubia Gallega"
+    },
+    "esencia": {
+      "label": "Our essence",
+      "title": "Urbana"
+    },
+    "team": {
+      "label": "Our",
+      "title": "Author team"
+    },
+    "viral": {
+      "label": "Style",
+      "title": "Very very viral"
+    },
+    "carta": {
+      "label": "The",
+      "title": "Menu",
+      "subtitle": "Artisan"
+    },
+    "donde": {
+      "label": "Where",
+      "title": "We are",
+      "cta": "Book here"
+    }
+  },
+  "carta": {
+    "title": "Menu",
+    "sections": {
+      "entrantes": "Starters",
+      "artesanas": "Artisan",
+      "deautor": "Author",
+      "veggies": "Veggies",
+      "entrepanes": "Sandwiches",
+      "delahuerta": "From the Garden",
+      "menudin": "Little Menu",
+      "postres": "Desserts"
+    }
+  },
+  "nosotros": {
+    "title": "About us"
+  },
+  "contacto": {
+    "title": "Contact"
+  },
+  "locations": {
+    "title": "Our locations"
+  }
+}

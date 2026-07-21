@@ -1,0 +1,154 @@
+﻿.section {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Capa de fotos: arranca en el 10% â€” la primera foto queda completamente detrÃ¡s del textCol (33%) */
+.photosLayer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10%;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6.8rem 0 6.8rem 2rem;
+  gap: 0.75rem;
+}
+
+/* Track deslizable */
+.track {
+  overflow: hidden;
+  flex: 1;
+}
+
+.inner {
+  display: flex;
+  gap: 0.75rem;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+  flex: none;
+  height: 100%;
+  aspect-ratio: 751 / 951;
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(100%);
+}
+
+/* Capa verde oscura encima de la foto, SOLO en la parte que queda detrÃ¡s del texto */
+
+/*
+  Nombre del chef: va encima del track, alineado con el borde derecho del textCol.
+  textCol = 33% de la secciÃ³n. photosLayer empieza en 25%.
+  Diferencia = 8% de secciÃ³n = 8/75 â‰ˆ 10.7% del ancho de photosLayer.
+*/
+.chefMeta {
+  padding-left: calc(27% - 15px);
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  z-index: 3;
+}
+
+.chefNombre {
+  font-family: var(--font-script);
+  font-size: clamp(1.6rem, 3.9vw, 3.125rem);
+  color: var(--color-black);
+  line-height: 1;
+}
+
+/* Info debajo: local y burger */
+.chefDesc {
+  padding-left: calc(27% - 15px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-height: 2.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.chefLocal {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-white);
+  opacity: 0.8;
+}
+
+.chefBurguer {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+/* Columna de texto: sin fondo, solo el texto encima de todo */
+.textCol {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 33%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(5vw + 45px) 3vw 5vw;
+  gap: 0.4rem;
+  background: transparent;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 2.8vw, 2.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: var(--color-orange);
+}
+
+.title {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(4.6rem, 11vw, 12rem);
+  text-transform: uppercase;
+  line-height: 0.72;
+  color: var(--color-orange);
+}
+
+.arrowLeft {
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.arrowLeft img { width: 1rem; height: auto; }
+.arrowLeft:hover { opacity: 0.7; }

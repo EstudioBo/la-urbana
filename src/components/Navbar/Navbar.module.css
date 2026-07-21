@@ -1,0 +1,278 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem 8%;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+  overflow: visible;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  width: 200px;
+  height: auto;
+  transform-origin: bottom right;
+  transform: translateY(-8px) rotate(3deg);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  transition: transform 0.2s;
+}
+
+.iconBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.iconBtn:hover {
+  transform: scale(1.08);
+}
+
+.burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+}
+
+.burger img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.burgerOpen {
+  color: var(--color-orange);
+}
+
+/* BACKDROP */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.backdropVisible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* PANEL */
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 570px;
+  height: 610px;
+  background: var(--color-green);
+  border-bottom-left-radius: 40px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2.5vw 2.5rem 3vw;
+  gap: 2rem;
+  /* origen = posición del icono burger: ~8vw desde la derecha del viewport, ~1.5rem desde arriba */
+  clip-path: circle(0% at calc(100% - 8vw) 1.5rem);
+  transition: clip-path 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.panelOpen {
+  clip-path: circle(150% at calc(100% - 8vw) 1.5rem);
+  pointer-events: all;
+}
+
+/* Fila superior: [ES|EN]  Menú ✕ */
+.panelTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Botón cerrar: "Menú ✕" */
+.closeBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 300px;
+  padding: calc(3px + 0.25rem) 1.2rem calc(3px + 0.25rem - 2px);
+}
+
+.closeBtn:hover {
+  background: #fff;
+  color: var(--color-green);
+  border-color: #fff;
+}
+
+.closeTxt {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+/* Links */
+.menuLinks {
+  list-style: none;
+  margin-top: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.menuLinks a {
+  font-family: var(--font-script);
+  font-size: 52px;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+  transition: color 0.2s;
+  display: block;
+}
+
+.menuLinks a:hover {
+  color: var(--color-orange);
+}
+
+/* Botones delivery + reservar */
+.menuActions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  transition: transform 0.15s;
+}
+
+.menuBtn:hover  { transform: scale(0.96); }
+.menuBtn:active { transform: scale(0.92); }
+
+.menuBtnDelivery {
+  background: var(--color-orange);
+  color: #fff;
+}
+
+.menuBtnReserva {
+  background: #1a4a00;
+  color: #fff;
+}
+
+.menuBtnIcon {
+  width: 2.5rem;
+  height: auto;
+}
+
+.menuSocial {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+.menuSocial a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s;
+  display: flex;
+}
+
+.menuSocial a:hover {
+  color: var(--color-orange);
+}
+
+/* Selector de idioma estilo segmentado */
+.langSegment {
+  display: flex;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 300px;
+  overflow: hidden;
+  padding: 3px;
+  gap: 2px;
+}
+
+.langOpt {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.25rem 0.7rem;
+  border-radius: 300px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.langOptActive {
+  background: #fff;
+  color: var(--color-green);
+}
+
+@media (max-width: 900px) {
+  .menuActions { flex-direction: column; }
+  .menuBtn { width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .navbar { padding: 0.75rem 5%; }
+  .logo { left: 5%; }
+  .logoImg { height: 70px; }
+  .iconBtn { width: 32px; height: 32px; }
+  .burger { width: 28px; height: 28px; }
+  .panel { width: 100vw; height: auto; min-height: 470px; border-bottom-left-radius: 0; }
+}

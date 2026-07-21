@@ -1,0 +1,12 @@
+.nosotros {
+  min-height: 100svh;
+  background: var(--color-black);
+  padding: 8rem 5vw 4rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 8rem);
+  text-transform: uppercase;
+  color: var(--color-white);
+}

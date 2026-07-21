@@ -1,0 +1,117 @@
+﻿.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100svh;
+}
+
+.imageCol {
+  overflow: hidden;
+}
+
+.imageCol img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.textCol {
+  background: var(--color-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6vw;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 2.8vw, 2.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: var(--color-orange);
+}
+
+.titleWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.sello {
+  position: absolute;
+  right: calc(-6rem - 10px);
+  top: calc(20% - 80px);
+  width: 12rem;
+  transform: rotate(12deg);
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.title {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(4.6rem, 11vw, 12rem);
+  text-transform: uppercase;
+  line-height: 0.72;
+  color: var(--color-orange);
+  position: relative;
+  z-index: 1;
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-black);
+  max-width: 28ch;
+  text-align: left;
+}
+
+.moreWrapper {
+  width: 28ch;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 5px;
+}
+
+.more {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-black);
+  font-size: 18px;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.more:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 1024px) {
+  .label { font-size: clamp(0.8rem, 3.5vw, 2rem); }
+  .title { font-size: clamp(4rem, 9vw, 9rem); }
+  .sello { width: 8rem; right: -2rem; }
+}
+
+@media (max-width: 640px) {
+  .section {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50svh auto;
+  }
+  .imageCol { min-height: 50svh; order: -1; }
+  .textCol { padding: 10vw 8vw; min-height: auto; }
+  .label { font-size: clamp(1.2rem, 5vw, 2rem); }
+  .title { font-size: clamp(4.5rem, 15vw, 7rem); }
+  .sello { width: 6rem; right: -1rem; top: 10%; }
+  .body { font-size: 0.9rem; max-width: 100%; }
+  .moreWrapper { width: 100%; }
+}

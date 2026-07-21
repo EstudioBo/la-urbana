@@ -1,0 +1,135 @@
+﻿.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.bgContain {
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.bg.active {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.72) 0%,
+    rgba(0,0,0,0.2) 60%,
+    transparent 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 40%;
+  margin-left: 6%;
+  padding: 8rem 3% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(5.6rem, 12vw, 13rem);
+  line-height: 0.72;
+  text-transform: uppercase;
+  color: var(--color-green);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+  max-width: 6ch;
+}
+
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.subtitlePopfine {
+  font-family: var(--font-script) !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+  line-height: 1.05;
+  margin-top: -0.3em;
+}
+
+.subtitle span {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.8vw, 3.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  letter-spacing: 0.01em;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  padding: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.arrow img { width: 1.25rem; height: auto; }
+.arrow:hover { opacity: 0.7; }
+.arrow.left  { left: 1.5rem; }
+.arrow.right { right: 1.5rem; }
+
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.scrollHint button { display: flex; animation: bounce 2s infinite; }
+.scrollHint img { width: 1.75rem; height: auto; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+
+@media (max-width: 1024px) {
+  .content {
+    width: 55%;
+    margin-left: 4%;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    width: 88%;
+    margin-left: 0;
+    padding: 6rem 6% 0;
+    align-items: center;
+  }
+  .arrow { display: none; }
+}

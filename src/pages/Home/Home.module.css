@@ -1,0 +1,107 @@
+.home {
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.marqueeDivider {
+  position: relative;
+  height: 0;
+  z-index: 50;
+}
+
+.marqueeTrack {
+  position: absolute;
+  top: -2.2rem;
+  left: -5%;
+  width: 110%;
+  background: #3ba548;
+  transform: rotate(-2deg);
+  overflow: hidden;
+  padding: 1.1rem 0;
+}
+
+.marqueeInner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: marqueeScroll 26s linear infinite;
+}
+
+.marqueeLogo {
+  height: 2.4rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marqueeReverse {
+  animation-direction: reverse;
+}
+
+.celoDivider {
+  position: relative;
+  height: 0;
+  z-index: 50;
+  overflow: visible;
+}
+
+.celo {
+  position: absolute;
+  top: -4rem;
+  left: -2%;
+  width: 35%;
+  height: auto;
+  pointer-events: none;
+}
+
+.stickerU {
+  position: absolute;
+  top: calc(100svh - 5rem);
+  right: 20%;
+  width: 10rem;
+  z-index: 10;
+  transform: rotate(-12deg) scale(0);
+  opacity: 0;
+  transition: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
+}
+
+.stickerStamped {
+  animation: stamp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stickerDivider {
+  position: relative;
+  height: 0;
+  z-index: 10;
+}
+
+.stickerDivider .stickerU {
+  top: auto;
+  bottom: -5rem;
+  right: 20%;
+}
+
+@keyframes stamp {
+  0%   { transform: rotate(-12deg) scale(2.5); opacity: 0; }
+  60%  { transform: rotate(-12deg) scale(0.92); opacity: 1; }
+  80%  { transform: rotate(-12deg) scale(1.05); }
+  100% { transform: rotate(-12deg) scale(1); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  .stickerU { width: 8rem; right: 10%; }
+  .celo { width: 50%; }
+}
+
+@media (max-width: 640px) {
+  .stickerU { width: 6rem; right: 5%; }
+  .celo { width: 70%; }
+}

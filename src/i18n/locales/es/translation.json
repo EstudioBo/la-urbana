@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "delivery": "Delivery",
+    "reserva": "Reserva",
+    "origen": "Origen",
+    "esencia": "Esencia",
+    "team": "Team",
+    "redes": "Redes sociales",
+    "carta": "Carta",
+    "donde": "Donde estamos"
+  },
+  "home": {
+    "hero": {
+      "slide1_title": "Lucía Freitas",
+      "slide1_subtitle": "Nueva Burger de Autor",
+      "slide2_title": "Rubia Gallega",
+      "slide2_subtitle": "Nuestro origen",
+      "slide3_title": "Tu sitio está aquí",
+      "slide3_subtitle": "Antes o después de la peli"
+    },
+    "origen": {
+      "label": "Nuestro origen:",
+      "title": "Rubia Gallega",
+      "body": "El vacuno selecto de origen local es la clave para crear hamburguesas artesanas que estén fuera de este mundo. Todo lo que usamos viene directamente del campo a nuestra mesa."
+    },
+    "esencia": {
+      "label": "Nuestra esencia",
+      "title": "Urbana",
+      "body": "Somos un restaurante moderno que entiende la modernidad como filosofía de unión. Elaboración artesanal, producto local para saborear en un ambiente urbano. Nuestro barrio es de todos."
+    },
+    "team": {
+      "label": "Nuestro",
+      "title": "Team de autor"
+    },
+    "viral": {
+      "label": "Estilo",
+      "title": "Muy muy viral"
+    },
+    "carta": {
+      "label": "La",
+      "title": "Carta",
+      "subtitle": "Artesanas"
+    },
+    "donde": {
+      "label": "Donde",
+      "title": "Andamos",
+      "cta": "Reserva aquí"
+    }
+  },
+  "carta": {
+    "title": "La Carta",
+    "sections": {
+      "entrantes": "Entrantes",
+      "artesanas": "Artesanas",
+      "deautor": "De Autor",
+      "veggies": "Veggies",
+      "entrepanes": "Entrepanes",
+      "delahuerta": "De la Huerta",
+      "menudin": "Menudín",
+      "postres": "Postres"
+    }
+  },
+  "nosotros": {
+    "title": "Nosotros"
+  },
+  "contacto": {
+    "title": "Contacto"
+  },
+  "locations": {
+    "title": "Nuestros locales"
+  }
+}

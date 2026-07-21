@@ -1,0 +1,115 @@
+.page {
+  min-height: 100svh;
+  background: #1a4a00;
+  display: flex;
+  align-items: center;
+  padding: 8rem 5vw 6rem;
+}
+
+.grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+/* LEFT */
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 7vw, 8rem);
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: var(--color-orange);
+  margin: 0;
+}
+
+.sub {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  color: var(--color-white);
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* RIGHT — FORM */
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-orange);
+}
+
+.input,
+.textarea {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-orange);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  background: var(--color-green);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 2.5rem;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.btn:hover  { transform: scale(0.96); }
+.btn:active { transform: scale(0.92); }
