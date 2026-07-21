@@ -114,6 +114,14 @@
   opacity: 0.8;
 }
 
+.ctaGroup {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -142,5 +150,12 @@
 
 .ctaIcon {
   width: 2.4rem;
-  height: auto;
+  height: 2.4rem;
+  flex-shrink: 0;
+}
+
+.ctaIconMap {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
 }
