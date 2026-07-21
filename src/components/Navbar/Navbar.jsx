@@ -53,6 +53,7 @@ export default function Navbar({ lang, setLang }) {
   }, [menuOpen])
 
   return (
+    <>
     <header className={styles.navbar}>
       <Link to="/" className={styles.logo}>
         <img src={logo} alt="La Urbana" className={styles.logoImg} />
@@ -73,6 +74,7 @@ export default function Navbar({ lang, setLang }) {
           {menuOpen ? <IconClose /> : <img src={iconBurgerMenu} alt="" />}
         </button>
       </div>
+    </header>
 
       {/* Backdrop */}
       <div
@@ -135,6 +137,6 @@ export default function Navbar({ lang, setLang }) {
           </a>
         </div>
       </nav>
-    </header>
+    </>
   )
 }
