@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "delivery": "Delivery",
     "reserva": "Reserva",
@@ -13,8 +13,8 @@
     "hero": {
       "slide1_title": "Lucía Freitas",
       "slide1_subtitle": "Nueva Burger de Autor",
-      "slide2_title": "Rubia Gallega",
-      "slide2_subtitle": "Nuestro origen",
+      "slide2_title": "Pan de verdad",
+      "slide2_subtitle": "nos gusta que|haga crunch!",
       "slide3_title": "Tu sitio está aquí",
       "slide3_subtitle": "Antes o después de la peli"
     },
@@ -70,3 +70,5 @@
     "title": "Nuestros locales"
   }
 }
+
+

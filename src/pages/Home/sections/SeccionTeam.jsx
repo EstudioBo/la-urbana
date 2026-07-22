@@ -40,6 +40,7 @@ export default function SeccionTeam() {
   const innerRef = useRef(null)
   const textColRef = useRef(null)
   const timer = useRef(null)
+  const selloRef = useRef(null)
 
   useEffect(() => {
     const calc = () => {
@@ -63,6 +64,54 @@ export default function SeccionTeam() {
   useEffect(() => {
     timer.current = setInterval(() => setOffset(o => o + 1), 4000)
     return () => clearInterval(timer.current)
+  }, [])
+
+  useEffect(() => {
+    let raf
+    let s = 0
+    let dustTimer = 0
+
+    const spawnDust = (el) => {
+      const rect = el.getBoundingClientRect()
+      const particle = document.createElement('span')
+      const size = 2 + Math.random() * 3
+      const driftX = (Math.random() - 0.5) * 30
+      const driftY = -Math.random() * 18
+      Object.assign(particle.style, {
+        position: 'fixed',
+        left: `${rect.left + Math.random() * rect.width}px`,
+        top:  `${rect.top  + rect.height * 0.7 + Math.random() * rect.height * 0.3}px`,
+        width: `${size}px`,
+        height: `${size}px`,
+        borderRadius: '50%',
+        background: ['rgba(255,255,255,0.7)','rgba(255,220,150,0.6)','rgba(200,247,197,0.5)'][Math.floor(Math.random()*3)],
+        pointerEvents: 'none',
+        zIndex: '9999',
+        opacity: '0',
+        transition: 'transform 0.6s ease-out, opacity 0.6s ease-out',
+        transform: 'translate(0,0)',
+        filter: 'blur(0.5px)',
+      })
+      document.body.appendChild(particle)
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        particle.style.opacity = '0.8'
+        particle.style.transform = `translate(${driftX}px, ${driftY}px)`
+      }))
+      setTimeout(() => { particle.style.opacity = '0' }, 300)
+      setTimeout(() => particle.remove(), 700)
+    }
+
+    const animate = () => {
+      s += 0.015
+      if (selloRef.current) {
+        selloRef.current.style.transform = `translate(${Math.sin(s * 0.7) * 6}px, ${Math.cos(s * 0.5) * 8}px)`
+        dustTimer++
+        if (dustTimer % 10 === 0) spawnDust(selloRef.current)
+      }
+      raf = requestAnimationFrame(animate)
+    }
+    raf = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   const goNext = () => {
@@ -154,7 +203,9 @@ export default function SeccionTeam() {
               </p>
               <p className={styles.modalRow}><span>Ingredientes</span>{modalChef.ingredientes}</p>
             </div>
-            <img src={selloU} alt="" className={styles.modalSello} />
+            <div className={styles.modalSelloWrap} ref={selloRef}>
+              <img src={selloU} alt="" className={styles.modalSello} />
+            </div>
           </div>
         </>
       )}

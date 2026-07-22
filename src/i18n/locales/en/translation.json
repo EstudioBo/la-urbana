@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "delivery": "Delivery",
     "reserva": "Book a table",
@@ -13,8 +13,8 @@
     "hero": {
       "slide1_title": "Lucía Freitas",
       "slide1_subtitle": "New Author Burger",
-      "slide2_title": "Rubia Gallega",
-      "slide2_subtitle": "Our origin",
+      "slide2_title": "Real bread",
+      "slide2_subtitle": "we love it|when it crunches!",
       "slide3_title": "Your spot is here",
       "slide3_subtitle": "Before or after the film"
     },
@@ -68,3 +68,4 @@
     "title": "Our locations"
   }
 }
+

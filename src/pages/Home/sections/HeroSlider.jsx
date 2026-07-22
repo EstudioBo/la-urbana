@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './HeroSlider.module.css'
 import imgSlide1 from '../../../assets/images/hero-lucia.png'
-import imgSlide2 from '../../../assets/images/hero-slide2.webp'
+import imgSlide2 from '../../../assets/images/hero-pan-crujiente.webp'
 import arrowLeft from '../../../assets/images/arrow-left.svg'
 import arrowRight from '../../../assets/images/arrow-right.svg'
 import arrowDown from '../../../assets/images/arrow-down.svg'
@@ -36,8 +36,8 @@ export default function HeroSlider() {
       <div className={styles.content}>
         <h1 className={styles.title}>{t(slide.titleKey)}</h1>
         <div className={styles.subtitle}>
-          {t(slide.subtitleKey).split(' ').map((word, i) => (
-            <span key={i} className={i === 1 ? styles.subtitlePopfine : ''}>{word}</span>
+          {t(slide.subtitleKey).split('|').map((line, i) => (
+            <span key={i} className={i === 1 ? styles.subtitlePopfine : ''}>{line}</span>
           ))}
         </div>
       </div>

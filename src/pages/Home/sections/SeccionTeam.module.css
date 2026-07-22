@@ -317,12 +317,18 @@
   100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
 }
 
-.modalSello {
+.modalSelloWrap {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
   width: 110px;
+  will-change: transform;
+}
+
+.modalSello {
+  width: 100%;
   height: auto;
   opacity: 0;
   animation: stamp 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s forwards;
+  display: block;
 }
