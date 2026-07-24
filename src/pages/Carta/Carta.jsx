@@ -10,7 +10,77 @@ import imgVeggies     from '../../assets/images/carta/veggies.webp'
 import imgEntrepanes  from '../../assets/images/carta/entrepanes.webp'
 import imgEnsalada    from '../../assets/images/carta/ensalada.webp'
 import imgPostres     from '../../assets/images/carta/postres.webp'
-import iconBurger    from '../../assets/images/icon-burgermenu.svg'
+import iconBurger          from '../../assets/images/icon-burgermenu.svg'
+
+import imgGaliciaBritish      from '../../assets/images/carta/galicia/urbana-british.png'
+import imgGaliciaCampera      from '../../assets/images/carta/galicia/urbana-campera.png'
+import imgGaliciaClasica      from '../../assets/images/carta/galicia/urbana-clasica.png'
+import imgGaliciaCorralita    from '../../assets/images/carta/galicia/urbana-corralita.png'
+import imgGaliciaCuartoLibra  from '../../assets/images/carta/galicia/urbana-cuarto-de-libra.png'
+import imgGaliciaJalapenha    from '../../assets/images/carta/galicia/urbana-jalapenha.png'
+import imgGaliciaMexicana     from '../../assets/images/carta/galicia/urbana-mexicana.png'
+import imgGaliciaPiamonte     from '../../assets/images/carta/galicia/urbana-piamonte.png'
+
+import imgEntrepanesDechipis  from '../../assets/images/carta/entrepanes/dechipis.png'
+import imgEntrepanesRusticWay from '../../assets/images/carta/entrepanes/rustic-way.png'
+
+import imgEnsaladaCesar       from '../../assets/images/carta/ensaladas/ensalada-cesar.png'
+import imgEnsaladaCebreiro    from '../../assets/images/carta/ensaladas/ensalada-cebreiro-mood.png'
+
+import imgAlergenoGluten      from '../../assets/images/alergenos/gluten.webp'
+import imgAlergenovPescado    from '../../assets/images/alergenos/pescado.webp'
+import imgAlergenoAltramuces  from '../../assets/images/alergenos/altramuces.webp'
+import imgAlergenoLeche       from '../../assets/images/alergenos/leche.webp'
+import imgAlergenoApio        from '../../assets/images/alergenos/apio.webp'
+import imgAlergenovCacahuetes from '../../assets/images/alergenos/cacahuetes.webp'
+import imgAlergenoHuevos      from '../../assets/images/alergenos/huevos.webp'
+import imgAlergenoFrutosSecos from '../../assets/images/alergenos/frutos-secos.webp'
+import imgAlergenoSesamo      from '../../assets/images/alergenos/sesamo.webp'
+import imgAlergenovCrustaceos from '../../assets/images/alergenos/crustaceos.webp'
+import imgAlergenoSoja        from '../../assets/images/alergenos/soja.webp'
+import imgAlergenoMostaza     from '../../assets/images/alergenos/mostaza.webp'
+import imgAlergenoMoluscos    from '../../assets/images/alergenos/moluscos.webp'
+import imgAlergenoSulfitos    from '../../assets/images/alergenos/sulfitos.webp'
+
+const ALERGENO_IMGS = {
+  gluten:      imgAlergenoGluten,
+  pescado:     imgAlergenovPescado,
+  altramuces:  imgAlergenoAltramuces,
+  leche:       imgAlergenoLeche,
+  apio:        imgAlergenoApio,
+  cacahuetes:  imgAlergenovCacahuetes,
+  huevos:      imgAlergenoHuevos,
+  frutosSecos: imgAlergenoFrutosSecos,
+  sesamo:      imgAlergenoSesamo,
+  crustaceos:  imgAlergenovCrustaceos,
+  soja:        imgAlergenoSoja,
+  mostaza:     imgAlergenoMostaza,
+  moluscos:    imgAlergenoMoluscos,
+  sulfitos:    imgAlergenoSulfitos,
+}
+
+const GALICIA_IMGS = {
+  'Urbana British':          imgGaliciaBritish,
+  'Urbana Campera':          imgGaliciaCampera,
+  'Urbana Clásica':          imgGaliciaClasica,
+  'Urbana Corralita':        imgGaliciaCorralita,
+  'Urbana Cuarto de Libra':  imgGaliciaCuartoLibra,
+  'Urbana Jalapeña':         imgGaliciaJalapenha,
+  'Urbana Mejicana':         imgGaliciaMexicana,
+  'Urbana Piamonte':         imgGaliciaPiamonte,
+}
+
+const ENTREPANES_IMGS = {
+  'Dechipis':   imgEntrepanesDechipis,
+  'Rustic Way': imgEntrepanesRusticWay,
+}
+
+const ENSALADAS_IMGS = {
+  'Ensalada César':   imgEnsaladaCesar,
+  'Cebreiro Mood':    imgEnsaladaCebreiro,
+}
+import iconDeliveryBlanco  from '../../assets/images/icon-delivery-blanco.webp'
+import iconCalendarioBlanco from '../../assets/images/icon-calendario-blanco.webp'
 
 const CAT_IMGS = {
   empezar:    imgParaEmpezar,
@@ -96,8 +166,7 @@ export default function Carta() {
             const abierto = expandido === key
             return (
               <div key={key} className={styles.card}>
-                {plato.recomendado && <span className={styles.tagReco}>Recomendado</span>}
-                {plato.glutenFree && <span className={styles.tagGluten}>SG</span>}
+{plato.glutenFree && <span className={styles.tagGluten}>SG</span>}
 
                 {abierto && (
                   <div className={styles.cardPopup} onClick={e => e.stopPropagation()}>
@@ -110,9 +179,13 @@ export default function Carta() {
                     {plato.alergenos?.length > 0 && (
                       <div className={styles.cardAlergenos}>
                         {plato.alergenos.map(id => (
-                          <span key={id} className={styles.alergenoIcon} title={ALERGENOS[id]?.label}>
-                            {ALERGENOS[id]?.emoji}
-                          </span>
+                          <img
+                            key={id}
+                            src={ALERGENO_IMGS[id]}
+                            alt={ALERGENOS[id]?.label}
+                            title={ALERGENOS[id]?.label}
+                            className={styles.alergenoIcon}
+                          />
                         ))}
                       </div>
                     )}
@@ -120,7 +193,7 @@ export default function Carta() {
                 )}
 
                 <div className={styles.cardImg} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>
-                  <img src={CAT_IMGS[plato.cat]} alt={plato.nombre} />
+                  <img src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
                 </div>
 
                 <div className={styles.cardInfo}>
@@ -146,6 +219,16 @@ export default function Carta() {
           })}
         </div>
       </main>
+      <div className={styles.ctaBar}>
+        <a href="https://laurbana.waitry.net/" target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.ctaBtnDelivery}`}>
+          <img src={iconDeliveryBlanco} alt="" className={styles.ctaBtnIcon} />
+          Delivery
+        </a>
+        <a href="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
+          <img src={iconCalendarioBlanco} alt="" className={styles.ctaBtnIcon} />
+          Reservar
+        </a>
+      </div>
       <Footer />
     </div>
   )

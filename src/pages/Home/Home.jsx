@@ -9,6 +9,7 @@ import SeccionEsencia from './sections/SeccionEsencia'
 import SeccionTeam from './sections/SeccionTeam'
 import SeccionViral from './sections/SeccionViral'
 import SeccionCarta from './sections/SeccionCarta'
+import SeccionRestaurantesSecretos from './sections/SeccionRestaurantesSecretos'
 import SeccionDonde from './sections/SeccionDonde'
 import SeccionDirecciones from './sections/SeccionDirecciones'
 import Footer from './sections/Footer'
@@ -76,6 +77,7 @@ export default function Home() {
       <SeccionViral />
       <MarqueeDivider reverse />
       <SeccionCarta />
+      <SeccionRestaurantesSecretos />
       <SeccionDonde />
       <div ref={sticker2Ref} className={styles.stickerDivider}>
         <img

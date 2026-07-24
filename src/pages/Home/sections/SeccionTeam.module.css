@@ -1,5 +1,6 @@
 ﻿.section {
   position: relative;
+  z-index: 1;
   height: 100svh;
   overflow: hidden;
   background-size: cover;

@@ -1,12 +1,182 @@
-.nosotros {
-  min-height: 100svh;
-  background: var(--color-black);
-  padding: 8rem 5vw 4rem;
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.title {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 8rem);
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 40%;
+  margin-left: 6%;
+  padding: 8rem 3% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lineBlenny + .linePopfine {
+  margin-top: -22px;
+}
+
+.linePopfine {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--color-white);
+  color: var(--color-green);
+  letter-spacing: 0.01em;
+}
+
+.lineBlenny {
+  font-family: var(--font-display);
+  font-size: 90px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  letter-spacing: 0.01em;
+}
+
+
+/* FONDO US + PRODUCTOS */
+.fondoUs {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  background: radial-gradient(ellipse at 55% 45%, #f7c147 0%, #f09b18 50%, #d47e06 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8vw 5vw;
+}
+
+.fondoUsPattern {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+
+
+@keyframes pulseU {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 0.45; }
+}
+
+.fondoUsPulse {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+}
+
+.f1 { animation: pulseU 4.2s ease-in-out infinite; }
+.f2 { animation: pulseU 5.8s ease-in-out infinite; animation-delay: -2.1s; }
+.f3 { animation: pulseU 4.9s ease-in-out infinite; animation-delay: -1.4s; }
+.f4 { animation: pulseU 6.1s ease-in-out infinite; animation-delay: -3.5s; }
+.f5 { animation: pulseU 4.5s ease-in-out infinite; animation-delay: -0.8s; }
+.f6 { animation: pulseU 5.3s ease-in-out infinite; animation-delay: -2.8s; }
+.f7  { animation: pulseU 4.7s ease-in-out infinite; animation-delay: -1.9s; }
+.f8  { animation: pulseU 5.6s ease-in-out infinite; animation-delay: -3.2s; }
+.f9  { animation: pulseU 4.3s ease-in-out infinite; animation-delay: -0.6s; }
+.f10 { animation: pulseU 6.4s ease-in-out infinite; animation-delay: -4.1s; }
+.f11 { animation: pulseU 4.8s ease-in-out infinite; animation-delay: -2.4s; }
+.f12 { animation: pulseU 5.1s ease-in-out infinite; animation-delay: -1.1s; }
+.f13 { animation: pulseU 6.7s ease-in-out infinite; animation-delay: -3.8s; }
+.f14 { animation: pulseU 4.4s ease-in-out infinite; animation-delay: -0.3s; }
+.f15 { animation: pulseU 5.9s ease-in-out infinite; animation-delay: -2.6s; }
+
+/* GRID PRODUCTOS */
+.productosGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.productoCard {
+  display: flex;
+  flex-direction: column;
+  background: #f5f0e6;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  transition:
+    opacity 0.55s ease calc(var(--i) * 0.09s),
+    transform 0.55s ease calc(var(--i) * 0.09s);
+}
+
+.gridVisible .productoCard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.productoInfo {
+  padding: 1.4rem 1.4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.productoNombre {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #273026;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.productoTexto {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 0.9vw, 0.88rem);
+  line-height: 1.5;
+  color: #273026;
+  margin: 0;
+}
+
+.productoImg {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-top: auto;
+}
+
+@media (max-width: 640px) {
+  .heroContent { width: 90%; margin-left: 5%; padding: 6rem 4% 0; }
+  .title { font-size: clamp(4rem, 14vw, 7rem); }
+  .subtitleLine { font-size: clamp(1.4rem, 6vw, 2.5rem); }
 }

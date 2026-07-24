@@ -1,13 +1,13 @@
 .home {
   width: 100%;
   position: relative;
-  overflow-x: hidden;
 }
 
 .marqueeDivider {
   position: relative;
   height: 0;
   z-index: 50;
+  overflow-x: clip;
 }
 
 .marqueeTrack {

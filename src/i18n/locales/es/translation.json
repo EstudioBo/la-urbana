@@ -1,4 +1,4 @@
-﻿{
+{
   "nav": {
     "delivery": "Delivery",
     "reserva": "Reserva",
@@ -11,12 +11,14 @@
   },
   "home": {
     "hero": {
-      "slide1_title": "Lucía Freitas",
-      "slide1_subtitle": "Nueva Burger de Autor",
-      "slide2_title": "Pan de verdad",
-      "slide2_subtitle": "nos gusta que|haga crunch!",
-      "slide3_title": "Tu sitio está aquí",
-      "slide3_subtitle": "Antes o después de la peli"
+      "slide1_title": "Lucía|Freitas",
+      "slide1_subtitle": "Nueva|BURGUER|de Autor",
+      "slide2_title": "PAN|DE VERDAD",
+      "slide2_subtitle": "Nos gusta que|HAGA CRUNCH!",
+      "slide3_title": "Less smash",
+      "slide4_title": "Martín|Indómito",
+      "slide4_subtitle": "Nueva|BURGUER|De autor",
+      "slide3_subtitle": "more|ñam ñam"
     },
     "origen": {
       "label": "Nuestro origen:",
@@ -25,7 +27,7 @@
     },
     "esencia": {
       "label": "Nuestra esencia",
-      "title": "Urbana",
+      "title": "#laurbanastyle",
       "body": "Somos un restaurante moderno que entiende la modernidad como filosofía de unión. Elaboración artesanal, producto local para saborear en un ambiente urbano. Nuestro barrio es de todos."
     },
     "team": {
@@ -70,5 +72,3 @@
     "title": "Nuestros locales"
   }
 }
-
-

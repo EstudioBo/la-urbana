@@ -7,6 +7,7 @@ import Nosotros from './pages/Nosotros/Nosotros'
 import Contacto from './pages/Contacto/Contacto'
 import Reservar from './pages/Reservar/Reservar'
 import Alergenos from './pages/Alergenos/Alergenos'
+import UrbanaKids from './pages/UrbanaKids/UrbanaKids'
 
 export default function App() {
   const { i18n } = useTranslation()
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/reservar" element={<Reservar />} />
         <Route path="/alergenos" element={<Alergenos />} />
+        <Route path="/restaurantes-secretos" element={<UrbanaKids />} />
       </Routes>
     </>
   )

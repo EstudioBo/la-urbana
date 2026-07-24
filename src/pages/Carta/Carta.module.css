@@ -309,9 +309,11 @@
 }
 
 .alergenoIcon {
-  font-size: 1rem;
-  line-height: 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  object-fit: contain;
   cursor: default;
+  filter: brightness(0) invert(1);
 }
 
 /* Tags sobre la imagen */
@@ -346,6 +348,45 @@
   background: rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255,255,255,0.3);
+}
+
+.ctaBar {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 3rem 2rem 4rem;
+}
+
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 2rem;
+  border-radius: 8px;
+  transition: transform 0.15s;
+}
+
+.ctaBtn:hover  { transform: scale(0.96); }
+.ctaBtn:active { transform: scale(0.92); }
+
+.ctaBtnDelivery {
+  background: var(--color-orange);
+  color: #fff;
+}
+
+.ctaBtnReserva {
+  background: #1a4a00;
+  color: #fff;
+}
+
+.ctaBtnIcon {
+  width: 2.5rem;
+  height: auto;
 }
 
 @media (max-width: 1024px) {

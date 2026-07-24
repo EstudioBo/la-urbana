@@ -240,7 +240,7 @@ export const PLATOS = [
     alergenos: ['gluten', 'leche'],
   },
   {
-    cat: 'entrepanes',
+    cat: 'galicia',
     nombre: 'Urbana Corralita',
     desc: 'Pan crujiente y tiras de pollo empanado en panko (4 unid), queso cheddar, salsa Urbana Rosé, cebolla caramelizada, lechuga fresca y tomate.',
     precio: '12,5',
