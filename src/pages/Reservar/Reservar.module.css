@@ -1,6 +1,8 @@
 .page {
+  position: relative;
   min-height: 100svh;
-  background: #1a4a00;
+  background: radial-gradient(ellipse at 55% 45%, #4ec563 0%, #1a9a35 50%, #0d5018 100%);
+  overflow: hidden;
   padding-top: 7rem;
   display: flex;
   flex-direction: column;
@@ -9,7 +11,36 @@
   padding-bottom: 4rem;
 }
 
+.uPattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+@keyframes pulseU {
+  0%, 55%, 100% { opacity: 0; }
+  27.5%         { opacity: 0.5; }
+}
+
+.pU {
+  animation: pulseU var(--pu-dur, 10s) linear var(--pu-delay, 0s) infinite;
+}
+
+.uPulse {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+
 .header {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,31 +67,69 @@
 }
 
 .tabs {
+  position: relative;
+  z-index: 1;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
 }
 
 .tab {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.5rem 2rem;
-  border-radius: 8px;
-  border: 1.5px solid var(--color-green);
-  background: transparent;
-  color: var(--color-orange);
+  letter-spacing: 0.08em;
+  padding: 0.55rem 1.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.35) 100%);
+  color: #fff;
   cursor: pointer;
-  transition: transform 0.1s ease;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.25),
+    0 6px 20px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.3);
 }
 
-.tab:hover { transform: scale(0.96); }
-.tab:active { transform: scale(0.92); }
+.tabCiudad {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+.tab:hover {
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.35);
+}
 
 .tabActive {
-  background: var(--color-green);
-  color: var(--color-black);
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.28) 0%,
+      rgba(255,255,255,0)    45%,
+      rgba(0,0,0,0.18)      100%
+    ),
+    var(--color-orange);
+  border-color: #c45a00;
+  color: #000;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.45),
+    inset 0 -2px 0 rgba(0,0,0,0.2);
+  animation: slotIn 2s cubic-bezier(0.25, 0.6, 0.1, 1) both;
+  transform-origin: center center;
+}
+
+.tabActive .tabCiudad {
+  color: rgba(0,0,0,0.6);
 }
 
 .subtabs {
@@ -90,7 +159,15 @@
   border-color: var(--color-orange);
 }
 
+@keyframes slotIn {
+  0%   { transform: perspective(500px) rotateX(1080deg); opacity: 0; }
+  12%  { opacity: 1; }
+  100% { transform: perspective(500px) rotateX(0deg); }
+}
+
 .iframeWrapper {
+  position: relative;
+  z-index: 1;
   width: min(860px, 90vw);
   background: #fff;
   border-radius: 1rem;

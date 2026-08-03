@@ -1,0 +1,41 @@
+.marqueeDivider {
+  position: relative;
+  height: 0;
+  z-index: 50;
+  overflow-x: clip;
+}
+
+.marqueeTrack {
+  position: absolute;
+  top: -2.2rem;
+  left: -5%;
+  width: 110%;
+  background: #3ba548;
+  transform: rotate(-2deg);
+  overflow: hidden;
+  padding: 1.1rem 0;
+}
+
+.marqueeInner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: marqueeScroll 26s linear infinite;
+}
+
+.marqueeLogo {
+  height: 2.4rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marqueeReverse {
+  animation-direction: reverse;
+}

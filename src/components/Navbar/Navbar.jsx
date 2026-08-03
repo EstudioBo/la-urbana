@@ -106,8 +106,8 @@ export default function Navbar({ lang, setLang }) {
           <li><Link to="/" onClick={close}>Inicio</Link></li>
           <li><Link to="/nosotros" onClick={close}>Nuestro Origen</Link></li>
           <li><Link to="/carta" onClick={close}>Carta</Link></li>
-          <li><Link to="/restaurantes-secretos" onClick={close}>Urbana Kids</Link></li>
           <li><Link to="/la-urbana-style" onClick={close}>#laurbanastyle</Link></li>
+          <li><Link to="/restaurantes-secretos" onClick={close}>Urbana Kids</Link></li>
           <li><Link to="/contacto" onClick={close}>Contacto</Link></li>
         </ul>
 

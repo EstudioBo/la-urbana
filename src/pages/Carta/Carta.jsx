@@ -12,7 +12,7 @@ import imgEnsalada    from '../../assets/images/carta/ensalada.webp'
 import imgPostres     from '../../assets/images/carta/postres.webp'
 import iconBurger          from '../../assets/images/icon-burgermenu.svg'
 
-import imgGaliciaBritish      from '../../assets/images/carta/galicia/urbana-british.png'
+import imgGaliciaBritish      from '../../assets/images/carta/galicia/urbana-british.webp'
 import imgGaliciaCampera      from '../../assets/images/carta/galicia/urbana-campera.png'
 import imgGaliciaClasica      from '../../assets/images/carta/galicia/urbana-clasica.png'
 import imgGaliciaCorralita    from '../../assets/images/carta/galicia/urbana-corralita.png'

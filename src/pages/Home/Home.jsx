@@ -40,7 +40,7 @@ export default function Home() {
     const el = stickerRef.current
     if (!el) return
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStamped(true); observer.disconnect() } },
+      ([entry]) => { if (entry.isIntersecting) { setTimeout(() => setStamped(true), 400); observer.disconnect() } },
       { threshold: 0.5 }
     )
     observer.observe(el)
