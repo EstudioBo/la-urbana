@@ -394,10 +394,11 @@
 }
 
 @media (max-width: 680px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .cardNombre { font-size: 0.9rem; }
+  .pills { gap: 0.9rem; }
 }
 
 @media (max-width: 420px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }

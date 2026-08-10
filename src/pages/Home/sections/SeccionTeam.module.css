@@ -154,6 +154,71 @@
 .arrowLeft img { width: 1rem; height: auto; }
 .arrowLeft:hover { opacity: 0.7; }
 
+@media (max-width: 768px) {
+  .section {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .textCol {
+    position: static;
+    width: 100%;
+    padding: 3rem 6vw 1.5rem;
+    order: -1;
+    flex-shrink: 0;
+  }
+
+  .photosLayer {
+    position: static;
+    flex-shrink: 0;
+    height: 64svh;
+    padding: 0.5rem 0;
+  }
+
+  .chefNombre { font-size: clamp(2.4rem, 7vw, 4rem); color: var(--color-white); }
+
+  .track {
+    order: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .track::-webkit-scrollbar { display: none; }
+
+  .card { scroll-snap-align: center; }
+
+  .chefMeta {
+    order: 2;
+    margin-top: 8px;
+    padding-left: 0 !important;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .chefDesc {
+    order: 3;
+    margin-top: 0;
+    padding-left: 0 !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cardOverlay { display: none !important; }
+
+  .arrowLeft { display: none; }
+
+  .label { font-size: clamp(1.4rem, 5.5vw, 2.2rem); }
+  .title { font-size: clamp(4.5rem, 15vw, 7.5rem); }
+}
+
+@media (max-width: 480px) {
+  .photosLayer { height: 56svh; }
+}
+
 /* Hover en cartas clicables */
 .cardClickable { cursor: pointer; }
 .cardClickable:hover img { transform: scale(1.05); transition: transform 0.3s ease; }
@@ -179,7 +244,10 @@
   background: linear-gradient(135deg, #3ba548 0%, #1a4a00 100%);
   border-radius: 16px;
   overflow: hidden;
-  display: flex;
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "img top" "img ing";
   width: min(860px, 90vw);
   max-height: 90vh;
   box-shadow: 0 24px 64px rgba(0,0,0,0.3);
@@ -236,8 +304,7 @@
 .modalNext:hover { opacity: 0.6; }
 
 .modalImg {
-  width: 45%;
-  flex-shrink: 0;
+  grid-area: img;
   padding: 2rem 0 2rem 2rem;
   position: relative;
   z-index: 1;
@@ -259,14 +326,44 @@
   pointer-events: none;
 }
 
-.modalInfo {
-  padding: 2.5rem 2rem;
+.modalTopInfo {
+  grid-area: top;
+  padding: 2.5rem 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
   z-index: 1;
+}
+
+.modalIngredientes {
+  grid-area: ing;
+  padding: 0.5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "img top" "ing ing";
+    width: 94vw;
+    max-height: 92vh;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    overflow-y: auto;
+  }
+  .modalImg { padding: 1rem; aspect-ratio: 751 / 951; height: auto; }
+  .modalImg::after { inset: 1rem; }
+  .modalTopInfo { padding: 1rem 1rem 1rem 0; gap: 0.6rem; justify-content: center; }
+  .modalIngredientes { padding: 0 1rem 1rem; margin-top: 1.25rem; }
+  .modalPrev { left: 0.5rem; }
+  .modalNext { right: 0.5rem; }
 }
 
 .modalBgU {
@@ -311,6 +408,11 @@
   text-underline-offset: 3px;
 }
 
+@media (max-width: 768px) {
+  .modalRow { font-size: 14px; }
+  .modalRow span { font-size: 9px; }
+}
+
 @keyframes stamp {
   0%   { transform: scale(1.5) rotate(-12deg); opacity: 0; }
   60%  { transform: scale(0.93) rotate(2deg);  opacity: 1; }
@@ -332,4 +434,8 @@
   opacity: 0;
   animation: stamp 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s forwards;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .modalSelloWrap { display: none; }
 }

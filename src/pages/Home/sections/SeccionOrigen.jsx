@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionOrigen.module.css'
@@ -6,6 +7,20 @@ import sello2015 from '../../../assets/images/sello-2015.png'
 
 export default function SeccionOrigen() {
   const { t } = useTranslation()
+  const selloRef = useRef(null)
+  const [selloStamped, setSelloStamped] = useState(false)
+
+  useEffect(() => {
+    const el = selloRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setSelloStamped(true); observer.disconnect() } },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.section}>
       <div className={styles.imageCol}>
@@ -23,12 +38,17 @@ export default function SeccionOrigen() {
               <span key={i}>{word}<br /></span>
             ))}
           </h2>
-          <img src={sello2015} alt="Est. 2015" className={styles.sello} />
+          <img
+            ref={selloRef}
+            src={sello2015}
+            alt="Est. 2015"
+            className={`${styles.sello} ${selloStamped ? styles.selloStamped : ''}`}
+          />
         </div>
-        <p className={styles.body}>{t('home.origen.body')}</p>
-        <div className={styles.moreWrapper}>
+        <p className={styles.body}>
+          {t('home.origen.body')}
           <Link to="/nosotros" className={styles.more}>+</Link>
-        </div>
+        </p>
       </div>
     </section>
   )

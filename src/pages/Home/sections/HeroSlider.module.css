@@ -19,7 +19,19 @@
 
 .bgContain {
   object-fit: cover;
-  object-position: 70% center;
+  object-position: 30% center;
+}
+
+.bgLucia {
+  object-position: 61% 40%;
+}
+
+.bgPan {
+  object-position: 0% center;
+}
+
+.bgSmash {
+  object-position: 69% 50%;
 }
 
 .bg.active {
@@ -161,11 +173,27 @@
 }
 
 @media (max-width: 640px) {
-  .content {
+  .hero { align-items: flex-end; }
+  .content,
+  .contentCentered,
+  .contentRight {
     width: 88%;
-    margin-left: 0;
-    padding: 6rem 6% 0;
+    margin: 0 auto;
+    padding: 0 6% 1.5rem;
     align-items: center;
   }
-  .arrow { display: none; }
+  .subtitleLarge { font-size: clamp(3.5rem, 20vw, 8rem); }
+  .arrow { top: auto; bottom: 9.5rem; transform: none; }
+  .arrow.left { left: 4px; }
+  .arrow.right { right: 4px; }
+  .scrollHint { display: none; }
+  .bgContain { transform: scale(1.15) translateY(-6%); }
+  .contentCentered { align-self: center; }
+  .bottomOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.65) 85%);
+    z-index: 1;
+    pointer-events: none;
+  }
 }

@@ -2,6 +2,7 @@
   background: linear-gradient(to bottom, #00B74F 0%, #1a4a00 100%);
   min-height: 100svh;
   position: relative;
+  overflow-x: clip;
 }
 
 /* HERO */
@@ -31,7 +32,7 @@
   width: 28vw;
   pointer-events: none;
   z-index: 40;
-  clip-path: polygon(-200% -500%, 300% -500%, 300% 100%, -200% 100%);
+  clip-path: polygon(-200% -500%, 100% -500%, 100% 100%, -200% 100%);
 }
 
 .uuStamp {
@@ -42,6 +43,7 @@
 .footerWrapper {
   position: relative;
   z-index: 30;
+  background: #fff;
 }
 
 .uuStampVisible {
@@ -277,46 +279,149 @@
 .stackPara strong { color: var(--color-orange); }
 
 .stackColumns {
-  position: relative;
-}
-
-.stackLeft {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 15;
+  display: flex;
 }
 
 .stackNino {
-  position: sticky;
-  top: 120px;
-  width: 90%;
-  margin: 0 auto;
+  position: fixed;
+  left: 11vw;
+  bottom: 0;
+  width: 28vw;
+  max-width: 420px;
   height: auto;
   display: block;
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  will-change: transform, opacity;
+}
+
+.ninoImgA,
+.ninoImgB {
+  display: block;
+  width: 100%;
+  height: auto;
   object-fit: contain;
   object-position: bottom;
-  transform: translateY(120px);
+}
+
+.ninoImgB {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.ninoShowB .ninoImgA { opacity: 0; }
+.ninoShowB .ninoImgB { opacity: 1; }
+
+.ninoGlitching .ninoImgA {
+  animation: ninoTVA 0.55s steps(1) both;
+}
+.ninoGlitching .ninoImgB {
+  animation: ninoTVB 0.55s steps(1) both;
+}
+.ninoGlitching::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom,
+    transparent 38%,
+    rgba(255,255,255,0.55) 40%,
+    rgba(255,255,255,0.1) 41%,
+    transparent 43%
+  );
+  pointer-events: none;
+  animation: ninoTVScanline 0.55s steps(1) both;
+}
+
+@keyframes ninoTVA {
+  0%       { opacity: 1; transform: translateX(0); filter: none; }
+  9%       { transform: translateX(16px); filter: brightness(1.6); }
+  18%      { transform: translateX(-12px); filter: none; }
+  27%      { transform: translateX(0); opacity: 0.4; }
+  36%      { transform: translateX(20px); filter: brightness(2); opacity: 1; }
+  45%      { transform: translateX(-8px); opacity: 0; }
+  54%      { opacity: 1; transform: translateX(14px); }
+  63%      { transform: translateX(-5px); opacity: 0; filter: brightness(1.3); }
+  72%      { opacity: 1; transform: translateX(0); filter: none; }
+  81%, 100%{ opacity: 1; transform: translateX(0); filter: none; }
+}
+
+@keyframes ninoTVB {
+  0%       { opacity: 0; transform: translateX(0); }
+  9%       { opacity: 0.35; transform: translateX(-16px); }
+  18%      { opacity: 0; transform: translateX(12px); }
+  27%      { opacity: 0.55; transform: translateX(0); }
+  36%      { opacity: 0; transform: translateX(-20px); }
+  45%      { opacity: 0.7; transform: translateX(8px); }
+  54%      { opacity: 0; transform: translateX(-14px); }
+  63%      { opacity: 0.85; transform: translateX(5px); }
+  72%      { opacity: 0; transform: translateX(0); }
+  81%, 100%{ opacity: 0; transform: translateX(0); }
+}
+
+@keyframes ninoTVScanline {
+  0%, 18%, 36%, 54%, 72%, 100% { opacity: 0; transform: translateY(0%); }
+  9%   { opacity: 1; transform: translateY(-15%); }
+  27%  { opacity: 1; transform: translateY(25%); }
+  45%  { opacity: 0.8; transform: translateY(-5%); }
+  63%  { opacity: 0.6; transform: translateY(15%); }
+}
+
+.stackNinoPinned {
+  position: absolute;
+  left: 11vw;
+  bottom: 0;
+  transform: none;
+}
+
+
+.ninoHide {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
 }
 
 .ninoSpring {
-  animation: ninoSpringIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: ninoSpringIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
 }
 
+.ninoExit {
+  animation: ninoSpringOut 0.55s cubic-bezier(0.4, 0, 0.6, 1) both;
+}
+
+@keyframes ninoSpringOut {
+  0%   { transform: translateY(0); opacity: 1; }
+  40%  { transform: translateY(-10px); opacity: 0.8; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+
 @keyframes ninoSpringIn {
-  0%   { transform: translateY(120px); }
-  55%  { transform: translateY(-18px); }
-  75%  { transform: translateY(8px); }
-  90%  { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+  0%   { transform: translateY(100%); opacity: 0; }
+  30%  { opacity: 1; }
+  55%  { transform: translateY(-12px); }
+  75%  { transform: translateY(6px); }
+  90%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 .stackRight {
   width: 50%;
   margin-left: 50%;
   padding: 0 2rem 0 1rem;
+}
+
+.stackSlotEmpty {
+  height: 100vh;
+}
+
+.stackNinoSlot {
+  height: 0;
 }
 
 .stackSlot {
@@ -427,9 +532,54 @@
 }
 
 @media (max-width: 640px) {
-  .hero { flex-direction: column; height: auto; }
-  .heroContent { width: 90%; padding: 8vw; }
+  .hero { flex-direction: column; height: 100svh; justify-content: flex-end; }
+  .heroContent { width: 90%; padding: 8vw 8vw 10vw; }
+  .heroBg { object-position: 88% center; }
+
+  .label { font-size: clamp(2.8rem, 15vw, 4.5rem); }
+
+  .titleRestaurante { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+
+  .titleSecreto,
+  .titleSecreto::before,
+  .titleSecreto::after {
+    font-size: clamp(1.6rem, 9vw, 2.6rem);
+  }
+
+  .intro { font-size: 0.9rem; max-width: 100%; }
+
+  .stackHeader {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 30px 30px;
+  }
+
   .stackColumns { flex-direction: column; }
-  .stackLeft, .stackRight { flex: none; width: 100%; }
-  .stackNino { position: relative; top: auto; max-height: 60vw; object-fit: cover; }
+  .stackRight { flex: none; width: 100%; margin-left: 0; padding: 0 6vw; }
+
+  .stackSlot { top: 80px; }
+  .stackCard img { height: clamp(280px, 62vw, 420px); }
+  .stackNinoSlot { height: 100vh; }
+
+  .stackNino {
+    left: 9vw;
+    width: 82vw;
+    max-width: 330px;
+  }
+
+  .stackNinoPinned {
+    position: absolute;
+    left: 9vw;
+    bottom: 0;
+  }
+
+  .lightboxImg { max-width: 92vw; }
+  .lightboxPrev, .lightboxNext { padding: 0.4rem; }
+  .lightboxPrev img, .lightboxNext img { width: 2rem; }
+  .lightboxPrev { left: 0.5rem; }
+  .lightboxNext { right: 0.5rem; }
+
+  .uuStampWrap { display: none; }
 }

@@ -48,3 +48,12 @@
 .legal span {
   opacity: 0.4;
 }
+
+@media (max-width: 640px) {
+  .legal {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 14px;
+  }
+}

@@ -16,9 +16,9 @@ import Footer from './sections/Footer'
 
 const LOGOS = Array.from({ length: 12 })
 
-function MarqueeDivider({ reverse = false }) {
+function MarqueeDivider({ reverse = false, sticky = false }) {
   return (
-    <div className={styles.marqueeDivider}>
+    <div className={`${styles.marqueeDivider} ${sticky ? styles.marqueeSticky : ''}`}>
       <div className={styles.marqueeTrack}>
         <div className={`${styles.marqueeInner} ${reverse ? styles.marqueeReverse : ''}`}>
           {[...LOGOS, ...LOGOS].map((_, i) => (
@@ -39,12 +39,18 @@ export default function Home() {
   useEffect(() => {
     const el = stickerRef.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setTimeout(() => setStamped(true), 400); observer.disconnect() } },
-      { threshold: 0.5 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
+    let triggered = false
+    const checkScroll = () => {
+      if (triggered || window.scrollY < 80) return
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight * 0.85) {
+        triggered = true
+        window.removeEventListener('scroll', checkScroll)
+        setTimeout(() => setStamped(true), 400)
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true })
+    return () => window.removeEventListener('scroll', checkScroll)
   }, [])
 
   useEffect(() => {
@@ -73,12 +79,16 @@ export default function Home() {
       </div>
       <SeccionEsencia />
       <SeccionTeam />
-      <MarqueeDivider />
-      <SeccionViral />
+      <div className={styles.viralStickyWrap}>
+        <MarqueeDivider sticky />
+        <SeccionViral />
+      </div>
       <MarqueeDivider reverse />
       <SeccionCarta />
-      <SeccionRestaurantesSecretos />
-      <SeccionDonde />
+      <div className={styles.secretosStickyWrap}>
+        <SeccionRestaurantesSecretos />
+        <SeccionDonde />
+      </div>
       <div ref={sticker2Ref} className={styles.stickerDivider}>
         <img
           src={pegatinaU}

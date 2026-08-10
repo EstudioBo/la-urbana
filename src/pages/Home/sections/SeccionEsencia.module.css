@@ -93,6 +93,16 @@
   .content { width: 90%; padding: 8vw; }
   .label { font-size: clamp(1.2rem, 5vw, 2rem); }
   .title { font-size: clamp(4rem, 14vw, 7rem); }
-  .body { font-size: 0.9rem; max-width: 100%; }
+  .body { font-size: 0.9rem; max-width: 100%; color: var(--color-white); }
   .moreWrapper { width: 100%; }
+  .more { border-color: var(--color-white); color: var(--color-white); }
+  .bg { object-position: 66% top; }
+  .section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    pointer-events: none;
+  }
 }

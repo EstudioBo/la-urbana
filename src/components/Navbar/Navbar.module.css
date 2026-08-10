@@ -271,8 +271,8 @@
 @media (max-width: 640px) {
   .navbar { padding: 0.75rem 5%; }
   .logo { left: 5%; }
-  .logoImg { height: 70px; }
+  .logoImg { width: auto; height: 88px; }
   .iconBtn { width: 32px; height: 32px; }
   .burger { width: 28px; height: 28px; }
-  .panel { width: 100vw; height: auto; min-height: 470px; border-bottom-left-radius: 0; }
+  .panel { width: 100vw; height: auto; min-height: 470px; border-bottom-left-radius: 0; padding: 1.5rem 8vw 2.5rem; }
 }

@@ -14,6 +14,10 @@
   display: block;
 }
 
+.bgOverlay {
+  display: none;
+}
+
 .textCol {
   position: absolute;
   top: 0;
@@ -125,6 +129,7 @@
 .cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   font-family: var(--font-body);
   font-size: 0.65rem;
@@ -132,11 +137,11 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 0 1.8rem;
+  width: 230px;
   border-radius: 8px;
   border: 1.5px solid var(--color-green);
   background: var(--color-green);
   color: var(--color-black);
-  width: fit-content;
   transition: transform 0.1s ease;
 }
 
@@ -155,7 +160,37 @@
 }
 
 .ctaIconMap {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
   flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .textCol { width: 65%; padding: 5vw; }
+  .label { font-size: clamp(0.8rem, 3.5vw, 2rem); }
+  .title { font-size: clamp(4rem, 9vw, 9rem); }
+  .cityName { font-size: clamp(4.5rem, 14vw, 150px); }
+}
+
+@media (max-width: 640px) {
+  .textCol {
+    width: 100%;
+    left: 0;
+    padding: 8vw 6vw;
+    gap: 1.5rem;
+  }
+  .label { font-size: clamp(1.2rem, 5vw, 2rem); text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.8); }
+  .title { font-size: clamp(4rem, 14vw, 7rem); text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.8); }
+  .cityName { font-size: clamp(3.5rem, 18vw, 6rem); margin-top: 0; }
+
+  .section { position: relative; z-index: 2; }
+
+  .bgOverlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
 }

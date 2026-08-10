@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionTeam.module.css'
 
@@ -29,9 +30,10 @@ const TEXT_COL_PCT = 0.33
 
 export default function SeccionTeam() {
   const { t } = useTranslation()
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(CHEFS.length * 3)
   const [cardPx, setCardPx] = useState(0)
   const [overlayPx, setOverlayPx] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const [modalIdx, setModalIdx] = useState(null)
   const modalChef = modalIdx !== null ? CHEFS[modalIdx] : null
   const sectionRef = useRef(null)
@@ -42,24 +44,64 @@ export default function SeccionTeam() {
   const timer = useRef(null)
   const selloRef = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const calc = () => {
       if (!trackRef.current || !textColRef.current) return
-      const cardEl = trackRef.current.querySelector('[class*="card"]')
-      const cardW = cardEl ? cardEl.offsetWidth : 0
-      if (cardW > 0) setCardPx(cardW)
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+
+      if (!mobile) {
+        const cardEl = trackRef.current.querySelector('[class*="card"]')
+        const cardW = cardEl ? cardEl.offsetWidth : 0
+        if (cardW > 0) setCardPx(cardW)
+      }
 
       const textRight = textColRef.current.getBoundingClientRect().right
       const trackLeft = trackRef.current.getBoundingClientRect().left
       const overlap   = Math.max(0, textRight - trackLeft)
       setOverlayPx(overlap)
     }
-    const id = setTimeout(calc, 50)
+    calc()
     window.addEventListener('resize', calc)
     const ro = new ResizeObserver(calc)
     if (sectionRef.current) ro.observe(sectionRef.current)
-    return () => { clearTimeout(id); window.removeEventListener('resize', calc); ro.disconnect() }
+    return () => { window.removeEventListener('resize', calc); ro.disconnect() }
   }, [])
+
+  // Móvil: el navegador centra las cartas de forma nativa (scroll-snap).
+  useEffect(() => {
+    if (!isMobile) return
+    const track = trackRef.current
+    if (!track) return
+    let scrollTimer
+    const onScroll = () => {
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        const cards = track.querySelectorAll('[class*="_card_"]:not([class*="cardOverlay"])')
+        const trackCenter = track.scrollLeft + track.clientWidth / 2
+        let closest = 0, closestDist = Infinity
+        cards.forEach((c, i) => {
+          const dist = Math.abs((c.offsetLeft + c.offsetWidth / 2) - trackCenter)
+          if (dist < closestDist) { closestDist = dist; closest = i }
+        })
+        setOffset(closest)
+      }, 120)
+    }
+    track.addEventListener('scroll', onScroll, { passive: true })
+    return () => { track.removeEventListener('scroll', onScroll); clearTimeout(scrollTimer) }
+  }, [isMobile])
+
+  const hasPositioned = useRef(false)
+  useLayoutEffect(() => {
+    if (!isMobile || !trackRef.current) return
+    const track = trackRef.current
+    const cards = track.querySelectorAll('[class*="_card_"]:not([class*="cardOverlay"])')
+    const target = cards[offset]
+    if (!target) return
+    const left = target.offsetLeft + target.offsetWidth / 2 - track.clientWidth / 2
+    track.scrollTo({ left, behavior: hasPositioned.current ? 'smooth' : 'instant' })
+    hasPositioned.current = true
+  }, [offset, isMobile])
 
   useEffect(() => {
     timer.current = setInterval(() => setOffset(o => o + 1), 4000)
@@ -120,33 +162,34 @@ export default function SeccionTeam() {
     timer.current = setInterval(() => setOffset(o => o + 1), 4000)
   }
 
-  const activeChef = CHEFS[(offset + 1) % CHEFS.length]
+  const activeChef = CHEFS[(offset + (isMobile ? 0 : 1)) % CHEFS.length]
   const shift = offset * (cardPx + GAP)
 
   return (
     <section className={styles.section} style={{ backgroundImage: `url(${bgBurger})` }} ref={sectionRef}>
 
       <div className={styles.photosLayer} ref={photosRef}>
-        <div className={styles.chefMeta} style={{ paddingLeft: `calc(2rem + ${cardPx + GAP}px)` }}>
+        <div className={styles.chefMeta} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.chefNombre}>{activeChef.nombre}</span>
         </div>
         <div className={styles.track} ref={trackRef}>
           <div
             ref={innerRef}
             className={styles.inner}
-            style={{ transform: `translateX(-${shift}px)` }}
+            style={isMobile ? undefined : { transform: `translateX(-${shift}px)` }}
           >
             {LOOP.map((chef, i) => {
               const isOverlay = i === offset || i === offset - 1
+              const clickable = isMobile || !isOverlay
               return (
                 <div
                   key={i}
-                  className={`${styles.card} ${!isOverlay ? styles.cardClickable : ''}`}
-                  onClick={!isOverlay ? () => setModalIdx(i % CHEFS.length) : undefined}
+                  className={`${styles.card} ${clickable ? styles.cardClickable : ''}`}
+                  onClick={clickable ? () => setModalIdx(i % CHEFS.length) : undefined}
                 >
                   <img src={chef.img} alt={chef.nombre} />
                   {isOverlay && (
-                    <div style={{
+                    <div className={styles.cardOverlay} style={{
                       position: 'absolute', inset: 0,
                       background: 'rgba(4, 87, 50, 0.85)',
                       backdropFilter: 'blur(4px)',
@@ -160,7 +203,7 @@ export default function SeccionTeam() {
             })}
           </div>
         </div>
-        <div className={styles.chefDesc} style={{ paddingLeft: `calc(2rem + ${cardPx + GAP}px)` }}>
+        <div className={styles.chefDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.chefLocal}>{activeChef.local}</span>
           <span className={styles.chefBurguer}>{activeChef.burguer}</span>
         </div>
@@ -177,7 +220,7 @@ export default function SeccionTeam() {
         <img src={arrowLeft} alt="" />
       </button>
 
-      {modalChef && (
+      {modalChef && createPortal(
         <>
           <div className={styles.modalBackdrop} onClick={() => setModalIdx(null)} />
           <button className={styles.modalPrev} onClick={() => setModalIdx(i => (i - 1 + CHEFS.length) % CHEFS.length)} aria-label="Anterior">
@@ -192,7 +235,7 @@ export default function SeccionTeam() {
             <div className={styles.modalImg}>
               <img src={modalChef.img} alt={modalChef.nombre} />
             </div>
-            <div className={styles.modalInfo}>
+            <div className={styles.modalTopInfo}>
               <p className={styles.modalRow}><span>Burger</span>{modalChef.burguer}</p>
               <p className={styles.modalRow}><span>Chef</span>{modalChef.nombre}</p>
               <p className={styles.modalRow}>
@@ -201,13 +244,16 @@ export default function SeccionTeam() {
                   {modalChef.local} — {modalChef.ciudad}
                 </a>
               </p>
+            </div>
+            <div className={styles.modalIngredientes}>
               <p className={styles.modalRow}><span>Ingredientes</span>{modalChef.ingredientes}</p>
             </div>
             <div className={styles.modalSelloWrap} ref={selloRef}>
               <img src={selloU} alt="" className={styles.modalSello} />
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </section>
   )

@@ -76,6 +76,27 @@
 }
 
 @media (max-width: 768px) {
-  .section { grid-template-columns: 1fr; }
-  .imageCol { min-height: 50svh; }
+  .section {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .textCol {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100svh;
+    padding: 6.5rem 6vw 2.5rem;
+    gap: 1rem;
+  }
+  .textBlock { gap: 1rem; }
+  .imageCol { position: relative; z-index: 1; height: 100svh; min-height: 100svh; }
+
+  .floatBtn { font-size: 0.8rem; padding: 0.35rem 0.75rem; }
+  .floatBtnFb { top: 26px; left: -39px; }
+  .floatBtnIg { top: auto; bottom: 21px; left: -36px; right: auto; margin: 0; }
+  .floatBtnRs { top: 30%; bottom: auto; right: -1.5rem; transform: translateY(-50%); }
+
+  .label { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .title { font-size: clamp(8.5rem, 30vw, 13rem); }
 }

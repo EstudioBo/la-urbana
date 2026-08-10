@@ -71,13 +71,6 @@
   text-align: left;
 }
 
-.moreWrapper {
-  width: 28ch;
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 5px;
-}
-
 .more {
   width: 1.5rem;
   height: 1.5rem;
@@ -85,9 +78,11 @@
   border: 1.5px solid var(--color-black);
   font-size: 18px;
   color: var(--color-black);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
+  margin-left: 0.5rem;
   cursor: pointer;
   background: none;
   transition: box-shadow 0.2s ease;
@@ -105,14 +100,31 @@
 
 @media (max-width: 640px) {
   .section {
-    grid-template-columns: 1fr;
-    grid-template-rows: 50svh auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
   }
-  .imageCol { min-height: 50svh; order: -1; }
-  .textCol { padding: 10vw 8vw; min-height: auto; }
-  .label { font-size: clamp(1.2rem, 5vw, 2rem); }
-  .title { font-size: clamp(4.5rem, 15vw, 7rem); }
-  .sello { width: 6rem; right: -1rem; top: 10%; }
-  .body { font-size: 0.9rem; max-width: 100%; }
-  .moreWrapper { width: 100%; }
+  .textCol {
+    order: -1;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100svh;
+    padding: 7rem 8vw;
+  }
+  .imageCol { position: relative; z-index: 1; height: 100svh; min-height: 100svh; }
+  .label { font-size: clamp(2rem, 7.5vw, 3.2rem); }
+  .title { font-size: clamp(7rem, 22vw, 10.5rem); }
+  .titleWrapper { position: static; }
+  .sello { top: auto; bottom: 1.5rem; right: auto; left: 1rem; width: 7rem; opacity: 0; }
+  .selloStamped { animation: origenStamp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .body { font-size: 0.9rem; max-width: 100%; text-align: center; }
+  .more { display: flex; margin: 1.5rem auto 0; }
+}
+
+@keyframes origenStamp {
+  0%   { transform: translate(4rem, -4rem) scale(2.4) rotate(12deg); opacity: 0; }
+  60%  { transform: translate(0, 0) scale(0.9) rotate(12deg); opacity: 0.55; }
+  80%  { transform: translate(0, 0) scale(1.08) rotate(12deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(12deg); opacity: 0.55; }
 }

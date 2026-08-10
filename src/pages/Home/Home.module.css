@@ -45,6 +45,24 @@
   animation-direction: reverse;
 }
 
+.viralStickyWrap {
+  position: relative;
+}
+
+.secretosStickyWrap {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .marqueeSticky {
+    position: sticky;
+    top: 4.5rem;
+  }
+  .marqueeSticky .marqueeTrack {
+    top: 0;
+  }
+}
+
 .celoDivider {
   position: relative;
   height: 0;
@@ -97,11 +115,14 @@
 }
 
 @media (max-width: 1024px) {
-  .stickerU { width: 8rem; right: 10%; }
+  .stickerU { width: 8rem; right: 10%; top: calc(100svh - 4rem); }
   .celo { width: 50%; }
 }
 
 @media (max-width: 640px) {
-  .stickerU { width: 6rem; right: 5%; }
+  .stickerU { width: 6rem; right: 5%; top: calc(100svh - 3rem); }
   .celo { width: 70%; }
+  .marqueeTrack { top: -1.3rem; padding: 0.6rem 0; }
+  .marqueeInner { gap: 1.5rem; }
+  .marqueeLogo { height: 1.3rem; }
 }

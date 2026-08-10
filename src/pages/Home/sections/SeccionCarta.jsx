@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionCarta.module.css'
@@ -28,42 +28,97 @@ const TEXT_COL_PCT = 0.33
 
 export default function SeccionCarta() {
   const { t } = useTranslation()
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(ITEMS.length * 3)
   const [cardPx, setCardPx] = useState(0)
   const [overlayPx, setOverlayPx] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [ctaTop, setCtaTop] = useState(null)
   const sectionRef = useRef(null)
   const carouselRef = useRef(null)
   const trackRef = useRef(null)
   const textColRef = useRef(null)
+  const itemDescRef = useRef(null)
   const timer = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const calc = () => {
       if (!trackRef.current || !textColRef.current) return
-      const cardEl = trackRef.current.querySelector('[class*="card"]')
-      const cardW = cardEl ? cardEl.offsetWidth : 0
-      if (cardW > 0) setCardPx(cardW)
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+
+      if (!mobile) {
+        const cardEl = trackRef.current.querySelector('[class*="card"]')
+        const cardW = cardEl ? cardEl.offsetWidth : 0
+        if (cardW > 0) setCardPx(cardW)
+      }
 
       const textRight = textColRef.current.getBoundingClientRect().right
       const trackLeft = trackRef.current.getBoundingClientRect().left
       const overlap   = Math.max(0, textRight - trackLeft)
       setOverlayPx(overlap)
+
+      if (mobile && itemDescRef.current && sectionRef.current) {
+        const descBottom = itemDescRef.current.getBoundingClientRect().bottom
+        const sectionTop = sectionRef.current.getBoundingClientRect().top
+        setCtaTop(descBottom - sectionTop + 15)
+      }
     }
-    const id = setTimeout(calc, 50)
+    calc()
     window.addEventListener('resize', calc)
     const ro = new ResizeObserver(calc)
     if (sectionRef.current) ro.observe(sectionRef.current)
-    return () => { clearTimeout(id); window.removeEventListener('resize', calc); ro.disconnect() }
+    return () => { window.removeEventListener('resize', calc); ro.disconnect() }
   }, [])
+
+  // Móvil: el navegador centra las cartas de forma nativa (scroll-snap).
+  // Sincronizamos "offset" con la carta que queda centrada tras cada scroll.
+  useEffect(() => {
+    if (!isMobile) return
+    const track = trackRef.current
+    if (!track) return
+    let scrollTimer
+    const onScroll = () => {
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        const cards = track.querySelectorAll('[class*="_card_"]:not([class*="cardOverlay"])')
+        const trackCenter = track.scrollLeft + track.clientWidth / 2
+        let closest = 0, closestDist = Infinity
+        cards.forEach((c, i) => {
+          const dist = Math.abs((c.offsetLeft + c.offsetWidth / 2) - trackCenter)
+          if (dist < closestDist) { closestDist = dist; closest = i }
+        })
+        setOffset(closest)
+      }, 120)
+    }
+    track.addEventListener('scroll', onScroll, { passive: true })
+    return () => { track.removeEventListener('scroll', onScroll); clearTimeout(scrollTimer) }
+  }, [isMobile])
+
+  // Móvil: cuando "offset" cambia (auto-avance, flecha), centramos esa carta con scroll nativo.
+  const hasPositioned = useRef(false)
+  useLayoutEffect(() => {
+    if (!isMobile || !trackRef.current) return
+    const track = trackRef.current
+    const cards = track.querySelectorAll('[class*="_card_"]:not([class*="cardOverlay"])')
+    const target = cards[offset]
+    if (!target) return
+    const left = target.offsetLeft + target.offsetWidth / 2 - track.clientWidth / 2
+    track.scrollTo({ left, behavior: hasPositioned.current ? 'smooth' : 'instant' })
+    hasPositioned.current = true
+  }, [offset, isMobile])
 
   useEffect(() => {
     timer.current = setInterval(() => setOffset(o => o + 1), 4000)
     return () => clearInterval(timer.current)
   }, [])
 
-  const goNext = () => setOffset(o => o + 1)
+  const goNext = () => {
+    setOffset(o => o + 1)
+    clearInterval(timer.current)
+    timer.current = setInterval(() => setOffset(o => o + 1), 4000)
+  }
 
-  const activeItem = ITEMS[(offset + 1) % ITEMS.length]
+  const activeItem = ITEMS[(offset + (isMobile ? 0 : 1)) % ITEMS.length]
   const shift = offset * (cardPx + GAP)
 
   return (
@@ -78,19 +133,19 @@ export default function SeccionCarta() {
         </Link>
       </div>
       <div className={styles.carouselCol} ref={carouselRef}>
-        <div className={styles.itemMeta} style={{ paddingLeft: `calc(2rem + ${cardPx + GAP}px)` }}>
+        <div className={styles.itemMeta} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.itemNombre}>{activeItem.nombre}</span>
         </div>
         <div className={styles.track} ref={trackRef}>
           <div
             className={styles.inner}
-            style={{ transform: `translateX(-${shift}px)` }}
+            style={isMobile ? undefined : { transform: `translateX(-${shift}px)` }}
           >
             {LOOP.map((item, i) => (
               <div key={i} className={styles.card}>
                 <img src={item.img} alt={item.nombre} />
                 {(i === offset || i === offset - 1) && (
-                  <div style={{
+                  <div className={styles.cardOverlay} style={{
                     position: 'absolute', inset: 0,
                     background: 'rgba(4, 87, 50, 0.85)',
                     backdropFilter: 'blur(4px)',
@@ -103,10 +158,13 @@ export default function SeccionCarta() {
             ))}
           </div>
         </div>
-        <div className={styles.itemDesc} style={{ paddingLeft: `calc(2rem + ${cardPx + GAP}px)` }}>
+        <div ref={itemDescRef} className={styles.itemDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.itemInfo}>+ info</span>
         </div>
       </div>
+      <Link to="/carta" className={styles.ctaMobile} style={isMobile && ctaTop != null ? { top: ctaTop, bottom: 'auto' } : undefined}>
+        Ver todo
+      </Link>
       <button className={styles.arrowLeft} onClick={goNext} aria-label="Siguiente">
         <img src={arrowLeft} alt="" />
       </button>
