@@ -7,7 +7,7 @@ export default function SeccionEsencia() {
   const { t } = useTranslation()
   return (
     <section className={styles.section}>
-      <img src={imgEsencia} alt="" className={styles.bg} />
+      <img src={imgEsencia} alt="" className={styles.bg} loading="lazy" />
       <div className={styles.content}>
         {t('home.esencia.label') && (
           <span className={styles.label}>

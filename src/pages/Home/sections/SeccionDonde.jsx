@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SeccionDonde.module.css'
-import imgLocal from '../../../assets/images/local-interior.png'
+import imgLocal from '../../../assets/images/local-interior.webp'
 import iconReserva from '../../../assets/images/icon-reserva.svg'
 
 const CITY_NAMES = ['Lugo', 'Vigo', 'Santiago']
@@ -48,7 +48,7 @@ export default function SeccionDonde() {
 
   return (
     <section className={styles.section}>
-      <img src={imgLocal} alt="Interior La Urbana" className={styles.bg} />
+      <img src={imgLocal} alt="Interior La Urbana" className={styles.bg} loading="lazy" />
       <div className={styles.bgOverlay} />
       <div className={styles.textCol}>
         <div className={styles.header}>

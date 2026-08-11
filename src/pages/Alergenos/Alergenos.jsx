@@ -1,6 +1,6 @@
 import styles from './Alergenos.module.css'
 import Footer from '../Home/sections/Footer'
-import imgTabla from '../../assets/images/alergenos.png'
+import imgTabla from '../../assets/images/alergenos.webp'
 
 export default function Alergenos() {
   return (

@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import styles from './Home.module.css'
 import HeroSlider from './sections/HeroSlider'
-import pegatinaU from '../../assets/images/pegatina-u.png'
+import pegatinaU from '../../assets/images/pegatina-u.webp'
 import celoUrbana from '../../assets/images/celo-urbana.webp'
 import logoNegro from '../../assets/images/logo-laurbana-negro.webp'
 import SeccionOrigen from './sections/SeccionOrigen'

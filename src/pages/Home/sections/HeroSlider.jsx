@@ -43,6 +43,7 @@ const SLIDES = [
 export default function HeroSlider() {
   const { t } = useTranslation()
   const [current, setCurrent] = useState(0)
+  const [loaded, setLoaded] = useState(() => new Set([0]))
   const [arrowTop, setArrowTop] = useState(null)
   const timer = useRef(null)
   const heroRef = useRef(null)
@@ -63,6 +64,10 @@ export default function HeroSlider() {
 
   const slide = SLIDES[current]
 
+  useEffect(() => {
+    setLoaded(prev => (prev.has(current) ? prev : new Set(prev).add(current)))
+  }, [current])
+
   useLayoutEffect(() => {
     const measure = () => {
       if (window.innerWidth > 640 || !contentRef.current || !heroRef.current) {
@@ -80,11 +85,12 @@ export default function HeroSlider() {
 
   return (
     <section className={styles.hero} ref={heroRef}>
-      {SLIDES.map((s, i) => (
+      {SLIDES.map((s, i) => loaded.has(i) && (
         <img
           key={i}
           src={s.img}
           alt=""
+          fetchPriority={i === 0 ? 'high' : undefined}
           className={`${styles.bg} ${i === current ? styles.active : ''} ${i === 1 ? styles.bgContain : ''} ${i === 0 ? styles.bgLucia : ''} ${i === 2 ? styles.bgPan : ''} ${i === 3 ? styles.bgSmash : ''}`}
         />
       ))}

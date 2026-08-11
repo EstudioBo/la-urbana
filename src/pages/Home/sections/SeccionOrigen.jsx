@@ -2,8 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionOrigen.module.css'
-import imgRubia from '../../../assets/images/rubia-gallega.png'
-import sello2015 from '../../../assets/images/sello-2015.png'
+import imgRubia from '../../../assets/images/rubia-gallega.webp'
+import sello2015 from '../../../assets/images/sello-2015.webp'
 
 export default function SeccionOrigen() {
   const { t } = useTranslation()
@@ -24,7 +24,7 @@ export default function SeccionOrigen() {
   return (
     <section className={styles.section}>
       <div className={styles.imageCol}>
-        <img src={imgRubia} alt="Rubia Gallega" />
+        <img src={imgRubia} alt="Rubia Gallega" loading="lazy" />
       </div>
       <div className={styles.textCol}>
         <span className={styles.label}>
