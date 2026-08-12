@@ -1,5 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import styles from './Home.module.css'
+import Seo from '../../components/Seo/Seo'
+import LocalBusinessJsonLd from '../../components/Seo/LocalBusinessJsonLd'
 import HeroSlider from './sections/HeroSlider'
 import pegatinaU from '../../assets/images/pegatina-u.webp'
 import celoUrbana from '../../assets/images/celo-urbana.webp'
@@ -66,6 +68,13 @@ export default function Home() {
 
   return (
     <main className={styles.home}>
+      <Seo
+        title="La Urbana Burger Bar | Hamburguesería en Lugo, Vigo y Santiago"
+        titleIsFull
+        description="Hamburguesas artesanas con producto gallego de km 0 en Lugo, Vigo y Santiago de Compostela. Descubre la carta, reserva mesa o pide a domicilio."
+        path="/"
+      />
+      <LocalBusinessJsonLd />
       <HeroSlider />
       <img
         ref={stickerRef}

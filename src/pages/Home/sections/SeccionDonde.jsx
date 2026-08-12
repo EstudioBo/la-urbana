@@ -7,29 +7,6 @@ import iconReserva from '../../../assets/images/icon-reserva.svg'
 
 const CITY_NAMES = ['Lugo', 'Vigo', 'Santiago']
 
-const CITIES = [
-  {
-    city: 'Lugo',
-    locations: [
-      { name: 'Bispo Aguirre', address: 'Rúa Bispo Aguirre, 34' },
-      { name: 'Praza de Augas Férreas', address: 'Rúa Cánovas del Castillo, 2' },
-      { name: 'C.C. As Termas', address: 'Av. Infanta Elena, 213' },
-    ],
-  },
-  {
-    city: 'Vigo',
-    locations: [
-      { name: 'Rosalía de Castro', address: 'Rúa Rosalía de Castro, 48' },
-    ],
-  },
-  {
-    city: 'Santiago de Compostela',
-    locations: [
-      { name: 'As Cancelas', address: 'Av. do Camiño Francés, 3' },
-    ],
-  },
-]
-
 export default function SeccionDonde() {
   const { t } = useTranslation()
   const [index, setIndex] = useState(0)

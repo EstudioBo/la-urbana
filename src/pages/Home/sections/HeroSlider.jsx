@@ -48,6 +48,14 @@ export default function HeroSlider() {
   const timer = useRef(null)
   const heroRef = useRef(null)
   const contentRef = useRef(null)
+  const [prevCurrent, setPrevCurrent] = useState(current)
+
+  if (prevCurrent !== current) {
+    setPrevCurrent(current)
+    if (!loaded.has(current)) {
+      setLoaded(prev => new Set(prev).add(current))
+    }
+  }
 
   const restartTimer = useCallback(() => {
     clearInterval(timer.current)
@@ -63,10 +71,6 @@ export default function HeroSlider() {
   const prev = () => { setCurrent(c => (c - 1 + SLIDES.length) % SLIDES.length); restartTimer() }
 
   const slide = SLIDES[current]
-
-  useEffect(() => {
-    setLoaded(prev => (prev.has(current) ? prev : new Set(prev).add(current)))
-  }, [current])
 
   useLayoutEffect(() => {
     const measure = () => {

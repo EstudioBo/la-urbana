@@ -1,9 +1,15 @@
 import styles from './Contacto.module.css'
+import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
 
 export default function Contacto() {
   return (
     <div>
+      <Seo
+        title="Contacto"
+        description="¿Hablamos? Escríbenos y te respondemos. Contacta con La Urbana Burger Bar para cualquier consulta."
+        path="/contacto"
+      />
       <main className={styles.page}>
         <div className={styles.grid}>
           <div className={styles.left}>

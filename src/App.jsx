@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import Carta from './pages/Carta/Carta'
@@ -14,6 +15,7 @@ export default function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar lang={i18n.language} setLang={(l) => i18n.changeLanguage(l)} />
       <Routes>
         <Route path="/" element={<Home />} />

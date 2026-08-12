@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import styles from './Nosotros.module.css'
+import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
 import imgHero from '../../assets/images/hero-nuestro-origen2.webp'
 import imgQuesoSanSimon   from '../../assets/images/origen/queso-san-simon.webp'
@@ -36,15 +37,20 @@ export default function Nosotros() {
 
   return (
     <div>
+      <Seo
+        title="Nuestro Origen"
+        description="Conoce el origen de La Urbana: producto gallego de km 0, de la Ganadería Quintián al queso D.O. San Simón da Costa. Las cosas buenas empiezan aquí."
+        path="/nosotros"
+      />
       <section className={styles.hero}>
         <img src={imgHero} alt="" className={styles.heroBg} />
         <div className={styles.heroContent}>
-          <div className={styles.textBlock}>
+          <h1 className={styles.textBlock}>
             <span className={styles.linePopfine}>Las cosas</span>
             <span className={styles.lineBlenny}>Buenas</span>
             <span className={styles.linePopfine}>empiezan en el</span>
             <span className={styles.lineBlenny}>Origen</span>
-          </div>
+          </h1>
         </div>
       </section>
 

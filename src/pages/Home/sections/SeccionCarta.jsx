@@ -2,7 +2,6 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionCarta.module.css'
-import iconDelivery from '../../../assets/images/icon-delivery.svg'
 import arrowLeft from '../../../assets/images/arrow-left.svg'
 
 import imgParaEmpezar from '../../../assets/images/carta/para-empezar.webp'
@@ -24,13 +23,11 @@ const ITEMS = [
 ]
 const LOOP = Array.from({ length: ITEMS.length * 20 }, (_, i) => ITEMS[i % ITEMS.length])
 const GAP = 12
-const TEXT_COL_PCT = 0.33
 
 export default function SeccionCarta() {
   const { t } = useTranslation()
   const [offset, setOffset] = useState(ITEMS.length * 3)
   const [cardPx, setCardPx] = useState(0)
-  const [overlayPx, setOverlayPx] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [ctaTop, setCtaTop] = useState(null)
   const sectionRef = useRef(null)
@@ -51,11 +48,6 @@ export default function SeccionCarta() {
         const cardW = cardEl ? cardEl.offsetWidth : 0
         if (cardW > 0) setCardPx(cardW)
       }
-
-      const textRight = textColRef.current.getBoundingClientRect().right
-      const trackLeft = trackRef.current.getBoundingClientRect().left
-      const overlap   = Math.max(0, textRight - trackLeft)
-      setOverlayPx(overlap)
 
       if (mobile && itemDescRef.current && sectionRef.current) {
         const descBottom = itemDescRef.current.getBoundingClientRect().bottom

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './Carta.module.css'
+import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
 import { CATEGORIAS, PLATOS, ALERGENOS } from './cartaData'
 
@@ -142,6 +143,11 @@ export default function Carta() {
 
   return (
     <div className={styles.page} onClick={() => setExpandido(null)}>
+      <Seo
+        title="Carta"
+        description="Descubre nuestra carta: hamburguesas Made in Galicia, entrepanes, ensaladas, para empezar, de autor y postres. Producto gallego de km 0 en cada plato."
+        path="/carta"
+      />
       <main className={styles.main}>
         <header className={styles.header}>
           <h1 className={styles.title}>Nuestra carta</h1>

@@ -26,13 +26,11 @@ const CHEFS = [
 
 const LOOP = Array.from({ length: CHEFS.length * 20 }, (_, i) => CHEFS[i % CHEFS.length])
 const GAP = 12
-const TEXT_COL_PCT = 0.33
 
 export default function SeccionTeam() {
   const { t } = useTranslation()
   const [offset, setOffset] = useState(CHEFS.length * 3)
   const [cardPx, setCardPx] = useState(0)
-  const [overlayPx, setOverlayPx] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [modalIdx, setModalIdx] = useState(null)
   const modalChef = modalIdx !== null ? CHEFS[modalIdx] : null
@@ -56,10 +54,6 @@ export default function SeccionTeam() {
         if (cardW > 0) setCardPx(cardW)
       }
 
-      const textRight = textColRef.current.getBoundingClientRect().right
-      const trackLeft = trackRef.current.getBoundingClientRect().left
-      const overlap   = Math.max(0, textRight - trackLeft)
-      setOverlayPx(overlap)
     }
     calc()
     window.addEventListener('resize', calc)
