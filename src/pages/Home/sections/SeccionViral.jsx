@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionViral.module.css'
-import hamburguesaViral from '../../../assets/images/hamburguesa-viral.webp'
+import hamburguesaViral from '../../../assets/images/home/hamburguesa-viral.webp'
 
 const IconFacebook = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -132,6 +132,8 @@
 /* CARD */
 .card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: rgba(0, 0, 0, 0.35);
   border-radius: 16px;
   cursor: default;
@@ -163,8 +165,10 @@
 
 /* Info debajo */
 .cardInfo {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.3rem;
   padding: 0.75rem 0.9rem 0.8rem;
   background: var(--color-orange);

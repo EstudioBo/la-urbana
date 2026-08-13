@@ -72,11 +72,29 @@
 
 .celo {
   position: absolute;
-  top: -4rem;
+  top: -6rem;
   left: -2%;
   width: 35%;
   height: auto;
   pointer-events: none;
+  transform: translateX(-80px) rotate(-8deg);
+  opacity: 0;
+  filter:
+    drop-shadow(1px 2px 0px rgba(0,0,0,0.15))
+    drop-shadow(3px 8px 16px rgba(0,0,0,0.3));
+}
+
+.celoStuck {
+  animation: celoStick 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes celoStick {
+  0%   { transform: translateX(-80px) rotate(-8deg); opacity: 0; }
+  50%  { opacity: 1; }
+  65%  { transform: translateX(10px) rotate(-0.5deg); }
+  78%  { transform: translateX(-5px) rotate(-2.5deg); }
+  88%  { transform: translateX(3px) rotate(-1deg); }
+  100% { transform: translateX(0) rotate(-1.5deg); opacity: 1; }
 }
 
 .stickerU {
@@ -121,7 +139,7 @@
 
 @media (max-width: 640px) {
   .stickerU { width: 6rem; right: 5%; top: calc(100svh - 3rem); }
-  .celo { width: 70%; }
+  .celo { width: 70%; top: -4rem; }
   .marqueeTrack { top: -1.3rem; padding: 0.6rem 0; }
   .marqueeInner { gap: 1.5rem; }
   .marqueeLogo { height: 1.3rem; }

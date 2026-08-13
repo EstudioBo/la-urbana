@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './Navbar.module.css'
-import logo from '../../assets/images/logo-pegatina.webp'
-import iconDelivery from '../../assets/images/icon-delivery.svg'
-import iconReserva from '../../assets/images/icon-reserva.svg'
-import iconDeliveryBlanco from '../../assets/images/icon-delivery-blanco.webp'
-import iconCalendarioBlanco from '../../assets/images/icon-calendario-blanco.webp'
-import iconBurgerMenu from '../../assets/images/icon-burgermenu.svg'
+import logo from '../../assets/images/logos/logo-pegatina.webp'
+import iconDelivery from '../../assets/images/iconos/icon-delivery.svg'
+import iconReserva from '../../assets/images/iconos/icon-reserva.svg'
+import iconDeliveryBlanco from '../../assets/images/iconos/icon-delivery-blanco.webp'
+import iconCalendarioBlanco from '../../assets/images/iconos/icon-calendario-blanco.webp'
+import iconBurgerMenu from '../../assets/images/iconos/icon-burgermenu.svg'
 
 const IconClose = () => (
   <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

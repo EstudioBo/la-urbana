@@ -25,8 +25,8 @@
   --color-white: #ffffff;
   --color-gray: #888888;
 
-  --font-display: 'blenny', sans-serif;
-  --font-script: 'Popfine', cursive;
+  --font-display: 'blenny', 'Arial Black', 'Segoe UI Black', sans-serif;
+  --font-script: 'Popfine', 'Segoe Print', 'Bradley Hand', cursive;
   --font-title: 'Revelstoke', sans-serif;
   --font-body: 'neue-haas-grotesk-display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

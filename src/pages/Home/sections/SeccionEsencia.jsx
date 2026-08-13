@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionEsencia.module.css'
-import imgEsencia from '../../../assets/images/esencia-urbana-ula.webp'
+import imgEsencia from '../../../assets/images/home/esencia-urbana-ula.webp'
 
 export default function SeccionEsencia() {
   const { t } = useTranslation()

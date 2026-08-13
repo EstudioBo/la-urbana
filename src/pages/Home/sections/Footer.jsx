@@ -1,5 +1,5 @@
 import styles from './Footer.module.css'
-import logoBlanco from '../../../assets/images/logo-blanco.webp'
+import logoBlanco from '../../../assets/images/logos/logo-blanco.webp'
 
 export default function Footer() {
   return (

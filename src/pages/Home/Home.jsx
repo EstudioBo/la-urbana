@@ -3,9 +3,9 @@ import styles from './Home.module.css'
 import Seo from '../../components/Seo/Seo'
 import LocalBusinessJsonLd from '../../components/Seo/LocalBusinessJsonLd'
 import HeroSlider from './sections/HeroSlider'
-import pegatinaU from '../../assets/images/pegatina-u.webp'
-import celoUrbana from '../../assets/images/celo-urbana.webp'
-import logoNegro from '../../assets/images/logo-laurbana-negro.webp'
+import pegatinaU from '../../assets/images/decorativos/pegatina-u.webp'
+import celoUrbana from '../../assets/images/celo-la-urbana.webp'
+import logoNegro from '../../assets/images/logos/logo-laurbana-negro.webp'
 import SeccionOrigen from './sections/SeccionOrigen'
 import SeccionEsencia from './sections/SeccionEsencia'
 import SeccionTeam from './sections/SeccionTeam'
@@ -83,7 +83,16 @@ export default function Home() {
         className={`${styles.stickerU} ${stamped ? styles.stickerStamped : ''}`}
       />
       <SeccionOrigen />
-      <div className={styles.celoDivider}>
+      <div className={styles.celoDivider} ref={el => {
+        if (!el) return
+        const obs = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            el.querySelector('img').classList.add(styles.celoStuck)
+            obs.disconnect()
+          }
+        }, { threshold: 0.3 })
+        obs.observe(el)
+      }}>
         <img src={celoUrbana} alt="" className={styles.celo} />
       </div>
       <SeccionEsencia />

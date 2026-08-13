@@ -11,7 +11,7 @@ import imgVeggies     from '../../assets/images/carta/veggies.webp'
 import imgEntrepanes  from '../../assets/images/carta/entrepanes.webp'
 import imgEnsalada    from '../../assets/images/carta/ensalada.webp'
 import imgPostres     from '../../assets/images/carta/postres.webp'
-import iconBurger          from '../../assets/images/icon-burgermenu.svg'
+import iconBurger          from '../../assets/images/iconos/icon-burgermenu.svg'
 
 import imgGaliciaBritish      from '../../assets/images/carta/galicia/urbana-british.webp'
 import imgGaliciaCampera      from '../../assets/images/carta/galicia/urbana-campera.webp'
@@ -21,12 +21,37 @@ import imgGaliciaCuartoLibra  from '../../assets/images/carta/galicia/urbana-cua
 import imgGaliciaJalapenha    from '../../assets/images/carta/galicia/urbana-jalapenha.webp'
 import imgGaliciaMexicana     from '../../assets/images/carta/galicia/urbana-mexicana.webp'
 import imgGaliciaPiamonte     from '../../assets/images/carta/galicia/urbana-piamonte.webp'
+import imgGaliciaReal         from '../../assets/images/carta/galicia/urbana-real.webp'
+
+import imgAutorFina         from '../../assets/images/carta/autor/urbana-fina.webp'
+import imgAutorAntolloGalego from '../../assets/images/carta/autor/urbana-antollo-galego.webp'
+import imgAutorCorea        from '../../assets/images/carta/autor/urbana-corea.webp'
+
+import imgVeggiesRose from '../../assets/images/carta/veggies/urbana-rose.webp'
 
 import imgEntrepanesDechipis  from '../../assets/images/carta/entrepanes/dechipis.webp'
 import imgEntrepanesRusticWay from '../../assets/images/carta/entrepanes/rustic-way.webp'
 
 import imgEnsaladaCesar       from '../../assets/images/carta/ensaladas/ensalada-cesar.webp'
 import imgEnsaladaCebreiro    from '../../assets/images/carta/ensaladas/ensalada-cebreiro-mood.webp'
+import imgEnsaladaKataifi     from '../../assets/images/carta/ensaladas/kataifi-y-guacamole.webp'
+
+import imgEmpezarChipirones   from '../../assets/images/carta/empezar/chipirones.webp'
+import imgEmpezarLangostinos  from '../../assets/images/carta/empezar/langostinos-kataifi.webp'
+import imgEmpezarCamperitos   from '../../assets/images/carta/empezar/camperitos-pollo.webp'
+import imgEmpezarAros         from '../../assets/images/carta/empezar/aros-de-cebolla.webp'
+import imgEmpezarCroquetasJamon    from '../../assets/images/carta/empezar/croquetas-jamon.webp'
+import imgEmpezarCroquetasChipis   from '../../assets/images/carta/empezar/croquetas-chipis.webp'
+import imgEmpezarComboCroquetas    from '../../assets/images/carta/empezar/combi-croquetas.webp'
+import imgEmpezarAlitas       from '../../assets/images/carta/empezar/alitas.webp'
+
+import imgPostresCremosaQueso     from '../../assets/images/carta/postres/cremosa-de-queso.webp'
+import imgPostresMuerteChocolate  from '../../assets/images/carta/postres/muerte-por-chocolate.webp'
+import imgPostresCarrot           from '../../assets/images/carta/postres/carrot-especial.webp'
+import imgPostresCaprichoChocolate from '../../assets/images/carta/postres/capricho-de-chocolate.webp'
+import imgPostresTresChocolates   from '../../assets/images/carta/postres/tres-chocolates.webp'
+import imgPostresHeladoArtesano   from '../../assets/images/carta/postres/helado-artesano.webp'
+import imgPostresBlueberryCheese  from '../../assets/images/carta/postres/blueberry-and-cheese.webp'
 
 import imgAlergenoGluten      from '../../assets/images/alergenos/gluten.webp'
 import imgAlergenovPescado    from '../../assets/images/alergenos/pescado.webp'
@@ -69,6 +94,17 @@ const GALICIA_IMGS = {
   'Urbana Jalapeña':         imgGaliciaJalapenha,
   'Urbana Mejicana':         imgGaliciaMexicana,
   'Urbana Piamonte':         imgGaliciaPiamonte,
+  'Urbana Real':             imgGaliciaReal,
+}
+
+const AUTOR_IMGS = {
+  'Urbana Fina':           imgAutorFina,
+  'Urbana Antollo Galego': imgAutorAntolloGalego,
+  'Urbana Corea':          imgAutorCorea,
+}
+
+const VEGGIES_IMGS = {
+  'Urbana Rosé': imgVeggiesRose,
 }
 
 const ENTREPANES_IMGS = {
@@ -77,11 +113,33 @@ const ENTREPANES_IMGS = {
 }
 
 const ENSALADAS_IMGS = {
-  'Ensalada César':   imgEnsaladaCesar,
-  'Cebreiro Mood':    imgEnsaladaCebreiro,
+  'Ensalada César':      imgEnsaladaCesar,
+  'Cebreiro Mood':       imgEnsaladaCebreiro,
+  'Kataifi y Guacamole': imgEnsaladaKataifi,
 }
-import iconDeliveryBlanco  from '../../assets/images/icon-delivery-blanco.webp'
-import iconCalendarioBlanco from '../../assets/images/icon-calendario-blanco.webp'
+
+const EMPEZAR_IMGS = {
+  'Chipirones de la Ría':                imgEmpezarChipirones,
+  'Langostinos Kataifi':                 imgEmpezarLangostinos,
+  'Camperitos de pollo de corral':       imgEmpezarCamperitos,
+  'Aros de cebolla crujiente a la cerveza': imgEmpezarAros,
+  'Croquetas cremosas de jamón ibérico': imgEmpezarCroquetasJamon,
+  'Croquetas melosas de chipirones':     imgEmpezarCroquetasChipis,
+  'Combi croquetas jamón + chipirones':  imgEmpezarComboCroquetas,
+  'Alitas de pollo a la barbacoa':       imgEmpezarAlitas,
+}
+
+const POSTRES_IMGS = {
+  'Cremosa de queso':        imgPostresCremosaQueso,
+  'Muerte por chocolate':    imgPostresMuerteChocolate,
+  'Carrot especial':         imgPostresCarrot,
+  'Capricho de chocolate':   imgPostresCaprichoChocolate,
+  'Tres chocolates':         imgPostresTresChocolates,
+  'Helado artesano':         imgPostresHeladoArtesano,
+  'Blueberry & Cheese':      imgPostresBlueberryCheese,
+}
+import iconDeliveryBlanco  from '../../assets/images/iconos/icon-delivery-blanco.webp'
+import iconCalendarioBlanco from '../../assets/images/iconos/icon-calendario-blanco.webp'
 
 const CAT_IMGS = {
   empezar:    imgParaEmpezar,
@@ -199,7 +257,7 @@ export default function Carta() {
                 )}
 
                 <div className={styles.cardImg} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>
-                  <img src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
+                  <img src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || AUTOR_IMGS[plato.nombre] || VEGGIES_IMGS[plato.nombre] || EMPEZAR_IMGS[plato.nombre] || POSTRES_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
                 </div>
 
                 <div className={styles.cardInfo}>

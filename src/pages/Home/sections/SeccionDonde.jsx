@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SeccionDonde.module.css'
-import imgLocal from '../../../assets/images/local-interior.webp'
-import iconReserva from '../../../assets/images/icon-reserva.svg'
+import imgLocal from '../../../assets/images/home/local-interior.webp'
+import iconReserva from '../../../assets/images/iconos/icon-reserva.svg'
 
 const CITY_NAMES = ['Lugo', 'Vigo', 'Santiago']
 

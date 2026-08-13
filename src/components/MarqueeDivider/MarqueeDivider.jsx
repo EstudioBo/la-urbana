@@ -1,5 +1,5 @@
 import styles from './MarqueeDivider.module.css'
-import logoNegro from '../../assets/images/logo-laurbana-negro.webp'
+import logoNegro from '../../assets/images/logos/logo-laurbana-negro.webp'
 
 const LOGOS = Array.from({ length: 12 })
 

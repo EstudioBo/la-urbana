@@ -1,7 +1,7 @@
 import styles from './Alergenos.module.css'
 import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
-import imgTabla from '../../assets/images/alergenos.webp'
+import imgTabla from '../../assets/images/alergenos/alergenos.webp'
 
 export default function Alergenos() {
   return (

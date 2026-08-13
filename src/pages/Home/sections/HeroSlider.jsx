@@ -1,13 +1,15 @@
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './HeroSlider.module.css'
-import imgSlide1 from '../../../assets/images/hero-lucia.webp'
-import imgSlide2 from '../../../assets/images/hero-no-smush.webp'
-import imgSlide3 from '../../../assets/images/hero-pan-crujiente.webp'
-import imgSlide4 from '../../../assets/images/hero-martin.webp'
-import arrowLeft from '../../../assets/images/arrow-left.svg'
-import arrowRight from '../../../assets/images/arrow-right.svg'
-import arrowDown from '../../../assets/images/arrow-down.svg'
+import imgSlide2 from '../../../assets/images/home/hero-no-smush.webp'
+import imgSlide3 from '../../../assets/images/home/hero-pan-crujiente.webp'
+import imgSlide4 from '../../../assets/images/home/hero-martin.webp'
+import arrowLeft from '../../../assets/images/iconos/arrow-left.svg'
+import arrowRight from '../../../assets/images/iconos/arrow-right.svg'
+import arrowDown from '../../../assets/images/iconos/arrow-down.svg'
+
+// Ruta fija en /public (sin hash) para que coincida con el <link rel="preload"> de index.html
+const imgSlide1 = '/hero-lucia.webp'
 
 const SLIDES = [
   {

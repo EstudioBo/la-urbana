@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionCarta.module.css'
-import arrowLeft from '../../../assets/images/arrow-left.svg'
+import arrowLeft from '../../../assets/images/iconos/arrow-left.svg'
 
 import imgParaEmpezar from '../../../assets/images/carta/para-empezar.webp'
 import imgArtesanas   from '../../../assets/images/carta/artesanas.webp'

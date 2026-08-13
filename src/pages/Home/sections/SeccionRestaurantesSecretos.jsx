@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SeccionRestaurantesSecretos.module.css'
-import imgNino from '../../../assets/images/nino-restaurante-secreto-trimmed.webp'
-import imgUu from '../../../assets/images/uu-deco.svg'
+import imgNino from '../../../assets/images/kids/nino-restaurante-secreto-trimmed.webp'
+import imgUu from '../../../assets/images/decorativos/uu-deco.svg'
 
 export default function SeccionRestaurantesSecretos() {
   const fotoRef = useRef(null)
