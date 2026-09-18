@@ -20,8 +20,11 @@
 :root {
   --color-black: #0a0a0a;
   --color-green: #3ba548;
-  --color-green-dark: #3ba548;
+  --color-green-dark: #0a2e0a;
+  --color-green-neon: #00ff88;
   --color-orange: #f09b18;
+  --color-orange-light: #f7c147;
+  --color-orange-dark: #c45a00;
   --color-white: #ffffff;
   --color-gray: #888888;
 
@@ -29,6 +32,34 @@
   --font-script: 'Popfine', 'Segoe Print', 'Bradley Hand', cursive;
   --font-title: 'Revelstoke', sans-serif;
   --font-body: 'neue-haas-grotesk-display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 1rem;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-pill: 300px;
+  --radius-circle: 50%;
+
+  --space-0: 0;
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --space-3: 0.5rem;
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.25rem;
+  --space-7: 1.5rem;
+  --space-8: 2rem;
+  --space-9: 2.5rem;
+  --space-10: 3rem;
+  --space-11: 4rem;
+  --space-12: 6rem;
+  --space-13: 7rem;
+  --space-14: 8rem;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.3);
 }
 
 *, *::before, *::after {

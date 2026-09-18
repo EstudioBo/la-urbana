@@ -1,5 +1,5 @@
 .page {
-  background: linear-gradient(to bottom, #00B74F 0%, #1a4a00 100%);
+  background: linear-gradient(to bottom, var(--color-green) 0%, var(--color-green-dark) 100%);
   min-height: 100svh;
   position: relative;
 }
@@ -16,7 +16,7 @@
 }
 
 .main {
-  padding: 8rem 4vw 6rem;
+  padding: var(--space-14) 4vw var(--space-12);
   position: relative;
   z-index: 1;
 }
@@ -24,7 +24,7 @@
 .header {
   display: flex;
   justify-content: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-9);
 }
 
 .title {
@@ -40,9 +40,9 @@
 .pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--space-3);
   justify-content: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-9);
 }
 
 .pill {
@@ -51,8 +51,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0.4rem 1rem;
-  border-radius: 300px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   color: rgba(255, 255, 255, 0.65);
   background: transparent;
@@ -62,22 +62,22 @@
 
 .pill:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--color-white);
   border-color: rgba(255, 255, 255, 0.6);
 }
 
 .pillActive {
-  background: #fff;
+  background: var(--color-white);
   color: var(--color-green);
-  border-color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  border-color: var(--color-white);
+  box-shadow: var(--shadow-lg);
   animation:
     pillEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
     pillFloat 2.8s ease-in-out 1.1s infinite;
 }
 
 .pillActive:hover {
-  background: #fff;
+  background: var(--color-white);
   color: var(--color-green);
 }
 
@@ -96,17 +96,17 @@
 
 /* Rotación +3deg: De autor, Veggies, Ensaladas */
 .pillActiveAlt {
-  background: #fff;
+  background: var(--color-white);
   color: var(--color-green);
-  border-color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  border-color: var(--color-white);
+  box-shadow: var(--shadow-lg);
   animation:
     pillEntranceAlt 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
     pillFloatAlt 2.8s ease-in-out 1.1s infinite;
 }
 
 .pillActiveAlt:hover {
-  background: #fff;
+  background: var(--color-white);
   color: var(--color-green);
 }
 
@@ -126,7 +126,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: var(--space-4);
 }
 
 /* CARD */
@@ -135,7 +135,7 @@
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.35);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   cursor: default;
 }
 
@@ -148,7 +148,7 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
 .cardImg img {
@@ -169,11 +169,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 0.75rem 0.9rem 0.8rem;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5) var(--space-4);
   background: var(--color-orange);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
-  border-radius: 0 0 16px 16px;
+  box-shadow: var(--shadow-lg);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
 .cardChef {
@@ -190,7 +190,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: var(--space-3);
 }
 
 .cardNombre {
@@ -198,7 +198,7 @@
   font-size: clamp(1.8rem, 2.4vw, 2.8rem);
   font-weight: 400;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1;
 }
 
@@ -234,15 +234,15 @@
   font-family: var(--font-body);
   font-size: 1.4rem;
   font-weight: 300;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1;
 }
 
 .cardChefWrap {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  margin-top: 0.15rem;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
 }
 
 .cardRestaurante {
@@ -263,11 +263,11 @@
   background: rgba(0, 30, 10, 0.84);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.2rem 1rem;
+  padding: var(--space-6) var(--space-5);
   z-index: 5;
   animation: popupIn 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -288,7 +288,7 @@
 }
 
 .cardPopupClose:hover {
-  color: #fff;
+  color: var(--color-white);
 }
 
 @keyframes popupIn {
@@ -301,15 +301,15 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--space-4);
 }
 
 /* Alérgenos (dentro del expandido) */
 .cardAlergenos {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-top: 0.5rem;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 .alergenoIcon {
@@ -331,10 +331,10 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0.2rem 0.55rem;
-  border-radius: 300px;
-  background: var(--color-yellow);
-  color: #000;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-orange);
+  color: var(--color-black);
 }
 
 .tagGluten {
@@ -347,8 +347,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0.2rem 0.5rem;
-  border-radius: 300px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255,255,255,0.3);
@@ -356,22 +356,22 @@
 
 .ctaBar {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-5);
   justify-content: center;
-  padding: 3rem 2rem 4rem;
+  padding: var(--space-10) var(--space-8) var(--space-12);
 }
 
 .ctaBtn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-3);
   font-family: var(--font-body);
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  padding: 0.7rem 2rem;
-  border-radius: 8px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
   transition: transform 0.15s;
 }
 
@@ -380,12 +380,12 @@
 
 .ctaBtnDelivery {
   background: var(--color-orange);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .ctaBtnReserva {
-  background: #1a4a00;
-  color: #fff;
+  background: var(--color-green-dark);
+  color: var(--color-white);
 }
 
 .ctaBtnIcon {
@@ -398,9 +398,9 @@
 }
 
 @media (max-width: 680px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
   .cardNombre { font-size: 0.9rem; }
-  .pills { gap: 0.9rem; }
+  .pills { gap: var(--space-4); }
 }
 
 @media (max-width: 420px) {

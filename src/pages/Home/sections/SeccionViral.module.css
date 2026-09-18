@@ -13,7 +13,7 @@
   align-items: center;
   text-align: center;
   padding: 6vw;
-  gap: 1.5rem;
+  gap: var(--space-7);
 }
 
 .textBlock {
@@ -21,24 +21,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--space-7);
 }
 
 .floatBtn {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: var(--space-3);
   background: #4db85c;
-  color: #0a2e0a;
+  color: var(--color-green-dark);
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
-  padding: 0.45rem 1rem;
-  border-radius: 8px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
   pointer-events: auto;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-md);
 }
 
 .floatBtnFb { top: 90px;   left: -25px; }
@@ -86,13 +86,13 @@
     top: 0;
     z-index: 0;
     height: 100svh;
-    padding: 6.5rem 6vw 2.5rem;
-    gap: 1rem;
+    padding: var(--space-13) 6vw var(--space-9);
+    gap: var(--space-5);
   }
-  .textBlock { gap: 1rem; }
+  .textBlock { gap: var(--space-5); }
   .imageCol { position: relative; z-index: 1; height: 100svh; min-height: 100svh; }
 
-  .floatBtn { font-size: 0.8rem; padding: 0.35rem 0.75rem; }
+  .floatBtn { font-size: 0.8rem; padding: var(--space-3) var(--space-4); }
   .floatBtnFb { top: 26px; left: -39px; }
   .floatBtnIg { top: auto; bottom: 21px; left: -36px; right: auto; margin: 0; }
   .floatBtnRs { top: 30%; bottom: auto; right: -1.5rem; transform: translateY(-50%); }

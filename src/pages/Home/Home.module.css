@@ -15,16 +15,16 @@
   top: -2.2rem;
   left: -5%;
   width: 110%;
-  background: #3ba548;
+  background: var(--color-green);
   transform: rotate(-2deg);
   overflow: hidden;
-  padding: 1.1rem 0;
+  padding: var(--space-5) 0;
 }
 
 .marqueeInner {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: var(--space-10);
   width: max-content;
   animation: marqueeScroll 26s linear infinite;
 }
@@ -140,7 +140,7 @@
 @media (max-width: 640px) {
   .stickerU { width: 6rem; right: 5%; top: calc(100svh - 3rem); }
   .celo { width: 70%; top: -4rem; }
-  .marqueeTrack { top: -1.3rem; padding: 0.6rem 0; }
-  .marqueeInner { gap: 1.5rem; }
+  .marqueeTrack { top: -1.3rem; padding: var(--space-3) 0; }
+  .marqueeInner { gap: var(--space-7); }
   .marqueeLogo { height: 1.3rem; }
 }

@@ -23,7 +23,7 @@
   text-align: center;
   padding: 6vw;
   padding-top: 8vw;
-  gap: 0.4rem;
+  gap: var(--space-3);
 }
 
 .label {
@@ -74,7 +74,7 @@
 .more {
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   border: 1.5px solid var(--color-black);
   font-size: 18px;
   color: var(--color-black);
@@ -82,14 +82,14 @@
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  margin-left: 0.5rem;
+  margin-left: var(--space-3);
   cursor: pointer;
   background: none;
   transition: box-shadow 0.2s ease;
 }
 
 .more:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 1024px) {
@@ -110,7 +110,7 @@
     top: 0;
     z-index: 0;
     height: 100svh;
-    padding: 7rem 8vw;
+    padding: var(--space-13) 8vw;
   }
   .imageCol { position: relative; z-index: 1; height: 100svh; min-height: 100svh; }
   .label { font-size: clamp(2rem, 7.5vw, 3.2rem); }
@@ -119,7 +119,7 @@
   .sello { top: auto; bottom: 1.5rem; right: auto; left: 1rem; width: 7rem; opacity: 0; }
   .selloStamped { animation: origenStamp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
   .body { font-size: 0.9rem; max-width: 100%; text-align: center; }
-  .more { display: flex; margin: 1.5rem auto 0; }
+  .more { display: flex; margin: var(--space-7) auto 0; }
 }
 
 @keyframes origenStamp {

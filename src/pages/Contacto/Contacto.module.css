@@ -4,7 +4,7 @@
   background: var(--color-black) url('../../assets/images/Grandío_LaUrbana_VIgo_009.webp') center / cover no-repeat;
   display: flex;
   align-items: center;
-  padding: 8rem 5vw 6rem;
+  padding: var(--space-14) 5vw var(--space-12);
 }
 
 .page::before {
@@ -34,8 +34,8 @@
   background-image: url('../../assets/images/pegatina-contacto.webp');
   background-size: cover;
   background-position: center;
-  border-radius: 24px;
-  padding: 3rem 2.5rem;
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-9);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.2rem;
+  margin-top: var(--space-6);
 }
 
 .blockArrow {
@@ -124,7 +124,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--space-6);
 }
 
 .field {
@@ -135,18 +135,18 @@
 .textarea {
   background: rgba(10, 10, 10, 0.65);
   border: 1px solid var(--color-orange);
-  border-radius: 8px;
-  padding: 1.35rem 1rem 0.5rem;
+  border-radius: var(--radius-sm);
+  padding: var(--space-6) var(--space-5) var(--space-3);
   font-family: var(--font-body);
   font-size: 1rem;
-  color: #fff;
+  color: var(--color-white);
   outline: none;
   resize: none;
   width: 100%;
   box-sizing: border-box;
 }
 
-.textarea { padding-top: 1.5rem; }
+.textarea { padding-top: var(--space-7); }
 
 .label {
   position: absolute;
@@ -172,7 +172,7 @@
 .checkboxField {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: var(--space-3);
   font-family: var(--font-body);
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.7);
@@ -180,7 +180,7 @@
 }
 
 .checkboxField input[type='checkbox'] {
-  margin-top: 0.2rem;
+  margin-top: var(--space-2);
   width: 1rem;
   height: 1rem;
   accent-color: var(--color-green);
@@ -202,17 +202,17 @@
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  margin-top: 0.5rem;
+  margin-top: var(--space-3);
   background: var(--color-green);
-  color: #000;
+  color: var(--color-black);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: none;
-  border-radius: 8px;
-  padding: 0.9rem 2.5rem;
+  border-radius: var(--radius-sm);
+  padding: var(--space-5) var(--space-9);
   cursor: pointer;
   transition: transform 0.15s;
 }
@@ -221,9 +221,9 @@
 .btn:active { transform: scale(0.92); }
 
 @media (max-width: 768px) {
-  .page { padding: 7rem 6vw 4rem; }
-  .grid { grid-template-columns: 1fr; gap: 3rem; }
-  .block { padding: 1.9rem 2rem; min-height: 0; }
+  .page { padding: var(--space-13) 6vw var(--space-11); }
+  .grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .block { padding: var(--space-8) var(--space-8); min-height: 0; }
   .blockArrow { width: 1.6rem; }
   .block.visible .blockArrow:nth-child(1),
   .block.visible .blockArrow:nth-child(2),

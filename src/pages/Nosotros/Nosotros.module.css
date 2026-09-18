@@ -23,7 +23,7 @@
   z-index: 1;
   width: 40%;
   margin-left: 6%;
-  padding: 8rem 3% 0;
+  padding: var(--space-14) 3% 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@
 .textBlock {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-3);
 }
 
 .lineBlenny + .linePopfine {
@@ -66,7 +66,7 @@
   position: relative;
   z-index: 1;
   min-height: 100svh;
-  background: radial-gradient(ellipse at 55% 45%, #f7c147 0%, #f09b18 50%, #d47e06 100%);
+  background: radial-gradient(ellipse at 55% 45%, var(--color-orange-light) 0%, var(--color-orange) 50%, var(--color-orange) 100%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  gap: var(--space-6);
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -125,9 +125,9 @@
   display: flex;
   flex-direction: column;
   background: #f5f0e6;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+  box-shadow: var(--shadow-md);
   opacity: 0;
   transform: translateY(36px) scale(0.97);
   transition:
@@ -141,10 +141,10 @@
 }
 
 .productoInfo {
-  padding: 1.4rem 1.4rem 1rem;
+  padding: var(--space-7) var(--space-7) var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-3);
 }
 
 .productoNombre {
@@ -153,7 +153,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  color: #273026;
+  color: var(--color-green-dark);
   line-height: 1.1;
   margin: 0;
 }
@@ -162,7 +162,7 @@
   font-family: var(--font-body);
   font-size: clamp(0.75rem, 0.9vw, 0.88rem);
   line-height: 1.5;
-  color: #273026;
+  color: var(--color-green-dark);
   margin: 0;
 }
 
@@ -176,7 +176,7 @@
 }
 
 @media (max-width: 640px) {
-  .heroContent { width: 90%; margin-left: 5%; padding: 6rem 4% 0; }
+  .heroContent { width: 90%; margin-left: 5%; padding: var(--space-12) 4% 0; }
   .title { font-size: clamp(4rem, 14vw, 7rem); }
   .subtitleLine { font-size: clamp(1.4rem, 6vw, 2.5rem); }
 }

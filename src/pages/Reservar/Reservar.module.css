@@ -3,12 +3,12 @@
   min-height: 100svh;
   background: radial-gradient(ellipse at 55% 45%, #4ec563 0%, #1a9a35 50%, #0d5018 100%);
   overflow: hidden;
-  padding-top: 7rem;
+  padding-top: var(--space-13);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  padding-bottom: 4rem;
+  gap: var(--space-8);
+  padding-bottom: var(--space-11);
 }
 
 .uPattern {
@@ -45,7 +45,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.3rem;
+  gap: var(--space-2);
 }
 
 .label {
@@ -72,7 +72,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  gap: var(--space-4);
 }
 
 .tab {
@@ -81,17 +81,17 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.55rem 1.4rem;
-  border-radius: 10px;
+  padding: var(--space-3) var(--space-7);
+  border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,0.2);
   background: linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.35) 100%);
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
   transition: box-shadow 0.15s ease, background 0.15s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
+  gap: var(--space-1);
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,0.25),
     0 6px 20px rgba(0,0,0,0.45),
@@ -119,8 +119,8 @@
       rgba(0,0,0,0.18)      100%
     ),
     var(--color-orange);
-  border-color: #c45a00;
-  color: #000;
+  border-color: var(--color-orange-dark);
+  color: var(--color-black);
   box-shadow:
     inset 0 2px 0 rgba(255,255,255,0.45),
     inset 0 -2px 0 rgba(0,0,0,0.2);
@@ -134,7 +134,7 @@
 
 .subtabs {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--space-3);
 }
 
 .subtab {
@@ -143,8 +143,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.35rem 1.4rem;
-  border-radius: 8px;
+  padding: var(--space-3) var(--space-7);
+  border-radius: var(--radius-sm);
   border: 1.5px solid rgba(255,255,255,0.3);
   background: transparent;
   color: var(--color-orange);
@@ -169,8 +169,8 @@
   position: relative;
   z-index: 1;
   width: min(860px, 90vw);
-  background: #fff;
-  border-radius: 1rem;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
   overflow: hidden;
   height: 430px;
 }
