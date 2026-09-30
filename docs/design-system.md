@@ -73,3 +73,20 @@ Escala en `padding`/`margin`/`gap`. Los valores en `%`/`vw` y las funciones `cal
 **Excepciones, sin tokenizar** (efectos de glow con color propio, no elevación genérica):
 - `SeccionTeam.module.css` — hover de las cards del equipo: `0 8px 32px rgba(0,0,0,0.35)`
 - `UrbanaKids.module.css` — glow neón del sello y del lightbox (usa `#00B74F`/`rgba(0,183,79,…)` con transparencia, no convertible a `var()` sin una variable adicional en formato RGB)
+
+## Efectos de aparición
+
+Se reutilizan en toda la web; no inventar variantes nuevas para lo mismo.
+
+| Efecto | Cómo es | Dónde se usa |
+|---|---|---|
+| **Sello** (`stamp`) | Cae desde grande (`scale(2.5)`), rebota (`0.92` → `1.05`) y queda en `scale(1)` con su giro. `1.2s cubic-bezier(0.22, 1, 0.36, 1)`. Llamativo: para elementos sueltos, no junto a otras animaciones | Pegatina U de la home (`Home.module.css`), sello 2015 (`SeccionOrigen`), cards de chefs (`SeccionTeam`) |
+| **Aparición suave de foto** | `opacity 0 → 1` y `scale(1.06) → 1` con su giro, `0.7s ease-out` | Fotos de las tarjetas de Nuestro Origen (`apareceFoto`) |
+| **Subida** | `opacity 0 → 1` y `translateY(16px) → 0`, `0.6s ease-out` | Textos de las tarjetas de Nuestro Origen |
+| **Punto** | `opacity 0 → 1` y `scale(0.6) → 1`, `0.3s ease-out` | Puntos verdes del camino de Nuestro Origen |
+
+Cuando ya hay algo en movimiento (como la línea del camino), usar las versiones suaves.
+
+Con `prefers-reduced-motion: reduce` todo aparece directamente, sin animación.
+
+Cómo se aplican en la página Nuestro Origen (camino, tarjetas y editor): [nuestro-origen.md](nuestro-origen.md).

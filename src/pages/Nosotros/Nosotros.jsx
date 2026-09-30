@@ -1,109 +1,502 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useState, useEffect, useLayoutEffect } from 'react'
 import styles from './Nosotros.module.css'
 import Seo from '../../components/Seo/Seo'
+import SeccionCarta from '../Home/sections/SeccionCarta'
 import Footer from '../Home/sections/Footer'
-import imgHero from '../../assets/images/origen/hero-nuestro-origen2.webp'
-import imgQuesoSanSimon   from '../../assets/images/origen/queso-san-simon.webp'
-import imgEstrellaGalicia from '../../assets/images/origen/estrella-galicia.webp'
-import imgHuevosPazo      from '../../assets/images/origen/huevos-pazo-vilane.webp'
-import imgLecheQuintian   from '../../assets/images/origen/leche-quintian.webp'
-import imgPostresXanceda  from '../../assets/images/origen/postres-xanceda.webp'
-import imgQuesoArzua      from '../../assets/images/origen/queso-arzua-ulloa.webp'
+import imgFondo from '../../assets/images/origen/fondo-nuestro-origen.webp'
+import imgBordeCesped from '../../assets/images/origen/fondo-borde-cesped.webp'
+import imgRubia from '../../assets/images/origen/rubia-gallega.webp'
+import imgPan from '../../assets/images/origen/pan-artesano-lugo.webp'
+import imgHuevos from '../../assets/images/origen/huevos-camperos-pazo-vilane.webp'
+import imgMel from '../../assets/images/origen/mel-de-antas.webp'
+import imgQuesos from '../../assets/images/origen/queixos.webp'
+import imgRoxadouro from '../../assets/images/origen/roxadouro.webp'
+import imgPimientos from '../../assets/images/origen/pimientos-padron.webp'
+import * as caminoEscritorio from './caminoEscritorio'
+import * as caminoMovil from './caminoMovil'
+import { useCaminoDibujado } from './useCaminoDibujado'
+import { editandoCamino, leerBorrador, guardarBorrador } from './borradorCamino'
 
-const PRODUCTOS = [
-  { img: imgHuevosPazo,      nombre: 'Huevos de Pazo de Vilane',          texto: 'Huevos camperos de los de verdad. De Antas de Ulla.' },
-  { img: imgQuesoSanSimon,   nombre: 'Queso D.O. San Simón da Costa',     texto: 'Ese sabor ahumado que no se olvida. Uno de nuestros secretos mejor compartidos.' },
-  { img: imgLecheQuintian,   nombre: 'Leche Ganadería Quintián',           texto: 'Kilómetro cero de verdad. Sin ella, no tendríamos ni cafés ni postres artesanos deliciosos.' },
-  { img: imgEstrellaGalicia, nombre: 'Cerveza Estrella Galicia',           texto: 'Porque si la burger es gallega, la caña también. Ya tú sabes.' },
-  { img: imgQuesoArzua,      nombre: 'Queso D.O. Arzúa-Ulloa',            texto: 'El cremoso gallego que enamora.' },
-  { img: imgPostresXanceda,  nombre: 'Postres Casa Grande de Xanceda',     texto: 'Indiscutible que esté en la carta. Los ecológicos. Lo mejor para tus niños, sin pensarlo dos veces.' },
+const BURGERS_PENDIENTES = ['Burger xxx', 'Burger xxx', 'Burger xxx']
+const VERTICAL = { width: 848, height: 1264 }
+
+const INGREDIENTES = [
+  {
+    titulo: 'Carne de Rubia Galega',
+    texto: 'Carne gallega con sabor, carácter y el punto justo de grasa. El centro de nuestras burgers y la mejor prueba de que, cuando el producto es top, no hace falta disfrazarlo.',
+    productor: { nombre: 'Ternera Gallega', url: 'https://www.terneragallega.com/' },
+    encuentras: 'La encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgRubia, alt: 'Burger de carne de Rubia Galega en el campo gallego', width: 1608, height: 1800,
+  },
+  {
+    titulo: 'Pan artesano de Lugo',
+    texto: 'Trabajamos con pan artesano gallego, con cuerpo y corteza crujiente, ¡pan de verdad! preparado para sujetar una burger sin rendirse por el camino. Ey, y tenemos opción sin gluten eh? Ya sabes: Si es crujiente y artesana, es la burger de La Urbana!',
+    encuentras: 'Lo encuentras en',
+    burgers: ['Todas nuestras burgers'],
+    nota: '(a no ser que pidas pan brioche)',
+    img: imgPan, alt: 'Pan artesano de Lugo', ...VERTICAL,
+  },
+  {
+    titulo: 'Huevos camperos de Pazo de Vilane',
+    texto: 'Huevos camperos producidos en Antas de Ulla por gallinas criadas en libertad y con acceso diario a pastos verdes. Producto gallego que se reconoce nada más romper la yema.',
+    productor: { nombre: 'Pazo de Vilane', url: 'https://pazodevilane.com/' },
+    encuentras: 'Los encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgHuevos, alt: 'Huevos camperos de Pazo de Vilane', ...VERTICAL,
+  },
+  {
+    titulo: 'Mel de Antas ecológica',
+    texto: 'Miel ecológica producida en Antas de Ulla, en pleno corazón de Galicia. Dulzor natural, aroma y territorio para crear contrastes que llevan nuestras burgers a otro nivel.',
+    productor: { nombre: 'Mel de Anta' },
+    encuentras: 'La encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgMel, alt: 'Burger con miel ecológica Mel da Anta', width: 1376, height: 768,
+  },
+  {
+    titulo: 'Queso DOP Arzúa-Ulloa',
+    texto: 'Un queso gallego elaborado con leche de vaca, suave, cremoso y muy fundente. Nace en el corazón de Galicia y sobre la carne hace exactamente lo que tiene que hacer. Locura de combinación.',
+    productor: { nombre: 'DOP Arzúa-Ulloa', url: 'https://www.arzua-ulloa.org/' },
+    encuentras: 'Lo encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+  },
+  {
+    titulo: 'Queso DOP San Simón da Costa',
+    texto: 'Elaborado en Terra Chá y reconocible por su forma, su corteza y su característico toque ahumado. Un queso gallego con personalidad propia que sube de nivel todo lo que toca.',
+    productor: { nombre: 'DOP San Simón da Costa', url: 'https://www.sansimondacosta.com/' },
+    encuentras: 'Lo encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+  },
+  {
+    titulo: 'Queso Galmesán',
+    texto: 'Un queso curado gallego elaborado en Arzúa con leche de pastoreo procedente de pequeños ganaderos. Intenso, aromático y perfecto para rallar, fundir o dar el golpe final.',
+    productor: { nombre: 'Galmesán', url: 'https://www.galmesan.es/' },
+    encuentras: 'Lo encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+  },
+  {
+    titulo: 'Roxad’Ouro',
+    texto: 'Carne gallega seleccionada y madurada por Gutrei Galicia. El tiempo de maduración concentra su sabor, mejora su textura y consigue una burger más intensa y jugosa. Una carne para hacerte gozar, nivel supremo.',
+    encuentras: 'La encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgRoxadouro, alt: 'Burger de carne madurada Roxad’Ouro', ...VERTICAL,
+  },
+  {
+    titulo: 'Pimientos de Padrón',
+    texto: 'Pequeños, verdes y con ese punto imprevisible que forma parte de su fama: unos pican y otros no. Un clásico gallego que con nuestras carnes y pan… no podemos explicártelo, tendrás que probarlo!',
+    encuentras: 'Los encuentras en',
+    burgers: BURGERS_PENDIENTES,
+    img: imgPimientos, alt: 'Burger con pimientos de Padrón', ...VERTICAL,
+  },
 ]
 
-const U_PATH = "M184.52,0c.22,18.08-11.8,18.68-25.3,18.42-1.75-.05-8.68-.05-12.4-.05-1.58-.12-2.9-.17-3.96-.17-2.13,0-5.32.22-9.57.67-1.89.22-3.67,2.13-5.32,5.68-.48.89-.72,2.47-.72,4.68v76.01l-.36,84.36c0,6.02-1.82,11.27-5.49,15.73s-9.28,7.27-16.83,8.37c-1.41.22-3.55.34-6.38.34-8.51,0-15.49-2.35-20.91-7.03-5.44-4.68-8.03-11.27-7.79-19.76V31.27c0-.46.05-1.01.17-1.68s.05-1.44-.17-2.35c-.24-3.12-1.06-5.35-2.49-6.69-1.41-1.34-3.79-2.01-7.1-2.01-1.17-.22-3.07-.34-5.66-.34-1.73,0-3.09.07-4.29.17-3.45,0-11.27,0-13.14.05-13.48.26-25.51-.34-25.3-18.42C-.91,8.25-1.75,18.1,1.87,28.06c4.46,12.28,14.51,19.42,28.37,20.17,1.8.1,4.96.17,8.34.22l-.29,73.21c0,15.85.24,39.4.72,70.64,0,16.74,7.22,30.02,21.63,39.85,9.93,7.15,22.68,10.72,38.29,10.72,4.48,0,7.91-.12,10.29-.34,8.51-.67,16.5-3.45,23.93-8.37,7.43-4.92,13.4-11.15,17.91-18.75,4.48-7.58,6.74-15.61,6.74-24.1V48.44c3.29-.05,6.33-.12,8.06-.22,13.86-.74,23.88-7.89,28.37-20.17C197.85,18.1,197.01,8.25,184.59,0h-.07Z"
+// Colocación irregular de cada fila en móvil y tablet: desplazamiento lateral (vw), giro de la foto y hueco extra
+// antes de la fila (rem). En escritorio la posición la da el lienzo (caminoEscritorio.js) y solo se usa el giro.
+const RITMO = [
+  { x: 1, giro: 4, hueco: 0 },
+  { x: -2, giro: -5, hueco: 1 },
+  { x: 2.5, giro: 3, hueco: -1 },
+  { x: -1, giro: -3, hueco: 1.5 },
+  { x: 1.5, giro: 6, hueco: 0 },
+  { x: -2.5, giro: -2, hueco: 2 },
+  { x: 0.5, giro: 5, hueco: -0.5 },
+  { x: -1.5, giro: -4, hueco: 1 },
+  { x: 2, giro: 3, hueco: 0 },
+]
+
+const MOVIL = '(max-width: 768px)'
+const ESCRITORIO = '(min-width: 1024px)'
+// Escritorio y móvil tienen su propio lienzo fijo y editable; en tablet (entre medias) el camino se calcula solo.
+const LIENZOS = { escritorio: caminoEscritorio, movil: caminoMovil }
+
+const conGiroYAlineacion = (f, i) => ({
+  texto: { giro: 0, alinear: 'izquierda', ...f.texto },
+  foto: { giro: RITMO[i].giro, ...f.foto },
+})
+const r1 = n => Math.round(n * 10) / 10
+const pct = (valor, total) => `${(valor / total) * 100}%`
+
+function useMedia(query) {
+  const [cumple, setCumple] = useState(() => window.matchMedia(query).matches)
+  useEffect(() => {
+    const media = window.matchMedia(query)
+    const cambiar = () => setCumple(media.matches)
+    media.addEventListener('change', cambiar)
+    return () => media.removeEventListener('change', cambiar)
+  }, [query])
+  return cumple
+}
+
+// Tablet: el camino baja pegado al margen del lado de la foto de cada fila y cruza en el hueco entre filas.
+function trazarCaminoFlujo(wrap, filas, carta, horizonte) {
+  const base = wrap.getBoundingClientRect()
+  const caja = el => {
+    const r = el.getBoundingClientRect()
+    return { top: r.top - base.top, bottom: r.bottom - base.top, left: r.left - base.left, width: r.width }
+  }
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+  const W = wrap.clientWidth
+  const H = wrap.offsetHeight
+  const margen = W * 0.05
+
+  const anclas = filas.map((fila, i) => {
+    const f = caja(fila)
+    return { x: i % 2 === 0 ? W - margen : margen, y1: f.top, y2: f.bottom }
+  })
+  const cartaCaja = caja(carta)
+  const titulo = caja(carta.querySelector('h2'))
+  const fin = {
+    x: Math.max(margen, titulo.left + titulo.width / 2),
+    y: cartaCaja.top + Math.min(titulo.top - cartaCaja.top - rem, rem * 3.5),
+  }
+  const inicio = { x: margen, y: Math.min(horizonte + rem * 3, window.innerHeight - rem * 3) }
+
+  const P = p => `${r1(p.x)} ${r1(p.y)}`
+  const curva = (a, b) => {
+    const k = (b.y - a.y) * 0.55
+    return `C ${P({ x: a.x, y: a.y + k })} ${P({ x: b.x, y: b.y - k })} ${P(b)}`
+  }
+  let d = `M ${P(inicio)}`
+  let previo = inicio
+  anclas.forEach(({ x, y1, y2 }) => {
+    d += ` ${curva(previo, { x, y: y1 })} L ${P({ x, y: y2 })}`
+    previo = { x, y: y2 }
+  })
+  d += ` ${curva(previo, fin)}`
+
+  return {
+    ancho: W, alto: H, d, y0: inicio.y, y1: fin.y,
+    nodos: [inicio, ...anclas.map(a => ({ x: a.x, y: a.y1 })), fin],
+  }
+}
+
+function Camino({ ancho, alto, d, y0, y1, nodos, filaDeNodo, pathRef, nodosRef, movil }) {
+  return (
+    <>
+      <svg className={`${styles.camino} ${movil ? styles.caminoMovil : ''}`} viewBox={`0 0 ${ancho} ${alto}`} aria-hidden="true">
+        <defs>
+          <linearGradient id="camino-gradiente" gradientUnits="userSpaceOnUse" x1="0" y1={y0} x2="0" y2={y1}>
+            <stop offset="0" className={styles.stopVerde} />
+            <stop offset="1" className={styles.stopNaranja} />
+          </linearGradient>
+        </defs>
+        <path ref={pathRef} d={d} className={styles.trazo} stroke="url(#camino-gradiente)" />
+      </svg>
+      <svg
+        ref={nodosRef}
+        className={`${styles.camino} ${styles.caminoNodos} ${movil ? styles.caminoMovil : ''}`}
+        viewBox={`0 0 ${ancho} ${alto}`}
+        aria-hidden="true"
+      >
+        {nodos.map((n, i) => (
+          <g key={i} data-largo={n.largo} data-fila={filaDeNodo(i) ?? undefined} className={styles.nodo}>
+            <circle cx={n.x} cy={n.y} r={movil ? 10 : 15} className={styles.nodoAro} stroke="url(#camino-gradiente)" />
+            <circle cx={n.x} cy={n.y} r={movil ? 3.5 : 5} fill="url(#camino-gradiente)" />
+          </g>
+        ))}
+      </svg>
+    </>
+  )
+}
+
+// Posición de la vaca dentro de fondo-nuestro-origen.webp (1200×1800), en fracciones de la foto.
+const FOTO_RATIO = 1800 / 1200
+const VACA_ARRIBA = 0.632
+const HORIZONTE = 0.711
+const VACA_CENTRO_X = 0.73
+// fondo-borde-cesped.webp: filas 1230–1305 de la foto de fondo, solo la hierba del horizonte (cielo transparente).
+// Va encima del camino para que la línea asome por detrás de las briznas.
+const BORDE_CESPED = { fila: 1230, filas: 75 }
+const FOTO_ALTO = 1800
+
+// Coloca la foto para que la vaca empiece justo debajo del título (en móvil, debajo del texto)
+// y el texto nunca quede sobre la hierba.
+function colocarVaca(hero, lineaBase, intro) {
+  const movil = window.matchMedia(MOVIL).matches
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+  const W = hero.clientWidth
+  const H = hero.clientHeight
+  const top = hero.getBoundingClientRect().top
+  const tituloAbajo = lineaBase.getBoundingClientRect().bottom - top + rem * 0.5
+  const introAbajo = intro.getBoundingClientRect().bottom - top + rem * 1.5
+
+  const ancla = alto => (movil
+    ? introAbajo
+    : Math.max(tituloAbajo, introAbajo - alto * (HORIZONTE - VACA_ARRIBA)))
+
+  let alto = W * FOTO_RATIO
+  // En móvil el degradado verde del final del hero es opaco desde el 80% del alto (ver CSS): la foto puede acabar ahí.
+  const cubrir = movil ? 0.8 : 1
+  const minimo = Math.max(ancla(alto) / VACA_ARRIBA, (H * cubrir - ancla(alto)) / (1 - VACA_ARRIBA))
+  if (alto < minimo) alto = minimo
+  const ancho = alto / FOTO_RATIO
+
+  const centro = W * (movil ? 0.5 : VACA_CENTRO_X)
+  const left = Math.min(0, Math.max(W - ancho, centro - ancho * VACA_CENTRO_X))
+
+  return { width: ancho, height: alto, top: ancla(alto) - alto * VACA_ARRIBA, left }
+}
 
 export default function Nosotros() {
-  const gridRef = useRef(null)
+  const wrapRef = useRef(null)
+  const heroRef = useRef(null)
+  const tituloRef = useRef(null)
+  const lineaBaseRef = useRef(null)
+  const introRef = useRef(null)
+  const filasRef = useRef([])
+  const cartaRef = useRef(null)
+  const pathRef = useRef(null)
+  const nodosRef = useRef(null)
+  const lienzoRef = useRef(null)
+  const escritorio = useMedia(ESCRITORIO)
+  const movil = useMedia(MOVIL)
+  const version = escritorio ? 'escritorio' : movil ? 'movil' : null
+  const lienzo = version && LIENZOS[version]
+  const [caminoFlujo, setCaminoFlujo] = useState(null)
+  const [vaca, setVaca] = useState(null)
+  // Cambios del modo edición por versión (solo en desarrollo); si no hay, se usa lo guardado en el proyecto.
+  const [ediciones, setEdiciones] = useState(() => ({ escritorio: leerBorrador('escritorio'), movil: leerBorrador('movil') }))
+  const edicion = version && ediciones[version]
+  const filas = lienzo && (edicion?.filas ?? lienzo.FILAS).map(conGiroYAlineacion)
+  const objetivosNodos = lienzo && (edicion?.nodos ?? lienzo.NODOS)
+  const [solape, setSolape] = useState(0)
+  const horizonte = vaca ? vaca.top + vaca.height * HORIZONTE : null
 
-  useEffect(() => {
-    const grid = gridRef.current
-    if (!grid) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { grid.classList.add(styles.gridVisible); observer.disconnect() } },
-      { threshold: 0.15 }
-    )
-    observer.observe(grid)
-    return () => observer.disconnect()
+  useLayoutEffect(() => {
+    const hero = heroRef.current
+    let activo = true
+    const calcular = () => {
+      if (!activo) return
+      const v = colocarVaca(hero, lineaBaseRef.current, introRef.current)
+      setVaca(v)
+      // El lienzo empieza en el horizonte del hero: sube por encima de la sección lo que hay de hierba.
+      setSolape(hero.offsetHeight - (v.top + v.height * HORIZONTE))
+    }
+    calcular()
+    document.fonts.ready.then(calcular)
+    const ro = new ResizeObserver(calcular)
+    ro.observe(hero)
+    ro.observe(tituloRef.current)
+    ro.observe(introRef.current)
+    return () => { activo = false; ro.disconnect() }
   }, [])
 
+  useLayoutEffect(() => {
+    if (horizonte === null || version) return
+    const wrap = wrapRef.current
+    const calcular = () => setCaminoFlujo(trazarCaminoFlujo(wrap, filasRef.current, cartaRef.current, horizonte))
+    calcular()
+    const ro = new ResizeObserver(calcular)
+    ro.observe(wrap)
+    return () => ro.disconnect()
+  }, [horizonte, version])
+
+  const camino = lienzo
+    ? { ancho: lienzo.LIENZO.ancho, alto: lienzo.LIENZO.alto, d: edicion?.camino ?? lienzo.CAMINO, y0: 0, y1: lienzo.LIENZO.alto, nodos: objetivosNodos }
+    : caminoFlujo
+  // El solape mueve el lienzo: al cambiar, el dibujo se vuelve a medir.
+  const claveCamino = camino && `${version}|${camino.d}|${version ? solape : 0}`
+  const editandoAqui = editandoCamino && Boolean(version)
+  // Cada punto verde hace aparecer su tarjeta cuando la línea llega a él (texto y, justo después, foto).
+  // Con lienzo, el punto i es el de la tarjeta i; en tablet el primero es el inicio del camino. El último es el final.
+  const filaDeNodo = k => {
+    const fila = version ? k : k - 1
+    return fila >= 0 && fila < INGREDIENTES.length ? fila : null
+  }
+  const revelar = fila => [...(filasRef.current[fila]?.children ?? [])].forEach(pieza => pieza.classList.add(styles.visible))
+  const { nodos, remedir } = useCaminoDibujado({
+    pathRef,
+    nodosRef,
+    objetivos: camino?.nodos ?? [],
+    clave: claveCamino,
+    claseNodoVisible: styles.nodoVisible,
+    dibujoCompleto: editandoAqui,
+    revelar,
+  })
+  const caminoSvg = camino && (
+    <Camino {...camino} nodos={nodos} filaDeNodo={filaDeNodo} pathRef={pathRef} nodosRef={nodosRef} movil={version !== 'escritorio'} />
+  )
+
+  // Modo edición (solo en desarrollo, /nosotros?editar-camino): camino, tarjetas y puntos verdes se arrastran.
+  const filasActuales = useRef(filas)
+  const objetivosActuales = useRef(objetivosNodos)
+  useLayoutEffect(() => {
+    filasActuales.current = filas
+    objetivosActuales.current = objetivosNodos
+  })
+  useEffect(() => {
+    if (!import.meta.env.DEV || !editandoAqui || nodos.length === 0) return
+    let cancelado = false
+    let limpiar = () => {}
+    import('./editorCamino').then(({ iniciarEditor }) => {
+      if (cancelado) return
+      limpiar = iniciarEditor({
+        version,
+        path: pathRef.current,
+        lienzo: lienzoRef.current,
+        piezas: filasRef.current.flatMap((fila, i) => [
+          { el: fila.querySelector(`.${styles.info}`), i, tipo: 'texto' },
+          { el: fila.querySelector(`.${styles.foto}`), i, tipo: 'foto' },
+        ]),
+        claseVisible: styles.visible,
+        nodosSvg: nodosRef.current,
+        anchoLienzo: lienzo.LIENZO.ancho,
+        alCambiarCamino: remedir,
+        estadoActual: () => ({ filas: filasActuales.current, nodos: objetivosActuales.current }),
+        alCambiarPieza: (i, tipo, cambios) => {
+          const nuevas = filasActuales.current.map((f, k) => (k === i ? { ...f, [tipo]: { ...f[tipo], ...cambios(f[tipo]) } } : f))
+          guardarBorrador(version, { filas: nuevas })
+          setEdiciones(prev => ({ ...prev, [version]: { ...prev[version], filas: nuevas } }))
+        },
+        alMoverNodo: (i, punto) => {
+          const nuevos = objetivosActuales.current.map((o, k) => (k === i ? punto : o))
+          guardarBorrador(version, { nodos: nuevos })
+          setEdiciones(prev => ({ ...prev, [version]: { ...prev[version], nodos: nuevos } }))
+        },
+      })
+    })
+    return () => { cancelado = true; limpiar() }
+  }, [editandoAqui, version, nodos.length === 0, remedir]) // eslint-disable-line react-hooks/exhaustive-deps -- se monta una vez por versión cuando ya hay puntos
+
+  // Una tarjeta sin punto (si se quitan puntos en el editor) aparece al entrar en pantalla.
+  const filasSinPunto = INGREDIENTES.map((_, i) => i).filter(i => !nodos.some((_, k) => filaDeNodo(k) === i)).join()
+  useEffect(() => {
+    if (!filasSinPunto) return
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add(styles.visible)
+        observer.unobserve(entry.target)
+      }),
+      { threshold: 0.2 }
+    )
+    filasSinPunto.split(',').forEach(i => [...filasRef.current[i].children].forEach(pieza => observer.observe(pieza)))
+    return () => observer.disconnect()
+  }, [filasSinPunto])
+
   return (
-    <div>
+    <main>
       <Seo
         title="Nuestro Origen"
-        description="Conoce el origen de La Urbana: producto gallego de km 0, de la Ganadería Quintián al queso D.O. San Simón da Costa. Las cosas buenas empiezan aquí."
+        description="Carne de Rubia Galega, pan artesano de Lugo, huevos camperos, miel ecológica y quesos DOP gallegos: el producto de proximidad de cada burger de La Urbana."
         path="/nosotros"
       />
-      <section className={styles.hero}>
-        <img src={imgHero} alt="" className={styles.heroBg} />
-        <div className={styles.heroContent}>
-          <h1 className={styles.textBlock}>
-            <span className={styles.linePopfine}>Las cosas</span>
-            <span className={styles.lineBlenny}>Buenas</span>
-            <span className={styles.linePopfine}>empiezan en el</span>
-            <span className={styles.lineBlenny}>Origen</span>
-          </h1>
-        </div>
-      </section>
 
-      <section className={styles.fondoUs}>
-        {/* Patrón estático de fondo */}
-        <svg className={styles.fondoUsPattern} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="u-shape" d={U_PATH}/>
-            <pattern id="u-pattern" x="-40" y="-50" width="122" height="154" patternUnits="userSpaceOnUse">
-              <use href="#u-shape" transform="translate(1,2) scale(0.3)" fill="#171715"/>
-              <use href="#u-shape" transform="translate(121,75) rotate(180) scale(0.3)" fill="#171715"/>
-              <use href="#u-shape" transform="translate(62,79) scale(0.3)" fill="#171715"/>
-              <use href="#u-shape" transform="translate(60,152) rotate(180) scale(0.3)" fill="#171715"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#u-pattern)"/>
-        </svg>
+      <div className={`${styles.recorrido} ${version ? styles.fijo : ''} ${version === 'movil' ? styles.fijoMovil : ''}`} ref={wrapRef}>
+        <section className={styles.hero} ref={heroRef}>
+          <img
+            src={imgFondo}
+            alt=""
+            className={styles.heroBg}
+            width="1200"
+            height="1800"
+            fetchPriority="high"
+            style={vaca ?? undefined}
+          />
+          {vaca && (
+            <img
+              src={imgBordeCesped}
+              alt=""
+              className={styles.heroBordeCesped}
+              width="1200"
+              height={BORDE_CESPED.filas}
+              style={{
+                left: vaca.left,
+                width: vaca.width,
+                top: vaca.top + (vaca.height * BORDE_CESPED.fila) / FOTO_ALTO,
+                height: (vaca.height * BORDE_CESPED.filas) / FOTO_ALTO,
+              }}
+            />
+          )}
+          <div className={styles.heroContent}>
+            <h1 className={styles.titulo} lang="gl" ref={tituloRef}>
+              <span className={styles.tituloLinea}>
+                Da nosa terra á túa
+              </span>
+              <span className={styles.tituloLinea}>
+                <span className={styles.tituloBurger}>burger</span>
+                <span className={styles.lineaBase} ref={lineaBaseRef} aria-hidden="true" />
+              </span>
+            </h1>
+            <p className={styles.intro} ref={introRef}>
+              Galicia es calidad en estado puro y ya se sabe que... Para comer, Lugo! Pues nuestras burgers son justo eso: carne gallega, pan artesano e ingredientes de proximidad y con nombre y apellidos. Apostamos por productos de aquí y, siempre que podemos, ecológicos. Y eso ¡se nota!
+            </p>
+          </div>
+        </section>
 
-        {/* Us que pulsan de intensidad */}
-        <svg className={styles.fondoUsPulse} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs><path id="u-pulse" d={U_PATH}/></defs>
-          <g className={styles.f1}><use href="#u-pulse" transform="translate(83,106) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f2}><use href="#u-pulse" transform="translate(388,337) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f3}><use href="#u-pulse" transform="translate(691,179) rotate(180) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f4}><use href="#u-pulse" transform="translate(876,337) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f5}><use href="#u-pulse" transform="translate(1179,179) rotate(180) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f6}><use href="#u-pulse" transform="translate(508,718) rotate(180) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f7}><use href="#u-pulse" transform="translate(1181,414) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f8}><use href="#u-pulse" transform="translate(815,260) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f9}><use href="#u-pulse" transform="translate(998,183) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f10}><use href="#u-pulse" transform="translate(813,333) rotate(180) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f11}><use href="#u-pulse" transform="translate(1059,414) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f12}><use href="#u-pulse" transform="translate(874,256) rotate(180) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f13}><use href="#u-pulse" transform="translate(1242,183) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f14}><use href="#u-pulse" transform="translate(327,414) scale(0.3)" fill="#171715"/></g>
-          <g className={styles.f15}><use href="#u-pulse" transform="translate(754,337) scale(0.3)" fill="#171715"/></g>
-        </svg>
-
-        {/* Grid de productos */}
-        <div className={styles.productosGrid} ref={gridRef}>
-          {PRODUCTOS.map((p, i) => (
-            <article key={i} className={styles.productoCard} style={{ '--i': i }}>
-              <div className={styles.productoInfo}>
-                <h3 className={styles.productoNombre}>{p.nombre}</h3>
-                <p className={styles.productoTexto}>{p.texto}</p>
+        <section className={styles.ingredientes}>
+          <div
+            ref={lienzoRef}
+            className={styles.lienzo}
+            style={lienzo ? { '--solape': `${solape}px`, aspectRatio: `${lienzo.LIENZO.ancho} / ${lienzo.LIENZO.alto}` } : undefined}
+          >
+          {lienzo && caminoSvg}
+          {INGREDIENTES.map((item, i) => (
+            <article
+              key={item.titulo}
+              ref={el => { filasRef.current[i] = el }}
+              className={`${styles.fila} ${i % 2 === 0 ? styles.filaDerecha : ''}`}
+              style={{
+                '--desplaz': `${RITMO[i].x}vw`,
+                '--giro': `${RITMO[i].giro}deg`,
+                '--hueco': `${RITMO[i].hueco}rem`,
+                ...(lienzo && {
+                  '--texto-x': pct(filas[i].texto.x, lienzo.LIENZO.ancho),
+                  '--texto-y': pct(filas[i].texto.y, lienzo.LIENZO.alto),
+                  '--texto-ancho': pct(filas[i].texto.ancho, lienzo.LIENZO.ancho),
+                  '--foto-x': pct(filas[i].foto.x, lienzo.LIENZO.ancho),
+                  '--foto-y': pct(filas[i].foto.y, lienzo.LIENZO.alto),
+                  '--texto-giro': `${filas[i].texto.giro}deg`,
+                  '--foto-giro': `${filas[i].foto.giro}deg`,
+                  ...(filas[i].foto.ancho && { '--foto-ancho': pct(filas[i].foto.ancho, lienzo.LIENZO.ancho) }),
+                }),
+              }}
+            >
+              <img
+                src={item.img}
+                alt={item.alt}
+                width={item.width}
+                height={item.height}
+                loading="lazy"
+                decoding="async"
+                className={styles.foto}
+              />
+              <div className={styles.info} data-alinear={filas?.[i].texto.alinear}>
+                <h2 className={styles.nombre}>{item.titulo}</h2>
+                <p className={styles.texto}>{item.texto}</p>
+                {item.productor && (
+                  <p className={styles.productor}>
+                    {item.productor.url
+                      ? <a href={item.productor.url} target="_blank" rel="noopener noreferrer">{item.productor.nombre}</a>
+                      : item.productor.nombre}
+                  </p>
+                )}
+                <div className={styles.encuentras}>
+                  <span className={styles.encuentrasLabel}>{item.encuentras}:</span>
+                  <ul className={styles.burgers}>
+                    {item.burgers.map((burger, j) => (
+                      <li key={j} className={styles.burger}>{burger}</li>
+                    ))}
+                  </ul>
+                  {item.nota && <span className={styles.nota}>{item.nota}</span>}
+                </div>
               </div>
-              <img src={p.img} alt={p.nombre} className={styles.productoImg} />
             </article>
           ))}
+          </div>
+        </section>
+
+        <div ref={cartaRef} className={styles.carta}>
+          <SeccionCarta />
         </div>
-      </section>
+
+        {!lienzo && caminoSvg}
+      </div>
 
       <Footer />
-    </div>
+    </main>
   )
 }
