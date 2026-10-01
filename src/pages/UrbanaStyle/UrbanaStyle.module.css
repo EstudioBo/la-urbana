@@ -1,0 +1,143 @@
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 40%;
+  margin-left: 6%;
+  padding: var(--space-14) 3% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.linePopfine {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-green);
+  letter-spacing: 0.01em;
+}
+
+.lineBlenny {
+  font-family: var(--font-display);
+  font-size: 90px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  letter-spacing: 0.01em;
+}
+
+/* ARCHIVO */
+.archivo {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: var(--space-14) var(--margen-pagina);
+}
+
+.fondoUs {
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
+}
+
+.archivoTitulo {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto var(--space-10);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-align: center;
+}
+
+.palabra {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 0.15em;
+  clip-path: inset(-0.25em -0.5em -0.5em -0.5em);
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%      { transform: translate(var(--x), var(--y1)) rotate(var(--r1)); }
+  65%      { transform: translate(calc(var(--x) * -1), var(--y2)) rotate(var(--r2)); }
+}
+
+/* GSAP mueve .letra (caída) y CSS mueve .flota (flotación): cada uno su elemento para no pisarse */
+.letra,
+.flota {
+  display: inline-block;
+}
+
+.flota {
+  animation: flotar var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Entrada escalonada de las tarjetas al llegar al listado */
+.card {
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  transition:
+    opacity 0.55s ease calc(var(--i) * 0.09s),
+    transform 0.55s ease calc(var(--i) * 0.09s),
+    translate 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gridVisible .card {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flota { animation: none; }
+  .card { transition: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .heroContent { width: 90%; margin-left: 5%; padding: var(--space-12) 4% 0; }
+  .linePopfine { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .lineBlenny { font-size: clamp(3rem, 14vw, 5rem); }
+  .archivo { padding: var(--space-12) var(--margen-pagina); }
+  .grid { grid-template-columns: 1fr; gap: var(--space-7); }
+}

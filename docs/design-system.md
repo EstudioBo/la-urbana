@@ -61,6 +61,14 @@ Escala en `padding`/`margin`/`gap`. Los valores en `%`/`vw` y las funciones `cal
 | `--space-13` | 112 |
 | `--space-14` | 128 |
 
+## Márgenes de página
+
+| Variable | Valor |
+|---|---|
+| `--margen-pagina` | `8%` (`5%` en ≤640px) |
+
+Margen lateral de la web: es el del navbar (logo e iconos). Las secciones nuevas lo usan en su `padding` izquierdo y derecho para alinearse con él. Las páginas anteriores a esta variable (home, carta, nosotros…) mantienen sus márgenes propios.
+
 ## Sombras
 
 | Variable | Valor |

@@ -1,7 +1,7 @@
+import { SITE_URL } from './site'
+
 // Datos replicados de SeccionDirecciones.jsx (RESTAURANTES) en formato schema.org.
 // Si cambian direcciones, teléfonos u horarios ahí, actualizar también aquí.
-
-const SITE_URL = 'https://www.laurbanaburgerbar.com'
 
 export const RESTAURANTS_SCHEMA = [
   {

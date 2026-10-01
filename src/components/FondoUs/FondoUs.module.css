@@ -1,0 +1,33 @@
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  fill: #171715;
+}
+
+.pattern,
+.pulse {
+  position: absolute;
+  inset: 0;
+}
+
+.pattern {
+  opacity: 0.25;
+}
+
+/* Cada página puede subir lo que se oscurecen las Us con --u-pulse-max */
+@keyframes pulseU {
+  0%, 55%, 100% { opacity: 0; }
+  27.5%         { opacity: var(--u-pulse-max, 0.5); }
+}
+
+.pU {
+  opacity: 0;
+  animation: pulseU var(--pu-dur, 10s) linear var(--pu-delay, 0s) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pU { animation: none; }
+}

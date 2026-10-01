@@ -1,0 +1,15 @@
+/* Piezas visuales compartidas por el archivo y las entradas de #LaUrbanaStyle */
+.fondoNaranja {
+  background: radial-gradient(ellipse at 70% 75%, var(--color-orange-light) 0%, var(--color-orange) 45%, color-mix(in srgb, var(--color-orange) 55%, var(--color-orange-dark)) 100%);
+  --u-pulse-max: 0.9;
+}
+
+.tituloPegatina {
+  font-family: var(--font-display);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-green);
+  -webkit-text-stroke: 4px var(--color-green-dark);
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 var(--color-green-dark);
+}

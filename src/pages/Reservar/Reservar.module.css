@@ -11,33 +11,6 @@
   padding-bottom: var(--space-11);
 }
 
-.uPattern {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  mix-blend-mode: multiply;
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-@keyframes pulseU {
-  0%, 55%, 100% { opacity: 0; }
-  27.5%         { opacity: 0.5; }
-}
-
-.pU {
-  animation: pulseU var(--pu-dur, 10s) linear var(--pu-delay, 0s) infinite;
-}
-
-.uPulse {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-
 .header {
   position: relative;
   z-index: 1;

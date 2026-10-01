@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { RESTAURANTS_SCHEMA } from './restaurantsSchema'
-
-const SITE_URL = 'https://www.laurbanaburgerbar.com'
+import { SITE_URL } from './site'
 
 export default function LocalBusinessJsonLd() {
   const schema = {
