@@ -290,8 +290,8 @@
   stroke-width: 4;
 }
 
-.caminoMovil .trazo { stroke-width: 7; }
-.caminoMovil .trazoSombra { stroke-width: 11; }
+.caminoMovil .trazo { stroke-width: 10; }
+.caminoMovil .trazoSombra { stroke-width: 15; }
 .caminoMovil .nodoAro { stroke-width: 3; }
 
 /* Cada punto aparece cuando la línea llega a él (useCaminoDibujado.js) */
