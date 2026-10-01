@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import styles from './Carta.module.css'
 import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
@@ -295,10 +295,10 @@ export default function Carta() {
           <img src={iconDeliveryBlanco} alt="" className={styles.ctaBtnIcon} />
           Delivery
         </a>
-        <a href="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
+        <Link to="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
           <img src={iconCalendarioBlanco} alt="" className={styles.ctaBtnIcon} />
           Reservar
-        </a>
+        </Link>
       </div>
       <Footer />
     </div>

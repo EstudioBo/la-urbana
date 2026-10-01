@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 import logoBlanco from '../../../assets/images/logos/logo-blanco.webp'
 
@@ -5,7 +6,7 @@ export default function Footer() {
   return (
     <footer>
       <div className={styles.main}>
-        <a href="/"><img src={logoBlanco} alt="La Urbana" className={styles.logo} /></a>
+        <Link to="/"><img src={logoBlanco} alt="La Urbana" className={styles.logo} /></Link>
         <span className={styles.copy}>© 2026 La Urbana</span>
       </div>
       <div className={styles.legal}>
@@ -15,7 +16,7 @@ export default function Footer() {
         <span>|</span>
         <a href="/politica-cookies">Política de Cookies</a>
         <span>|</span>
-        <a href="/alergenos">Alérgenos</a>
+        <Link to="/alergenos">Alérgenos</Link>
       </div>
     </footer>
   )
