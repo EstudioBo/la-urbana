@@ -10,6 +10,8 @@ import imgPan from '../../assets/images/origen/pan-artesano-lugo.webp'
 import imgHuevos from '../../assets/images/origen/huevos-camperos-pazo-vilane.webp'
 import imgMel from '../../assets/images/origen/mel-de-antas.webp'
 import imgQuesos from '../../assets/images/origen/queixos.webp'
+import imgArzua from '../../assets/images/origen/queso-arzua-ulloa.webp'
+import imgSanSimon from '../../assets/images/origen/queso-san-simon.webp'
 import imgRoxadouro from '../../assets/images/origen/roxadouro.webp'
 import imgPimientos from '../../assets/images/origen/pimientos-padron.webp'
 import * as caminoEscritorio from './caminoEscritorio'
@@ -19,6 +21,7 @@ import { editandoCamino, leerBorrador, guardarBorrador } from './borradorCamino'
 
 const BURGERS_PENDIENTES = ['Burger xxx', 'Burger xxx', 'Burger xxx']
 const VERTICAL = { width: 848, height: 1264 }
+const VERTICAL_2_3 = { width: 848, height: 1272 }
 
 const INGREDIENTES = [
   {
@@ -26,7 +29,8 @@ const INGREDIENTES = [
     texto: 'Carne gallega con sabor, carácter y el punto justo de grasa. El centro de nuestras burgers y la mejor prueba de que, cuando el producto es top, no hace falta disfrazarlo.',
     productor: { nombre: 'Ternera Gallega', url: 'https://www.terneragallega.com/' },
     encuentras: 'La encuentras en',
-    burgers: BURGERS_PENDIENTES,
+    burgers: ['Todas las Made in Galicia'],
+    nota: '(menos la Urbana Corralita, que es de pollo)',
     img: imgRubia, alt: 'Burger de carne de Rubia Galega en el campo gallego', width: 1608, height: 1800,
   },
   {
@@ -42,7 +46,7 @@ const INGREDIENTES = [
     texto: 'Huevos camperos producidos en Antas de Ulla por gallinas criadas en libertad y con acceso diario a pastos verdes. Producto gallego que se reconoce nada más romper la yema.',
     productor: { nombre: 'Pazo de Vilane', url: 'https://pazodevilane.com/' },
     encuentras: 'Los encuentras en',
-    burgers: BURGERS_PENDIENTES,
+    burgers: ['Urbana Fina', 'Urbana Campera', 'Urbana British', 'Urbana Jalapeña'],
     img: imgHuevos, alt: 'Huevos camperos de Pazo de Vilane', ...VERTICAL,
   },
   {
@@ -50,24 +54,24 @@ const INGREDIENTES = [
     texto: 'Miel ecológica producida en Antas de Ulla, en pleno corazón de Galicia. Dulzor natural, aroma y territorio para crear contrastes que llevan nuestras burgers a otro nivel.',
     productor: { nombre: 'Mel de Anta' },
     encuentras: 'La encuentras en',
-    burgers: BURGERS_PENDIENTES,
-    img: imgMel, alt: 'Burger con miel ecológica Mel da Anta', width: 1376, height: 768,
+    burgers: ['Urbana Campera', 'Camperitos'],
+    img: imgMel, alt: 'Burger con huevo y miel de castaño Mel da Anta junto a un tarro de miel y castañas', ...VERTICAL_2_3,
   },
   {
     titulo: 'Queso DOP Arzúa-Ulloa',
     texto: 'Un queso gallego elaborado con leche de vaca, suave, cremoso y muy fundente. Nace en el corazón de Galicia y sobre la carne hace exactamente lo que tiene que hacer. Locura de combinación.',
     productor: { nombre: 'DOP Arzúa-Ulloa', url: 'https://www.arzua-ulloa.org/' },
     encuentras: 'Lo encuentras en',
-    burgers: BURGERS_PENDIENTES,
-    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+    burgers: ['Urbana Antollo Galego', 'Rustic Way'],
+    img: imgArzua, alt: 'Burger sobre una rueda de queso Arzúa-Ulloa', ...VERTICAL_2_3,
   },
   {
     titulo: 'Queso DOP San Simón da Costa',
     texto: 'Elaborado en Terra Chá y reconocible por su forma, su corteza y su característico toque ahumado. Un queso gallego con personalidad propia que sube de nivel todo lo que toca.',
     productor: { nombre: 'DOP San Simón da Costa', url: 'https://www.sansimondacosta.com/' },
     encuentras: 'Lo encuentras en',
-    burgers: BURGERS_PENDIENTES,
-    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+    burgers: ['Urbana Fina', 'Urbana Corea'],
+    img: imgSanSimon, alt: 'Burger con queso San Simón da Costa ahumado', ...VERTICAL_2_3,
   },
   {
     titulo: 'Queso Galmesán',
@@ -88,7 +92,7 @@ const INGREDIENTES = [
     titulo: 'Pimientos de Padrón',
     texto: 'Pequeños, verdes y con ese punto imprevisible que forma parte de su fama: unos pican y otros no. Un clásico gallego que con nuestras carnes y pan… no podemos explicártelo, tendrás que probarlo!',
     encuentras: 'Los encuentras en',
-    burgers: BURGERS_PENDIENTES,
+    burgers: ['Urbana Indómita', 'Aros de cebolla'],
     img: imgPimientos, alt: 'Burger con pimientos de Padrón', ...VERTICAL,
   },
 ]
@@ -173,7 +177,7 @@ function trazarCaminoFlujo(wrap, filas, carta, horizonte) {
   }
 }
 
-function Camino({ ancho, alto, d, y0, y1, nodos, filaDeNodo, pathRef, nodosRef, movil }) {
+function Camino({ ancho, alto, d, y0, y1, nodos, filaDeNodo, pathRef, sombraRef, sombra, nodosRef, movil }) {
   return (
     <>
       <svg className={`${styles.camino} ${movil ? styles.caminoMovil : ''}`} viewBox={`0 0 ${ancho} ${alto}`} aria-hidden="true">
@@ -183,6 +187,7 @@ function Camino({ ancho, alto, d, y0, y1, nodos, filaDeNodo, pathRef, nodosRef, 
             <stop offset="1" className={styles.stopNaranja} />
           </linearGradient>
         </defs>
+        {sombra && <path ref={sombraRef} d={d} className={styles.trazoSombra} />}
         <path ref={pathRef} d={d} className={styles.trazo} stroke="url(#camino-gradiente)" />
       </svg>
       <svg
@@ -249,6 +254,7 @@ export default function Nosotros() {
   const filasRef = useRef([])
   const cartaRef = useRef(null)
   const pathRef = useRef(null)
+  const sombraRef = useRef(null)
   const nodosRef = useRef(null)
   const lienzoRef = useRef(null)
   const escritorio = useMedia(ESCRITORIO)
@@ -309,6 +315,7 @@ export default function Nosotros() {
   const revelar = fila => [...(filasRef.current[fila]?.children ?? [])].forEach(pieza => pieza.classList.add(styles.visible))
   const { nodos, remedir } = useCaminoDibujado({
     pathRef,
+    sombraRef,
     nodosRef,
     objetivos: camino?.nodos ?? [],
     clave: claveCamino,
@@ -317,7 +324,7 @@ export default function Nosotros() {
     revelar,
   })
   const caminoSvg = camino && (
-    <Camino {...camino} nodos={nodos} filaDeNodo={filaDeNodo} pathRef={pathRef} nodosRef={nodosRef} movil={version !== 'escritorio'} />
+    <Camino {...camino} nodos={nodos} filaDeNodo={filaDeNodo} pathRef={pathRef} sombraRef={sombraRef} sombra={!editandoAqui} nodosRef={nodosRef} movil={version !== 'escritorio'} />
   )
 
   // Modo edición (solo en desarrollo, /nosotros?editar-camino): camino, tarjetas y puntos verdes se arrastran.

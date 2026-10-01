@@ -8,7 +8,7 @@ import Footer from '../Home/sections/Footer'
 import FondoUs from '../../components/FondoUs/FondoUs'
 import TarjetaPost from './TarjetaPost'
 import { Fecha } from './Fecha'
-import { POSTS } from './posts'
+import { CATEGORIAS, POSTS, rutaCategoria } from './posts'
 
 function ArticuloJsonLd({ post, path }) {
   const schema = {
@@ -50,7 +50,7 @@ export default function UrbanaStylePost() {
           <div className={styles.cabeceraContenido}>
             <h1 className={styles.titulo}>{post.titulo}</h1>
             <p className={styles.meta}>
-              <span className={styles.categoria}>{post.categoria}</span>
+              <Link to={rutaCategoria(post.categoria)} className={styles.categoria}>{CATEGORIAS[post.categoria]}</Link>
               <Fecha fecha={post.fecha} className={styles.fecha} />
             </p>
           </div>

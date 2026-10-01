@@ -39,6 +39,8 @@
 }
 
 .categoria {
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
   padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-pill);
   background: var(--color-white);
@@ -47,6 +49,11 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.categoria:hover {
+  background: var(--color-orange);
+  color: var(--color-green-dark);
 }
 
 .fecha {
@@ -172,7 +179,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ctaBtn { transition: none; }
+  .ctaBtn, .categoria { transition: none; }
 }
 
 @media (max-width: 1024px) {

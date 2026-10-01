@@ -1,0 +1,27 @@
+.palabra {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 0.15em;
+  line-height: 1.2;
+  clip-path: inset(-0.25em -0.5em -0.5em -0.5em);
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%      { transform: translate(var(--x), var(--y1)) rotate(var(--r1)); }
+  65%      { transform: translate(calc(var(--x) * -1), var(--y2)) rotate(var(--r2)); }
+}
+
+/* GSAP mueve .letra (caída) y CSS mueve .flota (flotación): cada uno su elemento para no pisarse */
+.letra,
+.flota {
+  display: inline-block;
+}
+
+.flota {
+  animation: flotar var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flota { animation: none; }
+}

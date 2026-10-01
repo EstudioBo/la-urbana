@@ -1,0 +1,64 @@
+/* Cabecera naranja con Us y una capa que la oscurece para dar contraste al título */
+.cabecera {
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--space-14) + var(--space-8)) var(--margen-pagina) var(--space-12);
+}
+
+.cabecera::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgb(10 10 10 / 0.15);
+}
+
+.cabeceraContenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-7);
+  text-align: center;
+}
+
+.titulo {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* Mismo estilo que los botones de la Carta (.ctaBtn) */
+.volver {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  background: var(--color-green);
+  color: var(--color-green-dark);
+  transition: transform 0.15s;
+}
+
+.volver:hover  { transform: scale(0.96); }
+.volver:active { transform: scale(0.92); }
+
+.volver:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .volver { transition: none; }
+}
+
+.listado {
+  background: var(--color-white);
+  padding: var(--space-12) var(--margen-pagina);
+}
+
+@media (max-width: 768px) {
+  .cabecera { padding-top: var(--space-13); padding-bottom: var(--space-11); }
+  .listado { padding-block: var(--space-11); }
+}

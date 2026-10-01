@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import styles from './Carta.module.css'
 import Seo from '../../components/Seo/Seo'
 import Footer from '../Home/sections/Footer'
@@ -180,7 +181,10 @@ function spawnDust(el) {
 }
 
 export default function Carta() {
-  const [activa, setActiva] = useState('galicia')
+  // La categoría va en la URL (/carta?categoria=entrepanes) para poder enlazar a la carta ya filtrada.
+  const [params, setParams] = useSearchParams()
+  const pedida = params.get('categoria')
+  const activa = CATEGORIAS.some(c => c.id === pedida) ? pedida : 'galicia'
   const [expandido, setExpandido] = useState(null)
   const pillRef = useRef(null)
 
@@ -217,7 +221,7 @@ export default function Carta() {
               key={cat.id}
               ref={activa === cat.id ? pillRef : null}
               className={`${styles.pill} ${activa === cat.id ? (CAT_ROT_ALT.has(cat.id) ? styles.pillActiveAlt : styles.pillActive) : ''}`}
-              onClick={() => { setActiva(cat.id); setExpandido(null) }}
+              onClick={() => { setParams({ categoria: cat.id }, { replace: true }); setExpandido(null) }}
             >
               {cat.label}
             </button>
@@ -240,19 +244,22 @@ export default function Carta() {
                       aria-label="Cerrar"
                     >×</button>
                     <p className={styles.cardDesc}>{plato.desc}</p>
-                    {plato.alergenos?.length > 0 && (
-                      <div className={styles.cardAlergenos}>
-                        {plato.alergenos.map(id => (
-                          <img
-                            key={id}
-                            src={ALERGENO_IMGS[id]}
-                            alt={ALERGENOS[id]?.label}
-                            title={ALERGENOS[id]?.label}
-                            className={styles.alergenoIcon}
-                          />
-                        ))}
+                    {[['Contiene', plato.alergenos, styles.alergenoIcon], ['Puede contener trazas', plato.trazas, `${styles.alergenoIcon} ${styles.alergenoTraza}`]].map(([titulo, ids, clase]) => ids?.length > 0 && (
+                      <div key={titulo} className={styles.cardAlergenosGrupo}>
+                        <span className={styles.cardAlergenosTitulo}>{titulo}</span>
+                        <div className={styles.cardAlergenos}>
+                          {ids.map(id => (
+                            <img
+                              key={id}
+                              src={ALERGENO_IMGS[id]}
+                              alt={ALERGENOS[id]?.label}
+                              title={ALERGENOS[id]?.label}
+                              className={clase}
+                            />
+                          ))}
+                        </div>
                       </div>
-                    )}
+                    ))}
                   </div>
                 )}
 
@@ -260,7 +267,7 @@ export default function Carta() {
                   <img src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || AUTOR_IMGS[plato.nombre] || VEGGIES_IMGS[plato.nombre] || EMPEZAR_IMGS[plato.nombre] || POSTRES_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
                 </div>
 
-                <div className={styles.cardInfo}>
+                <div className={`${styles.cardInfo} ${plato.chef ? styles.cardInfoChef : ''}`}>
                   <div className={styles.cardRow}>
                     <span className={styles.cardNombre} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>{plato.nombre}</span>
                     <button

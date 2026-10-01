@@ -54,90 +54,34 @@
   letter-spacing: 0.01em;
 }
 
-/* ARCHIVO */
-.archivo {
-  position: relative;
-  z-index: 1;
-  min-height: 100svh;
-  overflow: hidden;
-  padding: var(--space-14) var(--margen-pagina);
+/* La # de blenny es mucho más fina que el resto de letras: se engorda con un trazo del mismo color */
+.almohadilla {
+  -webkit-text-stroke: 0.07em currentColor;
+  paint-order: stroke fill;
 }
 
-.fondoUs {
-  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
-  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
-}
+/* En móvil la foto se centra en la chica y el título baja sobre un degradado del verde del fondo */
+@media (max-width: 768px) {
+  .hero { align-items: flex-end; }
+  .heroBg { object-position: 72% center; }
 
-.archivoTitulo {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto var(--space-10);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  text-align: center;
-}
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 65%;
+    background: linear-gradient(to bottom, transparent, rgb(10 46 10 / 0.85) 35%, var(--color-green-dark) 60%);
+  }
 
-.palabra {
-  display: inline-block;
-  white-space: nowrap;
-  margin: 0 0.15em;
-  clip-path: inset(-0.25em -0.5em -0.5em -0.5em);
-}
-
-@keyframes flotar {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  30%      { transform: translate(var(--x), var(--y1)) rotate(var(--r1)); }
-  65%      { transform: translate(calc(var(--x) * -1), var(--y2)) rotate(var(--r2)); }
-}
-
-/* GSAP mueve .letra (caída) y CSS mueve .flota (flotación): cada uno su elemento para no pisarse */
-.letra,
-.flota {
-  display: inline-block;
-}
-
-.flota {
-  animation: flotar var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
-}
-
-.grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-/* Entrada escalonada de las tarjetas al llegar al listado */
-.card {
-  opacity: 0;
-  transform: translateY(36px) scale(0.97);
-  transition:
-    opacity 0.55s ease calc(var(--i) * 0.09s),
-    transform 0.55s ease calc(var(--i) * 0.09s),
-    translate 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.gridVisible .card {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flota { animation: none; }
-  .card { transition: none; opacity: 1; transform: none; }
-}
-
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .heroContent {
+    flex: 1;
+    width: auto;
+    margin: 0 var(--margen-pagina);
+    padding: 0 0 var(--space-10);
+  }
 }
 
 @media (max-width: 640px) {
-  .heroContent { width: 90%; margin-left: 5%; padding: var(--space-12) 4% 0; }
   .linePopfine { font-size: clamp(2.5rem, 12vw, 4rem); }
   .lineBlenny { font-size: clamp(3rem, 14vw, 5rem); }
-  .archivo { padding: var(--space-12) var(--margen-pagina); }
-  .grid { grid-template-columns: 1fr; gap: var(--space-7); }
 }

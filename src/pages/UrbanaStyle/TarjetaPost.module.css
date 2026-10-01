@@ -36,6 +36,11 @@
 }
 
 .categoria {
+  /* Por encima del enlace que hace clicable toda la tarjeta */
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  text-decoration: none;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
@@ -91,6 +96,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-green);
+}
+
+.categoria:hover {
+  text-decoration: underline;
 }
 
 .mas::after {

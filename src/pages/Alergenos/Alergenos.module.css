@@ -35,16 +35,212 @@
   margin: 0;
 }
 
-.tablaWrapper {
-  width: min(1400px, 96vw);
+.panel {
+  width: min(1100px, 96vw);
   background: var(--color-white);
+  color: var(--color-black);
   border-radius: var(--radius-md);
-  overflow: hidden;
-  padding: var(--space-8);
+  padding: var(--space-9) var(--space-8);
+  font-family: var(--font-body);
 }
 
+.aviso {
+  margin: 0 0 var(--space-6);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Clave de marcas y leyenda de iconos */
+.claves {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-7);
+  margin-bottom: var(--space-6);
+  font-size: 0.9rem;
+}
+
+.clave {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.leyenda {
+  list-style: none;
+  margin: 0 0 var(--space-9);
+  padding: var(--space-6) 0;
+  border-block: 1px solid rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-4) var(--space-6);
+  font-size: 0.85rem;
+}
+
+.leyenda li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.iconoLeyenda,
+.iconoCabecera,
+.iconoCelda {
+  width: 1.6rem;
+  height: 1.6rem;
+  object-fit: contain;
+  flex: none;
+}
+
+/* Secciones */
+.seccion + .seccion {
+  margin-top: var(--space-9);
+}
+
+.seccionTitulo {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-green-dark);
+}
+
+.seccionNota {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--color-gray);
+}
+
+/* Tabla (escritorio y tablet) */
 .tabla {
   width: 100%;
-  height: auto;
-  display: block;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tabla th,
+.tabla td {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.tabla thead th:first-child,
+.tabla .plato {
+  width: 30%;
+  text-align: left;
+  padding-right: var(--space-5);
+}
+
+.tabla .plato {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tabla td .iconoCelda {
+  display: none;
+}
+
+.marca {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: var(--radius-circle);
+  border: 2px solid var(--color-orange);
+  vertical-align: middle;
+}
+
+.contiene .marca,
+.marca.contiene {
+  background: var(--color-orange);
+}
+
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Móvil: cada plato es una ficha con sus iconos; primero lo que contiene y después las trazas */
+@media (max-width: 700px) {
+  .panel {
+    padding: var(--space-7) var(--space-5);
+  }
+
+  /* En móvil cada ficha ya dice "Contiene" y "Trazas": los círculos de la clave no aparecen */
+  .claves,
+  .tabla thead {
+    display: none;
+  }
+
+  .tabla tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 0;
+    border: 0;
+  }
+
+  .tabla .plato {
+    width: 100%;
+    padding: 0;
+  }
+
+  .vacia {
+    display: none;
+  }
+
+  .tabla td .iconoCelda {
+    display: block;
+  }
+
+  .tabla td .marca {
+    display: none;
+  }
+
+  .tabla .contiene { order: 1; }
+
+  .tabla .traza {
+    order: 2;
+    opacity: 0.45;
+  }
+
+  .tabla .contiene,
+  .tabla .traza {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .tabla .contiene:not(.contiene ~ .contiene)::before,
+  .tabla .traza:not(.traza ~ .traza)::before {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tabla .contiene:not(.contiene ~ .contiene)::before { content: 'Contiene'; }
+
+  .tabla .traza:not(.traza ~ .traza)::before {
+    content: 'Trazas';
+    margin-left: var(--space-3);
+  }
 }

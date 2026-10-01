@@ -1,7 +1,7 @@
-// Alérgenos: basados en ingredientes del PDF + tabla de alérgenos pág. 7
-// X = contiene, T = puede contener traza
-// Se muestran solo los que contiene (X) o traza (T marcado como 't')
-// ⚠️ Verificar contra tabla oficial antes de publicar
+// Alérgenos copiados de la tabla oficial (Carta Local de BAP, julio 2026, pág. 7; la misma imagen está en /alergenos):
+// `alergenos` = contiene (X), `trazas` = puede contener trazas (T).
+// Las burgers van como en la tabla: sin pan ni patatas. Corea y Mejicana van sin gluten a propósito: la carta las
+// vende como Gluten Free aunque la tabla les marca gluten.
 
 export const ALERGENOS = {
   gluten:      { emoji: '🌾', label: 'Gluten' },
@@ -38,7 +38,8 @@ export const PLATOS = [
     desc: 'Chipirones de la ría con alioli cítrico.',
     precio: '11,5',
     recomendado: true,
-    alergenos: ['gluten', 'moluscos', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'moluscos'],
+    trazas: ['crustaceos', 'pescado', 'cacahuetes', 'soja', 'leche', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'sulfitos'],
   },
   {
     cat: 'empezar',
@@ -47,7 +48,8 @@ export const PLATOS = [
     precio: '12,9',
     mediaRacion: '7,0',
     recomendado: true,
-    alergenos: ['gluten', 'crustaceos', 'soja', 'sesamo'],
+    alergenos: ['gluten', 'crustaceos', 'sulfitos'],
+    trazas: ['huevos', 'pescado', 'cacahuetes', 'soja', 'leche', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'moluscos'],
   },
   {
     cat: 'empezar',
@@ -55,14 +57,16 @@ export const PLATOS = [
     desc: 'Deliciosas tiras de pechuga de pollo empanadas en crujiente panko. Acompañadas de salsa de miel y mostaza (8 unid).',
     precio: '11,9',
     recomendado: true,
-    alergenos: ['gluten', 'mostaza'],
+    alergenos: ['huevos', 'pescado', 'mostaza'],
+    trazas: ['gluten', 'crustaceos', 'cacahuetes', 'soja', 'leche', 'frutosSecos', 'apio', 'sesamo', 'sulfitos', 'moluscos'],
   },
   {
     cat: 'empezar',
     nombre: 'Aros de cebolla crujiente a la cerveza',
     desc: 'Aros de cebolla crujientes acompañados de una crema de queso de jalapeños y pimientos de Padrón escogidos los que no pican (8 unid).',
     precio: '8,9',
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['gluten', 'leche', 'sulfitos'],
+    trazas: ['crustaceos', 'huevos', 'pescado', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'moluscos'],
   },
   {
     cat: 'empezar',
@@ -70,7 +74,8 @@ export const PLATOS = [
     desc: 'Croquetas cremosas con textura y sabor ibérico. (4 unid. / 9 unid.)',
     precio: '9,5',
     mediaRacion: '4,9',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'leche'],
+    trazas: ['crustaceos', 'huevos', 'pescado', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'sulfitos', 'moluscos'],
   },
   {
     cat: 'empezar',
@@ -78,21 +83,24 @@ export const PLATOS = [
     desc: 'Cremosas croquetas de chipirones en su tinta con bechamel de textura suave y cremosa, con salsa alioli casera. (4 unid. / 8 unid.)',
     precio: '9,9',
     mediaRacion: '5,5',
-    alergenos: ['gluten', 'leche', 'huevos', 'moluscos'],
+    alergenos: ['gluten', 'crustaceos', 'pescado', 'leche', 'moluscos'],
+    trazas: ['huevos', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'sulfitos'],
   },
   {
     cat: 'empezar',
     nombre: 'Combi croquetas jamón + chipirones',
     desc: 'La mejor combinación: croquetas de jamón ibérico y melosas de chipirones (4+4 unid).',
     precio: '9,5',
-    alergenos: ['gluten', 'leche', 'huevos', 'moluscos'],
+    alergenos: ['gluten', 'crustaceos', 'pescado', 'leche', 'moluscos'],
+    trazas: ['huevos', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'sulfitos'],
   },
   {
     cat: 'empezar',
     nombre: 'Alitas de pollo a la barbacoa',
     desc: 'Deliciosas y crujientes alitas de pollo marinadas con salsa barbacoa (8 unid).',
     precio: '11,9',
-    alergenos: ['gluten', 'sulfitos'],
+    alergenos: ['gluten', 'soja', 'apio', 'mostaza'],
+    trazas: ['crustaceos', 'huevos', 'pescado', 'cacahuetes', 'leche', 'frutosSecos', 'sesamo', 'sulfitos', 'moluscos'],
   },
 
   // ─── DE AUTOR — Chefs Gallegos ───────────────────────────────────────────
@@ -104,7 +112,7 @@ export const PLATOS = [
     chef: 'Chef Héctor López',
     restaurante: 'Restaurante España · Lugo',
     recomendado: true,
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'pescado', 'leche', 'mostaza', 'sulfitos'],
   },
   {
     cat: 'autor',
@@ -114,7 +122,7 @@ export const PLATOS = [
     chef: 'Chefs Kike Piñeiro y Eloy Cancela',
     restaurante: 'A Horta D\'Obradoiro · Santiago',
     recomendado: true,
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['crustaceos', 'huevos', 'pescado', 'soja', 'leche'],
   },
   {
     cat: 'autor',
@@ -125,7 +133,7 @@ export const PLATOS = [
     restaurante: 'Morrofino · Santiago',
     recomendado: true,
     glutenFree: true,
-    alergenos: ['leche', 'huevos', 'soja', 'mostaza'],
+    alergenos: ['crustaceos', 'huevos', 'pescado', 'soja', 'leche', 'sulfitos', 'moluscos'],
   },
   {
     cat: 'autor',
@@ -135,7 +143,7 @@ export const PLATOS = [
     chef: 'Chef Martín Vázquez',
     restaurante: 'Indómito · Santiago',
     recomendado: true,
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['huevos', 'leche', 'sulfitos'],
   },
 
   // ─── MADE IN GALICIA ─────────────────────────────────────────────────────
@@ -144,21 +152,23 @@ export const PLATOS = [
     nombre: 'Urbana Clásica',
     desc: 'Pan crujiente con Vaca Rubia Gallega, queso, tomate, lechuga, cebolla y salsa Urbana Rosé.',
     precio: '13,0',
-    alergenos: ['gluten', 'leche', 'huevos', 'mostaza'],
+    alergenos: ['gluten', 'leche', 'apio', 'mostaza', 'sulfitos'],
+    trazas: ['huevos'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Cuarto de Libra',
     desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, queso cheddar, pepinillos, cebolla crujiente y salsa Urbana Rosé.',
     precio: '13,0',
-    alergenos: ['gluten', 'leche', 'huevos', 'mostaza'],
+    alergenos: ['gluten', 'leche', 'apio', 'mostaza', 'sulfitos'],
+    trazas: ['huevos'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Real',
     desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, queso de cabra al grill, cebolla caramelizada y salsa Urbana Rosé.',
     precio: '12,9',
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['gluten', 'leche', 'sulfitos'],
   },
   {
     cat: 'galicia',
@@ -166,7 +176,7 @@ export const PLATOS = [
     desc: 'Pan crujiente con Vaca Rubia Gallega, mermelada de tomate, crujiente de cebolla, salsa gorgonzola, lechuga, bacon ahumado y braseado.',
     precio: '13,9',
     recomendado: true,
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['gluten', 'soja', 'leche', 'sulfitos'],
   },
   {
     cat: 'galicia',
@@ -174,7 +184,7 @@ export const PLATOS = [
     desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga de roble, mozzarella, cebolla crujiente, queso philadelphia con panceta braseada, huevo campero Pazo de Vilane y miel ecológica de castaño.',
     precio: '14,5',
     recomendado: true,
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche', 'sulfitos'],
   },
   {
     cat: 'galicia',
@@ -182,14 +192,15 @@ export const PLATOS = [
     desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, jalapeños, cheddar, guacamole casero y salsa chilli. Acompañada de patatas fritas con tabasco.',
     precio: '14,0',
     glutenFree: true,
-    alergenos: ['leche', 'huevos'],
+    alergenos: ['huevos', 'leche', 'sulfitos'],
+    trazas: ['mostaza'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Tártara',
     desc: 'Pan crujiente gallego, Rubia Gallega 190 g, salsa cremosa de encurtidos, cebolla roja encurtida, rabanito fresco, mezclum y lascas de parmesano.',
     precio: '14,5',
-    alergenos: ['gluten', 'leche', 'mostaza', 'huevos'],
+    alergenos: ['huevos', 'soja', 'leche', 'mostaza', 'sulfitos'],
   },
   {
     cat: 'galicia',
@@ -198,14 +209,15 @@ export const PLATOS = [
     precio: '13,9',
     recomendado: true,
     glutenFree: true,
-    alergenos: ['leche', 'huevos'],
+    alergenos: ['huevos', 'leche', 'mostaza', 'sulfitos'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Jalapeña',
     desc: 'Pan crujiente con Vaca Rubia Gallega, crema jalapeña de queso, lechuga troceada, cebolla crujiente, rodaja de jalapeño, doble cheddar fundido, cebolla caramelizada, panceta crujiente y yema de huevo.',
     precio: '14,5',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche', 'sulfitos'],
+    trazas: ['mostaza'],
   },
 
   // ─── VEGGIES ─────────────────────────────────────────────────────────────
@@ -214,14 +226,15 @@ export const PLATOS = [
     nombre: 'Urbana Rosé',
     desc: 'Pan crujiente con carne vegana, queso cheddar veggie, hoja de roble, tomate, cebolla y exquisita salsa rosa vegana.',
     precio: '13,9',
-    alergenos: ['gluten', 'leche'],
+    alergenos: ['mostaza'],
+    trazas: ['sulfitos'],
   },
   {
     cat: 'veggies',
     nombre: 'Urbana Berenjena',
     desc: 'Pan crujiente gallego, burger vegetal, berenjena dorada y crujiente, tomate confitado, rúcula fresca y mayonesa agridulce.',
     precio: '13,9',
-    alergenos: ['gluten', 'huevos'],
+    alergenos: ['gluten', 'mostaza', 'sulfitos'],
   },
 
   // ─── ENTREPANES ──────────────────────────────────────────────────────────
@@ -230,7 +243,8 @@ export const PLATOS = [
     nombre: 'Dechipis',
     desc: 'Absolutely delicious chipis crujientes con lechuga de mar, alioli cítrico y un toque de lima.',
     precio: '10,9',
-    alergenos: ['gluten', 'moluscos', 'huevos', 'pescado'],
+    alergenos: ['gluten', 'huevos', 'moluscos'],
+    trazas: ['crustaceos', 'pescado', 'soja', 'leche', 'mostaza', 'sesamo'],
   },
   {
     cat: 'entrepanes',
@@ -238,13 +252,15 @@ export const PLATOS = [
     desc: 'Una delicia rústica de panceta crujiente, queso de Arzúa suave y cremoso, rematado con rúcula fresca.',
     precio: '10,9',
     alergenos: ['gluten', 'leche'],
+    trazas: ['sesamo'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Corralita',
     desc: 'Pan crujiente y tiras de pollo empanado en panko (4 unid), queso cheddar, salsa Urbana Rosé, cebolla caramelizada, lechuga fresca y tomate.',
     precio: '12,5',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche', 'apio', 'mostaza'],
+    trazas: ['crustaceos'],
   },
 
   // ─── ENSALADAS ───────────────────────────────────────────────────────────
@@ -253,7 +269,8 @@ export const PLATOS = [
     nombre: 'Cebreiro Mood',
     desc: 'Mezcla de lechugas frescas y brotes, huevo a baja temperatura, jamón y Queixo do Cebreiro. Todas nuestras ensaladas incluyen ración de pan semitostado.',
     precio: '10,5',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche'],
+    trazas: ['sesamo'],
   },
   {
     cat: 'ensaladas',
@@ -261,7 +278,8 @@ export const PLATOS = [
     desc: 'Mezcla de lechugas frescas y brotes, tomates cherry, delicioso guacamole, cacahuetes garrapiñados, langostinos kataifi y queso parmesano. Incluye pan semitostado.',
     precio: '12,9',
     recomendado: true,
-    alergenos: ['gluten', 'crustaceos', 'cacahuetes', 'leche'],
+    alergenos: ['gluten', 'crustaceos', 'cacahuetes', 'leche', 'mostaza'],
+    trazas: ['huevos', 'frutosSecos'],
   },
   {
     cat: 'ensaladas',
@@ -269,7 +287,7 @@ export const PLATOS = [
     desc: 'Hoja de roble y brotes aderezados con vinagreta y salsa césar, tomate cherry, pollo crunchy, lascas de grana padano y picatostes. Incluye pan semitostado.',
     precio: '10,9',
     recomendado: true,
-    alergenos: ['gluten', 'leche', 'huevos', 'pescado', 'mostaza'],
+    alergenos: ['gluten', 'huevos', 'pescado', 'leche', 'mostaza', 'sulfitos'],
   },
 
   // ─── POSTRES ─────────────────────────────────────────────────────────────
@@ -278,35 +296,40 @@ export const PLATOS = [
     nombre: 'Cremosa de queso',
     desc: 'Cremosa tarta de queso fundida con mermelada de arándano.',
     precio: '5,9',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche'],
+    trazas: ['soja', 'frutosSecos'],
   },
   {
     cat: 'postres',
     nombre: 'Muerte por chocolate',
     desc: 'Bizcocho con dos capas de chocolate intenso decorado con topping de chocolate negro y crema inglesa.',
     precio: '5,9',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'leche', 'frutosSecos'],
+    trazas: ['cacahuetes'],
   },
   {
     cat: 'postres',
     nombre: 'Carrot especial',
     desc: 'Tarta de zanahoria con helado Ace cremoso, crujientes choco zetas y dulce baño de mango.',
     precio: '5,9',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'huevos', 'soja', 'leche', 'frutosSecos', 'sulfitos'],
+    trazas: ['cacahuetes'],
   },
   {
     cat: 'postres',
     nombre: 'Capricho de chocolate',
     desc: 'Delicioso coulant de chocolate derretido en el interior, acompañado de una bola de helado de vainilla bañada en chocolate y crujiente almendra.',
     precio: '5,9',
-    alergenos: ['gluten', 'leche', 'huevos', 'frutosSecos'],
+    alergenos: ['gluten', 'huevos', 'soja', 'leche'],
+    trazas: ['frutosSecos'],
   },
   {
     cat: 'postres',
     nombre: 'Tres chocolates',
     desc: 'Una tarta de locura con tres chocolates y el mejor tipo de galleta: la crujiente.',
     precio: '4,5',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'leche', 'frutosSecos', 'sulfitos'],
+    trazas: ['soja', 'sesamo'],
   },
   {
     cat: 'postres',
@@ -314,13 +337,13 @@ export const PLATOS = [
     desc: 'Escoge 2 bolas del sabor que más te guste: Nata, vainilla, chocolate y ACE (sin alérgenos).',
     precio: '4,9',
     glutenFree: true,
-    alergenos: ['leche'],
+    alergenos: ['cacahuetes', 'frutosSecos'],
   },
   {
     cat: 'postres',
     nombre: 'Blueberry & Cheese',
     desc: 'Deliciosa crema de queso con galleta oreo y una base de arándano fresco. Sin galleta: libre de gluten.',
     precio: '4,9',
-    alergenos: ['gluten', 'leche', 'huevos'],
+    alergenos: ['gluten', 'soja', 'leche'],
   },
 ]

@@ -1,0 +1,24 @@
+.archivo {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: var(--space-14) var(--margen-pagina);
+}
+
+.fondoUs {
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.3) 0, rgb(0 0 0 / 0.45) 22vh, #000 60vh);
+}
+
+.archivoTitulo {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto var(--space-10);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .archivo { padding: var(--space-12) var(--margen-pagina); }
+}

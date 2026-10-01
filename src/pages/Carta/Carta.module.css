@@ -193,6 +193,17 @@
   gap: var(--space-3);
 }
 
+/* Tarjetas con chef (De autor): el nombre reserva siempre 2 líneas
+   para que el nombre y el chef empiecen a la misma altura en toda la fila */
+.cardInfoChef {
+  justify-content: flex-start;
+}
+
+.cardInfoChef .cardRow {
+  align-items: flex-start;
+  min-height: clamp(3.6rem, 4.8vw, 5.6rem);
+}
+
 .cardNombre {
   font-family: var(--font-script);
   font-size: clamp(1.8rem, 2.4vw, 2.8rem);
@@ -305,11 +316,25 @@
 }
 
 /* Alérgenos (dentro del expandido) */
+.cardAlergenosGrupo {
+  margin-top: var(--space-3);
+}
+
+.cardAlergenosTitulo {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .cardAlergenos {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-top: var(--space-3);
 }
 
 .alergenoIcon {
@@ -318,6 +343,12 @@
   object-fit: contain;
   cursor: default;
   filter: brightness(0) invert(1);
+}
+
+.alergenoTraza {
+  width: 1.3rem;
+  height: 1.3rem;
+  opacity: 0.6;
 }
 
 /* Tags sobre la imagen */
@@ -399,8 +430,28 @@
 
 @media (max-width: 680px) {
   .grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
-  .cardNombre { font-size: 0.9rem; }
+  .cardNombre { font-size: 1.5rem; }
+  .cardChef { font-size: 0.65rem; }
+  .cardRestaurante { font-size: 0.6rem; }
+  .cardInfoChef .cardRow { min-height: 3rem; }
   .pills { gap: var(--space-4); }
+
+  .ctaBar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-8) var(--space-5) var(--space-10);
+  }
+
+  .ctaBtn {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  .ctaBtnIcon {
+    width: 1.5rem;
+  }
 }
 
 @media (max-width: 420px) {

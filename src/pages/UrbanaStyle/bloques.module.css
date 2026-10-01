@@ -24,6 +24,16 @@
   object-fit: cover;
 }
 
+.entera img {
+  aspect-ratio: auto;
+}
+
+/* Una foto puede ir dentro de la rejilla de Instagram, junto a una publicación */
+.reels > .figura {
+  margin: 0;
+  align-self: center;
+}
+
 .galeria {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -32,11 +42,30 @@
   max-width: 760px;
 }
 
-.galeria img {
+.galeriaFoto {
+  display: block;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: none;
+}
+
+.galeriaFoto img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: scale 0.4s ease;
+}
+
+.galeriaFoto:hover img {
+  scale: 1.04;
+}
+
+.galeriaFoto:focus-visible {
+  outline: 3px solid var(--color-green-dark);
+  outline-offset: 3px;
 }
 
 .galeriaAlta {
@@ -50,6 +79,13 @@
   gap: var(--space-9) var(--space-7);
   max-width: 760px;
   margin: var(--space-10) auto var(--space-11);
+}
+
+/* Si el número es impar, la última queda centrada */
+.reels > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - var(--space-7) / 2);
 }
 
 .reel {
@@ -68,19 +104,16 @@
 }
 
 .reelPie {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   line-height: 1.4;
-  color: var(--color-gray);
 }
 
-.reelPie strong {
-  font-size: 1rem;
-  color: var(--color-green-dark);
+@media (prefers-reduced-motion: reduce) {
+  .galeriaFoto img { transition: none; }
 }
 
 @media (max-width: 640px) {
   .reels { grid-template-columns: 1fr; max-width: 400px; }
+  .reels > :last-child:nth-child(odd) { width: 100%; }
 }

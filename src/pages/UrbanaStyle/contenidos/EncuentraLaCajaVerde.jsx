@@ -1,4 +1,4 @@
-import { Hashtag, EnlaceExterno, Figura, Galeria, Reel, Reels } from '../bloques'
+import { Hashtag, EnlaceExterno, EnlaceInterno, Figura, Galeria, PostInstagram, PostsInstagram } from '../bloques'
 import imgMuralla from '../../../assets/images/urbana-style/cajas-verdes-lugo-muralla.webp'
 import imgEstatuas from '../../../assets/images/urbana-style/cajas-verdes-lugo-estatuas.webp'
 import imgCabeza from '../../../assets/images/urbana-style/cajas-verdes-escultura-cabeza.webp'
@@ -29,7 +29,7 @@ export default function EncuentraLaCajaVerde() {
       <p>
         La mecánica era sencilla: encontrar una caja, compartir una foto en stories mencionando a
         La Urbana e indicando dónde había aparecido. Nosotros enviábamos el vale por Instagram y
-        quien la encontraba podía canjearlo por una burger gratis en nuestros locales de Lugo. Un
+        quien la encontraba podía canjearlo por una burger gratis en <EnlaceInterno to="/reservar">nuestros locales de Lugo</EnlaceInterno>. Un
         paseo que podía acabar bastante mejor de lo previsto.
       </p>
 
@@ -41,7 +41,7 @@ export default function EncuentraLaCajaVerde() {
 
       <h2>Santiago, con lluvia incluida</h2>
       <p>
-        En mayo llevamos la búsqueda a Santiago para celebrar nuestra apertura en As Cancelas. Nos
+        En mayo llevamos la búsqueda a Santiago para celebrar nuestra apertura en <EnlaceExterno href="https://www.ascancelas.es/">As Cancelas</EnlaceExterno>. Nos
         recibió la lluvia, pero salimos igualmente a esconder las cajas por Compostela. Somos
         gallegos. Unas gotas no iban a estropearnos el plan.
       </p>
@@ -72,12 +72,12 @@ export default function EncuentraLaCajaVerde() {
       </p>
 
       <h2>Míralo en vídeo</h2>
-      <Reels>
-        <Reel codigo="C53ev4UNdDS" titulo="Lugo: arranca la búsqueda" />
-        <Reel codigo="C55mYsXt5vH" titulo="Lugo: cajas por la ciudad" />
-        <Reel codigo="C6_G-p8Nt9z" titulo="Santiago" />
-        <Reel codigo="C_u9YCnNCr8" titulo="Vigo" />
-      </Reels>
+      <PostsInstagram>
+        <PostInstagram codigo="C53ev4UNdDS" pie="Lugo" />
+        <PostInstagram codigo="C55mYsXt5vH" pie="Lugo" />
+        <PostInstagram codigo="C6_G-p8Nt9z" pie="Santiago" />
+        <PostInstagram codigo="C_u9YCnNCr8" pie="Vigo" />
+      </PostsInstagram>
     </>
   )
 }

@@ -39,11 +39,11 @@ function ajustarAlCamino(puntos, objetivos) {
   })
 }
 
-// Dibuja el camino (pathRef) a medida que se hace scroll y muestra cada punto verde cuando la línea llega a él;
+// Dibuja el camino (pathRef, y su sombra, sombraRef) a medida que se hace scroll y muestra cada punto verde cuando la línea llega a él;
 // si el punto lleva data-fila, llama a revelar(fila) para que aparezca su tarjeta.
 // objetivos: dónde van los puntos; se ajustan al punto más cercano del camino. Con dibujoCompleto (modo edición)
 // la línea se muestra entera. Devuelve los puntos ajustados y remedir(), para cuando el trazado cambia en el editor.
-export function useCaminoDibujado({ pathRef, nodosRef, objetivos, clave, claseNodoVisible, dibujoCompleto, revelar }) {
+export function useCaminoDibujado({ pathRef, sombraRef, nodosRef, objetivos, clave, claseNodoVisible, dibujoCompleto, revelar }) {
   const [nodos, setNodos] = useState([])
   const muestras = useRef(null)
   const objetivosActuales = useRef(objetivos)
@@ -73,10 +73,11 @@ export function useCaminoDibujado({ pathRef, nodosRef, objetivos, clave, claseNo
     let cancelado = false
     let limpiar = () => {}
 
-    path.style.strokeDasharray = `${total} ${total}`
+    const trazos = [path, sombraRef.current].filter(Boolean)
+    trazos.forEach(t => { t.style.strokeDasharray = `${total} ${total}` })
     const estado = { largo: 0 }
     const pintar = largo => {
-      path.style.strokeDashoffset = total - largo
+      trazos.forEach(t => { t.style.strokeDashoffset = total - largo })
       nodosRef.current?.querySelectorAll('[data-largo]').forEach(n => {
         const alcanzado = Number(n.dataset.largo) <= largo + 1
         n.classList.toggle(claseNodoVisible, alcanzado)

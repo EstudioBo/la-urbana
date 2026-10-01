@@ -1,0 +1,37 @@
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Entrada escalonada de las tarjetas al llegar al listado */
+.card {
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  transition:
+    opacity 0.55s ease calc(var(--i) * 0.09s),
+    transform 0.55s ease calc(var(--i) * 0.09s),
+    translate 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gridVisible .card {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; gap: var(--space-7); }
+}

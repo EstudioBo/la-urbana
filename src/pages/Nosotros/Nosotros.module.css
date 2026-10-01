@@ -271,7 +271,18 @@
   stroke-width: 12;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(var(--shadow-sm));
+}
+
+/* Sombra de la línea: un segundo trazo oscuro debajo. No se usa filter: drop-shadow porque Safari (iPhone) no lo
+   aplica bien en un svg tan alto y la línea verde se pierde sobre el fondo verde. */
+.trazoSombra {
+  fill: none;
+  stroke: var(--color-black);
+  stroke-opacity: 0.18;
+  stroke-width: 18;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translateY(2px);
 }
 
 .nodoAro {
@@ -280,6 +291,7 @@
 }
 
 .caminoMovil .trazo { stroke-width: 7; }
+.caminoMovil .trazoSombra { stroke-width: 11; }
 .caminoMovil .nodoAro { stroke-width: 3; }
 
 /* Cada punto aparece cuando la línea llega a él (useCaminoDibujado.js) */

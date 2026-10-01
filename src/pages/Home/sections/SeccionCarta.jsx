@@ -13,14 +13,15 @@ import imgPostres     from '../../../assets/images/carta/postres.webp'
 import imgVeggies     from '../../../assets/images/carta/veggies.webp'
 
 const ITEMS = [
-  { img: imgParaEmpezar, nombre: 'Para empezar' },
-  { img: imgArtesanas,   nombre: 'Made in Galicia' },
-  { img: imgDeAutor,     nombre: 'De Autor' },
-  { img: imgEntrepanes,  nombre: 'Entrepanes' },
-  { img: imgEnsalada,    nombre: 'Ensalada' },
-  { img: imgPostres,     nombre: 'Postres' },
-  { img: imgVeggies,     nombre: 'Veggies' },
+  { img: imgParaEmpezar, nombre: 'Para empezar',    cat: 'empezar' },
+  { img: imgArtesanas,   nombre: 'Made in Galicia', cat: 'galicia' },
+  { img: imgDeAutor,     nombre: 'De Autor',        cat: 'autor' },
+  { img: imgEntrepanes,  nombre: 'Entrepanes',      cat: 'entrepanes' },
+  { img: imgEnsalada,    nombre: 'Ensalada',        cat: 'ensaladas' },
+  { img: imgPostres,     nombre: 'Postres',         cat: 'postres' },
+  { img: imgVeggies,     nombre: 'Veggies',         cat: 'veggies' },
 ]
+const enlaceCarta = item => `/carta?categoria=${item.cat}`
 const LOOP = Array.from({ length: ITEMS.length * 20 }, (_, i) => ITEMS[i % ITEMS.length])
 const GAP = 12
 
@@ -134,7 +135,8 @@ export default function SeccionCarta() {
             style={isMobile ? undefined : { transform: `translateX(-${shift}px)` }}
           >
             {LOOP.map((item, i) => (
-              <div key={i} className={styles.card}>
+              // Las fotos llevan a la carta filtrada con el ratón o el dedo; con teclado se usa "+ info".
+              <Link key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1} aria-hidden="true">
                 <img src={item.img} alt={item.nombre} />
                 {(i === offset || i === offset - 1) && (
                   <div className={styles.cardOverlay} style={{
@@ -146,12 +148,12 @@ export default function SeccionCarta() {
                     zIndex: 1,
                   }} />
                 )}
-              </div>
+              </Link>
             ))}
           </div>
         </div>
         <div ref={itemDescRef} className={styles.itemDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
-          <span className={styles.itemInfo}>+ info</span>
+          <Link to={enlaceCarta(activeItem)} className={styles.itemInfo} aria-label={`Ver ${activeItem.nombre} en la carta`}>+ info</Link>
         </div>
       </div>
       <Link to="/carta" className={styles.ctaMobile} style={isMobile && ctaTop != null ? { top: ctaTop, bottom: 'auto' } : undefined}>

@@ -11,6 +11,7 @@ import Alergenos from './pages/Alergenos/Alergenos'
 import UrbanaKids from './pages/UrbanaKids/UrbanaKids'
 import UrbanaStyle from './pages/UrbanaStyle/UrbanaStyle'
 import UrbanaStylePost from './pages/UrbanaStyle/UrbanaStylePost'
+import UrbanaStyleCategoria from './pages/UrbanaStyle/UrbanaStyleCategoria'
 
 export default function App() {
   const { i18n } = useTranslation()
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/restaurantes-secretos" element={<UrbanaKids />} />
         <Route path="/la-urbana-style" element={<UrbanaStyle />} />
         <Route path="/la-urbana-style/:slug" element={<UrbanaStylePost />} />
+        <Route path="/la-urbana-style/categoria/:categoria" element={<UrbanaStyleCategoria />} />
       </Routes>
     </>
   )
