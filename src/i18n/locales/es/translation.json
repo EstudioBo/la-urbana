@@ -66,9 +66,62 @@
     "title": "Nosotros"
   },
   "contacto": {
-    "title": "Contacto"
+    "title": "Contacto",
+    "form": {
+      "nombre": "Nombre",
+      "email": "Email",
+      "mensaje": "Mensaje",
+      "privacidad": "He leído y acepto la",
+      "privacidad_enlace": "política de privacidad",
+      "marketing": "Quiero recibir novedades y promociones de La Urbana",
+      "enviar": "Enviar",
+      "enviando": "Enviando…",
+      "exito": "¡Recibido! Te responderemos lo antes posible.",
+      "error": "No hemos podido enviar tu mensaje. Inténtalo de nuevo en unos minutos."
+    }
   },
   "locations": {
     "title": "Nuestros locales"
+  },
+  "cookies": {
+    "titulo": "Cookies",
+    "texto": "Usamos cookies técnicas para que la web funcione. Con tu permiso, también usaremos cookies analíticas para saber cómo se usa la web y cookies de redes sociales para mostrarte vídeos de Instagram. Puedes aceptarlas, rechazarlas o elegir cuáles sí.",
+    "politica": "Política de cookies",
+    "aceptar": "Aceptar todas",
+    "rechazar": "Rechazar todas",
+    "configurar": "Configurar",
+    "reabrir": "Configurar cookies",
+    "preferencias": {
+      "titulo": "Configurar cookies",
+      "siempre": "Siempre activas",
+      "guardar": "Guardar selección",
+      "cerrar": "Cerrar"
+    },
+    "categorias": {
+      "tecnicas": {
+        "nombre": "Técnicas",
+        "texto": "Necesarias para que la web funcione y para recordar tu elección de cookies. No se pueden desactivar."
+      },
+      "analiticas": {
+        "nombre": "Analíticas",
+        "texto": "Nos ayudan a saber cuántas personas visitan la web y qué páginas ven (Google Analytics)."
+      },
+      "terceros": {
+        "nombre": "Redes sociales",
+        "texto": "Permiten ver aquí los vídeos y publicaciones de Instagram. Instagram (Meta) puede usar sus propias cookies."
+      }
+    },
+    "instagram": {
+      "texto": "Este vídeo está alojado en Instagram. Para verlo aquí, acepta las cookies de redes sociales.",
+      "aceptar": "Aceptar y ver",
+      "ver": "Ver en Instagram",
+      "reproducir": "Reproducir vídeo"
+    }
+  },
+  "legal": {
+    "cookies": {
+      "titulo": "Política de cookies",
+      "descripcion": "Qué cookies usa la web de La Urbana Burger Bar, para qué sirven y cómo puedes configurarlas."
+    }
   }
 }

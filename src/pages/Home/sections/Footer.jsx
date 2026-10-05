@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { abrirPreferencias } from '../../../components/Cookies/consentimiento'
 import styles from './Footer.module.css'
 import logoBlanco from '../../../assets/images/logos/logo-blanco.webp'
 
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer>
       <div className={styles.main}>
@@ -14,9 +18,11 @@ export default function Footer() {
         <span>|</span>
         <a href="/politica-privacidad">Política de privacidad</a>
         <span>|</span>
-        <a href="/politica-cookies">Política de Cookies</a>
+        <Link to="/politica-cookies">Política de Cookies</Link>
         <span>|</span>
         <Link to="/alergenos">Alérgenos</Link>
+        <span>|</span>
+        <button type="button" onClick={abrirPreferencias}>{t('cookies.reabrir')}</button>
       </div>
     </footer>
   )

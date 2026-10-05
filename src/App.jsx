@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
+import BannerCookies from './components/Cookies/BannerCookies'
 import Home from './pages/Home/Home'
 
 const Carta = lazy(() => import('./pages/Carta/Carta'))
@@ -14,6 +15,7 @@ const UrbanaKids = lazy(() => import('./pages/UrbanaKids/UrbanaKids'))
 const UrbanaStyle = lazy(() => import('./pages/UrbanaStyle/UrbanaStyle'))
 const UrbanaStylePost = lazy(() => import('./pages/UrbanaStyle/UrbanaStylePost'))
 const UrbanaStyleCategoria = lazy(() => import('./pages/UrbanaStyle/UrbanaStyleCategoria'))
+const PoliticaCookies = lazy(() => import('./pages/Legal/PoliticaCookies'))
 
 export default function App() {
   const { i18n } = useTranslation()
@@ -34,8 +36,10 @@ export default function App() {
           <Route path="/la-urbana-style" element={<UrbanaStyle />} />
           <Route path="/la-urbana-style/:slug" element={<UrbanaStylePost />} />
           <Route path="/la-urbana-style/categoria/:categoria" element={<UrbanaStyleCategoria />} />
+          <Route path="/politica-cookies" element={<PoliticaCookies />} />
         </Routes>
       </Suspense>
+      <BannerCookies />
     </>
   )
 }

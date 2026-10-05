@@ -62,11 +62,62 @@
     "title": "About us"
   },
   "contacto": {
-    "title": "Contact"
+    "title": "Contact",
+    "form": {
+      "nombre": "Name",
+      "email": "Email",
+      "mensaje": "Message",
+      "privacidad": "I have read and accept the",
+      "privacidad_enlace": "privacy policy",
+      "marketing": "I want to receive news and offers from La Urbana",
+      "enviar": "Send",
+      "enviando": "Sending…",
+      "exito": "Got it! We will get back to you as soon as possible.",
+      "error": "We could not send your message. Please try again in a few minutes."
+    }
   },
   "locations": {
     "title": "Our locations"
+  },
+  "cookies": {
+    "titulo": "Cookies",
+    "texto": "We use technical cookies to make the website work. With your permission, we will also use analytics cookies to understand how the site is used and social media cookies to show you Instagram videos. You can accept them, reject them or choose which ones to allow.",
+    "politica": "Cookie policy",
+    "aceptar": "Accept all",
+    "rechazar": "Reject all",
+    "configurar": "Settings",
+    "reabrir": "Cookie settings",
+    "preferencias": {
+      "titulo": "Cookie settings",
+      "siempre": "Always active",
+      "guardar": "Save selection",
+      "cerrar": "Close"
+    },
+    "categorias": {
+      "tecnicas": {
+        "nombre": "Technical",
+        "texto": "Needed for the website to work and to remember your cookie choice. They cannot be turned off."
+      },
+      "analiticas": {
+        "nombre": "Analytics",
+        "texto": "Help us know how many people visit the site and which pages they view (Google Analytics)."
+      },
+      "terceros": {
+        "nombre": "Social media",
+        "texto": "Let you watch Instagram videos and posts here. Instagram (Meta) may use its own cookies."
+      }
+    },
+    "instagram": {
+      "texto": "This video is hosted on Instagram. To watch it here, accept social media cookies.",
+      "aceptar": "Accept and watch",
+      "ver": "View on Instagram",
+      "reproducir": "Play video"
+    }
+  },
+  "legal": {
+    "cookies": {
+      "titulo": "Cookie policy",
+      "descripcion": "Which cookies the La Urbana Burger Bar website uses, what they are for and how you can change your settings."
+    }
   }
 }
-
-

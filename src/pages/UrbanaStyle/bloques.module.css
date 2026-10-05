@@ -103,6 +103,85 @@
   background: var(--color-white);
 }
 
+.reelPortada {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-green-dark);
+}
+
+.reelPortada img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reelPlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.reelPlay svg {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(var(--shadow-sm));
+  transition: transform 0.2s ease;
+}
+
+.reelPlay circle {
+  fill: var(--color-orange);
+}
+
+.reelPlay path {
+  fill: var(--color-black);
+}
+
+.reelPlay:hover svg {
+  transform: scale(1.08);
+}
+
+.reelPlay:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: -3px;
+}
+
+.reelAviso {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-8) var(--space-7);
+  background: rgba(10, 46, 10, 0.88);
+  color: var(--color-white);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.reelAceptar {
+  padding: var(--space-4) var(--space-7);
+  background: var(--color-orange);
+  color: var(--color-black);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reelAceptar:hover {
+  background: var(--color-orange-light);
+}
+
 .reelPie {
   font-size: 0.9rem;
   font-weight: 600;
@@ -111,6 +190,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .galeriaFoto img { transition: none; }
+  .reelPlay svg { transition: none; }
 }
 
 @media (max-width: 640px) {

@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import styles from './bloques.module.css'
 import Lightbox from '../../components/Lightbox/Lightbox'
+import { guardarConsentimiento, useConsentimiento } from '../../components/Cookies/consentimiento'
 
 // Piezas para escribir el contenido de cada entrada de #LaUrbanaStyle
 
@@ -83,24 +85,77 @@ function useAlturaInstagram(iframeRef) {
   return altura
 }
 
-// Publicación o reel de Instagram incrustado. Carga contenido de Meta: debe quedar condicionado al
-// consentimiento del banner de cookies cuando exista
-export function PostInstagram({ codigo, pie }) {
+// Instagram incrustado en un componente aparte: así el hook de altura solo se monta con consentimiento
+function IframeInstagram({ codigo, pie }) {
   const iframeRef = useRef(null)
   const altura = useAlturaInstagram(iframeRef)
 
   return (
+    <iframe
+      ref={iframeRef}
+      src={`https://www.instagram.com/p/${codigo}/embed/`}
+      title={pie ? `Instagram: ${pie}` : 'Publicación de Instagram de La Urbana'}
+      className={styles.reelIframe}
+      style={altura ? { height: altura } : undefined}
+      loading="lazy"
+      allow="encrypted-media; picture-in-picture"
+      allowFullScreen
+    />
+  )
+}
+
+// Portadas de los reels, descargadas de Instagram y guardadas con el código del post como nombre
+const PORTADAS = Object.fromEntries(
+  Object.entries(import.meta.glob('../../assets/images/urbana-style/reels/*.webp', { eager: true, import: 'default' }))
+    .map(([ruta, url]) => [ruta.split('/').pop().replace('.webp', ''), url])
+)
+
+// Publicación o reel de Instagram. Se muestra la portada y el reproductor de Instagram solo se carga al
+// pulsarla; sin consentimiento de redes sociales se pide antes de cargar nada de Meta
+export function PostInstagram({ codigo, pie }) {
+  const { t } = useTranslation()
+  const consentimiento = useConsentimiento()
+  const [pulsado, setPulsado] = useState(false)
+
+  if (pulsado && consentimiento?.terceros) {
+    return (
+      <figure className={styles.reel}>
+        <IframeInstagram codigo={codigo} pie={pie} />
+        {pie && <figcaption className={styles.reelPie}>{pie}</figcaption>}
+      </figure>
+    )
+  }
+
+  return (
     <figure className={styles.reel}>
-      <iframe
-        ref={iframeRef}
-        src={`https://www.instagram.com/p/${codigo}/embed/`}
-        title={pie ? `Instagram: ${pie}` : 'Publicación de Instagram de La Urbana'}
-        className={styles.reelIframe}
-        style={altura ? { height: altura } : undefined}
-        loading="lazy"
-        allow="encrypted-media; picture-in-picture"
-        allowFullScreen
-      />
+      <div className={styles.reelPortada}>
+        <img src={PORTADAS[codigo]} alt="" loading="lazy" />
+        {pulsado ? (
+          <div className={styles.reelAviso} role="alert">
+            <p>{t('cookies.instagram.texto')}</p>
+            <button
+              type="button"
+              className={styles.reelAceptar}
+              onClick={() => guardarConsentimiento({ analiticas: consentimiento?.analiticas ?? false, terceros: true })}
+            >
+              {t('cookies.instagram.aceptar')}
+            </button>
+            <EnlaceExterno href={`https://www.instagram.com/p/${codigo}/`}>{t('cookies.instagram.ver')}</EnlaceExterno>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className={styles.reelPlay}
+            onClick={() => setPulsado(true)}
+            aria-label={`${t('cookies.instagram.reproducir')}${pie ? `: ${pie}` : ''}`}
+          >
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="32" />
+              <path d="M26 20v24l19-12z" />
+            </svg>
+          </button>
+        )}
+      </div>
       {pie && <figcaption className={styles.reelPie}>{pie}</figcaption>}
     </figure>
   )

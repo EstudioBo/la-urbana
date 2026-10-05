@@ -29,6 +29,16 @@
     <link rel="stylesheet" href="https://use.typekit.net/gwa0ynx.css" />
   </head>
   <body>
+    <!-- Copia oculta del formulario de Contacto para que Netlify Forms lo detecte al publicar. Los campos deben coincidir con Contacto.jsx -->
+    <form name="contacto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nombre" />
+      <input type="email" name="email" />
+      <textarea name="mensaje"></textarea>
+      <input type="checkbox" name="privacidad" />
+      <input type="checkbox" name="marketing" />
+      <input type="hidden" name="idioma" />
+      <input type="text" name="bot-field" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -36,12 +36,21 @@
   color: var(--color-green-dark);
 }
 
-.legal a {
+.legal a,
+.legal button {
   color: var(--color-green-dark);
   text-decoration: none;
 }
 
-.legal a:hover {
+.legal button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.legal a:hover,
+.legal button:hover {
   text-decoration: underline;
 }
 

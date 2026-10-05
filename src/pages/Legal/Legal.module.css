@@ -1,0 +1,18 @@
+.page {
+  min-height: 100svh;
+  background: var(--color-green-dark);
+  padding: var(--space-13) var(--margen-pagina) var(--space-11);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 7rem);
+  text-transform: uppercase;
+  line-height: 0.85;
+  text-align: center;
+  color: var(--color-orange);
+}
