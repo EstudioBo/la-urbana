@@ -41,7 +41,7 @@ export default function UrbanaStylePost() {
 
   return (
     <div>
-      <Seo title={post.titulo} description={post.extracto} path={path} image={post.img} type="article" />
+      <Seo title={post.seo.titulo} description={post.seo.descripcion} path={path} image={`/og/${post.slug}.webp`} type="article" />
       <ArticuloJsonLd post={post} path={path} />
 
       <main>

@@ -49,7 +49,7 @@ export default function Contacto() {
     <div>
       <Seo
         title="Contacto"
-        description="¿Hablamos? Escríbenos y te respondemos. Contacta con La Urbana Burger Bar para cualquier consulta."
+        description="¿Tienes una pregunta, una propuesta o quieres organizar algo con nosotros? Escríbenos desde el formulario de contacto de La Urbana Burger Bar y te respondemos."
         path="/contacto"
       />
       <main className={styles.page}>

@@ -386,7 +386,7 @@ export default function Nosotros() {
   return (
     <main>
       <Seo
-        title="Nuestro Origen"
+        title="Nuestro Origen: producto gallego"
         description="Carne de Rubia Galega, pan artesano de Lugo, huevos camperos, miel ecológica y quesos DOP gallegos: el producto de proximidad de cada burger de La Urbana."
         path="/nosotros"
       />

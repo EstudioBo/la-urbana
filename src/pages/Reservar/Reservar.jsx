@@ -18,8 +18,8 @@ export default function Reservar() {
   return (
     <div>
       <Seo
-        title="Reservar mesa"
-        description="Reserva mesa en La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas, C.C. As Termas), Vigo y Santiago de Compostela."
+        title="Reservar mesa: Lugo, Vigo, Santiago"
+        description="Reserva mesa en La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas y C.C. As Termas), Vigo y Santiago de Compostela. Elige local y reserva."
         path="/reservar"
       />
       <main className={styles.page}>

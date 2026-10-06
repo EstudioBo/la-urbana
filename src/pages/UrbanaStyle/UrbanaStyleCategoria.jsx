@@ -5,7 +5,7 @@ import estilo from './estilo.module.css'
 import Seo from '../../components/Seo/Seo'
 import FondoUs from '../../components/FondoUs/FondoUs'
 import Footer from '../Home/sections/Footer'
-import { CATEGORIAS, POSTS, rutaCategoria } from './posts'
+import { CATEGORIAS, DESCRIPCIONES_CATEGORIA, POSTS, rutaCategoria } from './posts'
 import TituloQueCae from './TituloQueCae'
 import RejillaPosts from './RejillaPosts'
 
@@ -21,8 +21,9 @@ export default function UrbanaStyleCategoria() {
     <div>
       <Seo
         title={`${nombre} · #LaUrbanaStyle`}
-        description={`Historias de La Urbana en la categoría ${nombre}: campañas, colaboraciones y novedades en Lugo, Santiago y Vigo.`}
+        description={DESCRIPCIONES_CATEGORIA[categoria]}
         path={rutaCategoria(categoria)}
+        noindex
       />
       <main>
         <header className={`${styles.cabecera} ${estilo.fondoNaranja}`} ref={cabeceraRef}>

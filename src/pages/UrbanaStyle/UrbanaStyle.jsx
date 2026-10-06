@@ -10,7 +10,7 @@ export default function UrbanaStyle() {
     <div>
       <Seo
         title="#LaUrbanaStyle"
-        description="Campañas, colaboraciones con artistas y chefs gallegos y acciones en la calle de La Urbana en Lugo, Santiago y Vigo. Al más puro #LaUrbanaStyle."
+        description="Campañas, colaboraciones con artistas y chefs gallegos, burgers de autor y acciones en la calle de La Urbana en Lugo, Santiago y Vigo. Puro #LaUrbanaStyle."
         path="/la-urbana-style"
       />
       <section className={styles.hero}>

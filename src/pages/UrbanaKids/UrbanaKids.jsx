@@ -137,8 +137,8 @@ export default function UrbanaKids() {
   return (
     <div className={styles.page}>
       <Seo
-        title="Restaurantes Secretos para niños"
-        description="En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para pedidos, zona de juego, pantalla y mesa propia."
+        title="Restaurantes Secretos | urbana kids"
+        description="En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para hacer su pedido, zona de juego, pantalla y mesa propia."
         path="/restaurantes-secretos"
       />
 

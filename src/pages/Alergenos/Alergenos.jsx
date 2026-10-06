@@ -43,7 +43,7 @@ export default function Alergenos() {
     <div>
       <Seo
         title="Tabla de alérgenos"
-        description="Consulta la tabla completa de alérgenos de todos los platos de La Urbana Burger Bar: burgers, entrantes, ensaladas, postres y menú infantil."
+        description="Tabla de alérgenos de La Urbana Burger Bar: burgers, entrantes, ensaladas, postres y menú infantil. Consulta los alérgenos de cada plato antes de pedir."
         path="/alergenos"
       />
       <main className={styles.page}>

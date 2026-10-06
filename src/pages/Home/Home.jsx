@@ -69,9 +69,9 @@ export default function Home() {
   return (
     <main className={styles.home}>
       <Seo
-        title="La Urbana Burger Bar | Hamburguesería en Lugo, Vigo y Santiago"
+        title="La Urbana Burger | Burgers en Lugo, Vigo y Santiago"
         titleIsFull
-        description="Hamburguesas artesanas con producto gallego de km 0 en Lugo, Vigo y Santiago de Compostela. Descubre la carta, reserva mesa o pide a domicilio."
+        description="Hamburguesería y burgers de autor con producto gallego de km 0 en Lugo, Vigo y Santiago de Compostela. Rubia Galega y pan artesano. Reserva o pide a domicilio."
         path="/"
       />
       <LocalBusinessJsonLd />

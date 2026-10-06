@@ -12,6 +12,7 @@ export default function PoliticaCookies() {
         title={t('legal.cookies.titulo')}
         description={t('legal.cookies.descripcion')}
         path="/politica-cookies"
+        noindex
       />
       <main className={styles.page}>
         <h1 className={styles.title}>{t('legal.cookies.titulo')}</h1>

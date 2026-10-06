@@ -206,8 +206,8 @@ export default function Carta() {
   return (
     <div className={styles.page} onClick={() => setExpandido(null)}>
       <Seo
-        title="Carta"
-        description="Descubre nuestra carta: hamburguesas Made in Galicia, entrepanes, ensaladas, para empezar, de autor y postres. Producto gallego de km 0 en cada plato."
+        title="Carta de hamburguesas"
+        description="Nuestra carta: hamburguesas Made in Galicia, burgers de autor, entrepanes, ensaladas, entrantes y postres. Producto gallego de km 0 en cada plato de La Urbana."
         path="/carta"
       />
       <main className={styles.main}>
