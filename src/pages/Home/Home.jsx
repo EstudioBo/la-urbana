@@ -24,7 +24,7 @@ function MarqueeDivider({ reverse = false, sticky = false }) {
       <div className={styles.marqueeTrack}>
         <div className={`${styles.marqueeInner} ${reverse ? styles.marqueeReverse : ''}`}>
           {[...LOGOS, ...LOGOS].map((_, i) => (
-            <img key={i} src={logoNegro} alt="" className={styles.marqueeLogo} />
+            <img loading="lazy" key={i} src={logoNegro} alt="" className={styles.marqueeLogo} />
           ))}
         </div>
       </div>
@@ -77,6 +77,7 @@ export default function Home() {
       <LocalBusinessJsonLd />
       <HeroSlider />
       <img
+        loading="lazy"
         ref={stickerRef}
         src={pegatinaU}
         alt=""
@@ -93,7 +94,7 @@ export default function Home() {
         }, { threshold: 0.3 })
         obs.observe(el)
       }}>
-        <img src={celoUrbana} alt="" className={styles.celo} />
+        <img loading="lazy" src={celoUrbana} alt="" className={styles.celo} />
       </div>
       <SeccionEsencia />
       <SeccionTeam />
@@ -109,6 +110,7 @@ export default function Home() {
       </div>
       <div ref={sticker2Ref} className={styles.stickerDivider}>
         <img
+          loading="lazy"
           src={pegatinaU}
           alt=""
           className={`${styles.stickerU} ${stamped2 ? styles.stickerStamped : ''}`}

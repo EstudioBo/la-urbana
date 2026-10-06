@@ -38,7 +38,7 @@ export default function SeccionDonde() {
         <div className={styles.ctaGroup}>
           <Link to="/reservar" className={styles.cta}>
             {t('home.donde.cta')}
-            <img src={iconReserva} alt="" className={styles.ctaIcon} />
+            <img loading="lazy" src={iconReserva} alt="" className={styles.ctaIcon} />
           </Link>
           <a
             href="https://maps.google.com/?q=La+Urbana+Burger"

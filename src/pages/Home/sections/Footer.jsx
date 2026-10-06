@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer>
       <div className={styles.main}>
-        <Link to="/"><img src={logoBlanco} alt="La Urbana" className={styles.logo} /></Link>
+        <Link to="/"><img loading="lazy" src={logoBlanco} alt="La Urbana" className={styles.logo} /></Link>
         <span className={styles.copy}>© 2026 La Urbana</span>
       </div>
       <div className={styles.legal}>

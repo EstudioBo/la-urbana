@@ -250,6 +250,7 @@ export default function Carta() {
                         <div className={styles.cardAlergenos}>
                           {ids.map(id => (
                             <img
+                              loading="lazy"
                               key={id}
                               src={ALERGENO_IMGS[id]}
                               alt={ALERGENOS[id]?.label}
@@ -264,7 +265,7 @@ export default function Carta() {
                 )}
 
                 <div className={styles.cardImg} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>
-                  <img src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || AUTOR_IMGS[plato.nombre] || VEGGIES_IMGS[plato.nombre] || EMPEZAR_IMGS[plato.nombre] || POSTRES_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
+                  <img loading="lazy" src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || AUTOR_IMGS[plato.nombre] || VEGGIES_IMGS[plato.nombre] || EMPEZAR_IMGS[plato.nombre] || POSTRES_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
                 </div>
 
                 <div className={`${styles.cardInfo} ${plato.chef ? styles.cardInfoChef : ''}`}>
@@ -275,7 +276,7 @@ export default function Carta() {
                       onClick={e => { e.stopPropagation(); toggleExpandido(key) }}
                       aria-label={abierto ? 'Cerrar ingredientes' : 'Ver ingredientes'}
                     >
-                      <img src={iconBurger} alt="" className={styles.cardMasIcon} />
+                      <img loading="lazy" src={iconBurger} alt="" className={styles.cardMasIcon} />
                     </button>
                   </div>
                   {plato.chef && (
@@ -292,11 +293,11 @@ export default function Carta() {
       </main>
       <div className={styles.ctaBar}>
         <a href="https://laurbana.waitry.net/" target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.ctaBtnDelivery}`}>
-          <img src={iconDeliveryBlanco} alt="" className={styles.ctaBtnIcon} />
+          <img loading="lazy" src={iconDeliveryBlanco} alt="" className={styles.ctaBtnIcon} />
           Delivery
         </a>
         <Link to="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
-          <img src={iconCalendarioBlanco} alt="" className={styles.ctaBtnIcon} />
+          <img loading="lazy" src={iconCalendarioBlanco} alt="" className={styles.ctaBtnIcon} />
           Reservar
         </Link>
       </div>

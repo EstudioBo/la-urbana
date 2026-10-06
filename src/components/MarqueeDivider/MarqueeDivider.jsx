@@ -9,7 +9,7 @@ export default function MarqueeDivider({ reverse = false }) {
       <div className={styles.marqueeTrack}>
         <div className={`${styles.marqueeInner} ${reverse ? styles.marqueeReverse : ''}`}>
           {[...LOGOS, ...LOGOS].map((_, i) => (
-            <img key={i} src={logoNegro} alt="" className={styles.marqueeLogo} />
+            <img loading="lazy" key={i} src={logoNegro} alt="" className={styles.marqueeLogo} />
           ))}
         </div>
       </div>

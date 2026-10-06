@@ -39,6 +39,7 @@ export default function SeccionOrigen() {
             ))}
           </h2>
           <img
+            loading="lazy"
             ref={selloRef}
             src={sello2015}
             alt="Est. 2015"

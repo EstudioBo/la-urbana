@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './BannerCookies.module.css'
@@ -11,6 +11,10 @@ import {
 } from './consentimiento'
 
 const CATEGORIAS = ['analiticas', 'terceros']
+
+// El banner no va en el HTML prerenderizado: quien ya eligió lo vería un instante antes de que cargue React
+const sinSuscripcion = () => () => {}
+const useHidratado = () => useSyncExternalStore(sinSuscripcion, () => true, () => false)
 
 function Preferencias({ inicial, onCerrar }) {
   const { t } = useTranslation()
@@ -78,7 +82,10 @@ export default function BannerCookies() {
   const { t } = useTranslation()
   const consentimiento = useConsentimiento()
   const preferenciasAbiertas = usePreferenciasAbiertas()
+  const hidratado = useHidratado()
   const id = useId()
+
+  if (!hidratado) return null
 
   if (preferenciasAbiertas) {
     return (

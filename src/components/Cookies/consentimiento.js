@@ -25,10 +25,12 @@ function avisar() {
   oyentes.forEach((oyente) => oyente())
 }
 
-// Google Consent Mode v2: todo denegado hasta que el visitante acepte las analíticas
-window.dataLayer = window.dataLayer || []
+// Google Consent Mode v2: todo denegado hasta que el visitante acepte las analíticas.
+// En el prerenderizado (Node) no hay window: gtag no hace nada.
+const enNavegador = typeof window !== 'undefined'
+if (enNavegador) window.dataLayer = window.dataLayer || []
 function gtag() {
-  window.dataLayer.push(arguments)
+  if (enNavegador) window.dataLayer.push(arguments)
 }
 gtag('consent', 'default', {
   analytics_storage: 'denied',
@@ -71,11 +73,12 @@ function suscribir(oyente) {
   return () => oyentes.delete(oyente)
 }
 
-// `consentimiento` es null mientras el visitante no haya elegido
+// `consentimiento` es null mientras el visitante no haya elegido. El HTML prerenderizado
+// se genera siempre sin consentimiento y React lo actualiza al hidratar.
 export function useConsentimiento() {
-  return useSyncExternalStore(suscribir, () => consentimiento)
+  return useSyncExternalStore(suscribir, () => consentimiento, () => null)
 }
 
 export function usePreferenciasAbiertas() {
-  return useSyncExternalStore(suscribir, () => preferenciasAbiertas)
+  return useSyncExternalStore(suscribir, () => preferenciasAbiertas, () => false)
 }

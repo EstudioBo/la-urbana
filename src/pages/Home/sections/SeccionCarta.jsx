@@ -137,7 +137,7 @@ export default function SeccionCarta() {
             {LOOP.map((item, i) => (
               // Las fotos llevan a la carta filtrada con el ratón o el dedo; con teclado se usa "+ info".
               <Link key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1} aria-hidden="true">
-                <img src={item.img} alt={item.nombre} />
+                <img loading="lazy" src={item.img} alt={item.nombre} />
                 {(i === offset || i === offset - 1) && (
                   <div className={styles.cardOverlay} style={{
                     position: 'absolute', inset: 0,
@@ -160,7 +160,7 @@ export default function SeccionCarta() {
         Ver todo
       </Link>
       <button className={styles.arrowLeft} onClick={goNext} aria-label="Siguiente">
-        <img src={arrowLeft} alt="" />
+        <img loading="lazy" src={arrowLeft} alt="" />
       </button>
     </section>
   )

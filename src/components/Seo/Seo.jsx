@@ -19,7 +19,10 @@ export default function Seo({ title, description, path = '/', image = DEFAULT_IM
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
+      {image === DEFAULT_IMAGE && <meta property="og:image:width" content="1200" />}
+      {image === DEFAULT_IMAGE && <meta property="og:image:height" content="630" />}
       <meta property="og:url" content={url} />
+      <meta property="og:locale" content="es_ES" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />

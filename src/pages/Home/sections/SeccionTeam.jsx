@@ -181,7 +181,7 @@ export default function SeccionTeam() {
                   className={`${styles.card} ${clickable ? styles.cardClickable : ''}`}
                   onClick={clickable ? () => setModalIdx(i % CHEFS.length) : undefined}
                 >
-                  <img src={chef.img} alt={chef.nombre} />
+                  <img loading="lazy" src={chef.img} alt={chef.nombre} />
                   {isOverlay && (
                     <div className={styles.cardOverlay} style={{
                       position: 'absolute', inset: 0,
@@ -211,7 +211,7 @@ export default function SeccionTeam() {
       </div>
 
       <button className={styles.arrowLeft} onClick={goNext} aria-label="Siguiente">
-        <img src={arrowLeft} alt="" />
+        <img loading="lazy" src={arrowLeft} alt="" />
       </button>
 
       {modalChef && createPortal(

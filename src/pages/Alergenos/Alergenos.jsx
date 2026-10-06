@@ -31,7 +31,7 @@ function Celda({ id, plato }) {
   const label = ALERGENOS[id].label
   return (
     <td className={styles[tipo]}>
-      <img src={ICONOS[id]} alt="" className={styles.iconoCelda} />
+      <img loading="lazy" src={ICONOS[id]} alt="" className={styles.iconoCelda} />
       <span className={styles.marca} aria-hidden="true" />
       <span className={styles.oculto}>{tipo === 'contiene' ? `Contiene ${label}` : `Puede contener trazas de ${label}`}</span>
     </td>
@@ -63,7 +63,7 @@ export default function Alergenos() {
           <ul className={styles.leyenda}>
             {IDS.map(id => (
               <li key={id}>
-                <img src={ICONOS[id]} alt="" className={styles.iconoLeyenda} />
+                <img loading="lazy" src={ICONOS[id]} alt="" className={styles.iconoLeyenda} />
                 {ALERGENOS[id].label}
               </li>
             ))}
@@ -81,7 +81,7 @@ export default function Alergenos() {
                     <th scope="col"><span className={styles.oculto}>Plato</span></th>
                     {IDS.map(id => (
                       <th key={id} scope="col">
-                        <img src={ICONOS[id]} alt={ALERGENOS[id].label} title={ALERGENOS[id].label} className={styles.iconoCabecera} />
+                        <img loading="lazy" src={ICONOS[id]} alt={ALERGENOS[id].label} title={ALERGENOS[id].label} className={styles.iconoCabecera} />
                       </th>
                     ))}
                   </tr>

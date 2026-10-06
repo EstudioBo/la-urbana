@@ -118,11 +118,11 @@ export default function Navbar({ lang, setLang }) {
             rel="noopener noreferrer"
             className={`${styles.menuBtn} ${styles.menuBtnDelivery}`}
           >
-            <img src={iconDeliveryBlanco} alt="" className={styles.menuBtnIcon} />
+            <img loading="lazy" src={iconDeliveryBlanco} alt="" className={styles.menuBtnIcon} />
             Delivery
           </a>
           <Link to="/reservar" onClick={close} className={`${styles.menuBtn} ${styles.menuBtnReserva}`}>
-            <img src={iconCalendarioBlanco} alt="" className={styles.menuBtnIcon} />
+            <img loading="lazy" src={iconCalendarioBlanco} alt="" className={styles.menuBtnIcon} />
             Reservar
           </Link>
         </div>

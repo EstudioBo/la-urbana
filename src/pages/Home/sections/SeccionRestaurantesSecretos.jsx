@@ -21,9 +21,9 @@ export default function SeccionRestaurantesSecretos() {
 
   return (
     <section className={styles.section}>
-      <img src={imgUu} alt="" className={styles.uuDeco} />
+      <img loading="lazy" src={imgUu} alt="" className={styles.uuDeco} />
       <div className={styles.foto} ref={fotoRef}>
-        <img src={imgNino} alt="" className={ninoSprung ? styles.ninoSpring : ''} />
+        <img loading="lazy" src={imgNino} alt="" className={ninoSprung ? styles.ninoSpring : ''} />
       </div>
       <div className={styles.content}>
         <span className={styles.label}>

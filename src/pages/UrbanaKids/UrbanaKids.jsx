@@ -181,7 +181,7 @@ export default function UrbanaKids() {
                   style={{ transform: `translateY(${card.offset}px) rotate(${card.rotate})`, cursor: 'pointer' }}
                   onClick={() => setLightboxIdx(i)}
                 >
-                  <img src={card.img} alt="" />
+                  <img loading="lazy" src={card.img} alt="" />
                 </div>
               </div>,
               ...(i === 0 ? [<div key="nino-slot" ref={ninoSlotRef} className={styles.stackNinoSlot} />] : []),
@@ -191,8 +191,8 @@ export default function UrbanaKids() {
 
         </div>
         <div className={styles.stackNino} ref={ninoRef}>
-          <img src={imgNino} alt="" className={styles.ninoImgA} />
-          <img src={imgNinoDerecha} alt="" className={styles.ninoImgB} />
+          <img loading="lazy" src={imgNino} alt="" className={styles.ninoImgA} />
+          <img loading="lazy" src={imgNinoDerecha} alt="" className={styles.ninoImgB} />
         </div>
       </section>
 
@@ -210,7 +210,7 @@ export default function UrbanaKids() {
 
       <div className={styles.uuStampWrap}>
         <div className={styles.uuStamp} ref={stampRef}>
-          <img src={imgUu} alt="" className={styles.uuDeco} />
+          <img loading="lazy" src={imgUu} alt="" className={styles.uuDeco} />
         </div>
       </div>
 

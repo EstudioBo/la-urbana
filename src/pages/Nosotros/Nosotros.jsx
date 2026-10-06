@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useLayoutEffect } from 'react'
+import { useCallback, useRef, useState, useEffect, useLayoutEffect, useSyncExternalStore } from 'react'
 import styles from './Nosotros.module.css'
 import Seo from '../../components/Seo/Seo'
 import SeccionCarta from '../Home/sections/SeccionCarta'
@@ -123,15 +123,14 @@ const conGiroYAlineacion = (f, i) => ({
 const r1 = n => Math.round(n * 10) / 10
 const pct = (valor, total) => `${(valor / total) * 100}%`
 
+// En el prerenderizado no hay pantalla: se genera la versión tablet y React ajusta al hidratar
 function useMedia(query) {
-  const [cumple, setCumple] = useState(() => window.matchMedia(query).matches)
-  useEffect(() => {
+  const suscribir = useCallback(cambiar => {
     const media = window.matchMedia(query)
-    const cambiar = () => setCumple(media.matches)
     media.addEventListener('change', cambiar)
     return () => media.removeEventListener('change', cambiar)
   }, [query])
-  return cumple
+  return useSyncExternalStore(suscribir, () => window.matchMedia(query).matches, () => false)
 }
 
 // Tablet: el camino baja pegado al margen del lado de la foto de cada fila y cruza en el hueco entre filas.
