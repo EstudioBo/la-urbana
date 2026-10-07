@@ -16,6 +16,7 @@ const UrbanaStyle = lazy(() => import('./pages/UrbanaStyle/UrbanaStyle'))
 const UrbanaStylePost = lazy(() => import('./pages/UrbanaStyle/UrbanaStylePost'))
 const UrbanaStyleCategoria = lazy(() => import('./pages/UrbanaStyle/UrbanaStyleCategoria'))
 const PoliticaCookies = lazy(() => import('./pages/Legal/PoliticaCookies'))
+const NoEncontrada = lazy(() => import('./pages/NoEncontrada/NoEncontrada'))
 
 export default function App() {
   const { i18n } = useTranslation()
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/la-urbana-style/:slug" element={<UrbanaStylePost />} />
           <Route path="/la-urbana-style/categoria/:categoria" element={<UrbanaStyleCategoria />} />
           <Route path="/politica-cookies" element={<PoliticaCookies />} />
+          <Route path="*" element={<NoEncontrada />} />
         </Routes>
       </Suspense>
       <BannerCookies />

@@ -1,0 +1,331 @@
+.page {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-13) var(--margen-pagina) var(--space-11);
+}
+
+/* ── Fondo de manchas ── */
+
+.fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Color de las Us: el patrón lo hereda del svg */
+  fill: var(--color-green-dark);
+}
+
+.manchaColor {
+  fill: var(--color-green);
+}
+
+.manchaUs {
+  opacity: 0.5;
+}
+
+/* Oscurece las manchas para que el 404 y la frase destaquen */
+.manchaSombra {
+  fill: var(--color-black);
+  opacity: 0.45;
+}
+
+/* ── 404 ── */
+
+.contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  text-align: center;
+}
+
+.codigo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(7rem, 24vw, 20rem);
+  /* El 4 de blenny deja mucho aire por debajo dentro de su línea */
+  margin-bottom: -0.22em;
+}
+
+.cuatro {
+  font-family: var(--font-display);
+  line-height: 0.8;
+  color: var(--color-white);
+}
+
+.cero {
+  position: relative;
+  font-size: inherit;
+  width: 0.62em;
+  height: 0.66em;
+  margin: 0 0.05em;
+  /* Los 4 de blenny quedan por encima del centro de su línea */
+  top: -0.24em;
+  color: var(--color-green);
+  transition: transform 0.2s ease;
+}
+
+/* Onda naranja que sale de la hamburguesa al ritmo del palpito de [ clic ] */
+.cero::before {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  border: 2px solid var(--color-orange);
+  border-radius: var(--radius-circle);
+  pointer-events: none;
+  animation: onda 1.2s ease-out infinite;
+}
+
+@keyframes onda {
+  from {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+.cero:hover {
+  transform: scale(1.05);
+}
+
+.cero:active {
+  transform: scale(0.94, 0.9);
+}
+
+.cero:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+/* El icono de hamburguesa del menú, pintado con el color de .cero */
+.ceroIcono {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  mask: url('../../assets/images/iconos/icon-burgermenu.svg') center / contain no-repeat;
+}
+
+
+.ceroClic {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  /* Con line-height 1, blenny deja las letras 0,51em más arriba del centro: se compensa con el padding */
+  padding: 0.56em var(--space-4) 0.05em;
+  line-height: 1;
+  background: var(--color-orange);
+  color: var(--color-black);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.5vw, 1.15rem);
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: palpitar 1.2s ease-in-out infinite;
+}
+
+@keyframes palpitar {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-12deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(-12deg) scale(1.25); }
+}
+
+.ceroClic::before { content: '[ '; }
+.ceroClic::after { content: ' ]'; }
+
+.frase {
+  max-width: 36ch;
+  text-wrap: balance;
+  font-family: var(--font-title);
+  /* Solo está Revelstoke Regular: la negrita la genera el navegador */
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.8vw, 4.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.enlace {
+  padding: var(--space-4) var(--space-7);
+  border: 1.5px solid var(--color-white);
+  border-radius: var(--radius-pill);
+  background: var(--color-black);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.enlace:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.enlacePedido {
+  background: var(--color-green);
+  border-color: var(--color-green);
+  color: var(--color-black);
+}
+
+.enlacePedido:hover {
+  background: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.enlacePrincipal {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-black);
+}
+
+.enlacePrincipal:hover {
+  background: var(--color-orange-light);
+  border-color: var(--color-orange-light);
+}
+
+.enlace:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: var(--space-2);
+}
+
+/* ── Ingredientes que saltan ── */
+
+.lluvia {
+  position: fixed;
+  inset: 0;
+  /* Por detrás del 404, la frase y los enlaces (está dentro de .contenido) y por delante de las manchas */
+  z-index: -1;
+  pointer-events: none;
+}
+
+.pieza {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+/* ── Armario de la escoba: aparece con el primer clic ── */
+
+.armario {
+  position: fixed;
+  left: var(--space-5);
+  bottom: var(--space-5);
+  width: clamp(5.5rem, 8vw, 7.5rem);
+  height: clamp(6.5rem, 10vw, 9rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-black);
+  border: 3px solid var(--color-orange);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s;
+}
+
+.armarioVisible {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  /* Empieza a flotar cuando termina de aparecer */
+  animation: flotar 3s ease-in-out 0.6s infinite alternate;
+}
+
+@keyframes flotar {
+  to { transform: translateY(-10px); }
+}
+
+/* La escoba tiembla cada 2 s para que se vea */
+.escoba:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: var(--space-2);
+  border-radius: var(--radius-md);
+}
+
+.escoba:disabled {
+  cursor: default;
+}
+
+.escobaImg {
+  width: clamp(4rem, 6vw, 5.5rem);
+  height: auto;
+  filter: drop-shadow(var(--shadow-lg));
+  animation: temblar 2s ease-in-out 0.6s infinite;
+}
+
+@keyframes temblar {
+  0%, 20%, 100% { transform: rotate(0); }
+  4% { transform: rotate(-14deg); }
+  8% { transform: rotate(12deg); }
+  12% { transform: rotate(-8deg); }
+  16% { transform: rotate(5deg); }
+}
+
+.escoba:hover .escobaImg {
+  animation-play-state: paused;
+}
+
+/* Mientras barre, la escoba sale del armario y la mueve .escobaViaje */
+.escobaActiva .escobaImg {
+  visibility: hidden;
+}
+
+.escobaViaje {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: clamp(4rem, 6vw, 5.5rem);
+  pointer-events: none;
+  transition: opacity 0.4s ease-out;
+}
+
+.escobaViaje img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--shadow-lg));
+  animation: cepillar 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes cepillar {
+  from { transform: rotate(-25deg) translateX(-6px); }
+  to { transform: rotate(15deg) translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cero,
+  .enlace { transition: none; }
+  .ceroClic,
+  .escobaImg { animation: none; }
+  .cero::before { display: none; }
+  .armario { transition: none; }
+  .armarioVisible { animation: none; }
+}

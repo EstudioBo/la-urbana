@@ -119,5 +119,18 @@
       "titulo": "Cookie policy",
       "descripcion": "Which cookies the La Urbana Burger Bar website uses, what each one is for, how long they are stored and how you can accept them, reject them or change your choice."
     }
+  },
+  "noEncontrada": {
+    "titulo": "Page not found",
+    "descripcion": "The page you are looking for does not exist on the La Urbana Burger Bar website. Check the menu, order online or book a table.",
+    "codigo": "Error 404",
+    "enlaces": "What now?",
+    "frase": "Someone ate this page... and didn't leave a single crumb!",
+    "soltar": "Click to make the ingredients jump",
+    "clic": "click",
+    "barrer": "Sweep it up!",
+    "carta": "See the menu",
+    "reservar": "Book a table",
+    "pedido": "Order online"
   }
 }

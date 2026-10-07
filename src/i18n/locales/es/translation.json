@@ -123,5 +123,18 @@
       "titulo": "Política de cookies",
       "descripcion": "Qué cookies usa la web de La Urbana Burger Bar, para qué sirve cada una, cuánto tiempo se guardan y cómo puedes aceptarlas, rechazarlas o cambiar tu elección."
     }
+  },
+  "noEncontrada": {
+    "titulo": "Página no encontrada",
+    "descripcion": "La página que buscas no existe en la web de La Urbana Burger Bar. Mira la carta, haz tu pedido o reserva mesa en tu Urbana.",
+    "codigo": "Error 404",
+    "enlaces": "¿Y ahora qué?",
+    "frase": "¡Esta página se la ha comido alguien... y no ha dejado ni una miga!",
+    "soltar": "Haz clic para que salten los ingredientes",
+    "clic": "clic",
+    "barrer": "¡A barrer!",
+    "carta": "Ver carta",
+    "reservar": "Reservar mesa",
+    "pedido": "Hacer pedido"
   }
 }
