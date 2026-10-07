@@ -21,8 +21,8 @@ const app = (
   </React.StrictMode>
 )
 
-// Las rutas prerenderizadas (scripts/prerender.js) traen el HTML hecho y React lo hidrata.
-// El resto (desarrollo y URLs sin página) trae los metadatos genéricos de index.html: se retiran
+// Las rutas prerenderizadas (scripts/prerender.js), también la 404, traen el HTML hecho y React lo hidrata.
+// En desarrollo no hay prerenderizado: llegan los metadatos genéricos de index.html y se retiran
 // para que no se dupliquen con los que pone cada página.
 if (root.hasChildNodes()) {
   hydrateRoot(root, app)

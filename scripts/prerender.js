@@ -12,9 +12,6 @@ const { render, RUTAS } = await import('../dist-ssr/entry-server.js')
 
 const plantilla = readFileSync(join(dist, 'index.html'), 'utf-8')
 
-// Las URLs que no son ninguna ruta reciben la plantilla sin prerenderizar, con los metadatos genéricos de index.html
-writeFileSync(join(dist, 'spa.html'), plantilla)
-
 // Los metadatos genéricos de index.html se sustituyen por los de cada página
 const SEO_GENERICO = /\s*<(?:title>[^<]*<\/title|meta (?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*|link rel="canonical"[^>]*)>/g
 const base = plantilla.replace(SEO_GENERICO, '')
@@ -24,7 +21,10 @@ const CABECERA = /^(?:<title>[^<]*<\/title>|<(?:meta|link)\b[^>]*\/>)+/
 
 const archivoDeRuta = (ruta) => (ruta === '/' ? 'index.html' : `${ruta.slice(1)}.html`)
 
-for (const ruta of RUTAS) {
+// Cualquier URL que no sea una ruta pinta la página de error: /404 → dist/404.html, que _redirects sirve con código 404
+const PAGINA_404 = '/404'
+
+for (const ruta of [...RUTAS, PAGINA_404]) {
   const html = await render(ruta)
   const cabecera = html.match(CABECERA)?.[0] ?? ''
   if (!cabecera.includes('<title>')) throw new Error(`${ruta} se ha prerenderizado sin <title>`)

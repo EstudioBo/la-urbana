@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useSyncExternalStore } from 'react'
 import PatronUs from '../../components/FondoUs/PatronUs'
 import styles from './NoEncontrada.module.css'
 
@@ -17,6 +17,14 @@ const MANCHAS = [
 const RADIO_CURSOR = 85
 
 const VERTICAL = '(orientation: portrait)'
+const escucharOrientacion = (avisar) => {
+  const consulta = window.matchMedia(VERTICAL)
+  consulta.addEventListener('change', avisar)
+  return () => consulta.removeEventListener('change', avisar)
+}
+const esVertical = () => window.matchMedia(VERTICAL).matches
+// La 404 llega prerenderizada (404.html): en el servidor no hay pantalla, se pinta en horizontal y se ajusta al hidratar
+const enServidor = () => false
 
 // En pantallas verticales el lienzo se gira: se intercambian ancho y alto, y x con y
 function posicion(m, t, vertical) {
@@ -30,16 +38,9 @@ export default function FondoManchas() {
   const svgRef = useRef(null)
   const circulosRef = useRef([])
   const cursorRef = useRef(null)
-  const [vertical, setVertical] = useState(() => typeof window !== 'undefined' && window.matchMedia(VERTICAL).matches)
+  const vertical = useSyncExternalStore(escucharOrientacion, esVertical, enServidor)
   const ancho = vertical ? ALTO : ANCHO
   const alto = vertical ? ANCHO : ALTO
-
-  useEffect(() => {
-    const consulta = window.matchMedia(VERTICAL)
-    const alCambiar = (e) => setVertical(e.matches)
-    consulta.addEventListener('change', alCambiar)
-    return () => consulta.removeEventListener('change', alCambiar)
-  }, [])
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
