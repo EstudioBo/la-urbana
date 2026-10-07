@@ -129,14 +129,14 @@ export default function SeccionCarta() {
         <div className={styles.itemMeta} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.itemNombre}>{activeItem.nombre}</span>
         </div>
-        <div className={styles.track} ref={trackRef}>
+        {/* Las fotos llevan a la carta filtrada con el ratón o el dedo; con teclado y lector de pantalla se usa "+ info" */}
+        <div className={styles.track} ref={trackRef} aria-hidden="true">
           <div
             className={styles.inner}
             style={isMobile ? undefined : { transform: `translateX(-${shift}px)` }}
           >
             {LOOP.map((item, i) => (
-              // Las fotos llevan a la carta filtrada con el ratón o el dedo; con teclado se usa "+ info".
-              <Link key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1} aria-hidden="true">
+              <Link key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1}>
                 <img loading="lazy" src={item.img} alt={item.nombre} />
                 {(i === offset || i === offset - 1) && (
                   <div className={styles.cardOverlay} style={{
@@ -153,13 +153,13 @@ export default function SeccionCarta() {
           </div>
         </div>
         <div ref={itemDescRef} className={styles.itemDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
-          <Link to={enlaceCarta(activeItem)} className={styles.itemInfo} aria-label={`Ver ${activeItem.nombre} en la carta`}>+ info</Link>
+          <Link to={enlaceCarta(activeItem)} className={styles.itemInfo} aria-label={t('a11y.verEnCarta', { nombre: activeItem.nombre })}>+ info</Link>
         </div>
       </div>
       <Link to="/carta" className={styles.ctaMobile} style={isMobile && ctaTop != null ? { top: ctaTop, bottom: 'auto' } : undefined}>
         Ver todo
       </Link>
-      <button className={styles.arrowLeft} onClick={goNext} aria-label="Siguiente">
+      <button className={styles.arrowLeft} onClick={goNext} aria-label={t('a11y.siguiente')}>
         <img loading="lazy" src={arrowLeft} alt="" />
       </button>
     </section>

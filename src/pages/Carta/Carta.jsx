@@ -203,6 +203,28 @@ export default function Carta() {
 
   const toggleExpandido = (key) => setExpandido(prev => prev === key ? null : key)
 
+  // Con teclado, al abrir los ingredientes el foco entra en la ficha y al cerrarla vuelve al botón "+"
+  const masRef = useRef(null)
+  const cerrarFichaRef = useRef(null)
+  const abiertaConTeclado = useRef(false)
+  const toggleConBoton = (e, key) => {
+    e.stopPropagation()
+    abiertaConTeclado.current = e.detail === 0
+    toggleExpandido(key)
+  }
+  const cerrarFicha = (conTeclado) => {
+    setExpandido(null)
+    if (conTeclado) masRef.current?.focus()
+  }
+
+  useEffect(() => {
+    if (expandido === null) return undefined
+    if (abiertaConTeclado.current) cerrarFichaRef.current?.focus()
+    const onKeyDown = (e) => { if (e.key === 'Escape') cerrarFicha(true) }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [expandido])
+
   return (
     <div className={styles.page} onClick={() => setExpandido(null)}>
       <Seo
@@ -237,10 +259,11 @@ export default function Carta() {
 {plato.glutenFree && <span className={styles.tagGluten}>SG</span>}
 
                 {abierto && (
-                  <div className={styles.cardPopup} onClick={e => e.stopPropagation()}>
+                  <div className={styles.cardPopup} id={`ingredientes-${key}`} onClick={e => e.stopPropagation()}>
                     <button
+                      ref={cerrarFichaRef}
                       className={styles.cardPopupClose}
-                      onClick={() => setExpandido(null)}
+                      onClick={(e) => cerrarFicha(e.detail === 0)}
                       aria-label="Cerrar"
                     >×</button>
                     <p className={styles.cardDesc}>{plato.desc}</p>
@@ -272,9 +295,12 @@ export default function Carta() {
                   <div className={styles.cardRow}>
                     <span className={styles.cardNombre} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>{plato.nombre}</span>
                     <button
+                      ref={abierto ? masRef : null}
                       className={`${styles.cardMas} ${abierto ? styles.cardMasOpen : ''}`}
-                      onClick={e => { e.stopPropagation(); toggleExpandido(key) }}
-                      aria-label={abierto ? 'Cerrar ingredientes' : 'Ver ingredientes'}
+                      onClick={e => toggleConBoton(e, key)}
+                      aria-label={`${abierto ? 'Cerrar ingredientes' : 'Ver ingredientes'}: ${plato.nombre}`}
+                      aria-expanded={abierto}
+                      aria-controls={abierto ? `ingredientes-${key}` : undefined}
                     >
                       <img loading="lazy" src={iconBurger} alt="" className={styles.cardMasIcon} />
                     </button>

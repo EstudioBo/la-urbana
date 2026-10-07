@@ -40,16 +40,44 @@ export default function Navbar({ lang, setLang }) {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const panelRef = useRef(null)
+  const burgerRef = useRef(null)
+  const closeBtnRef = useRef(null)
+  const abiertoConTeclado = useRef(false)
 
   const close = () => setMenuOpen(false)
+  // Al cerrar con el teclado, el foco vuelve a la hamburguesa para no perder el sitio
+  const closeAndReturnFocus = () => {
+    setMenuOpen(false)
+    burgerRef.current?.focus()
+  }
+
+  // e.detail === 0: el botón se ha pulsado con Enter o Espacio, no con el ratón
+  const toggleMenu = (e) => {
+    abiertoConTeclado.current = e.detail === 0
+    setMenuOpen(!menuOpen)
+  }
 
   useEffect(() => {
     if (!menuOpen) return
-    const handler = (e) => {
+    if (abiertoConTeclado.current) closeBtnRef.current?.focus()
+    const onMouseDown = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) close()
     }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeAndReturnFocus()
+    }
+    // Si el foco sale del panel con el tabulador, el menú se cierra para no dejarlo abierto tapando la página
+    const onFocusIn = (e) => {
+      if (!panelRef.current.contains(e.target) && e.target !== burgerRef.current) close()
+    }
+    document.addEventListener('mousedown', onMouseDown)
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('focusin', onFocusIn)
+    return () => {
+      document.removeEventListener('mousedown', onMouseDown)
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('focusin', onFocusIn)
+    }
   }, [menuOpen])
 
   return (
@@ -67,9 +95,12 @@ export default function Navbar({ lang, setLang }) {
           <img src={iconReserva} alt="" />
         </Link>
         <button
+          ref={burgerRef}
           className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menú"
+          onClick={toggleMenu}
+          aria-label={t('a11y.menu')}
+          aria-expanded={menuOpen}
+          aria-controls="menu-principal"
         >
           {menuOpen ? <IconClose /> : <img src={iconBurgerMenu} alt="" />}
         </button>
@@ -83,20 +114,22 @@ export default function Navbar({ lang, setLang }) {
       />
 
       {/* Panel */}
-      <nav className={`${styles.panel} ${menuOpen ? styles.panelOpen : ''}`} ref={panelRef}>
+      <nav id="menu-principal" className={`${styles.panel} ${menuOpen ? styles.panelOpen : ''}`} ref={panelRef} inert={!menuOpen}>
 
         <div className={styles.panelTop}>
           <div className={styles.langSegment}>
             <button
               className={`${styles.langOpt} ${lang === 'es' ? styles.langOptActive : ''}`}
               onClick={() => setLang('es')}
+              aria-pressed={lang === 'es'}
             >ES</button>
             <button
               className={`${styles.langOpt} ${lang === 'en' ? styles.langOptActive : ''}`}
               onClick={() => setLang('en')}
+              aria-pressed={lang === 'en'}
             >EN</button>
           </div>
-          <button className={styles.closeBtn} onClick={close} aria-label="Cerrar menú">
+          <button ref={closeBtnRef} className={styles.closeBtn} onClick={(e) => (e.detail === 0 ? closeAndReturnFocus() : close())} aria-label={t('a11y.cerrarMenu')}>
             <span className={styles.closeTxt}>Menú</span>
             <IconClose />
           </button>
@@ -134,7 +167,7 @@ export default function Navbar({ lang, setLang }) {
           <a href="https://www.facebook.com/laurbanaburgerbar" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <IconFacebook />
           </a>
-          <a href="https://g.page/r/laurbanaburgerbar/review" target="_blank" rel="noopener noreferrer" aria-label="Reseñas Google">
+          <a href="https://g.page/r/laurbanaburgerbar/review" target="_blank" rel="noopener noreferrer" aria-label={t('a11y.resenasGoogle')}>
             <IconGoogleReviews />
           </a>
         </div>

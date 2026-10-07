@@ -1,5 +1,4 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionTeam.module.css'
 
@@ -41,6 +40,28 @@ export default function SeccionTeam() {
   const textColRef = useRef(null)
   const timer = useRef(null)
   const selloRef = useRef(null)
+  const dialogRef = useRef(null)
+  const cerrarRef = useRef(null)
+  const abiertaConTeclado = useRef(false)
+
+  const abrirFicha = (idx, conTeclado) => {
+    abiertaConTeclado.current = conTeclado
+    setModalIdx(idx)
+  }
+
+  // La ficha es un <dialog> nativo: atrapa el foco, se cierra con Esc y devuelve el foco al botón que la abrió
+  const fichaAbierta = modalIdx !== null
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (fichaAbierta && !dialog.open) {
+      dialog.showModal()
+      // Con ratón el foco se queda en el diálogo para no pintar el contorno en la X
+      if (abiertaConTeclado.current) cerrarRef.current?.focus()
+      else dialog.focus()
+    }
+    if (!fichaAbierta && dialog.open) dialog.close()
+  }, [fichaAbierta])
 
   useLayoutEffect(() => {
     const calc = () => {
@@ -166,7 +187,8 @@ export default function SeccionTeam() {
         <div className={styles.chefMeta} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
           <span className={styles.chefNombre}>{activeChef.nombre}</span>
         </div>
-        <div className={styles.track} ref={trackRef}>
+        {/* Las fotos abren la ficha con el ratón o el dedo; con teclado y lector de pantalla se usa el botón de debajo */}
+        <div className={styles.track} ref={trackRef} aria-hidden="true">
           <div
             ref={innerRef}
             className={styles.inner}
@@ -179,7 +201,7 @@ export default function SeccionTeam() {
                 <div
                   key={i}
                   className={`${styles.card} ${clickable ? styles.cardClickable : ''}`}
-                  onClick={clickable ? () => setModalIdx(i % CHEFS.length) : undefined}
+                  onClick={clickable ? () => abrirFicha(i % CHEFS.length, false) : undefined}
                 >
                   <img loading="lazy" src={chef.img} alt={chef.nombre} />
                   {isOverlay && (
@@ -197,10 +219,16 @@ export default function SeccionTeam() {
             })}
           </div>
         </div>
-        <div className={styles.chefDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
+        <button
+          type="button"
+          className={styles.chefDesc}
+          style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}
+          onClick={(e) => abrirFicha(CHEFS.indexOf(activeChef), e.detail === 0)}
+          aria-haspopup="dialog"
+        >
           <span className={styles.chefLocal}>{activeChef.local}</span>
           <span className={styles.chefBurguer}>{activeChef.burguer}</span>
-        </div>
+        </button>
       </div>
 
       <div className={styles.textCol} ref={textColRef}>
@@ -210,22 +238,29 @@ export default function SeccionTeam() {
         <h2 className={styles.title}>{t('home.team.title')}</h2>
       </div>
 
-      <button className={styles.arrowLeft} onClick={goNext} aria-label="Siguiente">
+      <button className={styles.arrowLeft} onClick={goNext} aria-label={t('a11y.siguiente')}>
         <img loading="lazy" src={arrowLeft} alt="" />
       </button>
 
-      {modalChef && createPortal(
+      <dialog
+        ref={dialogRef}
+        className={styles.dialogo}
+        aria-label={modalChef?.nombre}
+        tabIndex={-1}
+        onClose={() => setModalIdx(null)}
+      >
+      {modalChef && (
         <>
           <div className={styles.modalBackdrop} onClick={() => setModalIdx(null)} />
-          <button className={styles.modalPrev} onClick={() => setModalIdx(i => (i - 1 + CHEFS.length) % CHEFS.length)} aria-label="Anterior">
+          <button className={styles.modalPrev} onClick={() => setModalIdx(i => (i - 1 + CHEFS.length) % CHEFS.length)} aria-label={t('a11y.anterior')}>
             <img src={arrowLeft} alt="" />
           </button>
-          <button className={styles.modalNext} onClick={() => setModalIdx(i => (i + 1) % CHEFS.length)} aria-label="Siguiente">
+          <button className={styles.modalNext} onClick={() => setModalIdx(i => (i + 1) % CHEFS.length)} aria-label={t('a11y.siguiente')}>
             <img src={arrowRight} alt="" />
           </button>
           <div className={styles.modal}>
             <div className={styles.modalBgU}><img src={bgU} alt="" /></div>
-            <button className={styles.modalClose} onClick={() => setModalIdx(null)} aria-label="Cerrar">✕</button>
+            <button ref={cerrarRef} className={styles.modalClose} onClick={() => setModalIdx(null)} aria-label={t('a11y.cerrar')}>✕</button>
             <div className={styles.modalImg}>
               <img src={modalChef.img} alt={modalChef.nombre} />
             </div>
@@ -246,9 +281,9 @@ export default function SeccionTeam() {
               <img src={selloU} alt="" className={styles.modalSello} />
             </div>
           </div>
-        </>,
-        document.body
+        </>
       )}
+      </dialog>
     </section>
   )
 }

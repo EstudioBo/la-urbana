@@ -20,6 +20,24 @@ const STACK_CARDS = [
 
 export default function UrbanaKids() {
   const [lightboxIdx, setLightboxIdx] = useState(null)
+  const dialogRef = useRef(null)
+  const abiertoConTeclado = useRef(false)
+  const total = STACK_CARDS.length
+  const anterior = () => setLightboxIdx(i => (i + total - 1) % total)
+  const siguiente = () => setLightboxIdx(i => (i + 1) % total)
+
+  // El visor es un <dialog> nativo: atrapa el foco, se cierra con Esc y devuelve el foco a la foto que lo abrió
+  const visorAbierto = lightboxIdx !== null
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (visorAbierto && !dialog.open) {
+      dialog.showModal()
+      // Con ratón el foco se queda en el diálogo para no pintar el contorno en la flecha
+      if (!abiertoConTeclado.current) dialog.focus()
+    }
+    if (!visorAbierto && dialog.open) dialog.close()
+  }, [visorAbierto])
 
   useEffect(() => {
     document.body.style.background = '#fff'
@@ -142,6 +160,7 @@ export default function UrbanaKids() {
         path="/restaurantes-secretos"
       />
 
+      <main>
       {/* HERO */}
       <section className={styles.hero}>
         <img src={imgKidsHero} alt="" className={styles.heroBg} />
@@ -176,13 +195,16 @@ export default function UrbanaKids() {
           <div className={styles.stackRight} ref={stackRightRef}>
             {STACK_CARDS.flatMap((card, i) => [
               <div key={i} className={styles.stackSlot} style={{ zIndex: i + 1 }}>
-                <div
+                <button
+                  type="button"
                   className={styles.stackCard}
-                  style={{ transform: `translateY(${card.offset}px) rotate(${card.rotate})`, cursor: 'pointer' }}
-                  onClick={() => setLightboxIdx(i)}
+                  style={{ transform: `translateY(${card.offset}px) rotate(${card.rotate})` }}
+                  onClick={(e) => { abiertoConTeclado.current = e.detail === 0; setLightboxIdx(i) }}
+                  aria-label={`Ampliar foto ${i + 1} de ${total}`}
+                  aria-haspopup="dialog"
                 >
                   <img loading="lazy" src={card.img} alt="" />
-                </div>
+                </button>
               </div>,
               ...(i === 0 ? [<div key="nino-slot" ref={ninoSlotRef} className={styles.stackNinoSlot} />] : []),
             ])}
@@ -196,23 +218,37 @@ export default function UrbanaKids() {
         </div>
       </section>
 
-      {lightboxIdx !== null && (
-        <div className={styles.lightboxOverlay} onClick={() => setLightboxIdx(null)}>
-          <button className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); setLightboxIdx((lightboxIdx + STACK_CARDS.length - 1) % STACK_CARDS.length) }}>
-            <img src={arrowLeft} alt="Anterior" />
-          </button>
-          <img src={STACK_CARDS[lightboxIdx].img} alt="" className={styles.lightboxImg} />
-          <button className={styles.lightboxNext} onClick={e => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % STACK_CARDS.length) }}>
-            <img src={arrowRight} alt="Siguiente" />
-          </button>
-        </div>
-      )}
+      <dialog
+        ref={dialogRef}
+        className={styles.lightboxDialog}
+        aria-label={visorAbierto ? `Foto ${lightboxIdx + 1} de ${total}` : undefined}
+        tabIndex={-1}
+        onClose={() => setLightboxIdx(null)}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') anterior()
+          if (e.key === 'ArrowRight') siguiente()
+        }}
+      >
+        {visorAbierto && (
+          <div className={styles.lightboxOverlay} onClick={() => setLightboxIdx(null)}>
+            <button type="button" className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); anterior() }}>
+              <img src={arrowLeft} alt="Anterior" />
+            </button>
+            <img src={STACK_CARDS[lightboxIdx].img} alt="" className={styles.lightboxImg} />
+            <button type="button" className={styles.lightboxNext} onClick={e => { e.stopPropagation(); siguiente() }}>
+              <img src={arrowRight} alt="Siguiente" />
+            </button>
+          </div>
+        )}
+      </dialog>
 
       <div className={styles.uuStampWrap}>
         <div className={styles.uuStamp} ref={stampRef}>
           <img loading="lazy" src={imgUu} alt="" className={styles.uuDeco} />
         </div>
       </div>
+
+      </main>
 
       <div className={styles.footerWrapper}>
         <Footer />

@@ -40,6 +40,9 @@
   position: relative;
   z-index: 1;
   width: fit-content;
+  /* Zona clicable de al menos 24px de alto sin mover el texto: el relleno se compensa con margen negativo */
+  padding-block: var(--space-3);
+  margin-block: calc(-1 * var(--space-3));
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 0.75rem;

@@ -9,6 +9,16 @@
     "carta": "Carta",
     "donde": "Donde estamos"
   },
+  "a11y": {
+    "menu": "Menú",
+    "cerrarMenu": "Cerrar menú",
+    "resenasGoogle": "Reseñas en Google",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "cerrar": "Cerrar",
+    "galeria": "Galería de fotos",
+    "verEnCarta": "Ver {{nombre}} en la carta"
+  },
   "home": {
     "hero": {
       "slide1_title": "Lucía|Freitas",

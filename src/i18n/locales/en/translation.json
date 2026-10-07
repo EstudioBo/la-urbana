@@ -9,6 +9,16 @@
     "carta": "Menu",
     "donde": "Find us"
   },
+  "a11y": {
+    "menu": "Menu",
+    "cerrarMenu": "Close menu",
+    "resenasGoogle": "Google reviews",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "cerrar": "Close",
+    "galeria": "Photo gallery",
+    "verEnCarta": "See {{nombre}} on the menu"
+  },
   "home": {
     "hero": {
       "slide1_title": "Lucía Freitas",

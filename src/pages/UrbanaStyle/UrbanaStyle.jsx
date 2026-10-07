@@ -13,6 +13,7 @@ export default function UrbanaStyle() {
         description="Campañas, colaboraciones con artistas y chefs gallegos, burgers de autor y acciones en la calle de La Urbana en Lugo, Santiago y Vigo. Puro #LaUrbanaStyle."
         path="/la-urbana-style"
       />
+      <main>
       <section className={styles.hero}>
         <img src={imgHero} alt="" className={styles.heroBg} />
         <div className={styles.heroContent}>
@@ -25,6 +26,7 @@ export default function UrbanaStyle() {
       </section>
 
       <Archivo titulo="Lo que pasa en La Urbana" posts={POSTS} />
+      </main>
 
       <Footer />
     </div>

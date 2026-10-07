@@ -79,6 +79,18 @@
 /* Info debajo: local y burger */
 .chefDesc {
   padding-left: calc(27% - 15px);
+  /* Es un <button>: se quita el aspecto de botón del navegador */
+  width: 100%;
+  margin: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
@@ -223,6 +235,28 @@
 .cardClickable { cursor: pointer; }
 .cardClickable:hover img { transform: scale(1.05); transition: transform 0.3s ease; }
 .cardClickable:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.35); } /* TODO Sara: valor no cubierto por la escala de sombras aprobada, pendiente de decisión */
+
+.chefDesc:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 4px;
+}
+
+/* <dialog> transparente a pantalla completa: el fondo y la ficha los pintan .modalBackdrop y .modal */
+.dialogo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: visible;
+}
+.dialogo:focus { outline: none; }
+.dialogo::backdrop { background: none; }
 
 /* Modal backdrop */
 .modalBackdrop {

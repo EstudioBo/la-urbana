@@ -124,7 +124,7 @@ export default function HeroSlider() {
         className={`${styles.arrow} ${styles.left}`}
         style={arrowTop != null ? { top: arrowTop, bottom: 'auto', transform: 'translateY(-50%)' } : undefined}
         onClick={prev}
-        aria-label="Anterior"
+        aria-label={t('a11y.anterior')}
       >
         <img src={arrowLeft} alt="" />
       </button>
@@ -132,13 +132,13 @@ export default function HeroSlider() {
         className={`${styles.arrow} ${styles.right}`}
         style={arrowTop != null ? { top: arrowTop, bottom: 'auto', transform: 'translateY(-50%)' } : undefined}
         onClick={next}
-        aria-label="Siguiente"
+        aria-label={t('a11y.siguiente')}
       >
         <img src={arrowRight} alt="" />
       </button>
 
       <div className={styles.scrollHint}>
-        <button onClick={next} aria-label="Siguiente slide">
+        <button onClick={next} aria-label={t('a11y.siguiente')}>
           <img src={arrowDown} alt="" />
         </button>
       </div>

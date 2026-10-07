@@ -434,6 +434,12 @@
 }
 
 .stackCard {
+  /* Es un <button>: se quita el aspecto de botón del navegador */
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
   width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -477,7 +483,29 @@
   display: block;
 }
 
+.stackCard:focus-visible {
+  outline: 3px solid var(--color-green-neon);
+  outline-offset: 6px;
+}
+
 /* LIGHTBOX */
+/* <dialog> transparente a pantalla completa: el fondo lo pinta .lightboxOverlay */
+.lightboxDialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: visible;
+}
+.lightboxDialog:focus { outline: none; }
+.lightboxDialog::backdrop { background: none; }
+
 .lightboxOverlay {
   position: fixed;
   inset: 0;

@@ -12,4 +12,9 @@ i18n
     interpolation: { escapeValue: false },
   })
 
+// <html lang> sigue al idioma elegido para que los lectores de pantalla pronuncien bien
+if (typeof document !== 'undefined') {
+  i18n.on('languageChanged', (lng) => { document.documentElement.lang = lng })
+}
+
 export default i18n
