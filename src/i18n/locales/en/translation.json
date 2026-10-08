@@ -1,13 +1,17 @@
-﻿{
+{
   "nav": {
-    "delivery": "Delivery",
-    "reserva": "Book a table",
-    "origen": "Origin",
-    "esencia": "Essence",
-    "team": "Team",
-    "redes": "Social media",
+    "inicio": "Home",
+    "origen": "Our Origin",
     "carta": "Menu",
-    "donde": "Find us"
+    "contacto": "Contact",
+    "delivery": "Delivery",
+    "reservar": "Book a table"
+  },
+  "footer": {
+    "avisoLegal": "Legal notice",
+    "privacidad": "Privacy policy",
+    "cookies": "Cookie policy",
+    "alergenos": "Allergens"
   },
   "a11y": {
     "menu": "Menu",
@@ -17,85 +21,165 @@
     "siguiente": "Next",
     "cerrar": "Close",
     "galeria": "Photo gallery",
-    "verEnCarta": "See {{nombre}} on the menu"
+    "verEnCarta": "See {{nombre}} on the menu",
+    "ampliarFoto": "Enlarge photo: {{descripcion}}",
+    "ampliarFotoDe": "Enlarge photo {{numero}} of {{total}}",
+    "fotoDe": "Photo {{numero}} of {{total}}",
+    "masOrigen": "More about our origin",
+    "masStyle": "More about #LaUrbanaStyle",
+    "masSecretos": "More about our secret restaurants",
+    "instagram": "La Urbana Instagram post"
   },
   "home": {
+    "seo": {
+      "titulo": "La Urbana Burger | Burgers in Lugo, Vigo & Santiago",
+      "descripcion": "Signature burgers made with km 0 Galician produce in Lugo, Vigo and Santiago de Compostela. Rubia Galega beef and artisan bread. Book a table or order delivery."
+    },
     "hero": {
-      "slide1_title": "Lucía Freitas",
-      "slide1_subtitle": "New Author Burger",
-      "slide2_title": "",
-      "slide2_subtitle": "Real|bread|We love it when|IT CRUNCHES!",
-      "slide3_title": "Your spot is here",
-      "slide3_subtitle": "Before or after the film"
+      "slide1_title": "Lucía|Freitas",
+      "slide1_subtitle": "New|SIGNATURE|burger",
+      "slide2_title": "REAL|BREAD",
+      "slide2_subtitle": "We like it to go|CRUNCH!",
+      "slide3_title": "Less smash",
+      "slide3_subtitle": "more|ñam ñam",
+      "slide4_title": "Martín|Indómito",
+      "slide4_subtitle": "New|SIGNATURE|burger"
     },
     "origen": {
       "label": "Our origin:",
-      "title": "Rubia Gallega"
+      "title": "Rubia Gallega",
+      "body": "Hand-picked local beef is the secret behind artisan burgers that are out of this world. Everything we use goes straight from farm to table."
     },
     "esencia": {
       "label": "Our essence",
-      "title": "Urbana"
+      "title": "#laurbanastyle",
+      "body": "We're a modern restaurant, and to us modern means bringing people together. Handmade food and local produce to enjoy in an urban setting. Everyone's welcome in our neighbourhood."
     },
     "team": {
       "label": "Our",
-      "title": "Author team"
+      "title": "Signature chefs",
+      "burger": "Burger",
+      "chef": "Chef",
+      "restaurante": "Restaurant",
+      "ingredientes": "Ingredients"
     },
     "viral": {
       "label": "Style",
-      "title": "Very very viral"
+      "title": "Very very viral",
+      "resenas": "reviews"
     },
     "carta": {
       "label": "The",
       "title": "Menu",
-      "subtitle": "Artisan"
+      "verTodo": "See it all"
+    },
+    "secretos": {
+      "label": "Our|Secret",
+      "title": "Restaurants",
+      "body": "At La Urbana Vigo and Lugo – Augas Férreas, kids get their very own secret hideout: an ordering kiosk, a supervised play area, a screen and a table to eat at without the grown-ups (who, let's face it, are very boring)"
     },
     "donde": {
       "label": "Where",
-      "title": "We are",
-      "cta": "Book here"
+      "title": "We hang out",
+      "cta": "Book here",
+      "encuentranos": "Find us",
+      "interior": "Inside La Urbana"
+    },
+    "direcciones": {
+      "horarioLocal": "Opening hours",
+      "horarioCocina": "Kitchen hours"
     }
   },
   "carta": {
-    "title": "Menu",
-    "sections": {
-      "entrantes": "Starters",
-      "artesanas": "Artisan",
-      "deautor": "Author",
-      "veggies": "Veggies",
-      "entrepanes": "Sandwiches",
-      "delahuerta": "From the Garden",
-      "menudin": "Little Menu",
-      "postres": "Desserts"
-    }
+    "seo": {
+      "titulo": "Burger menu",
+      "descripcion": "Our menu: Made in Galicia burgers, signature burgers, sandwiches, salads, starters and desserts. Km 0 Galician produce in every dish at La Urbana."
+    },
+    "titulo": "Our menu",
+    "contiene": "Contains",
+    "trazas": "May contain traces",
+    "verIngredientes": "See ingredients: {{plato}}",
+    "cerrarIngredientes": "Hide ingredients: {{plato}}",
+    "sinGluten": "GF"
+  },
+  "alergenos": {
+    "seo": {
+      "titulo": "Allergen chart",
+      "descripcion": "La Urbana Burger Bar allergen chart: burgers, starters, salads, desserts and kids' menu. Check the allergens in every dish before you order."
+    },
+    "titulo": "Allergens",
+    "aviso": "For your safety, please let our team know about any intolerance.",
+    "plato": "Dish",
+    "contieneX": "Contains {{alergeno}}",
+    "trazasX": "May contain traces of {{alergeno}}"
   },
   "nosotros": {
-    "title": "About us"
+    "seo": {
+      "titulo": "Our Origin: Galician produce",
+      "descripcion": "Rubia Galega beef, artisan bread from Lugo, free-range eggs, organic honey and Galician PDO cheeses: the local produce behind every La Urbana burger."
+    },
+    "intro": "Galicia is quality in its purest form, and as the saying goes… for eating, it's Lugo! That's exactly what our burgers are: Galician beef, artisan bread and local ingredients we know by name. We back produce from right here and, whenever we can, organic. And boy, can you tell!"
+  },
+  "kids": {
+    "seo": {
+      "titulo": "Secret Restaurants | Urbana Kids",
+      "descripcion": "At La Urbana Vigo and Lugo – Augas Férreas, kids have their own secret hideout: an ordering kiosk, a play area, a screen and a table all to themselves."
+    },
+    "migas": "Secret Restaurants",
+    "titulo1": "Secret",
+    "titulo2": "Restaurant",
+    "intro": "We love mums and dads. That's why we've built your little ones a Secret Restaurant inside our restaurants. Happy kids, even happier grown-ups. ;)",
+    "subtitulo": "A secret that's not so secret any more.",
+    "texto": "Only in <strong>Lugo (Augas Férreas)</strong> and <strong>Vigo</strong>, hidden inside La Urbana, there's a secret restaurant. One where the kids are in charge. Their own ordering kiosk, a play area, a screen and a kids-only table. Grown-ups sit at theirs."
   },
   "contacto": {
-    "title": "Contact",
+    "seo": {
+      "titulo": "Contact",
+      "descripcion": "Got a question, an idea or fancy organising something with us? Drop us a line using the La Urbana Burger Bar contact form and we'll get back to you."
+    },
+    "titulo": "Got|something|to tell us???",
     "form": {
       "nombre": "Name",
       "email": "Email",
       "mensaje": "Message",
       "privacidad": "I have read and accept the",
       "privacidad_enlace": "privacy policy",
-      "marketing": "I want to receive news and offers from La Urbana",
+      "marketing": "I'd like to receive news and offers from La Urbana",
       "enviar": "Send",
       "enviando": "Sending…",
-      "exito": "Got it! We will get back to you as soon as possible.",
-      "error": "We could not send your message. Please try again in a few minutes."
+      "exito": "Got it! We'll get back to you as soon as we can.",
+      "error": "We couldn't send your message. Please try again in a few minutes.",
+      "noRellenar": "Do not fill in"
     }
   },
-  "locations": {
-    "title": "Our locations"
+  "reservar": {
+    "seo": {
+      "titulo": "Book a table: Lugo, Vigo, Santiago",
+      "descripcion": "Book a table at La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas and As Termas Shopping Centre), Vigo and Santiago de Compostela. Pick your spot and book."
+    },
+    "titulo": "Book a table",
+    "iframe": "Bookings"
+  },
+  "style": {
+    "descripcion": "Campaigns, collaborations with Galician artists and chefs, signature burgers and street actions from La Urbana in Lugo, Santiago and Vigo. Pure #LaUrbanaStyle.",
+    "alMasPuro": "In true",
+    "archivo": "What goes on at La Urbana",
+    "volver": "Back to #LaUrbanaStyle",
+    "entradasDe": "Posts in {{categoria}}",
+    "ctaTitulo": "Stories are better told over a burger",
+    "reservarMesa": "Book a table",
+    "verCarta": "See the menu",
+    "mas": "More #LaUrbanaStyle",
+    "verTodas": "See all stories →",
+    "leerMas": "Read more"
   },
   "cookies": {
     "titulo": "Cookies",
-    "texto": "We use technical cookies to make the website work. With your permission, we will also use analytics cookies to understand how the site is used and social media cookies to show you Instagram videos. You can accept them, reject them or choose which ones to allow.",
+    "texto": "We use technical cookies to keep the website working. With your permission, we'll also use analytics cookies to see how the site is used and social media cookies to show you Instagram videos. You can accept them, reject them or choose which ones you're happy with.",
     "politica": "Cookie policy",
     "aceptar": "Accept all",
     "rechazar": "Reject all",
-    "configurar": "Settings",
+    "configurar": "Customise",
     "reabrir": "Cookie settings",
     "preferencias": {
       "titulo": "Cookie settings",
@@ -106,19 +190,19 @@
     "categorias": {
       "tecnicas": {
         "nombre": "Technical",
-        "texto": "Needed for the website to work and to remember your cookie choice. They cannot be turned off."
+        "texto": "Needed for the website to work and to remember your cookie choice. They can't be switched off."
       },
       "analiticas": {
         "nombre": "Analytics",
-        "texto": "Help us know how many people visit the site and which pages they view (Google Analytics)."
+        "texto": "They help us see how many people visit the site and which pages they look at (Google Analytics)."
       },
       "terceros": {
         "nombre": "Social media",
-        "texto": "Let you watch Instagram videos and posts here. Instagram (Meta) may use its own cookies."
+        "texto": "They let you watch Instagram videos and posts here. Instagram (Meta) may use its own cookies."
       }
     },
     "instagram": {
-      "texto": "This video is hosted on Instagram. To watch it here, accept social media cookies.",
+      "texto": "This video is hosted on Instagram. To watch it here, please accept social media cookies.",
       "aceptar": "Accept and watch",
       "ver": "View on Instagram",
       "reproducir": "Play video"
@@ -127,15 +211,15 @@
   "legal": {
     "cookies": {
       "titulo": "Cookie policy",
-      "descripcion": "Which cookies the La Urbana Burger Bar website uses, what each one is for, how long they are stored and how you can accept them, reject them or change your choice."
+      "descripcion": "Which cookies the La Urbana Burger Bar website uses, what each one is for, how long they're kept and how to accept them, reject them or change your mind."
     }
   },
   "noEncontrada": {
     "titulo": "Page not found",
-    "descripcion": "The page you are looking for does not exist on the La Urbana Burger Bar website. Check the menu, order online or book a table.",
+    "descripcion": "The page you're looking for doesn't exist on the La Urbana Burger Bar website. Check out the menu, order online or book a table at your nearest Urbana.",
     "codigo": "Error 404",
     "enlaces": "What now?",
-    "frase": "Someone ate this page... and didn't leave a single crumb!",
+    "frase": "Someone's eaten this page... and didn't leave a single crumb!",
     "soltar": "Click to make the ingredients jump",
     "clic": "click",
     "barrer": "Sweep it up!",

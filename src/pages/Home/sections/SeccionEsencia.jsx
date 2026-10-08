@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Enlace from '../../../i18n/Enlace'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionEsencia.module.css'
 import imgEsencia from '../../../assets/images/home/esencia-urbana-ula.webp'
@@ -19,7 +19,7 @@ export default function SeccionEsencia() {
         <h2 className={styles.title}>{t('home.esencia.title')}</h2>
         <p className={styles.body}>{t('home.esencia.body')}</p>
         <div className={styles.moreWrapper}>
-          <Link to="/la-urbana-style" className={styles.more}>+</Link>
+          <Enlace to="/la-urbana-style" className={styles.more} aria-label={t('a11y.masStyle')}>+</Enlace>
         </div>
       </div>
     </section>

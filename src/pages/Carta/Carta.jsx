@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import styles from './Carta.module.css'
 import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import { CATEGORIAS, PLATOS, ALERGENOS } from './cartaData'
+import Enlace from '../../i18n/Enlace'
+import { tx, useIdioma } from '../../i18n/idioma'
 
 import imgParaEmpezar from '../../assets/images/carta/para-empezar.webp'
 import imgDeAutor     from '../../assets/images/carta/de-autor.webp'
@@ -182,6 +185,8 @@ function spawnDust(el) {
 }
 
 export default function Carta() {
+  const { t } = useTranslation()
+  const idioma = useIdioma()
   // La categoría va en la URL (/carta?categoria=entrepanes) para poder enlazar a la carta ya filtrada.
   const [params, setParams] = useSearchParams()
   const pedida = params.get('categoria')
@@ -229,14 +234,14 @@ export default function Carta() {
   return (
     <div className={styles.page} onClick={() => setExpandido(null)}>
       <Seo
-        title="Carta de hamburguesas"
-        description="Nuestra carta: hamburguesas Made in Galicia, burgers de autor, entrepanes, ensaladas, entrantes y postres. Producto gallego de km 0 en cada plato de La Urbana."
+        title={t('carta.seo.titulo')}
+        description={t('carta.seo.descripcion')}
         path="/carta"
       />
-      <MigasJsonLd migas={[{ nombre: 'Carta', path: '/carta' }]} />
+      <MigasJsonLd migas={[{ nombre: t('nav.carta'), path: '/carta' }]} />
       <main className={styles.main}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Nuestra carta</h1>
+          <h1 className={styles.title}>{t('carta.titulo')}</h1>
         </header>
 
         <div className={styles.pills}>
@@ -247,7 +252,7 @@ export default function Carta() {
               className={`${styles.pill} ${activa === cat.id ? (CAT_ROT_ALT.has(cat.id) ? styles.pillActiveAlt : styles.pillActive) : ''}`}
               onClick={() => { setParams({ categoria: cat.id }, { replace: true }); setExpandido(null) }}
             >
-              {cat.label}
+              {tx(cat.label, idioma)}
             </button>
           ))}
         </div>
@@ -255,10 +260,13 @@ export default function Carta() {
         <div className={styles.grid}>
           {platosFiltrados.map((plato, i) => {
             const key = `${plato.cat}-${i}`
+            const nombre = tx(plato.nombre, idioma)
+            // Las fotos están guardadas con el nombre del plato en castellano
+            const nombreEs = tx(plato.nombre, 'es')
             const abierto = expandido === key
             return (
               <div key={key} className={styles.card}>
-{plato.glutenFree && <span className={styles.tagGluten}>SG</span>}
+{plato.glutenFree && <span className={styles.tagGluten}>{t('carta.sinGluten')}</span>}
 
                 {abierto && (
                   <div className={styles.cardPopup} id={`ingredientes-${key}`} onClick={e => e.stopPropagation()}>
@@ -266,10 +274,10 @@ export default function Carta() {
                       ref={cerrarFichaRef}
                       className={styles.cardPopupClose}
                       onClick={(e) => cerrarFicha(e.detail === 0)}
-                      aria-label="Cerrar"
+                      aria-label={t('a11y.cerrar')}
                     >×</button>
-                    <p className={styles.cardDesc}>{plato.desc}</p>
-                    {[['Contiene', plato.alergenos, styles.alergenoIcon], ['Puede contener trazas', plato.trazas, `${styles.alergenoIcon} ${styles.alergenoTraza}`]].map(([titulo, ids, clase]) => ids?.length > 0 && (
+                    <p className={styles.cardDesc}>{tx(plato.desc, idioma)}</p>
+                    {[[t('carta.contiene'), plato.alergenos, styles.alergenoIcon], [t('carta.trazas'), plato.trazas, `${styles.alergenoIcon} ${styles.alergenoTraza}`]].map(([titulo, ids, clase]) => ids?.length > 0 && (
                       <div key={titulo} className={styles.cardAlergenosGrupo}>
                         <span className={styles.cardAlergenosTitulo}>{titulo}</span>
                         <div className={styles.cardAlergenos}>
@@ -278,8 +286,8 @@ export default function Carta() {
                               loading="lazy"
                               key={id}
                               src={ALERGENO_IMGS[id]}
-                              alt={ALERGENOS[id]?.label}
-                              title={ALERGENOS[id]?.label}
+                              alt={tx(ALERGENOS[id]?.label, idioma)}
+                              title={tx(ALERGENOS[id]?.label, idioma)}
                               className={clase}
                             />
                           ))}
@@ -290,17 +298,17 @@ export default function Carta() {
                 )}
 
                 <div className={styles.cardImg} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>
-                  <img loading="lazy" src={GALICIA_IMGS[plato.nombre] || ENTREPANES_IMGS[plato.nombre] || ENSALADAS_IMGS[plato.nombre] || AUTOR_IMGS[plato.nombre] || VEGGIES_IMGS[plato.nombre] || EMPEZAR_IMGS[plato.nombre] || POSTRES_IMGS[plato.nombre] || CAT_IMGS[plato.cat]} alt={plato.nombre} />
+                  <img loading="lazy" src={GALICIA_IMGS[nombreEs] || ENTREPANES_IMGS[nombreEs] || ENSALADAS_IMGS[nombreEs] || AUTOR_IMGS[nombreEs] || VEGGIES_IMGS[nombreEs] || EMPEZAR_IMGS[nombreEs] || POSTRES_IMGS[nombreEs] || CAT_IMGS[plato.cat]} alt={nombre} />
                 </div>
 
                 <div className={`${styles.cardInfo} ${plato.chef ? styles.cardInfoChef : ''}`}>
                   <div className={styles.cardRow}>
-                    <span className={styles.cardNombre} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>{plato.nombre}</span>
+                    <span className={styles.cardNombre} onClick={e => { e.stopPropagation(); toggleExpandido(key) }} style={{ cursor: 'pointer' }}>{nombre}</span>
                     <button
                       ref={abierto ? masRef : null}
                       className={`${styles.cardMas} ${abierto ? styles.cardMasOpen : ''}`}
                       onClick={e => toggleConBoton(e, key)}
-                      aria-label={`${abierto ? 'Cerrar ingredientes' : 'Ver ingredientes'}: ${plato.nombre}`}
+                      aria-label={t(abierto ? 'carta.cerrarIngredientes' : 'carta.verIngredientes', { plato: nombre })}
                       aria-expanded={abierto}
                       aria-controls={abierto ? `ingredientes-${key}` : undefined}
                     >
@@ -309,8 +317,8 @@ export default function Carta() {
                   </div>
                   {plato.chef && (
                     <div className={styles.cardChefWrap}>
-                      <span className={styles.cardChef}>{plato.chef}</span>
-                      {plato.restaurante && <span className={styles.cardRestaurante}>{plato.restaurante}</span>}
+                      <span className={styles.cardChef}>{tx(plato.chef, idioma)}</span>
+                      {plato.restaurante && <span className={styles.cardRestaurante}>{tx(plato.restaurante, idioma)}</span>}
                     </div>
                   )}
                 </div>
@@ -322,12 +330,12 @@ export default function Carta() {
       <div className={styles.ctaBar}>
         <a href="https://laurbana.waitry.net/" target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.ctaBtnDelivery}`}>
           <img loading="lazy" src={iconDeliveryBlanco} alt="" className={styles.ctaBtnIcon} />
-          Delivery
+          {t('nav.delivery')}
         </a>
-        <Link to="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
+        <Enlace to="/reservar" className={`${styles.ctaBtn} ${styles.ctaBtnReserva}`}>
           <img loading="lazy" src={iconCalendarioBlanco} alt="" className={styles.ctaBtnIcon} />
-          Reservar
-        </Link>
+          {t('nav.reservar')}
+        </Enlace>
       </div>
       <Footer />
     </div>

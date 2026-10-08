@@ -3,39 +3,43 @@
 // Las burgers van como en la tabla: sin pan ni patatas. Corea y Mejicana van sin gluten a propósito: la carta las
 // vende como Gluten Free aunque la tabla les marca gluten.
 
+// En inglés, términos oficiales del Anexo II del Reglamento (UE) 1169/2011
 export const ALERGENOS = {
-  gluten:      { emoji: '🌾', label: 'Gluten' },
-  crustaceos:  { emoji: '🦐', label: 'Crustáceos' },
-  huevos:      { emoji: '🥚', label: 'Huevos' },
-  pescado:     { emoji: '🐟', label: 'Pescado' },
-  cacahuetes:  { emoji: '🥜', label: 'Cacahuetes' },
-  soja:        { emoji: '🫘', label: 'Soja' },
-  leche:       { emoji: '🥛', label: 'Leche' },
-  frutosSecos: { emoji: '🌰', label: 'Frutos de cáscara' },
-  apio:        { emoji: '🥬', label: 'Apio' },
-  mostaza:     { emoji: '🌿', label: 'Mostaza' },
-  sesamo:      { emoji: '🌱', label: 'Sésamo' },
-  sulfitos:    { emoji: '⚗️', label: 'Sulfitos' },
-  altramuces:  { emoji: '🌼', label: 'Altramuces' },
-  moluscos:    { emoji: '🐚', label: 'Moluscos' },
+  gluten:      { emoji: '🌾', label: { es: 'Gluten', en: 'Gluten' } },
+  crustaceos:  { emoji: '🦐', label: { es: 'Crustáceos', en: 'Crustaceans' } },
+  huevos:      { emoji: '🥚', label: { es: 'Huevos', en: 'Eggs' } },
+  pescado:     { emoji: '🐟', label: { es: 'Pescado', en: 'Fish' } },
+  cacahuetes:  { emoji: '🥜', label: { es: 'Cacahuetes', en: 'Peanuts' } },
+  soja:        { emoji: '🫘', label: { es: 'Soja', en: 'Soybeans' } },
+  leche:       { emoji: '🥛', label: { es: 'Leche', en: 'Milk' } },
+  frutosSecos: { emoji: '🌰', label: { es: 'Frutos de cáscara', en: 'Nuts' } },
+  apio:        { emoji: '🥬', label: { es: 'Apio', en: 'Celery' } },
+  mostaza:     { emoji: '🌿', label: { es: 'Mostaza', en: 'Mustard' } },
+  sesamo:      { emoji: '🌱', label: { es: 'Sésamo', en: 'Sesame seeds' } },
+  sulfitos:    { emoji: '⚗️', label: { es: 'Sulfitos', en: 'Sulphites' } },
+  altramuces:  { emoji: '🌼', label: { es: 'Altramuces', en: 'Lupin' } },
+  moluscos:    { emoji: '🐚', label: { es: 'Moluscos', en: 'Molluscs' } },
 }
 
 export const CATEGORIAS = [
-  { id: 'empezar',    label: 'Para empezar' },
-  { id: 'autor',      label: 'De autor' },
+  { id: 'empezar',    label: { es: 'Para empezar', en: 'Starters' } },
+  { id: 'autor',      label: { es: 'De autor', en: 'Signature' } },
   { id: 'galicia',    label: 'Made in Galicia' },
   { id: 'veggies',    label: 'Veggies' },
-  { id: 'entrepanes', label: 'Entrepanes' },
-  { id: 'ensaladas',  label: 'Ensaladas' },
-  { id: 'postres',    label: 'Postres' },
+  { id: 'entrepanes', label: { es: 'Entrepanes', en: 'Sandwiches' } },
+  { id: 'ensaladas',  label: { es: 'Ensaladas', en: 'Salads' } },
+  { id: 'postres',    label: { es: 'Postres', en: 'Desserts' } },
 ]
 
 export const PLATOS = [
   // ─── PARA EMPEZAR ────────────────────────────────────────────────────────
   {
     cat: 'empezar',
-    nombre: 'Chipirones de la Ría',
-    desc: 'Chipirones de la ría con alioli cítrico.',
+    nombre: { es: 'Chipirones de la Ría', en: 'Chipirones de la ría' },
+    desc: {
+      es: 'Chipirones de la ría con alioli cítrico.',
+      en: 'Baby squid from the Galician rías with citrus aioli.',
+    },
     precio: '11,5',
     recomendado: true,
     alergenos: ['gluten', 'huevos', 'moluscos'],
@@ -43,8 +47,11 @@ export const PLATOS = [
   },
   {
     cat: 'empezar',
-    nombre: 'Langostinos Kataifi',
-    desc: 'Langostinos jugosos envueltos en crujiente pasta kataifi, acompañados de nuestra irresistible salsa teriyaki. (3 unid. / 6 unid.)',
+    nombre: { es: 'Langostinos Kataifi', en: 'Kataifi prawns' },
+    desc: {
+      es: 'Langostinos jugosos envueltos en crujiente pasta kataifi, acompañados de nuestra irresistible salsa teriyaki. (3 unid. / 6 unid.)',
+      en: 'Juicy prawns wrapped in crispy kataifi pastry, served with our irresistible teriyaki sauce. (3 / 6 pieces)',
+    },
     precio: '12,9',
     mediaRacion: '7,0',
     recomendado: true,
@@ -53,8 +60,11 @@ export const PLATOS = [
   },
   {
     cat: 'empezar',
-    nombre: 'Camperitos de pollo de corral',
-    desc: 'Deliciosas tiras de pechuga de pollo empanadas en crujiente panko. Acompañadas de salsa de miel y mostaza (8 unid).',
+    nombre: { es: 'Camperitos de pollo de corral', en: 'Free-range chicken Camperitos' },
+    desc: {
+      es: 'Deliciosas tiras de pechuga de pollo empanadas en crujiente panko. Acompañadas de salsa de miel y mostaza (8 unid).',
+      en: 'Tasty strips of chicken breast in a crispy panko coating, served with honey mustard sauce (8 pieces).',
+    },
     precio: '11,9',
     recomendado: true,
     alergenos: ['huevos', 'pescado', 'mostaza'],
@@ -62,16 +72,22 @@ export const PLATOS = [
   },
   {
     cat: 'empezar',
-    nombre: 'Aros de cebolla crujiente a la cerveza',
-    desc: 'Aros de cebolla crujientes acompañados de una crema de queso de jalapeños y pimientos de Padrón escogidos los que no pican (8 unid).',
+    nombre: { es: 'Aros de cebolla crujiente a la cerveza', en: 'Crispy beer-battered onion rings' },
+    desc: {
+      es: 'Aros de cebolla crujientes acompañados de una crema de queso de jalapeños y pimientos de Padrón escogidos los que no pican (8 unid).',
+      en: 'Crispy onion rings with a jalapeño cream cheese dip and Padrón peppers, hand-picked from the ones that aren\'t hot (8 pieces).',
+    },
     precio: '8,9',
     alergenos: ['gluten', 'leche', 'sulfitos'],
     trazas: ['crustaceos', 'huevos', 'pescado', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'moluscos'],
   },
   {
     cat: 'empezar',
-    nombre: 'Croquetas cremosas de jamón ibérico',
-    desc: 'Croquetas cremosas con textura y sabor ibérico. (4 unid. / 9 unid.)',
+    nombre: { es: 'Croquetas cremosas de jamón ibérico', en: 'Creamy Iberian ham croquettes' },
+    desc: {
+      es: 'Croquetas cremosas con textura y sabor ibérico. (4 unid. / 9 unid.)',
+      en: 'Creamy croquettes with all the texture and flavour of Iberian ham. (4 / 9 pieces)',
+    },
     precio: '9,5',
     mediaRacion: '4,9',
     alergenos: ['gluten', 'leche'],
@@ -79,8 +95,11 @@ export const PLATOS = [
   },
   {
     cat: 'empezar',
-    nombre: 'Croquetas melosas de chipirones',
-    desc: 'Cremosas croquetas de chipirones en su tinta con bechamel de textura suave y cremosa, con salsa alioli casera. (4 unid. / 8 unid.)',
+    nombre: { es: 'Croquetas melosas de chipirones', en: 'Silky baby squid croquettes' },
+    desc: {
+      es: 'Cremosas croquetas de chipirones en su tinta con bechamel de textura suave y cremosa, con salsa alioli casera. (4 unid. / 8 unid.)',
+      en: 'Creamy croquettes of baby squid in its own ink with a smooth, velvety béchamel, served with homemade aioli. (4 / 8 pieces)',
+    },
     precio: '9,9',
     mediaRacion: '5,5',
     alergenos: ['gluten', 'crustaceos', 'pescado', 'leche', 'moluscos'],
@@ -88,16 +107,22 @@ export const PLATOS = [
   },
   {
     cat: 'empezar',
-    nombre: 'Combi croquetas jamón + chipirones',
-    desc: 'La mejor combinación: croquetas de jamón ibérico y melosas de chipirones (4+4 unid).',
+    nombre: { es: 'Combi croquetas jamón + chipirones', en: 'Croquette combo: ham + baby squid' },
+    desc: {
+      es: 'La mejor combinación: croquetas de jamón ibérico y melosas de chipirones (4+4 unid).',
+      en: 'The best of both: Iberian ham croquettes and silky baby squid croquettes (4+4 pieces).',
+    },
     precio: '9,5',
     alergenos: ['gluten', 'crustaceos', 'pescado', 'leche', 'moluscos'],
     trazas: ['huevos', 'cacahuetes', 'soja', 'frutosSecos', 'apio', 'mostaza', 'sesamo', 'sulfitos'],
   },
   {
     cat: 'empezar',
-    nombre: 'Alitas de pollo a la barbacoa',
-    desc: 'Deliciosas y crujientes alitas de pollo marinadas con salsa barbacoa (8 unid).',
+    nombre: { es: 'Alitas de pollo a la barbacoa', en: 'BBQ chicken wings' },
+    desc: {
+      es: 'Deliciosas y crujientes alitas de pollo marinadas con salsa barbacoa (8 unid).',
+      en: 'Tasty, crispy chicken wings marinated in barbecue sauce (8 pieces).',
+    },
     precio: '11,9',
     alergenos: ['gluten', 'soja', 'apio', 'mostaza'],
     trazas: ['crustaceos', 'huevos', 'pescado', 'cacahuetes', 'leche', 'frutosSecos', 'sesamo', 'sulfitos', 'moluscos'],
@@ -107,7 +132,10 @@ export const PLATOS = [
   {
     cat: 'autor',
     nombre: 'Urbana Fina',
-    desc: 'Pan crujiente con carne de vaca vieja madurada, base de lechuga, tartar de tomate sazonado, queso DOP San Simón da Costa fundido, pepinos marinados frescos y agridulces, salsa de huevo campero frito Pazo de Vilane y mayonesa casera coronada con patata fina y crujiente.',
+    desc: {
+      es: 'Pan crujiente con carne de vaca vieja madurada, base de lechuga, tartar de tomate sazonado, queso DOP San Simón da Costa fundido, pepinos marinados frescos y agridulces, salsa de huevo campero frito Pazo de Vilane y mayonesa casera coronada con patata fina y crujiente.',
+      en: 'Crunchy bread with matured vaca vieja beef, a bed of lettuce, seasoned tomato tartare, melted San Simón da Costa PDO cheese, fresh sweet-and-sour marinated cucumber, Pazo de Vilane fried free-range egg sauce and homemade mayonnaise, topped with thin, crispy potato straws.',
+    },
     precio: '15,9',
     chef: 'Chef Héctor López',
     restaurante: 'Restaurante España · Lugo',
@@ -117,9 +145,12 @@ export const PLATOS = [
   {
     cat: 'autor',
     nombre: 'Urbana Antollo Galego',
-    desc: 'Carne galega de vaca madurada con smash de Rixóns, queso de Arzúa-Ulloa, un toque de cremoso de grelo e pan tradicional espolvoreado con pimentón doce/picante como na casa dos teus avós.',
+    desc: {
+      es: 'Carne galega de vaca madurada con smash de Rixóns, queso de Arzúa-Ulloa, un toque de cremoso de grelo e pan tradicional espolvoreado con pimentón doce/picante como na casa dos teus avós.',
+      en: 'Matured Galician beef with a smash of rixóns (Galician pork crackling), Arzúa-Ulloa cheese, a touch of creamy grelos (turnip tops) and traditional bread dusted with sweet or hot paprika, just like at your grandparents\'.',
+    },
     precio: '16,9',
-    chef: 'Chefs Kike Piñeiro y Eloy Cancela',
+    chef: { es: 'Chefs Kike Piñeiro y Eloy Cancela', en: 'Chefs Kike Piñeiro and Eloy Cancela' },
     restaurante: 'A Horta D\'Obradoiro · Santiago',
     recomendado: true,
     alergenos: ['crustaceos', 'huevos', 'pescado', 'soja', 'leche'],
@@ -127,10 +158,13 @@ export const PLATOS = [
   {
     cat: 'autor',
     nombre: 'Urbana Corea',
-    desc: 'Pan crujiente con carne de vaca vieja madurada, queso DOP San Simón da Costa a golpe de calor, pepinillo agridulce, mayonesa kimchi, tomate seco, rúcula y salsa barbacoa de ajo negro.',
+    desc: {
+      es: 'Pan crujiente con carne de vaca vieja madurada, queso DOP San Simón da Costa a golpe de calor, pepinillo agridulce, mayonesa kimchi, tomate seco, rúcula y salsa barbacoa de ajo negro.',
+      en: 'Crunchy bread with matured vaca vieja beef, flash-melted San Simón da Costa PDO cheese, sweet-and-sour gherkin, kimchi mayo, sun-dried tomato, rocket and black garlic barbecue sauce.',
+    },
     precio: '15,9',
     chef: 'Chef Víctor Fernández',
-    restaurante: 'Morrofino · Santiago',
+    restaurante: { es: 'Morrofino · Santiago y Vigo', en: 'Morrofino · Santiago and Vigo' },
     recomendado: true,
     glutenFree: true,
     alergenos: ['crustaceos', 'huevos', 'pescado', 'soja', 'leche', 'sulfitos', 'moluscos'],
@@ -138,7 +172,10 @@ export const PLATOS = [
   {
     cat: 'autor',
     nombre: 'Urbana Indómita',
-    desc: 'Pan crujiente gallego, Vaca Vieja 200 g, crema fundente de queso, tomate cherry confitado, pimiento de Padrón tatemado con ajo tostado y albahaca fresca.',
+    desc: {
+      es: 'Pan crujiente gallego, Vaca Vieja 200 g, crema fundente de queso, tomate cherry confitado, pimiento de Padrón tatemado con ajo tostado y albahaca fresca.',
+      en: 'Crunchy Galician bread, 200 g of vaca vieja, melting cheese cream, confit cherry tomatoes, charred Padrón pepper with toasted garlic and fresh basil.',
+    },
     precio: '16,9',
     chef: 'Chef Martín Vázquez',
     restaurante: 'Indómito · Santiago',
@@ -150,7 +187,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Clásica',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, queso, tomate, lechuga, cebolla y salsa Urbana Rosé.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, queso, tomate, lechuga, cebolla y salsa Urbana Rosé.',
+      en: 'Crunchy bread with Rubia Gallega beef, cheese, tomato, lettuce, onion and Urbana Rosé sauce.',
+    },
     precio: '13,0',
     alergenos: ['gluten', 'leche', 'apio', 'mostaza', 'sulfitos'],
     trazas: ['huevos'],
@@ -158,7 +198,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Cuarto de Libra',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, queso cheddar, pepinillos, cebolla crujiente y salsa Urbana Rosé.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, queso cheddar, pepinillos, cebolla crujiente y salsa Urbana Rosé.',
+      en: 'Crunchy bread with Rubia Gallega beef, lettuce, fresh tomato, red onion, cheddar, gherkins, crispy onion and Urbana Rosé sauce.',
+    },
     precio: '13,0',
     alergenos: ['gluten', 'leche', 'apio', 'mostaza', 'sulfitos'],
     trazas: ['huevos'],
@@ -166,14 +209,20 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Real',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, queso de cabra al grill, cebolla caramelizada y salsa Urbana Rosé.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, lechuga, queso de cabra al grill, cebolla caramelizada y salsa Urbana Rosé.',
+      en: 'Crunchy bread with Rubia Gallega beef, lettuce, grilled goat\'s cheese, caramelised onion and Urbana Rosé sauce.',
+    },
     precio: '12,9',
     alergenos: ['gluten', 'leche', 'sulfitos'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana Piamonte',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, mermelada de tomate, crujiente de cebolla, salsa gorgonzola, lechuga, bacon ahumado y braseado.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, mermelada de tomate, crujiente de cebolla, salsa gorgonzola, lechuga, bacon ahumado y braseado.',
+      en: 'Crunchy bread with Rubia Gallega beef, tomato jam, crispy onion, gorgonzola sauce, lettuce and smoked, braised bacon.',
+    },
     precio: '13,9',
     recomendado: true,
     alergenos: ['gluten', 'soja', 'leche', 'sulfitos'],
@@ -181,7 +230,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Campera',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga de roble, mozzarella, cebolla crujiente, queso philadelphia con panceta braseada, huevo campero Pazo de Vilane y miel ecológica de castaño.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, lechuga de roble, mozzarella, cebolla crujiente, queso philadelphia con panceta braseada, huevo campero Pazo de Vilane y miel ecológica de castaño.',
+      en: 'Crunchy bread with Rubia Gallega beef, oak leaf lettuce, mozzarella, crispy onion, Philadelphia cream cheese with braised pork belly, Pazo de Vilane free-range egg and organic chestnut honey.',
+    },
     precio: '14,5',
     recomendado: true,
     alergenos: ['gluten', 'huevos', 'leche', 'sulfitos'],
@@ -189,7 +241,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Mejicana',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, jalapeños, cheddar, guacamole casero y salsa chilli. Acompañada de patatas fritas con tabasco.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, lechuga, tomate natural, cebolla roja, jalapeños, cheddar, guacamole casero y salsa chilli. Acompañada de patatas fritas con tabasco.',
+      en: 'Crunchy bread with Rubia Gallega beef, lettuce, fresh tomato, red onion, jalapeños, cheddar, homemade guacamole and chilli sauce. Served with Tabasco chips.',
+    },
     precio: '14,0',
     glutenFree: true,
     alergenos: ['huevos', 'leche', 'sulfitos'],
@@ -198,14 +253,20 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Tártara',
-    desc: 'Pan crujiente gallego, Rubia Gallega 190 g, salsa cremosa de encurtidos, cebolla roja encurtida, rabanito fresco, mezclum y lascas de parmesano.',
+    desc: {
+      es: 'Pan crujiente gallego, Rubia Gallega 190 g, salsa cremosa de encurtidos, cebolla roja encurtida, rabanito fresco, mezclum y lascas de parmesano.',
+      en: 'Crunchy Galician bread, 190 g of Rubia Gallega, creamy pickle sauce, pickled red onion, fresh radish, mesclun and Parmesan shavings.',
+    },
     precio: '14,5',
     alergenos: ['huevos', 'soja', 'leche', 'mostaza', 'sulfitos'],
   },
   {
     cat: 'galicia',
     nombre: 'Urbana British',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, lechuga, mermelada de tomate, queso cheddar, bacon y huevo frito.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, lechuga, mermelada de tomate, queso cheddar, bacon y huevo frito.',
+      en: 'Crunchy bread with Rubia Gallega beef, lettuce, tomato jam, cheddar, bacon and fried egg.',
+    },
     precio: '13,9',
     recomendado: true,
     glutenFree: true,
@@ -214,7 +275,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Jalapeña',
-    desc: 'Pan crujiente con Vaca Rubia Gallega, crema jalapeña de queso, lechuga troceada, cebolla crujiente, rodaja de jalapeño, doble cheddar fundido, cebolla caramelizada, panceta crujiente y yema de huevo.',
+    desc: {
+      es: 'Pan crujiente con Vaca Rubia Gallega, crema jalapeña de queso, lechuga troceada, cebolla crujiente, rodaja de jalapeño, doble cheddar fundido, cebolla caramelizada, panceta crujiente y yema de huevo.',
+      en: 'Crunchy bread with Rubia Gallega beef, jalapeño cheese cream, shredded lettuce, crispy onion, a slice of jalapeño, double melted cheddar, caramelised onion, crispy pork belly and egg yolk.',
+    },
     precio: '14,5',
     alergenos: ['gluten', 'huevos', 'leche', 'sulfitos'],
     trazas: ['mostaza'],
@@ -224,7 +288,10 @@ export const PLATOS = [
   {
     cat: 'veggies',
     nombre: 'Urbana Rosé',
-    desc: 'Pan crujiente con carne vegana, queso cheddar veggie, hoja de roble, tomate, cebolla y exquisita salsa rosa vegana.',
+    desc: {
+      es: 'Pan crujiente con carne vegana, queso cheddar veggie, hoja de roble, tomate, cebolla y exquisita salsa rosa vegana.',
+      en: 'Crunchy bread with a vegan patty, veggie cheddar, oak leaf lettuce, tomato, onion and our delicious vegan pink sauce.',
+    },
     precio: '13,9',
     alergenos: ['mostaza'],
     trazas: ['sulfitos'],
@@ -232,7 +299,10 @@ export const PLATOS = [
   {
     cat: 'veggies',
     nombre: 'Urbana Berenjena',
-    desc: 'Pan crujiente gallego, burger vegetal, berenjena dorada y crujiente, tomate confitado, rúcula fresca y mayonesa agridulce.',
+    desc: {
+      es: 'Pan crujiente gallego, burger vegetal, berenjena dorada y crujiente, tomate confitado, rúcula fresca y mayonesa agridulce.',
+      en: 'Crunchy Galician bread, plant-based patty, golden crispy aubergine, confit tomato, fresh rocket and sweet-and-sour mayo.',
+    },
     precio: '13,9',
     alergenos: ['gluten', 'mostaza', 'sulfitos'],
   },
@@ -241,7 +311,10 @@ export const PLATOS = [
   {
     cat: 'entrepanes',
     nombre: 'Dechipis',
-    desc: 'Absolutely delicious chipis crujientes con lechuga de mar, alioli cítrico y un toque de lima.',
+    desc: {
+      es: 'Absolutely delicious chipis crujientes con lechuga de mar, alioli cítrico y un toque de lima.',
+      en: 'Absolutely delicious crispy chipis (baby squid) with sea lettuce, citrus aioli and a squeeze of lime.',
+    },
     precio: '10,9',
     alergenos: ['gluten', 'huevos', 'moluscos'],
     trazas: ['crustaceos', 'pescado', 'soja', 'leche', 'mostaza', 'sesamo'],
@@ -249,7 +322,10 @@ export const PLATOS = [
   {
     cat: 'entrepanes',
     nombre: 'Rustic Way',
-    desc: 'Una delicia rústica de panceta crujiente, queso de Arzúa suave y cremoso, rematado con rúcula fresca.',
+    desc: {
+      es: 'Una delicia rústica de panceta crujiente, queso de Arzúa suave y cremoso, rematado con rúcula fresca.',
+      en: 'A rustic treat of crispy pork belly and soft, creamy Arzúa cheese, finished with fresh rocket.',
+    },
     precio: '10,9',
     alergenos: ['gluten', 'leche'],
     trazas: ['sesamo'],
@@ -257,7 +333,10 @@ export const PLATOS = [
   {
     cat: 'galicia',
     nombre: 'Urbana Corralita',
-    desc: 'Pan crujiente y tiras de pollo empanado en panko (4 unid), queso cheddar, salsa Urbana Rosé, cebolla caramelizada, lechuga fresca y tomate.',
+    desc: {
+      es: 'Pan crujiente y tiras de pollo empanado en panko (4 unid), queso cheddar, salsa Urbana Rosé, cebolla caramelizada, lechuga fresca y tomate.',
+      en: 'Crunchy bread with panko-crusted chicken strips (4 pieces), cheddar, Urbana Rosé sauce, caramelised onion, fresh lettuce and tomato.',
+    },
     precio: '12,5',
     alergenos: ['gluten', 'huevos', 'leche', 'apio', 'mostaza'],
     trazas: ['crustaceos'],
@@ -267,15 +346,21 @@ export const PLATOS = [
   {
     cat: 'ensaladas',
     nombre: 'Cebreiro Mood',
-    desc: 'Mezcla de lechugas frescas y brotes, huevo a baja temperatura, jamón y Queixo do Cebreiro. Todas nuestras ensaladas incluyen ración de pan semitostado.',
+    desc: {
+      es: 'Mezcla de lechugas frescas y brotes, huevo a baja temperatura, jamón y Queixo do Cebreiro. Todas nuestras ensaladas incluyen ración de pan semitostado.',
+      en: 'Mixed fresh leaves and shoots, slow-cooked egg, ham and Queixo do Cebreiro. All our salads come with lightly toasted bread.',
+    },
     precio: '10,5',
     alergenos: ['gluten', 'huevos', 'leche'],
     trazas: ['sesamo'],
   },
   {
     cat: 'ensaladas',
-    nombre: 'Kataifi y Guacamole',
-    desc: 'Mezcla de lechugas frescas y brotes, tomates cherry, delicioso guacamole, cacahuetes garrapiñados, langostinos kataifi y queso parmesano. Incluye pan semitostado.',
+    nombre: { es: 'Kataifi y Guacamole', en: 'Kataifi & Guacamole' },
+    desc: {
+      es: 'Mezcla de lechugas frescas y brotes, tomates cherry, delicioso guacamole, cacahuetes garrapiñados, langostinos kataifi y queso parmesano. Incluye pan semitostado.',
+      en: 'Mixed fresh leaves and shoots, cherry tomatoes, delicious guacamole, caramelised peanuts, kataifi prawns and Parmesan. Comes with lightly toasted bread.',
+    },
     precio: '12,9',
     recomendado: true,
     alergenos: ['gluten', 'crustaceos', 'cacahuetes', 'leche', 'mostaza'],
@@ -283,8 +368,11 @@ export const PLATOS = [
   },
   {
     cat: 'ensaladas',
-    nombre: 'Ensalada César',
-    desc: 'Hoja de roble y brotes aderezados con vinagreta y salsa césar, tomate cherry, pollo crunchy, lascas de grana padano y picatostes. Incluye pan semitostado.',
+    nombre: { es: 'Ensalada César', en: 'Caesar salad' },
+    desc: {
+      es: 'Hoja de roble y brotes aderezados con vinagreta y salsa césar, tomate cherry, pollo crunchy, lascas de grana padano y picatostes. Incluye pan semitostado.',
+      en: 'Oak leaf lettuce and shoots with vinaigrette and Caesar dressing, cherry tomatoes, crunchy chicken, Grana Padano shavings and croutons. Comes with lightly toasted bread.',
+    },
     precio: '10,9',
     recomendado: true,
     alergenos: ['gluten', 'huevos', 'pescado', 'leche', 'mostaza', 'sulfitos'],
@@ -293,48 +381,66 @@ export const PLATOS = [
   // ─── POSTRES ─────────────────────────────────────────────────────────────
   {
     cat: 'postres',
-    nombre: 'Cremosa de queso',
-    desc: 'Cremosa tarta de queso fundida con mermelada de arándano.',
+    nombre: { es: 'Cremosa de queso', en: 'Creamy cheesecake' },
+    desc: {
+      es: 'Cremosa tarta de queso fundida con mermelada de arándano.',
+      en: 'Gooey, creamy cheesecake with blueberry jam.',
+    },
     precio: '5,9',
     alergenos: ['gluten', 'huevos', 'leche'],
     trazas: ['soja', 'frutosSecos'],
   },
   {
     cat: 'postres',
-    nombre: 'Muerte por chocolate',
-    desc: 'Bizcocho con dos capas de chocolate intenso decorado con topping de chocolate negro y crema inglesa.',
+    nombre: { es: 'Muerte por chocolate', en: 'Death by chocolate' },
+    desc: {
+      es: 'Bizcocho con dos capas de chocolate intenso decorado con topping de chocolate negro y crema inglesa.',
+      en: 'Sponge cake with two layers of intense chocolate, topped with dark chocolate and custard.',
+    },
     precio: '5,9',
     alergenos: ['gluten', 'huevos', 'leche', 'frutosSecos'],
     trazas: ['cacahuetes'],
   },
   {
     cat: 'postres',
-    nombre: 'Carrot especial',
-    desc: 'Tarta de zanahoria con helado Ace cremoso, crujientes choco zetas y dulce baño de mango.',
+    nombre: { es: 'Carrot especial', en: 'Special carrot cake' },
+    desc: {
+      es: 'Tarta de zanahoria con helado Ace cremoso, crujientes choco zetas y dulce baño de mango.',
+      en: 'Carrot cake with creamy ACE (orange, carrot and lemon) ice cream, crunchy Choco Zetas and a sweet mango drizzle.',
+    },
     precio: '5,9',
     alergenos: ['gluten', 'huevos', 'soja', 'leche', 'frutosSecos', 'sulfitos'],
     trazas: ['cacahuetes'],
   },
   {
     cat: 'postres',
-    nombre: 'Capricho de chocolate',
-    desc: 'Delicioso coulant de chocolate derretido en el interior, acompañado de una bola de helado de vainilla bañada en chocolate y crujiente almendra.',
+    nombre: { es: 'Capricho de chocolate', en: 'Chocolate indulgence' },
+    desc: {
+      es: 'Delicioso coulant de chocolate derretido en el interior, acompañado de una bola de helado de vainilla bañada en chocolate y crujiente almendra.',
+      en: 'A delicious chocolate lava cake with a molten centre, served with a scoop of vanilla ice cream dipped in chocolate and crunchy almond.',
+    },
     precio: '5,9',
     alergenos: ['gluten', 'huevos', 'soja', 'leche'],
     trazas: ['frutosSecos'],
   },
   {
     cat: 'postres',
-    nombre: 'Tres chocolates',
-    desc: 'Una tarta de locura con tres chocolates y el mejor tipo de galleta: la crujiente.',
+    nombre: { es: 'Tres chocolates', en: 'Triple chocolate' },
+    desc: {
+      es: 'Una tarta de locura con tres chocolates y el mejor tipo de galleta: la crujiente.',
+      en: 'A crazy-good cake with three chocolates and the best kind of biscuit: the crunchy kind.',
+    },
     precio: '4,5',
     alergenos: ['gluten', 'leche', 'frutosSecos', 'sulfitos'],
     trazas: ['soja', 'sesamo'],
   },
   {
     cat: 'postres',
-    nombre: 'Helado artesano',
-    desc: 'Escoge 2 bolas del sabor que más te guste: Nata, vainilla, chocolate y ACE (sin alérgenos).',
+    nombre: { es: 'Helado artesano', en: 'Artisan ice cream' },
+    desc: {
+      es: 'Escoge 2 bolas del sabor que más te guste: Nata, vainilla, chocolate y ACE (sin alérgenos).',
+      en: 'Pick 2 scoops of your favourite flavours: cream, vanilla, chocolate and ACE (allergen-free).',
+    },
     precio: '4,9',
     glutenFree: true,
     alergenos: ['cacahuetes', 'frutosSecos'],
@@ -342,7 +448,10 @@ export const PLATOS = [
   {
     cat: 'postres',
     nombre: 'Blueberry & Cheese',
-    desc: 'Deliciosa crema de queso con galleta oreo y una base de arándano fresco. Sin galleta: libre de gluten.',
+    desc: {
+      es: 'Deliciosa crema de queso con galleta oreo y una base de arándano fresco. Sin galleta: libre de gluten.',
+      en: 'Delicious cream cheese with Oreo biscuit and a fresh blueberry base. Without the biscuit: gluten-free.',
+    },
     precio: '4,9',
     alergenos: ['gluten', 'soja', 'leche'],
   },

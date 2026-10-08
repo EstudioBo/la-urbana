@@ -1,5 +1,6 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import Enlace from '../../../i18n/Enlace'
+import { tx, useIdioma } from '../../../i18n/idioma'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionCarta.module.css'
 import arrowLeft from '../../../assets/images/iconos/arrow-left.svg'
@@ -13,13 +14,13 @@ import imgPostres     from '../../../assets/images/carta/postres.webp'
 import imgVeggies     from '../../../assets/images/carta/veggies.webp'
 
 const ITEMS = [
-  { img: imgParaEmpezar, nombre: 'Para empezar',    cat: 'empezar' },
-  { img: imgArtesanas,   nombre: 'Made in Galicia', cat: 'galicia' },
-  { img: imgDeAutor,     nombre: 'De Autor',        cat: 'autor' },
-  { img: imgEntrepanes,  nombre: 'Entrepanes',      cat: 'entrepanes' },
-  { img: imgEnsalada,    nombre: 'Ensalada',        cat: 'ensaladas' },
-  { img: imgPostres,     nombre: 'Postres',         cat: 'postres' },
-  { img: imgVeggies,     nombre: 'Veggies',         cat: 'veggies' },
+  { img: imgParaEmpezar, nombre: { es: 'Para empezar', en: 'Starters' },   cat: 'empezar' },
+  { img: imgArtesanas,   nombre: 'Made in Galicia',                         cat: 'galicia' },
+  { img: imgDeAutor,     nombre: { es: 'De Autor', en: 'Signature' },       cat: 'autor' },
+  { img: imgEntrepanes,  nombre: { es: 'Entrepanes', en: 'Sandwiches' },    cat: 'entrepanes' },
+  { img: imgEnsalada,    nombre: { es: 'Ensalada', en: 'Salads' },          cat: 'ensaladas' },
+  { img: imgPostres,     nombre: { es: 'Postres', en: 'Desserts' },         cat: 'postres' },
+  { img: imgVeggies,     nombre: 'Veggies',                                 cat: 'veggies' },
 ]
 const enlaceCarta = item => `/carta?categoria=${item.cat}`
 const LOOP = Array.from({ length: ITEMS.length * 20 }, (_, i) => ITEMS[i % ITEMS.length])
@@ -27,6 +28,7 @@ const GAP = 12
 
 export default function SeccionCarta() {
   const { t } = useTranslation()
+  const idioma = useIdioma()
   const [offset, setOffset] = useState(ITEMS.length * 3)
   const [cardPx, setCardPx] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
@@ -121,13 +123,13 @@ export default function SeccionCarta() {
           <span className={styles.titleLa}>{t('home.carta.label')}</span>
           <span className={styles.titleCarta}>{t('home.carta.title')}</span>
         </h2>
-        <Link to="/carta" className={styles.cta}>
-          Ver todo
-        </Link>
+        <Enlace to="/carta" className={styles.cta}>
+          {t('home.carta.verTodo')}
+        </Enlace>
       </div>
       <div className={styles.carouselCol} ref={carouselRef}>
         <div className={styles.itemMeta} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
-          <span className={styles.itemNombre}>{activeItem.nombre}</span>
+          <span className={styles.itemNombre}>{tx(activeItem.nombre, idioma)}</span>
         </div>
         {/* Las fotos llevan a la carta filtrada con el ratón o el dedo; con teclado y lector de pantalla se usa "+ info" */}
         <div className={styles.track} ref={trackRef} aria-hidden="true">
@@ -136,8 +138,8 @@ export default function SeccionCarta() {
             style={isMobile ? undefined : { transform: `translateX(-${shift}px)` }}
           >
             {LOOP.map((item, i) => (
-              <Link key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1}>
-                <img loading="lazy" src={item.img} alt={item.nombre} />
+              <Enlace key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1}>
+                <img loading="lazy" src={item.img} alt={tx(item.nombre, idioma)} />
                 {(i === offset || i === offset - 1) && (
                   <div className={styles.cardOverlay} style={{
                     position: 'absolute', inset: 0,
@@ -148,17 +150,17 @@ export default function SeccionCarta() {
                     zIndex: 1,
                   }} />
                 )}
-              </Link>
+              </Enlace>
             ))}
           </div>
         </div>
         <div ref={itemDescRef} className={styles.itemDesc} style={{ paddingLeft: isMobile ? undefined : `calc(2rem + ${cardPx + GAP}px)` }}>
-          <Link to={enlaceCarta(activeItem)} className={styles.itemInfo} aria-label={t('a11y.verEnCarta', { nombre: activeItem.nombre })}>+ info</Link>
+          <Enlace to={enlaceCarta(activeItem)} className={styles.itemInfo} aria-label={t('a11y.verEnCarta', { nombre: tx(activeItem.nombre, idioma) })}>+ info</Enlace>
         </div>
       </div>
-      <Link to="/carta" className={styles.ctaMobile} style={isMobile && ctaTop != null ? { top: ctaTop, bottom: 'auto' } : undefined}>
-        Ver todo
-      </Link>
+      <Enlace to="/carta" className={styles.ctaMobile} style={isMobile && ctaTop != null ? { top: ctaTop, bottom: 'auto' } : undefined}>
+        {t('home.carta.verTodo')}
+      </Enlace>
       <button className={styles.arrowLeft} onClick={goNext} aria-label={t('a11y.siguiente')}>
         <img loading="lazy" src={arrowLeft} alt="" />
       </button>

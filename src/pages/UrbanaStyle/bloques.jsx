@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './bloques.module.css'
 import Lightbox from '../../components/Lightbox/Lightbox'
+import Enlace from '../../i18n/Enlace'
 import { guardarConsentimiento, useConsentimiento } from '../../components/Cookies/consentimiento'
 
 // Piezas para escribir el contenido de cada entrada de #LaUrbanaStyle
@@ -15,8 +15,9 @@ export function EnlaceExterno({ href, children }) {
   return <a href={href} target="_blank" rel="noopener noreferrer" className={styles.enlace}>{children}</a>
 }
 
+// `to` es la ruta en castellano: lleva a la misma página en el idioma del post
 export function EnlaceInterno({ to, children }) {
-  return <Link to={to} className={styles.enlace}>{children}</Link>
+  return <Enlace to={to} className={styles.enlace}>{children}</Enlace>
 }
 
 // Foto al ancho de la columna, recortada en horizontal; `encuadre` elige qué parte se ve (object-position).
@@ -37,6 +38,7 @@ export function Figura({ img, alt, encuadre, entera = false, primera = false }) 
 
 // Mosaico a dos columnas; las fotos con `alta` ocupan dos filas. Al pulsar una se abre en grande
 export function Galeria({ fotos }) {
+  const { t } = useTranslation()
   const [abierta, setAbierta] = useState(null)
 
   return (
@@ -48,7 +50,7 @@ export function Galeria({ fotos }) {
             type="button"
             className={`${styles.galeriaFoto} ${f.alta ? styles.galeriaAlta : ''}`}
             onClick={() => setAbierta(i)}
-            aria-label={`Ampliar foto: ${f.alt}`}
+            aria-label={t('a11y.ampliarFoto', { descripcion: f.alt })}
           >
             <img
               src={f.img}
@@ -87,6 +89,7 @@ function useAlturaInstagram(iframeRef) {
 
 // Instagram incrustado en un componente aparte: así el hook de altura solo se monta con consentimiento
 function IframeInstagram({ codigo, pie }) {
+  const { t } = useTranslation()
   const iframeRef = useRef(null)
   const altura = useAlturaInstagram(iframeRef)
 
@@ -94,7 +97,7 @@ function IframeInstagram({ codigo, pie }) {
     <iframe
       ref={iframeRef}
       src={`https://www.instagram.com/p/${codigo}/embed/`}
-      title={pie ? `Instagram: ${pie}` : 'Publicación de Instagram de La Urbana'}
+      title={pie ? `Instagram: ${pie}` : t('a11y.instagram')}
       className={styles.reelIframe}
       style={altura ? { height: altura } : undefined}
       loading="lazy"

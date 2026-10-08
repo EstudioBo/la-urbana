@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Enlace from '../../../i18n/Enlace'
 import styles from './SeccionRestaurantesSecretos.module.css'
 import imgNino from '../../../assets/images/kids/nino-restaurante-secreto-trimmed.webp'
 import imgUu from '../../../assets/images/decorativos/uu-deco.svg'
 
 export default function SeccionRestaurantesSecretos() {
+  const { t } = useTranslation()
   const fotoRef = useRef(null)
   const [ninoSprung, setNinoSprung] = useState(false)
 
@@ -27,13 +29,14 @@ export default function SeccionRestaurantesSecretos() {
       </div>
       <div className={styles.content}>
         <span className={styles.label}>
-          <span>Nuestros<br /></span>
-          <span>Restaurantes</span>
+          {t('home.secretos.label').split('|').map((linea, i, lineas) => (
+            <span key={i}>{linea}{i < lineas.length - 1 && <br />}</span>
+          ))}
         </span>
-        <h2 className={styles.title}>Secretos</h2>
-        <p className={styles.body}>En La Urbana Vigo y Lugo - Augas Férreas niños y niñas tienen su espacio secreto, con kiosko para pedidos, zona de juego atendida, pantalla y mesa para comer sin mayores, que son muy aburridos</p>
+        <h2 className={styles.title}>{t('home.secretos.title')}</h2>
+        <p className={styles.body}>{t('home.secretos.body')}</p>
         <div className={styles.moreWrapper}>
-          <Link to="/restaurantes-secretos" className={styles.more}>+</Link>
+          <Enlace to="/restaurantes-secretos" className={styles.more} aria-label={t('a11y.masSecretos')}>+</Enlace>
         </div>
       </div>
     </section>

@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import styles from './Alergenos.module.css'
+import { tx, useIdioma } from '../../i18n/idioma'
 import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
@@ -27,71 +29,76 @@ const ICONOS = {
 const IDS = Object.keys(ALERGENOS)
 
 function Celda({ id, plato }) {
+  const { t } = useTranslation()
+  const idioma = useIdioma()
   const tipo = plato.contiene.includes(id) ? 'contiene' : plato.trazas.includes(id) ? 'traza' : null
   if (!tipo) return <td className={styles.vacia} />
-  const label = ALERGENOS[id].label
+  const alergeno = tx(ALERGENOS[id].label, idioma)
   return (
     <td className={styles[tipo]}>
       <img loading="lazy" src={ICONOS[id]} alt="" className={styles.iconoCelda} />
       <span className={styles.marca} aria-hidden="true" />
-      <span className={styles.oculto}>{tipo === 'contiene' ? `Contiene ${label}` : `Puede contener trazas de ${label}`}</span>
+      <span className={styles.oculto}>{t(tipo === 'contiene' ? 'alergenos.contieneX' : 'alergenos.trazasX', { alergeno })}</span>
     </td>
   )
 }
 
 export default function Alergenos() {
+  const { t } = useTranslation()
+  const idioma = useIdioma()
+
   return (
     <div>
       <Seo
-        title="Tabla de alérgenos"
-        description="Tabla de alérgenos de La Urbana Burger Bar: burgers, entrantes, ensaladas, postres y menú infantil. Consulta los alérgenos de cada plato antes de pedir."
+        title={t('alergenos.seo.titulo')}
+        description={t('alergenos.seo.descripcion')}
         path="/alergenos"
       />
-      <MigasJsonLd migas={[{ nombre: 'Alérgenos', path: '/alergenos' }]} />
+      <MigasJsonLd migas={[{ nombre: t('footer.alergenos'), path: '/alergenos' }]} />
       <main className={styles.page}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Alérgenos</h1>
+          <h1 className={styles.title}>{t('alergenos.titulo')}</h1>
           <span className={styles.label}>La Urbana</span>
         </div>
 
         <div className={styles.panel}>
-          <p className={styles.aviso}>Informa a nuestro equipo de cualquier tipo de intolerancia para mayor seguridad.</p>
+          <p className={styles.aviso}>{t('alergenos.aviso')}</p>
 
           <div className={styles.claves}>
-            <span className={styles.clave}><span className={`${styles.marca} ${styles.contiene}`} aria-hidden="true" /> Contiene</span>
-            <span className={styles.clave}><span className={`${styles.marca} ${styles.traza}`} aria-hidden="true" /> Puede contener trazas</span>
+            <span className={styles.clave}><span className={`${styles.marca} ${styles.contiene}`} aria-hidden="true" /> {t('carta.contiene')}</span>
+            <span className={styles.clave}><span className={`${styles.marca} ${styles.traza}`} aria-hidden="true" /> {t('carta.trazas')}</span>
           </div>
 
           <ul className={styles.leyenda}>
             {IDS.map(id => (
               <li key={id}>
                 <img loading="lazy" src={ICONOS[id]} alt="" className={styles.iconoLeyenda} />
-                {ALERGENOS[id].label}
+                {tx(ALERGENOS[id].label, idioma)}
               </li>
             ))}
           </ul>
 
           {SECCIONES.map(seccion => (
-            <section key={seccion.titulo} className={styles.seccion}>
+            <section key={tx(seccion.titulo, 'es')} className={styles.seccion}>
               <h2 className={styles.seccionTitulo}>
-                {seccion.titulo}
-                {seccion.nota && <span className={styles.seccionNota}>{seccion.nota}</span>}
+                {tx(seccion.titulo, idioma)}
+                {seccion.nota && <span className={styles.seccionNota}>{tx(seccion.nota, idioma)}</span>}
               </h2>
               <table className={styles.tabla}>
                 <thead>
                   <tr>
-                    <th scope="col"><span className={styles.oculto}>Plato</span></th>
+                    <th scope="col"><span className={styles.oculto}>{t('alergenos.plato')}</span></th>
                     {IDS.map(id => (
                       <th key={id} scope="col">
-                        <img loading="lazy" src={ICONOS[id]} alt={ALERGENOS[id].label} title={ALERGENOS[id].label} className={styles.iconoCabecera} />
+                        <img loading="lazy" src={ICONOS[id]} alt={tx(ALERGENOS[id].label, idioma)} title={tx(ALERGENOS[id].label, idioma)} className={styles.iconoCabecera} />
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {seccion.platos.map(plato => (
-                    <tr key={plato.nombre}>
-                      <th scope="row" className={styles.plato}>{plato.nombre}</th>
+                    <tr key={tx(plato.nombre, 'es')}>
+                      <th scope="row" className={styles.plato}>{tx(plato.nombre, idioma)}</th>
                       {IDS.map(id => <Celda key={id} id={id} plato={plato} />)}
                     </tr>
                   ))}

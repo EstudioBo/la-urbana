@@ -27,7 +27,7 @@ export default function RejillaPosts({ posts }) {
   return (
     <div className={`${styles.grid} ${gridVisible ? styles.gridVisible : ''}`} ref={gridRef}>
       {posts.map((p, i) => (
-        <TarjetaPost key={p.slug} post={p} className={styles.card} style={{ '--i': i }} />
+        <TarjetaPost key={p.slug.es} post={p} className={styles.card} style={{ '--i': i }} />
       ))}
     </div>
   )

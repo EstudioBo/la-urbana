@@ -100,7 +100,7 @@ export default function SeccionViral() {
             instagram <IconInstagram />
           </a>
           <a ref={rsRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href="https://www.google.com/search?sca_esv=dcf9c7310e527f23&sxsrf=APpeQnsIQhg4oBmCx6DcmsQri9NQrlzGoA:1784629110443&q=la+urbana+burger+&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_zCymp6Qq-qpd4PERF2GyQpEUP8eNkcbRIlrTcuLrBhJa5hDsYr-W_asbaPwMKjci-qqW_Y%3D&uds=AJ5uw1_rUfMqrtZe7QfpdFGwaPC3sLGD5__yOh-S6TylvCbRsq-5lwD3oNvZ92G2tuUrraRT-MYk_T17UiLZZQmtzmmCHwAb0bMvG7uSdSy32VHh6uzbF0M&sa=X&ved=2ahUKEwiq4bvBxeOVAxWn2wIHHSwiNh4Q3PALegQIMRAF&biw=1707&bih=879&dpr=1.13" target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnRs}`}>
-            reseñas <IconStar />
+            {t('home.viral.resenas')} <IconStar />
           </a>
           <span className={styles.label}>{t('home.viral.label')}</span>
           <h2 className={styles.title}>

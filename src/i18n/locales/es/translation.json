@@ -1,13 +1,17 @@
 {
   "nav": {
-    "delivery": "Delivery",
-    "reserva": "Reserva",
-    "origen": "Origen",
-    "esencia": "Esencia",
-    "team": "Team",
-    "redes": "Redes sociales",
+    "inicio": "Inicio",
+    "origen": "Nuestro Origen",
     "carta": "Carta",
-    "donde": "Donde estamos"
+    "contacto": "Contacto",
+    "delivery": "Delivery",
+    "reservar": "Reservar"
+  },
+  "footer": {
+    "avisoLegal": "Aviso Legal",
+    "privacidad": "Política de privacidad",
+    "cookies": "Política de Cookies",
+    "alergenos": "Alérgenos"
   },
   "a11y": {
     "menu": "Menú",
@@ -17,18 +21,29 @@
     "siguiente": "Siguiente",
     "cerrar": "Cerrar",
     "galeria": "Galería de fotos",
-    "verEnCarta": "Ver {{nombre}} en la carta"
+    "verEnCarta": "Ver {{nombre}} en la carta",
+    "ampliarFoto": "Ampliar foto: {{descripcion}}",
+    "ampliarFotoDe": "Ampliar foto {{numero}} de {{total}}",
+    "fotoDe": "Foto {{numero}} de {{total}}",
+    "masOrigen": "Más sobre nuestro origen",
+    "masStyle": "Más sobre #LaUrbanaStyle",
+    "masSecretos": "Más sobre los restaurantes secretos",
+    "instagram": "Publicación de Instagram de La Urbana"
   },
   "home": {
+    "seo": {
+      "titulo": "La Urbana Burger | Burgers en Lugo, Vigo y Santiago",
+      "descripcion": "Hamburguesería y burgers de autor con producto gallego de km 0 en Lugo, Vigo y Santiago de Compostela. Rubia Galega y pan artesano. Reserva o pide a domicilio."
+    },
     "hero": {
       "slide1_title": "Lucía|Freitas",
       "slide1_subtitle": "Nueva|BURGUER|de Autor",
       "slide2_title": "PAN|DE VERDAD",
       "slide2_subtitle": "Nos gusta que|HAGA CRUNCH!",
       "slide3_title": "Less smash",
+      "slide3_subtitle": "more|ñam ñam",
       "slide4_title": "Martín|Indómito",
-      "slide4_subtitle": "Nueva|BURGUER|De autor",
-      "slide3_subtitle": "more|ñam ñam"
+      "slide4_subtitle": "Nueva|BURGUER|De autor"
     },
     "origen": {
       "label": "Nuestro origen:",
@@ -42,41 +57,87 @@
     },
     "team": {
       "label": "Nuestro",
-      "title": "Team de autor"
+      "title": "Team de autor",
+      "burger": "Burger",
+      "chef": "Chef",
+      "restaurante": "Restaurante",
+      "ingredientes": "Ingredientes"
     },
     "viral": {
       "label": "Estilo",
-      "title": "Muy muy viral"
+      "title": "Muy muy viral",
+      "resenas": "reseñas"
     },
     "carta": {
       "label": "La",
       "title": "Carta",
-      "subtitle": "Artesanas"
+      "verTodo": "Ver todo"
+    },
+    "secretos": {
+      "label": "Nuestros|Restaurantes",
+      "title": "Secretos",
+      "body": "En La Urbana Vigo y Lugo - Augas Férreas niños y niñas tienen su espacio secreto, con kiosko para pedidos, zona de juego atendida, pantalla y mesa para comer sin mayores, que son muy aburridos"
     },
     "donde": {
       "label": "Donde",
       "title": "Andamos",
-      "cta": "Reserva aquí"
+      "cta": "Reserva aquí",
+      "encuentranos": "Encuéntranos",
+      "interior": "Interior La Urbana"
+    },
+    "direcciones": {
+      "horarioLocal": "Horario local",
+      "horarioCocina": "Horario cocina"
     }
   },
   "carta": {
-    "title": "La Carta",
-    "sections": {
-      "entrantes": "Entrantes",
-      "artesanas": "Artesanas",
-      "deautor": "De Autor",
-      "veggies": "Veggies",
-      "entrepanes": "Entrepanes",
-      "delahuerta": "De la Huerta",
-      "menudin": "Menudín",
-      "postres": "Postres"
-    }
+    "seo": {
+      "titulo": "Carta de hamburguesas",
+      "descripcion": "Nuestra carta: hamburguesas Made in Galicia, burgers de autor, entrepanes, ensaladas, entrantes y postres. Producto gallego de km 0 en cada plato de La Urbana."
+    },
+    "titulo": "Nuestra carta",
+    "contiene": "Contiene",
+    "trazas": "Puede contener trazas",
+    "verIngredientes": "Ver ingredientes: {{plato}}",
+    "cerrarIngredientes": "Cerrar ingredientes: {{plato}}",
+    "sinGluten": "SG"
+  },
+  "alergenos": {
+    "seo": {
+      "titulo": "Tabla de alérgenos",
+      "descripcion": "Tabla de alérgenos de La Urbana Burger Bar: burgers, entrantes, ensaladas, postres y menú infantil. Consulta los alérgenos de cada plato antes de pedir."
+    },
+    "titulo": "Alérgenos",
+    "aviso": "Informa a nuestro equipo de cualquier tipo de intolerancia para mayor seguridad.",
+    "plato": "Plato",
+    "contieneX": "Contiene {{alergeno}}",
+    "trazasX": "Puede contener trazas de {{alergeno}}"
   },
   "nosotros": {
-    "title": "Nosotros"
+    "seo": {
+      "titulo": "Nuestro Origen: producto gallego",
+      "descripcion": "Carne de Rubia Galega, pan artesano de Lugo, huevos camperos, miel ecológica y quesos DOP gallegos: el producto de proximidad de cada burger de La Urbana."
+    },
+    "intro": "Galicia es calidad en estado puro y ya se sabe que... Para comer, Lugo! Pues nuestras burgers son justo eso: carne gallega, pan artesano e ingredientes de proximidad y con nombre y apellidos. Apostamos por productos de aquí y, siempre que podemos, ecológicos. Y eso ¡se nota!"
+  },
+  "kids": {
+    "seo": {
+      "titulo": "Restaurantes Secretos | urbana kids",
+      "descripcion": "En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para hacer su pedido, zona de juego, pantalla y mesa propia."
+    },
+    "migas": "Restaurantes Secretos",
+    "titulo1": "Restaurante",
+    "titulo2": "Secreto",
+    "intro": "Amamos a madres y padres. Por eso les hemos hecho un Restaurante Secreto a vuestras criaturas dentro de nuestros restaurantes. Peques felices, adultos más. ;)",
+    "subtitulo": "Un secreto que ya no lo es tanto.",
+    "texto": "Solo en <strong>Lugo (Augas Férreas)</strong> y <strong>Vigo</strong>, escondido dentro de La Urbana, existe un restaurante secreto. Uno donde mandan ellos. Kiosko propio para pedir, zona de juego, pantalla y mesa solo para peques. Los mayores, en la suya."
   },
   "contacto": {
-    "title": "Contacto",
+    "seo": {
+      "titulo": "Contacto",
+      "descripcion": "¿Tienes una pregunta, una propuesta o quieres organizar algo con nosotros? Escríbenos desde el formulario de contacto de La Urbana Burger Bar y te respondemos."
+    },
+    "titulo": "Quieres|contarnos|algo???",
     "form": {
       "nombre": "Nombre",
       "email": "Email",
@@ -87,11 +148,30 @@
       "enviar": "Enviar",
       "enviando": "Enviando…",
       "exito": "¡Recibido! Te responderemos lo antes posible.",
-      "error": "No hemos podido enviar tu mensaje. Inténtalo de nuevo en unos minutos."
+      "error": "No hemos podido enviar tu mensaje. Inténtalo de nuevo en unos minutos.",
+      "noRellenar": "No rellenar"
     }
   },
-  "locations": {
-    "title": "Nuestros locales"
+  "reservar": {
+    "seo": {
+      "titulo": "Reservar mesa: Lugo, Vigo, Santiago",
+      "descripcion": "Reserva mesa en La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas y C.C. As Termas), Vigo y Santiago de Compostela. Elige local y reserva."
+    },
+    "titulo": "Reservar",
+    "iframe": "Reservas"
+  },
+  "style": {
+    "descripcion": "Campañas, colaboraciones con artistas y chefs gallegos, burgers de autor y acciones en la calle de La Urbana en Lugo, Santiago y Vigo. Puro #LaUrbanaStyle.",
+    "alMasPuro": "Al más puro",
+    "archivo": "Lo que pasa en La Urbana",
+    "volver": "Volver a #LaUrbanaStyle",
+    "entradasDe": "Entradas de {{categoria}}",
+    "ctaTitulo": "Las historias se cuentan mejor con una burger delante",
+    "reservarMesa": "Reservar mesa",
+    "verCarta": "Ver la carta",
+    "mas": "Más #LaUrbanaStyle",
+    "verTodas": "Ver todas las historias →",
+    "leerMas": "Leer más"
   },
   "cookies": {
     "titulo": "Cookies",

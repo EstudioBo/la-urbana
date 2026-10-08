@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Enlace from '../../../i18n/Enlace'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionOrigen.module.css'
 import imgRubia from '../../../assets/images/home/rubia-gallega.webp'
@@ -48,7 +48,7 @@ export default function SeccionOrigen() {
         </div>
         <p className={styles.body}>
           {t('home.origen.body')}
-          <Link to="/nosotros" className={styles.more}>+</Link>
+          <Enlace to="/nosotros" className={styles.more} aria-label={t('a11y.masOrigen')}>+</Enlace>
         </p>
       </div>
     </section>

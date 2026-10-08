@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import styles from './UrbanaKids.module.css'
 import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
@@ -20,6 +21,7 @@ const STACK_CARDS = [
 ]
 
 export default function UrbanaKids() {
+  const { t } = useTranslation()
   const [lightboxIdx, setLightboxIdx] = useState(null)
   const dialogRef = useRef(null)
   const abiertoConTeclado = useRef(false)
@@ -156,11 +158,11 @@ export default function UrbanaKids() {
   return (
     <div className={styles.page}>
       <Seo
-        title="Restaurantes Secretos | urbana kids"
-        description="En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para hacer su pedido, zona de juego, pantalla y mesa propia."
+        title={t('kids.seo.titulo')}
+        description={t('kids.seo.descripcion')}
         path="/restaurantes-secretos"
       />
-      <MigasJsonLd migas={[{ nombre: 'Restaurantes Secretos', path: '/restaurantes-secretos' }]} />
+      <MigasJsonLd migas={[{ nombre: t('kids.migas'), path: '/restaurantes-secretos' }]} />
 
       <main>
       {/* HERO */}
@@ -172,9 +174,9 @@ export default function UrbanaKids() {
             <span className={styles.labelUrbana}>Urbana</span>
             <span className={styles.labelKids}>Kids</span>
           </span>
-          <h1 className={styles.title}><span className={styles.titleRestaurante}>Restaurante</span><span className={styles.titleSecreto}>Secreto</span></h1>
+          <h1 className={styles.title}><span className={styles.titleRestaurante}>{t('kids.titulo1')}</span><span className={styles.titleSecreto}>{t('kids.titulo2')}</span></h1>
           <p className={styles.intro}>
-            Amamos a madres y padres. Por eso les hemos hecho un Restaurante Secreto a vuestras criaturas dentro de nuestros restaurantes. Peques felices, adultos más.&nbsp;;)
+            {t('kids.intro')}
           </p>
         </div>
       </section>
@@ -184,9 +186,9 @@ export default function UrbanaKids() {
 
         {/* Header sticky */}
         <div className={styles.stackHeader}>
-          <h2 className={styles.stackHeading}>Un secreto que ya no lo es tanto.</h2>
+          <h2 className={styles.stackHeading}>{t('kids.subtitulo')}</h2>
           <p className={styles.stackPara}>
-            Solo en <strong>Lugo (Augas Férreas)</strong> y <strong>Vigo</strong>, escondido dentro de La Urbana, existe un restaurante secreto. Uno donde mandan ellos. Kiosko propio para pedir, zona de juego, pantalla y mesa solo para peques. Los mayores, en la suya.
+            <Trans i18nKey="kids.texto" />
           </p>
         </div>
 
@@ -202,7 +204,7 @@ export default function UrbanaKids() {
                   className={styles.stackCard}
                   style={{ transform: `translateY(${card.offset}px) rotate(${card.rotate})` }}
                   onClick={(e) => { abiertoConTeclado.current = e.detail === 0; setLightboxIdx(i) }}
-                  aria-label={`Ampliar foto ${i + 1} de ${total}`}
+                  aria-label={t('a11y.ampliarFotoDe', { numero: i + 1, total })}
                   aria-haspopup="dialog"
                 >
                   <img loading="lazy" src={card.img} alt="" />
@@ -223,7 +225,7 @@ export default function UrbanaKids() {
       <dialog
         ref={dialogRef}
         className={styles.lightboxDialog}
-        aria-label={visorAbierto ? `Foto ${lightboxIdx + 1} de ${total}` : undefined}
+        aria-label={visorAbierto ? t('a11y.fotoDe', { numero: lightboxIdx + 1, total }) : undefined}
         tabIndex={-1}
         onClose={() => setLightboxIdx(null)}
         onKeyDown={(e) => {
@@ -234,11 +236,11 @@ export default function UrbanaKids() {
         {visorAbierto && (
           <div className={styles.lightboxOverlay} onClick={() => setLightboxIdx(null)}>
             <button type="button" className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); anterior() }}>
-              <img src={arrowLeft} alt="Anterior" />
+              <img src={arrowLeft} alt={t('a11y.anterior')} />
             </button>
             <img src={STACK_CARDS[lightboxIdx].img} alt="" className={styles.lightboxImg} />
             <button type="button" className={styles.lightboxNext} onClick={e => { e.stopPropagation(); siguiente() }}>
-              <img src={arrowRight} alt="Siguiente" />
+              <img src={arrowRight} alt={t('a11y.siguiente')} />
             </button>
           </div>
         )}

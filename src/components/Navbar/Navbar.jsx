@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './Navbar.module.css'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../Seo/site'
+import Enlace from '../../i18n/Enlace'
+import { useIdioma } from '../../i18n/idioma'
+import { versiones } from '../../i18n/rutas'
 import logo from '../../assets/images/logos/logo-pegatina.webp'
 import iconDelivery from '../../assets/images/iconos/icon-delivery.svg'
 import iconReserva from '../../assets/images/iconos/icon-reserva.svg'
@@ -37,8 +40,17 @@ const IconGoogleReviews = () => (
   </svg>
 )
 
-export default function Navbar({ lang, setLang }) {
+// Cada idioma lleva a la misma página en el otro idioma; si no existe, a su portada
+const IDIOMAS_MENU = [
+  { idioma: 'es', etiqueta: 'ES', nombre: 'Español', portada: '/' },
+  { idioma: 'en', etiqueta: 'EN', nombre: 'English', portada: '/en' },
+]
+
+export default function Navbar() {
   const { t } = useTranslation()
+  const idioma = useIdioma()
+  const { pathname, search } = useLocation()
+  const paginaActual = versiones(pathname)
   const [menuOpen, setMenuOpen] = useState(false)
   const panelRef = useRef(null)
   const burgerRef = useRef(null)
@@ -84,17 +96,17 @@ export default function Navbar({ lang, setLang }) {
   return (
     <>
     <header className={styles.navbar}>
-      <Link to="/" className={styles.logo}>
+      <Enlace to="/" className={styles.logo}>
         <img src={logo} alt="La Urbana" className={styles.logoImg} />
-      </Link>
+      </Enlace>
 
       <div className={styles.actions}>
         <a href="https://laurbana.waitry.net/" target="_blank" rel="noopener noreferrer" className={styles.iconBtn} aria-label={t('nav.delivery')}>
           <img src={iconDelivery} alt="" />
         </a>
-        <Link to="/reservar" className={styles.iconBtn} aria-label={t('nav.reserva')}>
+        <Enlace to="/reservar" className={styles.iconBtn} aria-label={t('nav.reservar')}>
           <img src={iconReserva} alt="" />
-        </Link>
+        </Enlace>
         <button
           ref={burgerRef}
           className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
@@ -119,30 +131,32 @@ export default function Navbar({ lang, setLang }) {
 
         <div className={styles.panelTop}>
           <div className={styles.langSegment}>
-            <button
-              className={`${styles.langOpt} ${lang === 'es' ? styles.langOptActive : ''}`}
-              onClick={() => setLang('es')}
-              aria-pressed={lang === 'es'}
-            >ES</button>
-            <button
-              className={`${styles.langOpt} ${lang === 'en' ? styles.langOptActive : ''}`}
-              onClick={() => setLang('en')}
-              aria-pressed={lang === 'en'}
-            >EN</button>
+            {IDIOMAS_MENU.map((opcion) => (
+              <Link
+                key={opcion.idioma}
+                to={paginaActual?.[opcion.idioma] ? paginaActual[opcion.idioma] + search : opcion.portada}
+                onClick={close}
+                className={`${styles.langOpt} ${idioma === opcion.idioma ? styles.langOptActive : ''}`}
+                lang={opcion.idioma}
+                hrefLang={opcion.idioma}
+                aria-label={opcion.nombre}
+                aria-current={idioma === opcion.idioma ? 'true' : undefined}
+              >{opcion.etiqueta}</Link>
+            ))}
           </div>
           <button ref={closeBtnRef} className={styles.closeBtn} onClick={(e) => (e.detail === 0 ? closeAndReturnFocus() : close())} aria-label={t('a11y.cerrarMenu')}>
-            <span className={styles.closeTxt}>Menú</span>
+            <span className={styles.closeTxt}>{t('a11y.menu')}</span>
             <IconClose />
           </button>
         </div>
 
         <ul className={styles.menuLinks}>
-          <li><Link to="/" onClick={close}>Inicio</Link></li>
-          <li><Link to="/nosotros" onClick={close}>Nuestro Origen</Link></li>
-          <li><Link to="/carta" onClick={close}>Carta</Link></li>
-          <li><Link to="/la-urbana-style" onClick={close}>#laurbanastyle</Link></li>
-          <li><Link to="/restaurantes-secretos" onClick={close}>Urbana Kids</Link></li>
-          <li><Link to="/contacto" onClick={close}>Contacto</Link></li>
+          <li><Enlace to="/" onClick={close}>{t('nav.inicio')}</Enlace></li>
+          <li><Enlace to="/nosotros" onClick={close}>{t('nav.origen')}</Enlace></li>
+          <li><Enlace to="/carta" onClick={close}>{t('nav.carta')}</Enlace></li>
+          <li><Enlace to="/la-urbana-style" onClick={close}>#laurbanastyle</Enlace></li>
+          <li><Enlace to="/restaurantes-secretos" onClick={close}>Urbana Kids</Enlace></li>
+          <li><Enlace to="/contacto" onClick={close}>{t('nav.contacto')}</Enlace></li>
         </ul>
 
         <div className={styles.menuActions}>
@@ -153,12 +167,12 @@ export default function Navbar({ lang, setLang }) {
             className={`${styles.menuBtn} ${styles.menuBtnDelivery}`}
           >
             <img loading="lazy" src={iconDeliveryBlanco} alt="" className={styles.menuBtnIcon} />
-            Delivery
+            {t('nav.delivery')}
           </a>
-          <Link to="/reservar" onClick={close} className={`${styles.menuBtn} ${styles.menuBtnReserva}`}>
+          <Enlace to="/reservar" onClick={close} className={`${styles.menuBtn} ${styles.menuBtnReserva}`}>
             <img loading="lazy" src={iconCalendarioBlanco} alt="" className={styles.menuBtnIcon} />
-            Reservar
-          </Link>
+            {t('nav.reservar')}
+          </Enlace>
         </div>
 
         <div className={styles.menuSocial}>

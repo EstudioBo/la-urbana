@@ -1,5 +1,7 @@
 import { useCallback, useRef, useState, useEffect, useLayoutEffect, useSyncExternalStore } from 'react'
+import { useTranslation } from 'react-i18next'
 import styles from './Nosotros.module.css'
+import { tx, useIdioma } from '../../i18n/idioma'
 import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import SeccionCarta from '../Home/sections/SeccionCarta'
@@ -26,75 +28,102 @@ const VERTICAL_2_3 = { width: 848, height: 1272 }
 
 const INGREDIENTES = [
   {
-    titulo: 'Carne de Rubia Galega',
-    texto: 'Carne gallega con sabor, carácter y el punto justo de grasa. El centro de nuestras burgers y la mejor prueba de que, cuando el producto es top, no hace falta disfrazarlo.',
+    titulo: { es: 'Carne de Rubia Galega', en: 'Rubia Galega beef' },
+    texto: {
+      es: 'Carne gallega con sabor, carácter y el punto justo de grasa. El centro de nuestras burgers y la mejor prueba de que, cuando el producto es top, no hace falta disfrazarlo.',
+      en: 'Galician beef with flavour, character and just the right amount of fat. The heart of our burgers and living proof that when the produce is top-notch, there\'s no need to dress it up.',
+    },
     productor: { nombre: 'Ternera Gallega', url: 'https://www.terneragallega.com/' },
-    encuentras: 'La encuentras en',
-    burgers: ['Todas las Made in Galicia'],
-    nota: '(menos la Urbana Corralita, que es de pollo)',
-    img: imgRubia, alt: 'Burger de carne de Rubia Galega en el campo gallego', width: 1608, height: 1800,
+    encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
+    burgers: [{ es: 'Todas las Made in Galicia', en: 'All the Made in Galicia burgers' }],
+    nota: { es: '(menos la Urbana Corralita, que es de pollo)', en: '(except the Urbana Corralita, which is chicken)' },
+    img: imgRubia, alt: { es: 'Burger de carne de Rubia Galega en el campo gallego', en: 'Rubia Galega beef burger in the Galician countryside' }, width: 1608, height: 1800,
   },
   {
-    titulo: 'Pan artesano de Lugo',
-    texto: 'Trabajamos con pan artesano gallego, con cuerpo y corteza crujiente, ¡pan de verdad! preparado para sujetar una burger sin rendirse por el camino. Ey, y tenemos opción sin gluten eh? Ya sabes: Si es crujiente y artesana, es la burger de La Urbana!',
-    encuentras: 'Lo encuentras en',
-    burgers: ['Todas nuestras burgers'],
-    nota: '(a no ser que pidas pan brioche)',
-    img: imgPan, alt: 'Pan artesano de Lugo', ...VERTICAL,
+    titulo: { es: 'Pan artesano de Lugo', en: 'Artisan bread from Lugo' },
+    texto: {
+      es: 'Trabajamos con pan artesano gallego, con cuerpo y corteza crujiente, ¡pan de verdad! preparado para sujetar una burger sin rendirse por el camino. Ey, y tenemos opción sin gluten eh? Ya sabes: Si es crujiente y artesana, es la burger de La Urbana!',
+      en: 'We use Galician artisan bread with body and a crunchy crust (real bread!), built to hold a burger without giving up halfway. Oh, and there\'s a gluten-free option too, yeah? Remember: if it\'s crunchy and handmade, it\'s a La Urbana burger!',
+    },
+    encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
+    burgers: [{ es: 'Todas nuestras burgers', en: 'All our burgers' }],
+    nota: { es: '(a no ser que pidas pan brioche)', en: '(unless you ask for a brioche bun)' },
+    img: imgPan, alt: { es: 'Pan artesano de Lugo', en: 'Artisan bread from Lugo' }, ...VERTICAL,
   },
   {
-    titulo: 'Huevos camperos de Pazo de Vilane',
-    texto: 'Huevos camperos producidos en Antas de Ulla por gallinas criadas en libertad y con acceso diario a pastos verdes. Producto gallego que se reconoce nada más romper la yema.',
+    titulo: { es: 'Huevos camperos de Pazo de Vilane', en: 'Pazo de Vilane free-range eggs' },
+    texto: {
+      es: 'Huevos camperos producidos en Antas de Ulla por gallinas criadas en libertad y con acceso diario a pastos verdes. Producto gallego que se reconoce nada más romper la yema.',
+      en: 'Free-range eggs from Antas de Ulla, laid by hens raised outdoors with daily access to green pastures. Galician produce you can spot the moment you break the yolk.',
+    },
     productor: { nombre: 'Pazo de Vilane', url: 'https://pazodevilane.com/' },
-    encuentras: 'Los encuentras en',
+    encuentras: { es: 'Los encuentras en', en: 'You\'ll find them in' },
     burgers: ['Urbana Fina', 'Urbana Campera', 'Urbana British', 'Urbana Jalapeña'],
-    img: imgHuevos, alt: 'Huevos camperos de Pazo de Vilane', ...VERTICAL,
+    img: imgHuevos, alt: { es: 'Huevos camperos de Pazo de Vilane', en: 'Pazo de Vilane free-range eggs' }, ...VERTICAL,
   },
   {
-    titulo: 'Mel de Antas ecológica',
-    texto: 'Miel ecológica producida en Antas de Ulla, en pleno corazón de Galicia. Dulzor natural, aroma y territorio para crear contrastes que llevan nuestras burgers a otro nivel.',
-    productor: { nombre: 'Mel de Anta' },
-    encuentras: 'La encuentras en',
+    titulo: { es: 'Mel da Anta ecológica', en: 'Organic Mel da Anta' },
+    texto: {
+      es: 'Miel ecológica producida en Antas de Ulla, en pleno corazón de Galicia. Dulzor natural, aroma y territorio para crear contrastes que llevan nuestras burgers a otro nivel.',
+      en: 'Organic honey from Antas de Ulla, right in the heart of Galicia. Natural sweetness, aroma and a real taste of place, creating contrasts that take our burgers to the next level.',
+    },
+    productor: { nombre: 'Mel da Anta' },
+    encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Campera', 'Camperitos'],
-    img: imgMel, alt: 'Burger con huevo y miel de castaño Mel da Anta junto a un tarro de miel y castañas', ...VERTICAL_2_3,
+    img: imgMel, alt: { es: 'Burger con huevo y miel de castaño Mel da Anta junto a un tarro de miel y castañas', en: 'Burger with egg and Mel da Anta chestnut honey next to a jar of honey and chestnuts' }, ...VERTICAL_2_3,
   },
   {
-    titulo: 'Queso DOP Arzúa-Ulloa',
-    texto: 'Un queso gallego elaborado con leche de vaca, suave, cremoso y muy fundente. Nace en el corazón de Galicia y sobre la carne hace exactamente lo que tiene que hacer. Locura de combinación.',
-    productor: { nombre: 'DOP Arzúa-Ulloa', url: 'https://www.arzua-ulloa.org/' },
-    encuentras: 'Lo encuentras en',
+    titulo: { es: 'Queso DOP Arzúa-Ulloa', en: 'Arzúa-Ulloa PDO cheese' },
+    texto: {
+      es: 'Un queso gallego elaborado con leche de vaca, suave, cremoso y muy fundente. Nace en el corazón de Galicia y sobre la carne hace exactamente lo que tiene que hacer. Locura de combinación.',
+      en: 'A Galician cow\'s milk cheese: mild, creamy and gloriously melty. Born in the heart of Galicia, it does exactly what it should on top of the beef. A crazy-good combo.',
+    },
+    productor: { nombre: { es: 'DOP Arzúa-Ulloa', en: 'Arzúa-Ulloa PDO' }, url: 'https://www.arzua-ulloa.org/' },
+    encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Antollo Galego', 'Rustic Way'],
-    img: imgArzua, alt: 'Burger sobre una rueda de queso Arzúa-Ulloa', ...VERTICAL_2_3,
+    img: imgArzua, alt: { es: 'Burger sobre una rueda de queso Arzúa-Ulloa', en: 'Burger on a wheel of Arzúa-Ulloa cheese' }, ...VERTICAL_2_3,
   },
   {
-    titulo: 'Queso DOP San Simón da Costa',
-    texto: 'Elaborado en Terra Chá y reconocible por su forma, su corteza y su característico toque ahumado. Un queso gallego con personalidad propia que sube de nivel todo lo que toca.',
-    productor: { nombre: 'DOP San Simón da Costa', url: 'https://www.sansimondacosta.com/' },
-    encuentras: 'Lo encuentras en',
+    titulo: { es: 'Queso DOP San Simón da Costa', en: 'San Simón da Costa PDO cheese' },
+    texto: {
+      es: 'Elaborado en Terra Chá y reconocible por su forma, su corteza y su característico toque ahumado. Un queso gallego con personalidad propia que sube de nivel todo lo que toca.',
+      en: 'Made in Terra Chá and instantly recognisable by its shape, its rind and its signature smoky touch. A Galician cheese with a personality of its own that levels up everything it touches.',
+    },
+    productor: { nombre: { es: 'DOP San Simón da Costa', en: 'San Simón da Costa PDO' }, url: 'https://www.sansimondacosta.com/' },
+    encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Fina', 'Urbana Corea'],
-    img: imgSanSimon, alt: 'Burger con queso San Simón da Costa ahumado', ...VERTICAL_2_3,
+    img: imgSanSimon, alt: { es: 'Burger con queso San Simón da Costa ahumado', en: 'Burger with smoked San Simón da Costa cheese' }, ...VERTICAL_2_3,
   },
   {
-    titulo: 'Queso Galmesán',
-    texto: 'Un queso curado gallego elaborado en Arzúa con leche de pastoreo procedente de pequeños ganaderos. Intenso, aromático y perfecto para rallar, fundir o dar el golpe final.',
+    titulo: { es: 'Queso Galmesán', en: 'Galmesán cheese' },
+    texto: {
+      es: 'Un queso curado gallego elaborado en Arzúa con leche de pastoreo procedente de pequeños ganaderos. Intenso, aromático y perfecto para rallar, fundir o dar el golpe final.',
+      en: 'A cured Galician cheese made in Arzúa with pasture-fed milk from small local farmers. Intense, aromatic and perfect for grating, melting or adding the finishing touch.',
+    },
     productor: { nombre: 'Galmesán', url: 'https://www.galmesan.es/' },
-    encuentras: 'Lo encuentras en',
+    encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: BURGERS_PENDIENTES,
-    img: imgQuesos, alt: 'Quesos gallegos', ...VERTICAL,
+    img: imgQuesos, alt: { es: 'Quesos gallegos', en: 'Galician cheeses' }, ...VERTICAL,
   },
   {
     titulo: 'Roxad’Ouro',
-    texto: 'Carne gallega seleccionada y madurada por Gutrei Galicia. El tiempo de maduración concentra su sabor, mejora su textura y consigue una burger más intensa y jugosa. Una carne para hacerte gozar, nivel supremo.',
-    encuentras: 'La encuentras en',
+    texto: {
+      es: 'Carne gallega seleccionada y madurada por Gutrei Galicia. El tiempo de maduración concentra su sabor, mejora su textura y consigue una burger más intensa y jugosa. Una carne para hacerte gozar, nivel supremo.',
+      en: 'Galician beef selected and matured by Gutrei Galicia. Ageing concentrates its flavour, improves its texture and makes for a more intense, juicier burger. Beef that\'ll make you swoon, next-level stuff.',
+    },
+    encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
     burgers: BURGERS_PENDIENTES,
-    img: imgRoxadouro, alt: 'Burger de carne madurada Roxad’Ouro', ...VERTICAL,
+    img: imgRoxadouro, alt: { es: 'Burger de carne madurada Roxad’Ouro', en: 'Matured Roxad’Ouro beef burger' }, ...VERTICAL,
   },
   {
-    titulo: 'Pimientos de Padrón',
-    texto: 'Pequeños, verdes y con ese punto imprevisible que forma parte de su fama: unos pican y otros no. Un clásico gallego que con nuestras carnes y pan… no podemos explicártelo, tendrás que probarlo!',
-    encuentras: 'Los encuentras en',
-    burgers: ['Urbana Indómita', 'Aros de cebolla'],
-    img: imgPimientos, alt: 'Burger con pimientos de Padrón', ...VERTICAL,
+    titulo: { es: 'Pimientos de Padrón', en: 'Padrón peppers' },
+    texto: {
+      es: 'Pequeños, verdes y con ese punto imprevisible que forma parte de su fama: unos pican y otros no. Un clásico gallego que con nuestras carnes y pan… no podemos explicártelo, tendrás que probarlo!',
+      en: 'Small, green and with that unpredictable streak they\'re famous for: some are hot and some aren\'t. A Galician classic that, with our beef and bread… we can\'t explain it, you\'ll just have to try it!',
+    },
+    encuentras: { es: 'Los encuentras en', en: 'You\'ll find them in' },
+    burgers: ['Urbana Indómita', { es: 'Aros de cebolla', en: 'Onion rings' }],
+    img: imgPimientos, alt: { es: 'Burger con pimientos de Padrón', en: 'Burger with Padrón peppers' }, ...VERTICAL,
   },
 ]
 
@@ -246,6 +275,8 @@ function colocarVaca(hero, lineaBase, intro) {
 }
 
 export default function Nosotros() {
+  const { t } = useTranslation()
+  const idioma = useIdioma()
   const wrapRef = useRef(null)
   const heroRef = useRef(null)
   const tituloRef = useRef(null)
@@ -387,11 +418,11 @@ export default function Nosotros() {
   return (
     <main>
       <Seo
-        title="Nuestro Origen: producto gallego"
-        description="Carne de Rubia Galega, pan artesano de Lugo, huevos camperos, miel ecológica y quesos DOP gallegos: el producto de proximidad de cada burger de La Urbana."
+        title={t('nosotros.seo.titulo')}
+        description={t('nosotros.seo.descripcion')}
         path="/nosotros"
       />
-      <MigasJsonLd migas={[{ nombre: 'Nuestro Origen', path: '/nosotros' }]} />
+      <MigasJsonLd migas={[{ nombre: t('nav.origen'), path: '/nosotros' }]} />
 
       <div className={`${styles.recorrido} ${version ? styles.fijo : ''} ${version === 'movil' ? styles.fijoMovil : ''}`} ref={wrapRef}>
         <section className={styles.hero} ref={heroRef}>
@@ -430,7 +461,7 @@ export default function Nosotros() {
               </span>
             </h1>
             <p className={styles.intro} ref={introRef}>
-              Galicia es calidad en estado puro y ya se sabe que... Para comer, Lugo! Pues nuestras burgers son justo eso: carne gallega, pan artesano e ingredientes de proximidad y con nombre y apellidos. Apostamos por productos de aquí y, siempre que podemos, ecológicos. Y eso ¡se nota!
+              {t('nosotros.intro')}
             </p>
           </div>
         </section>
@@ -444,7 +475,7 @@ export default function Nosotros() {
           {lienzo && caminoSvg}
           {INGREDIENTES.map((item, i) => (
             <article
-              key={item.titulo}
+              key={tx(item.titulo, 'es')}
               ref={el => { filasRef.current[i] = el }}
               className={`${styles.fila} ${i % 2 === 0 ? styles.filaDerecha : ''}`}
               style={{
@@ -465,7 +496,7 @@ export default function Nosotros() {
             >
               <img
                 src={item.img}
-                alt={item.alt}
+                alt={tx(item.alt, idioma)}
                 width={item.width}
                 height={item.height}
                 loading="lazy"
@@ -473,23 +504,23 @@ export default function Nosotros() {
                 className={styles.foto}
               />
               <div className={styles.info} data-alinear={filas?.[i].texto.alinear}>
-                <h2 className={styles.nombre}>{item.titulo}</h2>
-                <p className={styles.texto}>{item.texto}</p>
+                <h2 className={styles.nombre}>{tx(item.titulo, idioma)}</h2>
+                <p className={styles.texto}>{tx(item.texto, idioma)}</p>
                 {item.productor && (
                   <p className={styles.productor}>
                     {item.productor.url
-                      ? <a href={item.productor.url} target="_blank" rel="noopener noreferrer">{item.productor.nombre}</a>
-                      : item.productor.nombre}
+                      ? <a href={item.productor.url} target="_blank" rel="noopener noreferrer">{tx(item.productor.nombre, idioma)}</a>
+                      : tx(item.productor.nombre, idioma)}
                   </p>
                 )}
                 <div className={styles.encuentras}>
-                  <span className={styles.encuentrasLabel}>{item.encuentras}:</span>
+                  <span className={styles.encuentrasLabel}>{tx(item.encuentras, idioma)}:</span>
                   <ul className={styles.burgers}>
                     {item.burgers.map((burger, j) => (
-                      <li key={j} className={styles.burger}>{burger}</li>
+                      <li key={j} className={styles.burger}>{tx(burger, idioma)}</li>
                     ))}
                   </ul>
-                  {item.nota && <span className={styles.nota}>{item.nota}</span>}
+                  {item.nota && <span className={styles.nota}>{tx(item.nota, idioma)}</span>}
                 </div>
               </div>
             </article>

@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
-import { Link } from 'react-router-dom'
+import Enlace from '../../i18n/Enlace'
 import { useTranslation } from 'react-i18next'
 import styles from './BannerCookies.module.css'
 import {
@@ -103,7 +103,7 @@ export default function BannerCookies() {
       <h2 id={`${id}-titulo`} className={styles.titulo}>{t('cookies.titulo')}</h2>
       <p id={`${id}-texto`} className={styles.texto}>
         {t('cookies.texto')}{' '}
-        <Link to="/politica-cookies" className={styles.enlace}>{t('cookies.politica')}</Link>
+        <Enlace to="/politica-cookies" className={styles.enlace}>{t('cookies.politica')}</Enlace>
       </p>
       <div className={styles.botones}>
         <button type="button" className={styles.boton} onClick={() => guardarConsentimiento({ analiticas: false, terceros: false })}>

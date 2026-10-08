@@ -2,26 +2,13 @@ import React from 'react'
 import { prerenderToNodeStream } from 'react-dom/static'
 import { StaticRouter } from 'react-router'
 import { HelmetProvider } from 'react-helmet-async'
-import './i18n/index.js'
+import i18n from './i18n/index.js'
 import App from './App.jsx'
-import { POSTS, CATEGORIAS, rutaCategoria } from './pages/UrbanaStyle/posts.js'
-
-export const RUTAS = [
-  '/',
-  '/carta',
-  '/nosotros',
-  '/contacto',
-  '/reservar',
-  '/alergenos',
-  '/restaurantes-secretos',
-  '/la-urbana-style',
-  '/politica-cookies',
-  ...POSTS.map((post) => `/la-urbana-style/${post.slug}`),
-  ...Object.keys(CATEGORIAS).map(rutaCategoria),
-]
+import { idiomaDeRuta } from './i18n/rutas.js'
 
 // Espera a que carguen las páginas con lazy() antes de devolver el HTML completo
 export async function render(url) {
+  await i18n.changeLanguage(idiomaDeRuta(url))
   const { prelude } = await prerenderToNodeStream(
     <React.StrictMode>
       <HelmetProvider>

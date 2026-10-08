@@ -20,6 +20,15 @@
 - Posts de #LaUrbanaStyle: `src/pages/UrbanaStyle/posts.js` y `src/pages/UrbanaStyle/contenidos/`
 - Textos de la interfaz: `src/i18n/locales/es/translation.json` y `en/translation.json`. **Todo texto nuevo va en los dos idiomas.**
 
+## Idiomas (castellano e inglés británico)
+
+- El idioma sale de la URL: `/carta` en castellano, `/en/menu` en inglés. Las equivalencias de rutas están en `src/i18n/rutas.js` (tabla `PAGINAS`). **Una página nueva se añade ahí y en `App.jsx`**.
+- Los enlaces internos se escriben con la ruta en castellano usando `Enlace` (`src/i18n/Enlace.jsx`), que la traduce sola. No usar `Link` con rutas fijas.
+- Textos de contenido (carta, alérgenos, Nuestro Origen, horarios, Team…): cada texto va como `{ es: '…', en: '…' }` en su archivo de datos y se lee con `tx()`. Lo que es igual en los dos idiomas puede ir como cadena simple.
+- **Nunca se traducen** los nombres de las burgers, locales y chefs, ni lo que está en gallego.
+- Posts: cada entrada de `posts.js` lleva `slug: { es, en }` y sus textos en `es` y `en`. El contenido en inglés va en `contenidos/en/`. Un post nuevo se escribe también en inglés.
+- El sitemap lo genera el build (`scripts/prerender.js`), con las dos versiones de cada página. No hay que tocarlo a mano.
+
 ## Tareas en Notion
 
 Las tareas pendientes del proyecto están en la base de datos de Notion **"Pendientes urbana previos a lanzamiento"**:

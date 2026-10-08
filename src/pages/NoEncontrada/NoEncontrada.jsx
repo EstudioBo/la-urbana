@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import Enlace from '../../i18n/Enlace'
 import Seo from '../../components/Seo/Seo'
 import FondoManchas from './FondoManchas'
 import HamburguesaCero from './HamburguesaCero'
@@ -39,9 +40,9 @@ export default function NoEncontrada() {
         </h1>
 
         <nav ref={enlacesRef} className={styles.enlaces} aria-label={t('noEncontrada.enlaces')}>
-          <Link to="/carta" className={styles.enlace}>{t('noEncontrada.carta')}</Link>
+          <Enlace to="/carta" className={styles.enlace}>{t('noEncontrada.carta')}</Enlace>
           <a href="https://laurbana.waitry.net/" target="_blank" rel="noopener noreferrer" className={`${styles.enlace} ${styles.enlacePedido}`}>{t('noEncontrada.pedido')}</a>
-          <Link to="/reservar" className={`${styles.enlace} ${styles.enlacePrincipal}`}>{t('noEncontrada.reservar')}</Link>
+          <Enlace to="/reservar" className={`${styles.enlace} ${styles.enlacePrincipal}`}>{t('noEncontrada.reservar')}</Enlace>
         </nav>
       </div>
     </main>

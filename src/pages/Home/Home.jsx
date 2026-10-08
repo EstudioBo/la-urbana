@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styles from './Home.module.css'
 import Seo from '../../components/Seo/Seo'
 import LocalBusinessJsonLd from '../../components/Seo/LocalBusinessJsonLd'
@@ -33,6 +34,7 @@ function MarqueeDivider({ reverse = false, sticky = false }) {
 }
 
 export default function Home() {
+  const { t } = useTranslation()
   const stickerRef = useRef(null)
   const [stamped, setStamped] = useState(false)
   const sticker2Ref = useRef(null)
@@ -69,9 +71,9 @@ export default function Home() {
   return (
     <main className={styles.home}>
       <Seo
-        title="La Urbana Burger | Burgers en Lugo, Vigo y Santiago"
+        title={t('home.seo.titulo')}
         titleIsFull
-        description="Hamburguesería y burgers de autor con producto gallego de km 0 en Lugo, Vigo y Santiago de Compostela. Rubia Galega y pan artesano. Reserva o pide a domicilio."
+        description={t('home.seo.descripcion')}
         path="/"
       />
       <LocalBusinessJsonLd />

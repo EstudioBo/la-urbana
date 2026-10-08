@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionTeam.module.css'
+import { tx, useIdioma } from '../../../i18n/idioma'
 
 import bgBurger    from '../../../assets/images/home/galician-style-burger.webp'
 import arrowLeft  from '../../../assets/images/iconos/arrow-left.svg'
@@ -17,10 +18,19 @@ import chefAlejandro from '../../../assets/images/chefs/Alejandro-Méndez-Os-Cac
 const CHEFS = [
   { img: chefEloy,       nombre: 'Eloy & Kike',     local: 'A Horta D\'Obradoiro', ciudad: 'Santiago de Compostela', localUrl: 'http://ahortadoobradoiro.com/',        burguer: 'Antollo Galego',   ingredientes: '200gr de carne galega de vaca vella madurada con smash de Rixóns, salsa de queixo de Arzúa, un toque de cremoso grelo en o noso pan crocante espolvoreado con pimentón doce/picante' },
   { img: chefLucia,      nombre: 'Lucía Freitas',    local: 'A Tafona',             ciudad: 'Santiago de Compostela', localUrl: 'https://www.luciafreitas.es/a-tafona', burguer: 'Urbana Mestiza',   ingredientes: 'Por definir' },
-  { img: chefHector,     nombre: 'Héctor López',     local: 'Restaurante España',   ciudad: 'Lugo',                   localUrl: 'https://restespana.es/',               burguer: 'Urbana Fina',      ingredientes: 'Carne a tu elección, base de lechuga, tartar de tomate sazonado, queso D.O San Simón fundido, pepinos marinados frescos y agridulces, salsa de huevo campero frito y mahonesa casera coronada con patata fina y crujiente' },
+  { img: chefHector,     nombre: 'Héctor López',     local: 'Restaurante España',   ciudad: 'Lugo',                   localUrl: 'https://restespana.es/',               burguer: 'Urbana Fina',      ingredientes: {
+    es: 'Carne a tu elección, base de lechuga, tartar de tomate sazonado, queso D.O San Simón fundido, pepinos marinados frescos y agridulces, salsa de huevo campero frito y mahonesa casera coronada con patata fina y crujiente',
+    en: 'Your choice of meat, a bed of lettuce, seasoned tomato tartare, melted PDO San Simón cheese, fresh sweet-and-sour marinated cucumber, fried free-range egg sauce and homemade mayo, topped with thin, crispy potato straws',
+  } },
   { img: chefMartin,     nombre: 'Martín Vázquez',   local: 'Indómito',             ciudad: 'Santiago de Compostela', localUrl: 'https://indomitobistro.es/',           burguer: 'Urbana Indómita',  ingredientes: 'Por definir' },
-  { img: chefVictor,     nombre: 'Víctor Fernández', local: 'Morrofino',            ciudad: 'Vigo', localUrl: 'https://restaurantemorrofino.com/',    burguer: 'Urbana Corea',     ingredientes: 'Carne a tu elección, emulsión de kimchi, queso D.O San Simón ahumado, pepinillos encurtidos y barbacoa de ajo negro' },
-  { img: chefAlejandro,  nombre: 'Alejandro Méndez', local: 'Os Cachivaches',       ciudad: 'Lugo',                   localUrl: 'https://oscachivaches.com/',           burguer: 'Urbana Italiana',  ingredientes: 'Carne a tu elección, rúcula, mozzarella fresca, parmesano fundido, salami, pepperoni, tomate cherry, salsa napolitana y reducción de módena' },
+  { img: chefVictor,     nombre: 'Víctor Fernández', local: 'Morrofino',            ciudad: { es: 'Santiago de Compostela y Vigo', en: 'Santiago de Compostela and Vigo' }, localUrl: 'https://restaurantemorrofino.com/',    burguer: 'Urbana Corea',     ingredientes: {
+    es: 'Carne a tu elección, emulsión de kimchi, queso D.O San Simón ahumado, pepinillos encurtidos y barbacoa de ajo negro',
+    en: 'Your choice of meat, kimchi emulsion, smoked PDO San Simón cheese, pickled gherkins and black garlic barbecue sauce',
+  } },
+  { img: chefAlejandro,  nombre: 'Alejandro Méndez', local: 'Os Cachivaches',       ciudad: 'Lugo',                   localUrl: 'https://oscachivaches.com/',           burguer: 'Urbana Italiana',  ingredientes: {
+    es: 'Carne a tu elección, rúcula, mozzarella fresca, parmesano fundido, salami, pepperoni, tomate cherry, salsa napolitana y reducción de módena',
+    en: 'Your choice of meat, rocket, fresh mozzarella, melted Parmesan, salami, pepperoni, cherry tomatoes, Neapolitan sauce and balsamic reduction',
+  } },
 ]
 
 const LOOP = Array.from({ length: CHEFS.length * 20 }, (_, i) => CHEFS[i % CHEFS.length])
@@ -28,6 +38,7 @@ const GAP = 12
 
 export default function SeccionTeam() {
   const { t } = useTranslation()
+  const idioma = useIdioma()
   const [offset, setOffset] = useState(CHEFS.length * 3)
   const [cardPx, setCardPx] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
@@ -265,17 +276,17 @@ export default function SeccionTeam() {
               <img src={modalChef.img} alt={modalChef.nombre} />
             </div>
             <div className={styles.modalTopInfo}>
-              <p className={styles.modalRow}><span>Burger</span>{modalChef.burguer}</p>
-              <p className={styles.modalRow}><span>Chef</span>{modalChef.nombre}</p>
+              <p className={styles.modalRow}><span>{t('home.team.burger')}</span>{modalChef.burguer}</p>
+              <p className={styles.modalRow}><span>{t('home.team.chef')}</span>{modalChef.nombre}</p>
               <p className={styles.modalRow}>
-                <span>Restaurante</span>
+                <span>{t('home.team.restaurante')}</span>
                 <a href={modalChef.localUrl} target="_blank" rel="noopener noreferrer">
-                  {modalChef.local} — {modalChef.ciudad}
+                  {modalChef.local} — {tx(modalChef.ciudad, idioma)}
                 </a>
               </p>
             </div>
             <div className={styles.modalIngredientes}>
-              <p className={styles.modalRow}><span>Ingredientes</span>{modalChef.ingredientes}</p>
+              <p className={styles.modalRow}><span>{t('home.team.ingredientes')}</span>{tx(modalChef.ingredientes, idioma)}</p>
             </div>
             <div className={styles.modalSelloWrap} ref={selloRef}>
               <img src={selloU} alt="" className={styles.modalSello} />
