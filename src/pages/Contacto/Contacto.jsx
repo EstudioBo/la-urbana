@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './Contacto.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 
 const ARROW_PATH = 'M6.79,55.66c-1.17,0-2.33-.31-3.39-.92-2.13-1.23-3.39-3.42-3.39-5.88V6.8C0,4.35,1.27,2.15,3.39.92,5.52-.31,8.06-.31,10.18.92l36.42,21.03h0c2.13,1.23,3.39,3.42,3.39,5.88,0,2.45-1.27,4.65-3.39,5.88L10.18,54.74c-1.06.61-2.23.92-3.39.92ZM6.8,4.4c-.55,0-.99.2-1.21.33-.36.21-1.2.83-1.2,2.07v42.06c0,1.25.84,1.87,1.2,2.07.36.21,1.31.62,2.39,0l36.42-21.03c1.08-.62,1.2-1.66,1.2-2.07,0-.42-.12-1.45-1.2-2.07L7.99,4.73c-.42-.24-.83-.33-1.19-.33Z'
@@ -52,6 +53,7 @@ export default function Contacto() {
         description="¿Tienes una pregunta, una propuesta o quieres organizar algo con nosotros? Escríbenos desde el formulario de contacto de La Urbana Burger Bar y te respondemos."
         path="/contacto"
       />
+      <MigasJsonLd migas={[{ nombre: 'Contacto', path: '/contacto' }]} />
       <main className={styles.page}>
         <div className={styles.grid}>
           <div className={`${styles.block} ${visible ? styles.visible : ''}`} ref={blockRef}>

@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionViral.module.css'
+import { FACEBOOK_URL, INSTAGRAM_URL } from '../../../components/Seo/site'
 import hamburguesaViral from '../../../assets/images/home/hamburguesa-viral.webp'
 
 const IconFacebook = () => (
@@ -92,10 +93,10 @@ export default function SeccionViral() {
     <section className={styles.section}>
       <div className={styles.textCol}>
         <div className={styles.textBlock}>
-          <a ref={fbRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href="https://www.facebook.com/laurbanaburger/?locale=es_ES" target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnFb}`}>
+          <a ref={fbRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnFb}`}>
             facebook <IconFacebook />
           </a>
-          <a ref={igRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href="https://www.instagram.com/laurbanaburger/?hl=es" target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnIg}`}>
+          <a ref={igRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnIg}`}>
             instagram <IconInstagram />
           </a>
           <a ref={rsRef} onMouseEnter={startSparkles} onMouseLeave={stopSparkles} href="https://www.google.com/search?sca_esv=dcf9c7310e527f23&sxsrf=APpeQnsIQhg4oBmCx6DcmsQri9NQrlzGoA:1784629110443&q=la+urbana+burger+&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_zCymp6Qq-qpd4PERF2GyQpEUP8eNkcbRIlrTcuLrBhJa5hDsYr-W_asbaPwMKjci-qqW_Y%3D&uds=AJ5uw1_rUfMqrtZe7QfpdFGwaPC3sLGD5__yOh-S6TylvCbRsq-5lwD3oNvZ92G2tuUrraRT-MYk_T17UiLZZQmtzmmCHwAb0bMvG7uSdSy32VHh6uzbF0M&sa=X&ved=2ahUKEwiq4bvBxeOVAxWn2wIHHSwiNh4Q3PALegQIMRAF&biw=1707&bih=879&dpr=1.13" target="_blank" rel="noopener noreferrer" className={`${styles.floatBtn} ${styles.floatBtnRs}`}>

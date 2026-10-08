@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import styles from './Carta.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import { CATEGORIAS, PLATOS, ALERGENOS } from './cartaData'
 
@@ -232,6 +233,7 @@ export default function Carta() {
         description="Nuestra carta: hamburguesas Made in Galicia, burgers de autor, entrepanes, ensaladas, entrantes y postres. Producto gallego de km 0 en cada plato de La Urbana."
         path="/carta"
       />
+      <MigasJsonLd migas={[{ nombre: 'Carta', path: '/carta' }]} />
       <main className={styles.main}>
         <header className={styles.header}>
           <h1 className={styles.title}>Nuestra carta</h1>

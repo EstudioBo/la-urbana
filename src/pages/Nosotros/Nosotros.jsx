@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState, useEffect, useLayoutEffect, useSyncExternalStore } from 'react'
 import styles from './Nosotros.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import SeccionCarta from '../Home/sections/SeccionCarta'
 import Footer from '../Home/sections/Footer'
 import imgFondo from '../../assets/images/origen/fondo-nuestro-origen.webp'
@@ -390,6 +391,7 @@ export default function Nosotros() {
         description="Carne de Rubia Galega, pan artesano de Lugo, huevos camperos, miel ecológica y quesos DOP gallegos: el producto de proximidad de cada burger de La Urbana."
         path="/nosotros"
       />
+      <MigasJsonLd migas={[{ nombre: 'Nuestro Origen', path: '/nosotros' }]} />
 
       <div className={`${styles.recorrido} ${version ? styles.fijo : ''} ${version === 'movil' ? styles.fijoMovil : ''}`} ref={wrapRef}>
         <section className={styles.hero} ref={heroRef}>

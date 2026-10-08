@@ -61,6 +61,7 @@ const RESTAURANTES = [
   {
     nombre: 'Santiago de Compostela',
     direccion: 'Av. do Camiño Francés, 3, Santiago de Compostela',
+    tel: '881 93 99 12',
     horarioLocal: [
       'Dom - Jue: 13:00h - 23:00h',
       'Vie - Sáb: 13:00h - 23:30h',

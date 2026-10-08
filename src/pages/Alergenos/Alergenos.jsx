@@ -1,5 +1,6 @@
 import styles from './Alergenos.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import { ALERGENOS } from '../Carta/cartaData'
 import { SECCIONES } from './tablaAlergenos'
@@ -46,6 +47,7 @@ export default function Alergenos() {
         description="Tabla de alérgenos de La Urbana Burger Bar: burgers, entrantes, ensaladas, postres y menú infantil. Consulta los alérgenos de cada plato antes de pedir."
         path="/alergenos"
       />
+      <MigasJsonLd migas={[{ nombre: 'Alérgenos', path: '/alergenos' }]} />
       <main className={styles.page}>
         <div className={styles.header}>
           <h1 className={styles.title}>Alérgenos</h1>

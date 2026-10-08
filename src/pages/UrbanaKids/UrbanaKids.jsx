@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import styles from './UrbanaKids.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import imgUu from '../../assets/images/decorativos/uu-deco.svg'
 import arrowLeft from '../../assets/images/iconos/arrow-left.svg'
@@ -159,6 +160,7 @@ export default function UrbanaKids() {
         description="En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para hacer su pedido, zona de juego, pantalla y mesa propia."
         path="/restaurantes-secretos"
       />
+      <MigasJsonLd migas={[{ nombre: 'Restaurantes Secretos', path: '/restaurantes-secretos' }]} />
 
       <main>
       {/* HERO */}

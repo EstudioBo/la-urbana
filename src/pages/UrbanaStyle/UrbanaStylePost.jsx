@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import styles from './UrbanaStylePost.module.css'
 import estilo from './estilo.module.css'
 import Seo from '../../components/Seo/Seo'
+import JsonLd from '../../components/Seo/JsonLd'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import { SITE_NAME, SITE_URL } from '../../components/Seo/site'
 import Footer from '../Home/sections/Footer'
 import FondoUs from '../../components/FondoUs/FondoUs'
@@ -10,23 +11,26 @@ import TarjetaPost from './TarjetaPost'
 import { Fecha } from './Fecha'
 import { CATEGORIAS, POSTS, rutaCategoria } from './posts'
 
-function ArticuloJsonLd({ post, path }) {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.titulo,
-    description: post.extracto,
-    image: `${SITE_URL}${post.img}`,
-    ...(post.fecha && { datePublished: post.fecha }),
-    mainEntityOfPage: `${SITE_URL}${path}`,
-    author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
-    publisher: { '@id': `${SITE_URL}/#organization` },
-  }
-
+function ArticuloJsonLd({ post, path, imagen }) {
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
-    </Helmet>
+    <JsonLd
+      schema={{
+        '@type': 'BlogPosting',
+        headline: post.titulo,
+        description: post.extracto,
+        image: `${SITE_URL}${imagen}`,
+        ...(post.fecha && { datePublished: post.fecha }),
+        inLanguage: 'es',
+        mainEntityOfPage: `${SITE_URL}${path}`,
+        author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+        publisher: {
+          '@type': 'Organization',
+          '@id': `${SITE_URL}/#organization`,
+          name: SITE_NAME,
+          logo: `${SITE_URL}/favicon.webp`,
+        },
+      }}
+    />
   )
 }
 
@@ -36,13 +40,15 @@ export default function UrbanaStylePost() {
   if (!post) return <Navigate to="/la-urbana-style" replace />
 
   const path = `/la-urbana-style/${post.slug}`
+  const imagen = `/og/${post.slug}.webp`
   const otros = POSTS.filter((p) => p.slug !== post.slug).slice(0, 3)
   const { Contenido } = post
 
   return (
     <div>
-      <Seo title={post.seo.titulo} description={post.seo.descripcion} path={path} image={`/og/${post.slug}.webp`} type="article" />
-      <ArticuloJsonLd post={post} path={path} />
+      <Seo title={post.seo.titulo} description={post.seo.descripcion} path={path} image={imagen} type="article" />
+      <ArticuloJsonLd post={post} path={path} imagen={imagen} />
+      <MigasJsonLd migas={[{ nombre: '#LaUrbanaStyle', path: '/la-urbana-style' }, { nombre: post.titulo, path }]} />
 
       <main>
         <header className={styles.cabecera}>

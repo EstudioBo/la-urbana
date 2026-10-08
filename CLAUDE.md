@@ -2,7 +2,7 @@
 
 ## Datos básicos
 
-- Web de La Urbana Burger Bar: cuatro locales: dos en Lugo, uno en Vigo y uno en Santiago. React + Vite.
+- Web de La Urbana Burger Bar: cinco locales: tres en Lugo (Bispo Aguirre, Praza de Augas Férreas y C.C. As Termas), uno en Vigo y uno en Santiago. React + Vite.
 - **Hosting:** Netlify. La versión de pruebas está en `la-urbana.netlify.app`, el repositorio en `github.com/EstudioBo/la-urbana`. Las reglas de Netlify van en `public/_headers` y `public/_redirects`.
 - **Despliegue:** Netlify publica automáticamente cada push a `main`. Un push es publicar, así que no se hace sin confirmación expresa de Sara.
 - **Dominio final:** `www.laurbanaburgerbar.com` (todavía apunta a la web antigua).

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styles from './Navbar.module.css'
+import { FACEBOOK_URL, INSTAGRAM_URL } from '../Seo/site'
 import logo from '../../assets/images/logos/logo-pegatina.webp'
 import iconDelivery from '../../assets/images/iconos/icon-delivery.svg'
 import iconReserva from '../../assets/images/iconos/icon-reserva.svg'
@@ -161,10 +162,10 @@ export default function Navbar({ lang, setLang }) {
         </div>
 
         <div className={styles.menuSocial}>
-          <a href="https://www.instagram.com/laurbanaburgerbar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <IconInstagram />
           </a>
-          <a href="https://www.facebook.com/laurbanaburgerbar" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <IconFacebook />
           </a>
           <a href="https://g.page/r/laurbanaburgerbar/review" target="_blank" rel="noopener noreferrer" aria-label={t('a11y.resenasGoogle')}>

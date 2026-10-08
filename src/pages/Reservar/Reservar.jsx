@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './Reservar.module.css'
 import Seo from '../../components/Seo/Seo'
+import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import FondoUs from '../../components/FondoUs/FondoUs'
 
@@ -22,6 +23,7 @@ export default function Reservar() {
         description="Reserva mesa en La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas y C.C. As Termas), Vigo y Santiago de Compostela. Elige local y reserva."
         path="/reservar"
       />
+      <MigasJsonLd migas={[{ nombre: 'Reservar', path: '/reservar' }]} />
       <main className={styles.page}>
         <FondoUs />
 
