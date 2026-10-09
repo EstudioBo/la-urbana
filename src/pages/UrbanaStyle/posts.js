@@ -1,10 +1,10 @@
 import { lazy } from 'react'
-import imgCajaMuralla from '../../assets/images/urbana-style/cajas-verdes-lugo-muralla.webp'
-import imgFerido from '../../assets/images/urbana-style/xoan-forneas-ferido-meigas-dentro.webp'
-import imgBarea from '../../assets/images/urbana-style/leandro-barea-mesa-detalle.webp'
-import imgAntollo from '../../assets/images/urbana-style/antollo-galego-burger.webp'
-import imgIndomita from '../../assets/images/urbana-style/indomita-burger.webp'
-import imgSantiagoFachada from '../../assets/images/urbana-style/apertura-santiago-fachada.webp'
+import imgCajaMuralla from '../../assets/images/urbana-style/cajas-verdes-lugo-muralla.webp?adaptable'
+import imgFerido from '../../assets/images/urbana-style/xoan-forneas-ferido-meigas-dentro.webp?adaptable'
+import imgBarea from '../../assets/images/urbana-style/leandro-barea-mesa-detalle.webp?adaptable'
+import imgAntollo from '../../assets/images/urbana-style/antollo-galego-burger.webp?adaptable'
+import imgIndomita from '../../assets/images/urbana-style/indomita-burger.webp?adaptable'
+import imgSantiagoFachada from '../../assets/images/urbana-style/apertura-santiago-fachada.webp?adaptable'
 
 // El contenido de cada entrada se carga solo al abrirla: este archivo lo usan también el menú y el selector de idioma
 const contenido = {

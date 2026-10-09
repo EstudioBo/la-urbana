@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './bloques.module.css'
 import Lightbox from '../../components/Lightbox/Lightbox'
+import Imagen from '../../components/Imagen/Imagen'
 import Enlace from '../../i18n/Enlace'
 import { guardarConsentimiento, useConsentimiento } from '../../components/Cookies/consentimiento'
 
@@ -25,8 +26,9 @@ export function EnlaceInterno({ to, children }) {
 export function Figura({ img, alt, encuadre, entera = false, primera = false }) {
   return (
     <figure className={`${styles.figura} ${entera ? styles.entera : ''}`}>
-      <img
-        src={img}
+      <Imagen
+        imagen={img}
+        sizes="(max-width: 800px) 92vw, 760px"
         alt={alt}
         loading={primera ? 'eager' : 'lazy'}
         fetchPriority={primera ? 'high' : undefined}
@@ -46,14 +48,15 @@ export function Galeria({ fotos }) {
       <div className={styles.galeria}>
         {fotos.map((f, i) => (
           <button
-            key={f.img}
+            key={f.img.src}
             type="button"
             className={`${styles.galeriaFoto} ${f.alta ? styles.galeriaAlta : ''}`}
             onClick={() => setAbierta(i)}
             aria-label={t('a11y.ampliarFoto', { descripcion: f.alt })}
           >
-            <img
-              src={f.img}
+            <Imagen
+              imagen={f.img}
+              sizes="(max-width: 768px) 45vw, 372px"
               alt={f.alt}
               loading="lazy"
               style={f.encuadre ? { objectPosition: f.encuadre } : undefined}

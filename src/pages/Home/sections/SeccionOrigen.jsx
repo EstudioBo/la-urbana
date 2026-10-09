@@ -2,8 +2,9 @@ import { useRef, useState, useEffect } from 'react'
 import Enlace from '../../../i18n/Enlace'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionOrigen.module.css'
-import imgRubia from '../../../assets/images/home/rubia-gallega.webp'
-import sello2015 from '../../../assets/images/home/sello-2015.webp'
+import Imagen from '../../../components/Imagen/Imagen'
+import imgRubia from '../../../assets/images/home/rubia-gallega.webp?adaptable'
+import sello2015 from '../../../assets/images/home/sello-2015.webp?adaptable'
 
 export default function SeccionOrigen() {
   const { t } = useTranslation()
@@ -24,7 +25,7 @@ export default function SeccionOrigen() {
   return (
     <section className={styles.section}>
       <div className={styles.imageCol}>
-        <img src={imgRubia} alt="Rubia Gallega" loading="lazy" />
+        <Imagen imagen={imgRubia} sizes="(max-width: 768px) 100vw, 50vw" alt="Rubia Gallega" loading="lazy" />
       </div>
       <div className={styles.textCol}>
         <span className={styles.label}>
@@ -38,10 +39,11 @@ export default function SeccionOrigen() {
               <span key={i}>{word}<br /></span>
             ))}
           </h2>
-          <img
+          <Imagen
             loading="lazy"
             ref={selloRef}
-            src={sello2015}
+            imagen={sello2015}
+            sizes="(max-width: 768px) 30vw, 13vw"
             alt="Est. 2015"
             className={`${styles.sello} ${selloStamped ? styles.selloStamped : ''}`}
           />

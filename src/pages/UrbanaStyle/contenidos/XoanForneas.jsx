@@ -1,5 +1,5 @@
 import { Hashtag, EnlaceExterno, EnlaceInterno, Figura, PostInstagram, PostsInstagram } from '../bloques'
-import imgCartel from '../../../assets/images/urbana-style/xoan-forneas-ferido-meigas-dentro.webp'
+import imgCartel from '../../../assets/images/urbana-style/xoan-forneas-ferido-meigas-dentro.webp?adaptable'
 
 export default function XoanForneas() {
   return (

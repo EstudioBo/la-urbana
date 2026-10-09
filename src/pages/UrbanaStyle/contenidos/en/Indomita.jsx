@@ -1,7 +1,7 @@
 import { EnlaceExterno, EnlaceInterno, Figura, Galeria, PostInstagram, PostsInstagram } from '../../bloques'
-import imgBurger from '../../../../assets/images/urbana-style/indomita-burger.webp'
-import imgMartin from '../../../../assets/images/urbana-style/indomita-martin-vazquez.webp'
-import imgMartinRisa from '../../../../assets/images/urbana-style/indomita-martin-vazquez-risa.webp'
+import imgBurger from '../../../../assets/images/urbana-style/indomita-burger.webp?adaptable'
+import imgMartin from '../../../../assets/images/urbana-style/indomita-martin-vazquez.webp?adaptable'
+import imgMartinRisa from '../../../../assets/images/urbana-style/indomita-martin-vazquez-risa.webp?adaptable'
 
 export default function Indomita() {
   return (

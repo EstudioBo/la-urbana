@@ -3,15 +3,15 @@ import Enlace from '../../../i18n/Enlace'
 import { tx, useIdioma } from '../../../i18n/idioma'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionCarta.module.css'
+import Imagen from '../../../components/Imagen/Imagen'
 import arrowLeft from '../../../assets/images/iconos/arrow-left.svg'
 
-import imgParaEmpezar from '../../../assets/images/carta/para-empezar.webp'
-import imgArtesanas   from '../../../assets/images/carta/artesanas.webp'
-import imgDeAutor     from '../../../assets/images/carta/de-autor.webp'
-import imgEntrepanes  from '../../../assets/images/carta/entrepanes.webp'
-import imgEnsalada    from '../../../assets/images/carta/ensalada.webp'
-import imgPostres     from '../../../assets/images/carta/postres.webp'
-import imgVeggies     from '../../../assets/images/carta/veggies.webp'
+import imgParaEmpezar from '../../../assets/images/carta/para-empezar.webp?adaptable'
+import imgArtesanas   from '../../../assets/images/carta/artesanas.webp?adaptable'
+import imgDeAutor     from '../../../assets/images/carta/de-autor.webp?adaptable'
+import imgEntrepanes  from '../../../assets/images/carta/entrepanes.webp?adaptable'
+import imgEnsalada    from '../../../assets/images/carta/ensalada.webp?adaptable'
+import imgPostres     from '../../../assets/images/carta/postres.webp?adaptable'
 
 const ITEMS = [
   { img: imgParaEmpezar, nombre: { es: 'Para empezar', en: 'Starters' },   cat: 'empezar' },
@@ -20,7 +20,8 @@ const ITEMS = [
   { img: imgEntrepanes,  nombre: { es: 'Entrepanes', en: 'Sandwiches' },    cat: 'entrepanes' },
   { img: imgEnsalada,    nombre: { es: 'Ensalada', en: 'Salads' },          cat: 'ensaladas' },
   { img: imgPostres,     nombre: { es: 'Postres', en: 'Desserts' },         cat: 'postres' },
-  { img: imgVeggies,     nombre: 'Veggies',                                 cat: 'veggies' },
+  // Veggies usa la portada de Artesanas hasta que haya una foto propia (dos archivos idénticos rompen el build)
+  { img: imgArtesanas,   nombre: 'Veggies',                                 cat: 'veggies' },
 ]
 const enlaceCarta = item => `/carta?categoria=${item.cat}`
 const LOOP = Array.from({ length: ITEMS.length * 20 }, (_, i) => ITEMS[i % ITEMS.length])
@@ -139,7 +140,7 @@ export default function SeccionCarta() {
           >
             {LOOP.map((item, i) => (
               <Enlace key={i} to={enlaceCarta(item)} className={styles.card} tabIndex={-1}>
-                <img loading="lazy" src={item.img} alt={tx(item.nombre, idioma)} />
+                <Imagen imagen={item.img} sizes="(max-width: 768px) 70vw, 31vw" loading="lazy" alt={tx(item.nombre, idioma)} />
                 {(i === offset || i === offset - 1) && (
                   <div className={styles.cardOverlay} style={{
                     position: 'absolute', inset: 0,

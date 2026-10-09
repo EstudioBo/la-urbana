@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionTeam.module.css'
+import Imagen from '../../../components/Imagen/Imagen'
 import { tx, useIdioma } from '../../../i18n/idioma'
 
 import bgBurger    from '../../../assets/images/home/galician-style-burger.webp'
@@ -8,12 +9,12 @@ import arrowLeft  from '../../../assets/images/iconos/arrow-left.svg'
 import arrowRight from '../../../assets/images/iconos/arrow-right.svg'
 import selloU     from '../../../assets/images/decorativos/pegatina-u.webp'
 import bgU        from '../../../assets/images/home/u-fina-con-sello.webp'
-import chefEloy      from '../../../assets/images/chefs/eloy-kike-a-horata-dobgradoiro-antollo-galego.webp'
-import chefLucia     from '../../../assets/images/chefs/lucia-freitas-a-tafona-urbana-mestiza.webp'
-import chefHector    from '../../../assets/images/chefs/hector-lopez-restaurante-espana-urbana-fina.webp'
-import chefMartin    from '../../../assets/images/chefs/martin-vazquez-indomito-urbana-indomita.webp'
-import chefVictor    from '../../../assets/images/chefs/victor-fernandez-morrofino-urbana-corea.webp'
-import chefAlejandro from '../../../assets/images/chefs/Alejandro-Méndez-Os-Cachivaches-Urbana-Italiana.webp'
+import chefEloy      from '../../../assets/images/chefs/eloy-kike-a-horata-dobgradoiro-antollo-galego.webp?adaptable'
+import chefLucia     from '../../../assets/images/chefs/lucia-freitas-a-tafona-urbana-mestiza.webp?adaptable'
+import chefHector    from '../../../assets/images/chefs/hector-lopez-restaurante-espana-urbana-fina.webp?adaptable'
+import chefMartin    from '../../../assets/images/chefs/martin-vazquez-indomito-urbana-indomita.webp?adaptable'
+import chefVictor    from '../../../assets/images/chefs/victor-fernandez-morrofino-urbana-corea.webp?adaptable'
+import chefAlejandro from '../../../assets/images/chefs/Alejandro-Méndez-Os-Cachivaches-Urbana-Italiana.webp?adaptable'
 
 const CHEFS = [
   { img: chefEloy,       nombre: 'Eloy & Kike',     local: 'A Horta D\'Obradoiro', ciudad: 'Santiago de Compostela', localUrl: 'http://ahortadoobradoiro.com/',        burguer: 'Antollo Galego',   ingredientes: '200gr de carne galega de vaca vella madurada con smash de Rixóns, salsa de queixo de Arzúa, un toque de cremoso grelo en o noso pan crocante espolvoreado con pimentón doce/picante' },
@@ -214,7 +215,7 @@ export default function SeccionTeam() {
                   className={`${styles.card} ${clickable ? styles.cardClickable : ''}`}
                   onClick={clickable ? () => abrirFicha(i % CHEFS.length, false) : undefined}
                 >
-                  <img loading="lazy" src={chef.img} alt={chef.nombre} />
+                  <Imagen imagen={chef.img} sizes="(max-width: 768px) 70vw, 31vw" loading="lazy" alt={chef.nombre} />
                   {isOverlay && (
                     <div className={styles.cardOverlay} style={{
                       position: 'absolute', inset: 0,
@@ -273,7 +274,7 @@ export default function SeccionTeam() {
             <div className={styles.modalBgU}><img src={bgU} alt="" /></div>
             <button ref={cerrarRef} className={styles.modalClose} onClick={() => setModalIdx(null)} aria-label={t('a11y.cerrar')}>✕</button>
             <div className={styles.modalImg}>
-              <img src={modalChef.img} alt={modalChef.nombre} />
+              <Imagen imagen={modalChef.img} sizes="(max-width: 768px) 90vw, 40vw" alt={modalChef.nombre} />
             </div>
             <div className={styles.modalTopInfo}>
               <p className={styles.modalRow}><span>{t('home.team.burger')}</span>{modalChef.burguer}</p>

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import styles from './TarjetaPost.module.css'
+import Imagen from '../../components/Imagen/Imagen'
 import { Fecha } from './Fecha'
 import { CATEGORIAS, rutaCategoria, rutaPost } from './posts'
 import Enlace from '../../i18n/Enlace'
@@ -12,7 +13,7 @@ export default function TarjetaPost({ post, className = '', style, Encabezado = 
 
   return (
     <article className={`${styles.tarjeta} ${className}`} style={style}>
-      <img src={post.img} alt="" className={styles.img} loading="lazy" />
+      <Imagen imagen={post.img} sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 341px" className={styles.img} loading="lazy" />
       <div className={styles.info}>
         <Enlace to={rutaCategoria(post.categoria)} className={styles.categoria}>{CATEGORIAS[post.categoria].nombre[idioma]}</Enlace>
         <Encabezado className={styles.titulo}>

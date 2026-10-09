@@ -6,25 +6,24 @@ import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import SeccionCarta from '../Home/sections/SeccionCarta'
 import Footer from '../Home/sections/Footer'
+import Imagen from '../../components/Imagen/Imagen'
 import imgFondo from '../../assets/images/origen/fondo-nuestro-origen.webp'
 import imgBordeCesped from '../../assets/images/origen/fondo-borde-cesped.webp'
-import imgRubia from '../../assets/images/origen/rubia-gallega.webp'
-import imgPan from '../../assets/images/origen/pan-artesano-lugo.webp'
-import imgHuevos from '../../assets/images/origen/huevos-camperos-pazo-vilane.webp'
-import imgMel from '../../assets/images/origen/mel-de-antas.webp'
-import imgQuesos from '../../assets/images/origen/queixos.webp'
-import imgArzua from '../../assets/images/origen/queso-arzua-ulloa.webp'
-import imgSanSimon from '../../assets/images/origen/queso-san-simon.webp'
-import imgRoxadouro from '../../assets/images/origen/roxadouro.webp'
-import imgPimientos from '../../assets/images/origen/pimientos-padron.webp'
+import imgRubia from '../../assets/images/origen/rubia-gallega.webp?adaptable'
+import imgPan from '../../assets/images/origen/pan-artesano-lugo.webp?adaptable'
+import imgHuevos from '../../assets/images/origen/huevos-camperos-pazo-vilane.webp?adaptable'
+import imgMel from '../../assets/images/origen/mel-de-antas.webp?adaptable'
+import imgQuesos from '../../assets/images/origen/queixos.webp?adaptable'
+import imgArzua from '../../assets/images/origen/queso-arzua-ulloa.webp?adaptable'
+import imgSanSimon from '../../assets/images/origen/queso-san-simon.webp?adaptable'
+import imgRoxadouro from '../../assets/images/origen/roxadouro.webp?adaptable'
+import imgPimientos from '../../assets/images/origen/pimientos-padron.webp?adaptable'
 import * as caminoEscritorio from './caminoEscritorio'
 import * as caminoMovil from './caminoMovil'
 import { useCaminoDibujado } from './useCaminoDibujado'
 import { editandoCamino, leerBorrador, guardarBorrador } from './borradorCamino'
 
 const BURGERS_PENDIENTES = ['Burger xxx', 'Burger xxx', 'Burger xxx']
-const VERTICAL = { width: 848, height: 1264 }
-const VERTICAL_2_3 = { width: 848, height: 1272 }
 
 const INGREDIENTES = [
   {
@@ -37,7 +36,7 @@ const INGREDIENTES = [
     encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
     burgers: [{ es: 'Todas las Made in Galicia', en: 'All the Made in Galicia burgers' }],
     nota: { es: '(menos la Urbana Corralita, que es de pollo)', en: '(except the Urbana Corralita, which is chicken)' },
-    img: imgRubia, alt: { es: 'Burger de carne de Rubia Galega en el campo gallego', en: 'Rubia Galega beef burger in the Galician countryside' }, width: 1608, height: 1800,
+    img: imgRubia, alt: { es: 'Burger de carne de Rubia Galega en el campo gallego', en: 'Rubia Galega beef burger in the Galician countryside' },
   },
   {
     titulo: { es: 'Pan artesano de Lugo', en: 'Artisan bread from Lugo' },
@@ -48,7 +47,7 @@ const INGREDIENTES = [
     encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: [{ es: 'Todas nuestras burgers', en: 'All our burgers' }],
     nota: { es: '(a no ser que pidas pan brioche)', en: '(unless you ask for a brioche bun)' },
-    img: imgPan, alt: { es: 'Pan artesano de Lugo', en: 'Artisan bread from Lugo' }, ...VERTICAL,
+    img: imgPan, alt: { es: 'Pan artesano de Lugo', en: 'Artisan bread from Lugo' },
   },
   {
     titulo: { es: 'Huevos camperos de Pazo de Vilane', en: 'Pazo de Vilane free-range eggs' },
@@ -59,7 +58,7 @@ const INGREDIENTES = [
     productor: { nombre: 'Pazo de Vilane', url: 'https://pazodevilane.com/' },
     encuentras: { es: 'Los encuentras en', en: 'You\'ll find them in' },
     burgers: ['Urbana Fina', 'Urbana Campera', 'Urbana British', 'Urbana Jalapeña'],
-    img: imgHuevos, alt: { es: 'Huevos camperos de Pazo de Vilane', en: 'Pazo de Vilane free-range eggs' }, ...VERTICAL,
+    img: imgHuevos, alt: { es: 'Huevos camperos de Pazo de Vilane', en: 'Pazo de Vilane free-range eggs' },
   },
   {
     titulo: { es: 'Mel da Anta ecológica', en: 'Organic Mel da Anta' },
@@ -70,7 +69,7 @@ const INGREDIENTES = [
     productor: { nombre: 'Mel da Anta' },
     encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Campera', 'Camperitos'],
-    img: imgMel, alt: { es: 'Burger con huevo y miel de castaño Mel da Anta junto a un tarro de miel y castañas', en: 'Burger with egg and Mel da Anta chestnut honey next to a jar of honey and chestnuts' }, ...VERTICAL_2_3,
+    img: imgMel, alt: { es: 'Burger con huevo y miel de castaño Mel da Anta junto a un tarro de miel y castañas', en: 'Burger with egg and Mel da Anta chestnut honey next to a jar of honey and chestnuts' },
   },
   {
     titulo: { es: 'Queso DOP Arzúa-Ulloa', en: 'Arzúa-Ulloa PDO cheese' },
@@ -81,7 +80,7 @@ const INGREDIENTES = [
     productor: { nombre: { es: 'DOP Arzúa-Ulloa', en: 'Arzúa-Ulloa PDO' }, url: 'https://www.arzua-ulloa.org/' },
     encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Antollo Galego', 'Rustic Way'],
-    img: imgArzua, alt: { es: 'Burger sobre una rueda de queso Arzúa-Ulloa', en: 'Burger on a wheel of Arzúa-Ulloa cheese' }, ...VERTICAL_2_3,
+    img: imgArzua, alt: { es: 'Burger sobre una rueda de queso Arzúa-Ulloa', en: 'Burger on a wheel of Arzúa-Ulloa cheese' },
   },
   {
     titulo: { es: 'Queso DOP San Simón da Costa', en: 'San Simón da Costa PDO cheese' },
@@ -92,7 +91,7 @@ const INGREDIENTES = [
     productor: { nombre: { es: 'DOP San Simón da Costa', en: 'San Simón da Costa PDO' }, url: 'https://www.sansimondacosta.com/' },
     encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: ['Urbana Fina', 'Urbana Corea'],
-    img: imgSanSimon, alt: { es: 'Burger con queso San Simón da Costa ahumado', en: 'Burger with smoked San Simón da Costa cheese' }, ...VERTICAL_2_3,
+    img: imgSanSimon, alt: { es: 'Burger con queso San Simón da Costa ahumado', en: 'Burger with smoked San Simón da Costa cheese' },
   },
   {
     titulo: { es: 'Queso Galmesán', en: 'Galmesán cheese' },
@@ -103,7 +102,7 @@ const INGREDIENTES = [
     productor: { nombre: 'Galmesán', url: 'https://www.galmesan.es/' },
     encuentras: { es: 'Lo encuentras en', en: 'You\'ll find it in' },
     burgers: BURGERS_PENDIENTES,
-    img: imgQuesos, alt: { es: 'Quesos gallegos', en: 'Galician cheeses' }, ...VERTICAL,
+    img: imgQuesos, alt: { es: 'Quesos gallegos', en: 'Galician cheeses' },
   },
   {
     titulo: 'Roxad’Ouro',
@@ -113,7 +112,7 @@ const INGREDIENTES = [
     },
     encuentras: { es: 'La encuentras en', en: 'You\'ll find it in' },
     burgers: BURGERS_PENDIENTES,
-    img: imgRoxadouro, alt: { es: 'Burger de carne madurada Roxad’Ouro', en: 'Matured Roxad’Ouro beef burger' }, ...VERTICAL,
+    img: imgRoxadouro, alt: { es: 'Burger de carne madurada Roxad’Ouro', en: 'Matured Roxad’Ouro beef burger' },
   },
   {
     titulo: { es: 'Pimientos de Padrón', en: 'Padrón peppers' },
@@ -123,7 +122,7 @@ const INGREDIENTES = [
     },
     encuentras: { es: 'Los encuentras en', en: 'You\'ll find them in' },
     burgers: ['Urbana Indómita', { es: 'Aros de cebolla', en: 'Onion rings' }],
-    img: imgPimientos, alt: { es: 'Burger con pimientos de Padrón', en: 'Burger with Padrón peppers' }, ...VERTICAL,
+    img: imgPimientos, alt: { es: 'Burger con pimientos de Padrón', en: 'Burger with Padrón peppers' },
   },
 ]
 
@@ -498,11 +497,10 @@ export default function Nosotros() {
                 }),
               }}
             >
-              <img
-                src={item.img}
+              <Imagen
+                imagen={item.img}
+                sizes="(max-width: 768px) 82vw, 20vw"
                 alt={tx(item.alt, idioma)}
-                width={item.width}
-                height={item.height}
                 loading="lazy"
                 decoding="async"
                 className={styles.foto}

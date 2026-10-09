@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './Lightbox.module.css'
+import Imagen from '../Imagen/Imagen'
 import arrowLeft from '../../assets/images/iconos/arrow-left.svg'
 import arrowRight from '../../assets/images/iconos/arrow-right.svg'
 
@@ -45,7 +46,7 @@ export default function Lightbox({ fotos, indice, onCambiar, onCerrar }) {
     >
       {foto && (
         <>
-          <img src={foto.img} alt={foto.alt} className={styles.img} />
+          <Imagen imagen={foto.img} sizes="100vw" alt={foto.alt} className={styles.img} />
           <p className={styles.contador} aria-live="polite">{indice + 1} / {total}</p>
           <button type="button" className={styles.cerrar} onClick={onCerrar} aria-label={t('a11y.cerrar')}>×</button>
           {total > 1 && (

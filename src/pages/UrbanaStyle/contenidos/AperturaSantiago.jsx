@@ -1,12 +1,12 @@
 import { Hashtag, EnlaceExterno, EnlaceInterno, Figura, Galeria, PostInstagram, PostsInstagram } from '../bloques'
-import imgInterior from '../../../assets/images/urbana-style/apertura-santiago-interior-mural.webp'
-import imgInterior2 from '../../../assets/images/urbana-style/apertura-santiago-interior-mural-2.webp'
-import imgFachada from '../../../assets/images/urbana-style/apertura-santiago-fachada.webp'
-import imgGalicianStyle from '../../../assets/images/urbana-style/apertura-santiago-galician-style-burger.webp'
-import imgNeonBurger from '../../../assets/images/urbana-style/apertura-santiago-neon-burger.webp'
-import imgPostureo from '../../../assets/images/urbana-style/apertura-santiago-neon-postureo-friendly.webp'
-import imgMesas from '../../../assets/images/urbana-style/apertura-santiago-mesas.webp'
-import imgPuroChef from '../../../assets/images/urbana-style/apertura-santiago-neon-puro-chef.webp'
+import imgInterior from '../../../assets/images/urbana-style/apertura-santiago-interior-mural.webp?adaptable'
+import imgInterior2 from '../../../assets/images/urbana-style/apertura-santiago-interior-mural-2.webp?adaptable'
+import imgFachada from '../../../assets/images/urbana-style/apertura-santiago-fachada.webp?adaptable'
+import imgGalicianStyle from '../../../assets/images/urbana-style/apertura-santiago-galician-style-burger.webp?adaptable'
+import imgNeonBurger from '../../../assets/images/urbana-style/apertura-santiago-neon-burger.webp?adaptable'
+import imgPostureo from '../../../assets/images/urbana-style/apertura-santiago-neon-postureo-friendly.webp?adaptable'
+import imgMesas from '../../../assets/images/urbana-style/apertura-santiago-mesas.webp?adaptable'
+import imgPuroChef from '../../../assets/images/urbana-style/apertura-santiago-neon-puro-chef.webp?adaptable'
 
 export default function AperturaSantiago() {
   return (

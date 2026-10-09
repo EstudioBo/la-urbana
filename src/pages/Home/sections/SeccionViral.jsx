@@ -1,8 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './SeccionViral.module.css'
+import Imagen from '../../../components/Imagen/Imagen'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../../../components/Seo/site'
-import hamburguesaViral from '../../../assets/images/home/hamburguesa-viral.webp'
+import hamburguesaViral from '../../../assets/images/home/hamburguesa-viral.webp?adaptable'
 
 const IconFacebook = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +110,7 @@ export default function SeccionViral() {
         </div>
       </div>
       <div className={styles.imageCol}>
-        <img src={hamburguesaViral} alt={t('home.viral.alt')} className={styles.image} loading="lazy" />
+        <Imagen imagen={hamburguesaViral} sizes="(max-width: 768px) 100vw, 50vw" alt={t('home.viral.alt')} className={styles.image} loading="lazy" />
       </div>
     </section>
   )

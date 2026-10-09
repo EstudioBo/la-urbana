@@ -1,7 +1,7 @@
 // Después del build: genera un HTML con el contenido y los metadatos de cada ruta, para que buscadores
 // y redes sociales los lean sin ejecutar JS. /carta → dist/carta.html, /en/menu → dist/en/menu.html.
 // También genera dist/sitemap.xml con las dos versiones de cada página
-import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -58,6 +58,11 @@ for (const ruta of [...RUTAS, ...PAGINAS_404]) {
     .replace('<html lang="es">', `<html lang="${idiomaDeRuta(ruta)}">`)
     .replace('</head>', () => `${cabecera}\n    ${PRECARGA_FUENTE}\n    ${enlacesCss(html)}\n  </head>`)
     .replace('<div id="root"></div>', () => `<div id="root">${html.slice(cabecera.length)}</div>`)
+
+  // Todo archivo que enlaza la página tiene que existir en dist/: se corta el build antes de publicar un enlace roto
+  const faltan = [...new Set(pagina.match(/\/assets\/[^"\s,)]+\.(?:webp|png|jpg|svg|woff2|css|js)/g) ?? [])]
+    .filter((archivo) => !existsSync(join(dist, decodeURIComponent(archivo))))
+  if (faltan.length) throw new Error(`${ruta} enlaza archivos que no están en dist/assets: ${faltan.join(', ')}`)
 
   const destino = join(dist, archivoDeRuta(ruta))
   mkdirSync(dirname(destino), { recursive: true })

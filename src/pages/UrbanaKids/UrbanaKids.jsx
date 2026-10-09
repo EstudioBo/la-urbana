@@ -1,18 +1,19 @@
 import { useRef, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styles from './UrbanaKids.module.css'
+import Imagen from '../../components/Imagen/Imagen'
 import Seo from '../../components/Seo/Seo'
 import MigasJsonLd from '../../components/Seo/MigasJsonLd'
 import Footer from '../Home/sections/Footer'
 import imgUu from '../../assets/images/decorativos/uu-deco.svg'
 import arrowLeft from '../../assets/images/iconos/arrow-left.svg'
 import arrowRight from '../../assets/images/iconos/arrow-right.svg'
-import img1 from '../../assets/images/kids/restaurante-secreto-1.webp'
-import img2 from '../../assets/images/kids/restaurante-secreto-2.webp'
-import img7 from '../../assets/images/kids/restaurante-secreto-7.webp'
-import imgNino from '../../assets/images/kids/nino-restaurante-secreto.webp'
-import imgNinoDerecha from '../../assets/images/kids/nino-restaurante-secreto-derecha.webp'
-import imgKidsHero from '../../assets/images/kids/urbanaKids-hero.webp'
+import img1 from '../../assets/images/kids/restaurante-secreto-1.webp?adaptable'
+import img2 from '../../assets/images/kids/restaurante-secreto-2.webp?adaptable'
+import img7 from '../../assets/images/kids/restaurante-secreto-7.webp?adaptable'
+import imgNino from '../../assets/images/kids/nino-restaurante-secreto.webp?adaptable'
+import imgNinoDerecha from '../../assets/images/kids/nino-restaurante-secreto-derecha.webp?adaptable'
+import imgKidsHero from '../../assets/images/kids/urbanaKids-hero.webp?adaptable'
 
 const STACK_CARDS = [
   { img: img1, alt: 'kids.fotos.uno', rotate: '-3deg', offset: 0 },
@@ -167,7 +168,7 @@ export default function UrbanaKids() {
       <main>
       {/* HERO */}
       <section className={styles.hero}>
-        <img src={imgKidsHero} alt="" className={styles.heroBg} />
+        <Imagen imagen={imgKidsHero} sizes="100vw" fetchPriority="high" className={styles.heroBg} />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <span className={styles.label}>
@@ -207,7 +208,7 @@ export default function UrbanaKids() {
                   aria-label={t('a11y.ampliarFotoDe', { numero: i + 1, total })}
                   aria-haspopup="dialog"
                 >
-                  <img loading="lazy" src={card.img} alt={t(card.alt)} />
+                  <Imagen imagen={card.img} sizes="(max-width: 768px) 92vw, 48vw" loading="lazy" alt={t(card.alt)} />
                 </button>
               </div>,
               ...(i === 0 ? [<div key="nino-slot" ref={ninoSlotRef} className={styles.stackNinoSlot} />] : []),
@@ -217,8 +218,8 @@ export default function UrbanaKids() {
 
         </div>
         <div className={styles.stackNino} ref={ninoRef}>
-          <img loading="lazy" src={imgNino} alt="" className={styles.ninoImgA} />
-          <img loading="lazy" src={imgNinoDerecha} alt="" className={styles.ninoImgB} />
+          <Imagen imagen={imgNino} sizes="(max-width: 768px) 82vw, 28vw" loading="lazy" className={styles.ninoImgA} />
+          <Imagen imagen={imgNinoDerecha} sizes="(max-width: 768px) 82vw, 28vw" loading="lazy" className={styles.ninoImgB} />
         </div>
       </section>
 
@@ -238,7 +239,7 @@ export default function UrbanaKids() {
             <button type="button" className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); anterior() }}>
               <img src={arrowLeft} alt={t('a11y.anterior')} />
             </button>
-            <img src={STACK_CARDS[lightboxIdx].img} alt={t(STACK_CARDS[lightboxIdx].alt)} className={styles.lightboxImg} />
+            <Imagen imagen={STACK_CARDS[lightboxIdx].img} sizes="100vw" alt={t(STACK_CARDS[lightboxIdx].alt)} className={styles.lightboxImg} />
             <button type="button" className={styles.lightboxNext} onClick={e => { e.stopPropagation(); siguiente() }}>
               <img src={arrowRight} alt={t('a11y.siguiente')} />
             </button>

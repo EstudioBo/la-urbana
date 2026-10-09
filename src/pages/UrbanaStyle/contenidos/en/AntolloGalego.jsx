@@ -1,6 +1,6 @@
 import { Hashtag, EnlaceExterno, EnlaceInterno, Figura, PostInstagram, PostsInstagram } from '../../bloques'
-import imgBurger from '../../../../assets/images/urbana-style/antollo-galego-burger.webp'
-import imgChefs from '../../../../assets/images/urbana-style/antollo-galego-chefs.webp'
+import imgBurger from '../../../../assets/images/urbana-style/antollo-galego-burger.webp?adaptable'
+import imgChefs from '../../../../assets/images/urbana-style/antollo-galego-chefs.webp?adaptable'
 
 export default function AntolloGalego() {
   return (

@@ -1,15 +1,14 @@
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './HeroSlider.module.css'
-import imgSlide2 from '../../../assets/images/home/hero-no-smush.webp'
-import imgSlide3 from '../../../assets/images/home/hero-pan-crujiente.webp'
-import imgSlide4 from '../../../assets/images/home/hero-martin.webp'
+import Imagen from '../../../components/Imagen/Imagen'
+import imgSlide1 from '../../../assets/images/home/hero-lucia.webp?adaptable'
+import imgSlide2 from '../../../assets/images/home/hero-no-smush.webp?adaptable'
+import imgSlide3 from '../../../assets/images/home/hero-pan-crujiente.webp?adaptable'
+import imgSlide4 from '../../../assets/images/home/hero-martin.webp?adaptable'
 import arrowLeft from '../../../assets/images/iconos/arrow-left.svg'
 import arrowRight from '../../../assets/images/iconos/arrow-right.svg'
 import arrowDown from '../../../assets/images/iconos/arrow-down.svg'
-
-// Ruta fija en /public (sin hash) para que coincida con el <link rel="preload"> de index.html
-const imgSlide1 = '/hero-lucia.webp'
 
 const SLIDES = [
   {
@@ -92,10 +91,10 @@ export default function HeroSlider() {
   return (
     <section className={styles.hero} ref={heroRef}>
       {SLIDES.map((s, i) => loaded.has(i) && (
-        <img
+        <Imagen
           key={i}
-          src={s.img}
-          alt=""
+          imagen={s.img}
+          sizes="100vw"
           fetchPriority={i === 0 ? 'high' : undefined}
           className={`${styles.bg} ${i === current ? styles.active : ''} ${i === 1 ? styles.bgContain : ''} ${i === 0 ? styles.bgLucia : ''} ${i === 2 ? styles.bgPan : ''} ${i === 3 ? styles.bgSmash : ''}`}
         />

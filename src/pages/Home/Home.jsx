@@ -1,11 +1,12 @@
 import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './Home.module.css'
+import Imagen from '../../components/Imagen/Imagen'
 import Seo from '../../components/Seo/Seo'
 import LocalBusinessJsonLd from '../../components/Seo/LocalBusinessJsonLd'
 import HeroSlider from './sections/HeroSlider'
 import pegatinaU from '../../assets/images/decorativos/pegatina-u.webp'
-import celoUrbana from '../../assets/images/celo-la-urbana.webp'
+import celoUrbana from '../../assets/images/celo-la-urbana.webp?adaptable'
 import logoNegro from '../../assets/images/logos/logo-laurbana-negro.webp'
 import SeccionOrigen from './sections/SeccionOrigen'
 import SeccionEsencia from './sections/SeccionEsencia'
@@ -96,7 +97,7 @@ export default function Home() {
         }, { threshold: 0.3 })
         obs.observe(el)
       }}>
-        <img loading="lazy" src={celoUrbana} alt="" className={styles.celo} />
+        <Imagen imagen={celoUrbana} sizes="(max-width: 768px) 70vw, 35vw" loading="lazy" className={styles.celo} />
       </div>
       <SeccionEsencia />
       <SeccionTeam />

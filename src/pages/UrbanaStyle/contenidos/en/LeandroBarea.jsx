@@ -1,7 +1,7 @@
 import { Hashtag, EnlaceExterno, Figura, Galeria, PostInstagram, PostsInstagram } from '../../bloques'
-import imgMesaDetalle from '../../../../assets/images/urbana-style/leandro-barea-mesa-detalle.webp'
-import imgMesa from '../../../../assets/images/urbana-style/leandro-barea-mesa.webp'
-import imgManteles from '../../../../assets/images/urbana-style/leandro-barea-manteles.webp'
+import imgMesaDetalle from '../../../../assets/images/urbana-style/leandro-barea-mesa-detalle.webp?adaptable'
+import imgMesa from '../../../../assets/images/urbana-style/leandro-barea-mesa.webp?adaptable'
+import imgManteles from '../../../../assets/images/urbana-style/leandro-barea-manteles.webp?adaptable'
 
 export default function LeandroBarea() {
   return (

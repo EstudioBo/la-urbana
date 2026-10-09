@@ -2,7 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import Enlace from '../../../i18n/Enlace'
 import styles from './SeccionRestaurantesSecretos.module.css'
-import imgNino from '../../../assets/images/kids/nino-restaurante-secreto-trimmed.webp'
+import Imagen from '../../../components/Imagen/Imagen'
+import imgNino from '../../../assets/images/kids/nino-restaurante-secreto-trimmed.webp?adaptable'
 import imgUu from '../../../assets/images/decorativos/uu-deco.svg'
 
 export default function SeccionRestaurantesSecretos() {
@@ -25,7 +26,7 @@ export default function SeccionRestaurantesSecretos() {
     <section className={styles.section}>
       <img loading="lazy" src={imgUu} alt="" className={styles.uuDeco} />
       <div className={styles.foto} ref={fotoRef}>
-        <img loading="lazy" src={imgNino} alt="" className={ninoSprung ? styles.ninoSpring : ''} />
+        <Imagen imagen={imgNino} sizes="(max-width: 768px) 100vw, 38vw" loading="lazy" className={ninoSprung ? styles.ninoSpring : ''} />
       </div>
       <div className={styles.content}>
         <span className={styles.label}>

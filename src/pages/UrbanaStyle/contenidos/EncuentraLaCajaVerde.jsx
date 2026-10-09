@@ -1,9 +1,9 @@
 import { Hashtag, EnlaceExterno, EnlaceInterno, Figura, Galeria, PostInstagram, PostsInstagram } from '../bloques'
-import imgMuralla from '../../../assets/images/urbana-style/cajas-verdes-lugo-muralla.webp'
-import imgEstatuas from '../../../assets/images/urbana-style/cajas-verdes-lugo-estatuas.webp'
-import imgCabeza from '../../../assets/images/urbana-style/cajas-verdes-escultura-cabeza.webp'
-import imgHombreVerde from '../../../assets/images/urbana-style/cajas-verdes-hombre-verde.webp'
-import imgSireno from '../../../assets/images/urbana-style/cajas-verdes-vigo-sireno.webp'
+import imgMuralla from '../../../assets/images/urbana-style/cajas-verdes-lugo-muralla.webp?adaptable'
+import imgEstatuas from '../../../assets/images/urbana-style/cajas-verdes-lugo-estatuas.webp?adaptable'
+import imgCabeza from '../../../assets/images/urbana-style/cajas-verdes-escultura-cabeza.webp?adaptable'
+import imgHombreVerde from '../../../assets/images/urbana-style/cajas-verdes-hombre-verde.webp?adaptable'
+import imgSireno from '../../../assets/images/urbana-style/cajas-verdes-vigo-sireno.webp?adaptable'
 
 export default function EncuentraLaCajaVerde() {
   return (
