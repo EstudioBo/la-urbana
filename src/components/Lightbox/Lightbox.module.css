@@ -27,6 +27,7 @@
 }
 
 .img {
+  width: auto;
   max-width: 80vw;
   max-height: 85dvh;
   object-fit: contain;

@@ -519,6 +519,7 @@
 }
 
 .lightboxImg {
+  width: auto;
   max-width: 80vw;
   max-height: 85vh;
   object-fit: contain;

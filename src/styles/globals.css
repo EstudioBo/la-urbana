@@ -106,6 +106,8 @@ body {
 
 img {
   max-width: 100%;
+  /* Con width/height en el HTML (evitan saltos de diseño), sin esto la altura del atributo manda sobre la proporción */
+  height: auto;
   display: block;
 }
 
