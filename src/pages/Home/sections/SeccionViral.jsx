@@ -109,7 +109,7 @@ export default function SeccionViral() {
         </div>
       </div>
       <div className={styles.imageCol}>
-        <img src={hamburguesaViral} alt="" className={styles.image} loading="lazy" />
+        <img src={hamburguesaViral} alt={t('home.viral.alt')} className={styles.image} loading="lazy" />
       </div>
     </section>
   )

@@ -54,7 +54,7 @@ export function Galeria({ fotos }) {
           >
             <img
               src={f.img}
-              alt=""
+              alt={f.alt}
               loading="lazy"
               style={f.encuadre ? { objectPosition: f.encuadre } : undefined}
             />

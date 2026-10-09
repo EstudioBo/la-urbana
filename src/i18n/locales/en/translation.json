@@ -67,7 +67,8 @@
     "viral": {
       "label": "Style",
       "title": "Very very viral",
-      "resenas": "reviews"
+      "resenas": "reviews",
+      "alt": "Cheddar and jalapeño burger on a wooden board on a Galician beach at sunset, with “like” hearts floating in the air"
     },
     "carta": {
       "label": "The",
@@ -125,6 +126,11 @@
     "seo": {
       "titulo": "Secret Restaurants | Urbana Kids",
       "descripcion": "At La Urbana Vigo and Lugo – Augas Férreas, kids have their own secret hideout: an ordering kiosk, a play area, a screen and a table all to themselves."
+    },
+    "fotos": {
+      "uno": "Neon Secret Restaurant sign beside a lamp with the La Urbana print and the play area",
+      "dos": "Kids’ meal in a zoo-themed box with a burger, chips, a milk drink and a surprise toy",
+      "siete": "Inside the Secret Restaurant, with a kids’ table, a games screen and a padded play area"
     },
     "migas": "Secret Restaurants",
     "titulo1": "Secret",

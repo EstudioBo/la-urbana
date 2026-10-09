@@ -67,7 +67,8 @@
     "viral": {
       "label": "Estilo",
       "title": "Muy muy viral",
-      "resenas": "reseñas"
+      "resenas": "reseñas",
+      "alt": "Burger con queso cheddar y jalapeños sobre una tabla en una playa gallega al atardecer, con corazones de “me gusta” flotando en el aire"
     },
     "carta": {
       "label": "La",
@@ -125,6 +126,11 @@
     "seo": {
       "titulo": "Restaurantes Secretos | urbana kids",
       "descripcion": "En La Urbana Vigo y Lugo - Augas Férreas, niños y niñas tienen su espacio secreto: kiosko para hacer su pedido, zona de juego, pantalla y mesa propia."
+    },
+    "fotos": {
+      "uno": "Letrero de neón del Restaurante Secreto junto a una lámpara con el estampado de La Urbana y la zona de juegos",
+      "dos": "Menú infantil en caja del zoo con burger, patatas, batido y una sorpresa",
+      "siete": "Interior del Restaurante Secreto con mesa infantil, pantalla de juegos y zona de juego acolchada"
     },
     "migas": "Restaurantes Secretos",
     "titulo1": "Restaurante",

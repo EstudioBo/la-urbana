@@ -11,13 +11,13 @@ import img1 from '../../assets/images/kids/restaurante-secreto-1.webp'
 import img2 from '../../assets/images/kids/restaurante-secreto-2.webp'
 import img7 from '../../assets/images/kids/restaurante-secreto-7.webp'
 import imgNino from '../../assets/images/kids/nino-restaurante-secreto.webp'
-import imgNinoDerecha from '../../assets/images/kids/nino-restuarante-secreto.derecha2.webp'
+import imgNinoDerecha from '../../assets/images/kids/nino-restaurante-secreto-derecha.webp'
 import imgKidsHero from '../../assets/images/kids/urbanaKids-hero.webp'
 
 const STACK_CARDS = [
-  { img: img1, rotate: '-3deg', offset: 0 },
-  { img: img2, rotate: '2deg',  offset: 20 },
-  { img: img7, rotate: '-1.5deg', offset: 40 },
+  { img: img1, alt: 'kids.fotos.uno', rotate: '-3deg', offset: 0 },
+  { img: img2, alt: 'kids.fotos.dos', rotate: '2deg',  offset: 20 },
+  { img: img7, alt: 'kids.fotos.siete', rotate: '-1.5deg', offset: 40 },
 ]
 
 export default function UrbanaKids() {
@@ -207,7 +207,7 @@ export default function UrbanaKids() {
                   aria-label={t('a11y.ampliarFotoDe', { numero: i + 1, total })}
                   aria-haspopup="dialog"
                 >
-                  <img loading="lazy" src={card.img} alt="" />
+                  <img loading="lazy" src={card.img} alt={t(card.alt)} />
                 </button>
               </div>,
               ...(i === 0 ? [<div key="nino-slot" ref={ninoSlotRef} className={styles.stackNinoSlot} />] : []),
@@ -238,7 +238,7 @@ export default function UrbanaKids() {
             <button type="button" className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); anterior() }}>
               <img src={arrowLeft} alt={t('a11y.anterior')} />
             </button>
-            <img src={STACK_CARDS[lightboxIdx].img} alt="" className={styles.lightboxImg} />
+            <img src={STACK_CARDS[lightboxIdx].img} alt={t(STACK_CARDS[lightboxIdx].alt)} className={styles.lightboxImg} />
             <button type="button" className={styles.lightboxNext} onClick={e => { e.stopPropagation(); siguiente() }}>
               <img src={arrowRight} alt={t('a11y.siguiente')} />
             </button>
