@@ -21,13 +21,13 @@ function useVisible(threshold) {
 }
 
 // Tarjetas de entradas en rejilla, con entrada escalonada al llegar a ellas
-export default function RejillaPosts({ posts }) {
+export default function RejillaPosts({ posts, Encabezado }) {
   const [gridRef, gridVisible] = useVisible(0.1)
 
   return (
     <div className={`${styles.grid} ${gridVisible ? styles.gridVisible : ''}`} ref={gridRef}>
       {posts.map((p, i) => (
-        <TarjetaPost key={p.slug.es} post={p} className={styles.card} style={{ '--i': i }} />
+        <TarjetaPost key={p.slug.es} post={p} className={styles.card} style={{ '--i': i }} Encabezado={Encabezado} />
       ))}
     </div>
   )

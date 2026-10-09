@@ -104,12 +104,13 @@ export default function HeroSlider() {
       {slide.bottomOverlay && <div className={styles.bottomOverlay} />}
 
       <div ref={contentRef} className={`${styles.content} ${slide.centered ? styles.contentCentered : ''} ${slide.rightColumn ? styles.contentRight : ''}`}>
+        <h1 className="solo-lector">{t('home.hero.h1')}</h1>
         {t(slide.titleKey) && (
-          <h1 className={styles.title}>
+          <h2 className={styles.title}>
             {t(slide.titleKey).split('|').map((line, i, arr) => (
               <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
             ))}
-          </h1>
+          </h2>
         )}
         <div className={styles.subtitle}>
           {t(slide.subtitleKey).split('|').map((line, i) => {

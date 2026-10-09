@@ -5,7 +5,7 @@ import { CATEGORIAS, rutaCategoria, rutaPost } from './posts'
 import Enlace from '../../i18n/Enlace'
 import { useIdioma } from '../../i18n/idioma'
 
-export default function TarjetaPost({ post, className = '', style }) {
+export default function TarjetaPost({ post, className = '', style, Encabezado = 'h3' }) {
   const { t } = useTranslation()
   const idioma = useIdioma()
   const textos = post[idioma]
@@ -15,9 +15,9 @@ export default function TarjetaPost({ post, className = '', style }) {
       <img src={post.img} alt="" className={styles.img} loading="lazy" />
       <div className={styles.info}>
         <Enlace to={rutaCategoria(post.categoria)} className={styles.categoria}>{CATEGORIAS[post.categoria].nombre[idioma]}</Enlace>
-        <h3 className={styles.titulo}>
+        <Encabezado className={styles.titulo}>
           <Enlace to={rutaPost(post)} className={styles.enlace}>{textos.titulo}</Enlace>
-        </h3>
+        </Encabezado>
         <Fecha fecha={post.fecha} className={styles.fecha} />
         <p className={styles.extracto}>{textos.extracto}</p>
         <span className={styles.mas} aria-hidden="true">{t('style.leerMas')}</span>

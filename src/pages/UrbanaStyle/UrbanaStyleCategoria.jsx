@@ -40,7 +40,7 @@ export default function UrbanaStyleCategoria() {
           </div>
         </header>
         <section className={styles.listado} aria-label={t('style.entradasDe', { categoria: nombre })}>
-          <RejillaPosts posts={posts} />
+          <RejillaPosts posts={posts} Encabezado="h2" />
         </section>
       </main>
       <Footer />

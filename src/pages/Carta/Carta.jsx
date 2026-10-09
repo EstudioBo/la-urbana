@@ -257,6 +257,8 @@ export default function Carta() {
           ))}
         </div>
 
+        <h2 className="solo-lector">{tx(CATEGORIAS.find(c => c.id === activa).label, idioma)}</h2>
+
         <div className={styles.grid}>
           {platosFiltrados.map((plato, i) => {
             const key = `${plato.cat}-${i}`
