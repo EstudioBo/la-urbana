@@ -1,19 +1,19 @@
 /* Blenny y Neue Haas Grotesk Display vienen del kit de Adobe Fonts (Typekit) cargado en index.html */
 @font-face {
   font-family: 'Popfine';
-  src: url('../assets/fonts/popfine-regular.ttf') format('truetype');
+  src: url('../assets/fonts/popfine-regular.woff2') format('woff2');
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Popfine';
-  src: url('../assets/fonts/popfine-italic.ttf') format('truetype');
+  src: url('../assets/fonts/popfine-italic.woff2') format('woff2');
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Revelstoke';
-  src: url('../assets/fonts/revelstoke-regular.ttf') format('truetype');
+  src: url('../assets/fonts/revelstoke-regular.woff2') format('woff2');
   font-display: swap;
 }
 

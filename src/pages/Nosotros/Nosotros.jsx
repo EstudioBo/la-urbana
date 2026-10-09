@@ -433,7 +433,7 @@ export default function Nosotros() {
             width="1200"
             height="1800"
             fetchPriority="high"
-            style={vaca ?? undefined}
+            style={vaca ? { width: vaca.width, height: vaca.height, transform: `translate(${vaca.left}px, ${vaca.top}px)` } : undefined}
           />
           {vaca && (
             <img
@@ -443,10 +443,9 @@ export default function Nosotros() {
               width="1200"
               height={BORDE_CESPED.filas}
               style={{
-                left: vaca.left,
                 width: vaca.width,
-                top: vaca.top + (vaca.height * BORDE_CESPED.fila) / FOTO_ALTO,
                 height: (vaca.height * BORDE_CESPED.filas) / FOTO_ALTO,
+                transform: `translate(${vaca.left}px, ${vaca.top + (vaca.height * BORDE_CESPED.fila) / FOTO_ALTO}px)`,
               }}
             />
           )}
@@ -470,7 +469,12 @@ export default function Nosotros() {
           <div
             ref={lienzoRef}
             className={styles.lienzo}
-            style={lienzo ? { '--solape': `${solape}px`, aspectRatio: `${lienzo.LIENZO.ancho} / ${lienzo.LIENZO.alto}` } : undefined}
+            // Oculto hasta que colocarVaca() sabe dónde está el horizonte: el HTML prerenderizado no sabe si la
+            // pantalla es de escritorio o de móvil, y colocarlo después con todo ya pintado contaría como salto (CLS)
+            style={{
+              ...(lienzo && { '--solape': `${solape}px`, aspectRatio: `${lienzo.LIENZO.ancho} / ${lienzo.LIENZO.alto}` }),
+              ...(!vaca && { display: 'none' }),
+            }}
           >
           {lienzo && caminoSvg}
           {INGREDIENTES.map((item, i) => (

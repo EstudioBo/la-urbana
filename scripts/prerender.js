@@ -1,7 +1,7 @@
 // Después del build: genera un HTML con el contenido y los metadatos de cada ruta, para que buscadores
 // y redes sociales los lean sin ejecutar JS. /carta → dist/carta.html, /en/menu → dist/en/menu.html.
 // También genera dist/sitemap.xml con las dos versiones de cada página
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -23,6 +23,26 @@ const CABECERA = /^(?:<title>[^<]*<\/title>|<(?:meta|link)\b[^>]*\/>)+/
 
 const archivoDeRuta = (ruta) => (ruta === '/' ? 'index.html' : `${ruta.slice(1)}.html`)
 
+// El CSS de cada página va en su propio archivo y, sin esto, llega con el JavaScript: el HTML se pinta sin
+// estilos y luego salta (CLS). Cada archivo se enlaza en las páginas que usan alguna de sus clases, que llevan
+// un sufijo único por archivo (_grid_1rmbl_126). Vite no lo vuelve a pedir si ya está enlazado.
+const CSS_GENERAL = plantilla.match(/href="(\/assets\/[^"]+\.css)"/)[1]
+const cssPorArchivo = readdirSync(join(dist, 'assets'))
+  .filter((archivo) => archivo.endsWith('.css') && `/assets/${archivo}` !== CSS_GENERAL)
+  .map((archivo) => ({
+    href: `/assets/${archivo}`,
+    clases: [...new Set(readFileSync(join(dist, 'assets', archivo), 'utf-8').match(/(?<=\.)_[\w-]+_[a-z0-9]{5}_\d+/g) ?? [])],
+  }))
+// Popfine es la fuente de los títulos de casi todas las páginas: si llega después del primer pintado, el título
+// cambia de tamaño al sustituir la fuente provisional y empuja todo lo de debajo (CLS). Se precarga en todas.
+const POPFINE = readFileSync(join(dist, CSS_GENERAL), 'utf-8').match(/\/assets\/popfine-regular-[^)"']+\.woff2/)[0]
+const PRECARGA_FUENTE = `<link rel="preload" href="${POPFINE}" as="font" type="font/woff2" crossorigin>`
+
+const enlacesCss = (html) => cssPorArchivo
+  .filter(({ clases }) => clases.some((clase) => html.includes(clase)))
+  .map(({ href }) => `<link rel="stylesheet" crossorigin href="${href}">`)
+  .join('\n    ')
+
 // Cualquier URL que no sea una ruta pinta la página de error en su idioma; _redirects las sirve con código 404
 const PAGINAS_404 = ['/404', '/en/404']
 
@@ -36,7 +56,7 @@ for (const ruta of [...RUTAS, ...PAGINAS_404]) {
 
   const pagina = base
     .replace('<html lang="es">', `<html lang="${idiomaDeRuta(ruta)}">`)
-    .replace('</head>', () => `${cabecera}\n  </head>`)
+    .replace('</head>', () => `${cabecera}\n    ${PRECARGA_FUENTE}\n    ${enlacesCss(html)}\n  </head>`)
     .replace('<div id="root"></div>', () => `<div id="root">${html.slice(cabecera.length)}</div>`)
 
   const destino = join(dist, archivoDeRuta(ruta))

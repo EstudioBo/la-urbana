@@ -11,7 +11,8 @@
   background: var(--color-green);
 }
 
-/* Tamaño y posición los calcula colocarVaca() en Nosotros.jsx */
+/* Tamaño y posición los calcula colocarVaca() en Nosotros.jsx. La posición va en transform y no en top/left:
+   así recolocarla al cargar no cuenta como salto de diseño (CLS) */
 .heroBg {
   position: absolute;
   top: 0;
@@ -23,6 +24,8 @@
 /* Borde de hierba recortado de la misma foto: por encima del trazo del camino (z-index 0) y por debajo de sus puntos */
 .heroBordeCesped {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
   max-width: none;
   pointer-events: none;
