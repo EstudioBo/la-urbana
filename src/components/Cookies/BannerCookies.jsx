@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import Enlace from '../../i18n/Enlace'
 import { useTranslation } from 'react-i18next'
 import styles from './BannerCookies.module.css'
@@ -11,10 +11,6 @@ import {
 } from './consentimiento'
 
 const CATEGORIAS = ['analiticas', 'terceros']
-
-// El banner no va en el HTML prerenderizado: quien ya eligió lo vería un instante antes de que cargue React
-const sinSuscripcion = () => () => {}
-const useHidratado = () => useSyncExternalStore(sinSuscripcion, () => true, () => false)
 
 function Preferencias({ inicial, onCerrar }) {
   const { t } = useTranslation()
@@ -82,10 +78,14 @@ export default function BannerCookies() {
   const { t } = useTranslation()
   const consentimiento = useConsentimiento()
   const preferenciasAbiertas = usePreferenciasAbiertas()
-  const hidratado = useHidratado()
   const id = useId()
 
-  if (!hidratado) return null
+  // El banner viene en el HTML prerenderizado para que se pinte con la página y no cuando carga el JavaScript
+  // (si no, retrasa el LCP). index.html marca <html data-consent> a quien ya eligió, para que no lo vea antes
+  // de hidratar; desde entonces la marca la mantiene React según el consentimiento real
+  useEffect(() => {
+    document.documentElement.toggleAttribute('data-consent', consentimiento !== null)
+  }, [consentimiento])
 
   if (preferenciasAbiertas) {
     return (
@@ -99,7 +99,7 @@ export default function BannerCookies() {
   if (consentimiento) return null
 
   return (
-    <div className={styles.banner} role="dialog" aria-labelledby={`${id}-titulo`} aria-describedby={`${id}-texto`}>
+    <div className={`${styles.banner} ${styles.inicial}`} role="dialog" aria-labelledby={`${id}-titulo`} aria-describedby={`${id}-texto`}>
       <h2 id={`${id}-titulo`} className={styles.titulo}>{t('cookies.titulo')}</h2>
       <p id={`${id}-texto`} className={styles.texto}>
         {t('cookies.texto')}{' '}

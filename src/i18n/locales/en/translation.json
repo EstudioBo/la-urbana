@@ -165,7 +165,8 @@
       "descripcion": "Book a table at La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas and As Termas Shopping Centre), Vigo and Santiago de Compostela. Pick your spot and book."
     },
     "titulo": "Book a table",
-    "iframe": "Bookings"
+    "iframe": "Bookings",
+    "cargando": "Loading the booking module…"
   },
   "style": {
     "descripcion": "Campaigns, collaborations with Galician artists and chefs, signature burgers and street actions from La Urbana in Lugo, Santiago and Vigo. Pure #LaUrbanaStyle.",

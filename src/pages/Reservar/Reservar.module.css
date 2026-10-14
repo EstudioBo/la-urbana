@@ -155,3 +155,13 @@
   display: block;
   border: none;
 }
+
+.cargando {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: var(--space-7);
+  color: var(--color-green-dark);
+  font-family: var(--font-body);
+  text-align: center;
+}

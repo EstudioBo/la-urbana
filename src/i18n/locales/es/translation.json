@@ -165,7 +165,8 @@
       "descripcion": "Reserva mesa en La Urbana Burger Bar: Lugo (Bispo Aguirre, Praza de Augas Férreas y C.C. As Termas), Vigo y Santiago de Compostela. Elige local y reserva."
     },
     "titulo": "Reservar",
-    "iframe": "Reservas"
+    "iframe": "Reservas",
+    "cargando": "Cargando el módulo de reservas…"
   },
   "style": {
     "descripcion": "Campañas, colaboraciones con artistas y chefs gallegos, burgers de autor y acciones en la calle de La Urbana en Lugo, Santiago y Vigo. Puro #LaUrbanaStyle.",

@@ -1,3 +1,7 @@
+:global(html[data-consent]) .inicial {
+  display: none;
+}
+
 .banner {
   position: fixed;
   z-index: 900;

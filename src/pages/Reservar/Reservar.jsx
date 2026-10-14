@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './Reservar.module.css'
 import Seo from '../../components/Seo/Seo'
@@ -18,10 +18,35 @@ const RESTAURANTES = [
   { nombre: { es: 'C.C. As Cancelas', en: 'As Cancelas Shopping Centre' }, ciudad: 'Santiago', modulo: 'restaurante-la-urbana-as-cancelas' },
 ]
 
+// El módulo de CoverManager pesa mucho (JavaScript sin minificar y tareas largas): se pide cuando la página
+// ya ha cargado y el navegador está libre, no a la vez que el resto. El hueco está reservado, así que nada se mueve
+function useCargaDiferida() {
+  const [listo, setListo] = useState(false)
+
+  useEffect(() => {
+    let idle
+    const activar = () => {
+      idle = 'requestIdleCallback' in window
+        ? window.requestIdleCallback(() => setListo(true), { timeout: 2000 })
+        : window.setTimeout(() => setListo(true), 1000)
+    }
+    if (document.readyState === 'complete') activar()
+    else window.addEventListener('load', activar, { once: true })
+    return () => {
+      window.removeEventListener('load', activar)
+      if ('requestIdleCallback' in window) window.cancelIdleCallback(idle)
+      else window.clearTimeout(idle)
+    }
+  }, [])
+
+  return listo
+}
+
 export default function Reservar() {
   const { t } = useTranslation()
   const idioma = useIdioma()
   const [active, setActive] = useState(0)
+  const moduloListo = useCargaDiferida()
 
   return (
     <div>
@@ -51,13 +76,16 @@ export default function Reservar() {
           ))}
         </div>
 
-        <div className={styles.iframeWrapper}>
-          <iframe
-            title={t('reservar.iframe')}
-            src={`https://www.covermanager.com/reservation/module_restaurant/${RESTAURANTES[active].modulo}/${MODULO_IDIOMA[idioma]}`}
-            frameBorder="0"
-            className={styles.iframe}
-          />
+        <div className={styles.iframeWrapper} aria-busy={!moduloListo}>
+          {moduloListo ? (
+            <iframe
+              title={t('reservar.iframe')}
+              src={`https://www.covermanager.com/reservation/module_restaurant/${RESTAURANTES[active].modulo}/${MODULO_IDIOMA[idioma]}`}
+              className={styles.iframe}
+            />
+          ) : (
+            <p className={styles.cargando} role="status">{t('reservar.cargando')}</p>
+          )}
         </div>
       </main>
       <Footer />
