@@ -27,6 +27,7 @@ Fuente única de verdad: `src/styles/globals.css`. Todo lo de abajo ya está apl
 | `--font-script` | Popfine, Segoe Print, Bradley Hand |
 | `--font-title` | Revelstoke |
 | `--font-body` | neue-haas-grotesk-display, Helvetica Neue |
+| `--font-system` | tipografía del sistema (`system-ui`, Segoe UI, Roboto…). Solo para lo que se pinta con la primera carga y no debe recolocarse cuando llegue la fuente de Typekit: el banner de cookies |
 
 ## Radios
 

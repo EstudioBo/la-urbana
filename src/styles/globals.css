@@ -32,6 +32,7 @@
   --font-script: 'Popfine', 'Segoe Print', 'Bradley Hand', cursive;
   --font-title: 'Revelstoke', sans-serif;
   --font-body: 'neue-haas-grotesk-display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-system: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 1rem;
